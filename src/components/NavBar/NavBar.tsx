@@ -21,7 +21,9 @@ export default async function NavBar() {
           aria-label="home page"
         >
           <div className="h-12 w-12">
-            <CustomImage dbImageName={"o3uowmy2saktgyo5d7u6iu3m-icon.webp"} />
+            <CustomImage
+              dbImageName={"wvd8t6wxk8iw4ldqa26x56b7-logo_alpha.png"}
+            />
           </div>
           {brandName}
         </Link>

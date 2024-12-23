@@ -119,7 +119,7 @@ const SheetMenuItem = ({
     ? [SheetClose, { asChild: true }]
     : [React.Fragment, undefined];
   return (
-    <div className="transition-colors hover:bg-muted">
+    <div className="transition-colors hover:bg-accent/50">
       <SheetCloseWrapper {...sheetCloseWrapperProps}>
         {children}
       </SheetCloseWrapper>

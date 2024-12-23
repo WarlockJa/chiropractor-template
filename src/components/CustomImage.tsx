@@ -25,8 +25,7 @@ export default async function CustomImage({
   if (process.env.NODE_ENV === "development") {
     return (
       <Image
-        // src={`${env.NEXT_PUBLIC_R2_URI}/${dbImageName}`}
-        src={`${env.NEXT_PUBLIC_R2_URI}/default.webp`}
+        src={`${env.NEXT_PUBLIC_R2_URI}/${dbImageName}`}
         alt={"development"}
         aria-label={"development"}
         placeholder="blur"

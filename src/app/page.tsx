@@ -11,6 +11,10 @@ import HomeMacRightPanel from "@/components/Home/MacSection/HomeMacRightPanel";
 import ContactsFooter from "@/components/ContactsFooter";
 import HomeWindowsLeftPanel from "@/components/Home/WindowsSection/HomeWindowsLeftPanel";
 import HomeWindowsRightPanel from "@/components/Home/WindowsSection/HomeWindowsRightPanel";
+import HeroCarousel from "@/components/Home/HeroCarousel/HeroCarousel";
+import CustomImage from "@/components/CustomImage";
+import AnimatedText from "@/components/UniversalComponents/AnimatedText";
+import { CustomButton } from "@/components/CustomButton";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -30,7 +34,149 @@ export default function Home() {
   ];
 
   return (
-    <div className="mt-28">
+    <div>
+      {/* Hero Carousel */}
+      <HeroCarousel
+        slide1={
+          <div className="relative h-screen">
+            <CustomImage dbImageName="r89qsom4ri7mnrqbhdx2mxbu-top-slide1.webp" />
+            <AnimatedText
+              className="absolute left-32 top-[27%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1}
+            >
+              <div className="text-3xl font-bold text-accent">
+                MARIA THERESA
+              </div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[35%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1}
+            >
+              <div className="text-8xl font-bold">BETTER HEALTH</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[45%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.2}
+            >
+              <div className="text-8xl font-bold">THROUGH</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[55%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.4}
+            >
+              <div className="text-8xl font-bold text-accent">CHIROPRACTIC</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[69%] max-w-lg text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.4}
+            >
+              <div className="text-xl font-bold uppercase">
+                Our mission is to treat musculoskeletal dysfunction by our
+                proven manual methods.
+              </div>
+            </AnimatedText>
+            <AnimatedText className="absolute left-32 top-[80%]" delay={1.5}>
+              <CustomButton
+                text="MORE ABOUT US"
+                className="rounded-none bg-background/60 p-8 font-bold ring ring-ring"
+              />
+            </AnimatedText>
+          </div>
+        }
+        slide2={
+          <div className="relative h-screen">
+            <CustomImage dbImageName="xoa00t9pbc4iuqtpcdbatyu7-top-slide2.webp" />
+            <AnimatedText
+              className="absolute left-32 top-[27%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1}
+            >
+              <div className="text-3xl font-bold text-accent">
+                MARIA THERESA
+              </div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[35%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1}
+            >
+              <div className="text-8xl font-bold">BETTER HEALTH</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[45%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.2}
+            >
+              <div className="text-8xl font-bold">THROUGH</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[55%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.4}
+            >
+              <div className="text-8xl font-bold text-accent">CHIROPRACTIC</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[69%] max-w-lg text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.4}
+            >
+              <div className="text-xl font-bold uppercase">
+                Our mission is to treat musculoskeletal dysfunction by our
+                proven manual methods.
+              </div>
+            </AnimatedText>
+            <AnimatedText className="absolute left-32 top-[80%]" delay={1.5}>
+              <CustomButton
+                text="MORE ABOUT US"
+                className="rounded-none bg-background/60 p-8 font-bold ring ring-ring"
+              />
+            </AnimatedText>
+          </div>
+        }
+        slide3={
+          <div className="relative h-screen">
+            <CustomImage dbImageName="exogrs7vnwozoytui3rhfz04-top-slide3.webp" />
+            <AnimatedText
+              className="absolute left-32 top-[27%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1}
+            >
+              <div className="text-3xl font-bold text-accent">
+                MARIA THERESA
+              </div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[35%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1}
+            >
+              <div className="text-8xl font-bold">BETTER HEALTH</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[45%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.2}
+            >
+              <div className="text-8xl font-bold">THROUGH</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[55%] text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.4}
+            >
+              <div className="text-8xl font-bold text-accent">CHIROPRACTIC</div>
+            </AnimatedText>
+            <AnimatedText
+              className="absolute left-32 top-[69%] max-w-lg text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              delay={1.4}
+            >
+              <div className="text-xl font-bold uppercase">
+                Our mission is to treat musculoskeletal dysfunction by our
+                proven manual methods.
+              </div>
+            </AnimatedText>
+            <AnimatedText className="absolute left-32 top-[80%]" delay={1.5}>
+              <CustomButton
+                text="MORE ABOUT US"
+                className="rounded-none bg-background/60 p-8 font-bold ring ring-ring"
+              />
+            </AnimatedText>
+          </div>
+        }
+      />
+
       {/* <HeaderImage
         dbImageName="liifjmtbmc1svy1z9ka6mhzm-repair-center.webp"
         className="relative h-screen w-screen"

@@ -37,43 +37,24 @@ main {
     /* palette colors */
 
     --background: 0 29% 95%;
-    --foreground: 215 31% 30%;
+    --foreground: 222 47% 11%;
     --card: 0 29% 95%;
-    --card-foreground: 215 31% 30%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 29% 95%;
-    --popover-foreground: 215 31% 30%;
-    --primary: 215 31% 30%;
-    --primary-foreground: 0 29% 95%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 0 29% 95%;
+    --primary-foreground: 222 47% 11%;
     --secondary: 257 17% 8%;
-    --secondary-foreground: 257 17% 83%;
-    --muted: 0 0% 40%;
-    --muted-foreground: 24 5.4% 63.9%;
-    --accent: 32 95% 44%;
-    --accent-foreground: 0 90% 100%;
+    --secondary-foreground: 0 29% 95%;
+    --muted: 0 0% 39%;
+    --muted-foreground: 24 0% 47%;
+    --accent: 351 95% 71%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 60 9% 98%;
     --border: 20 6% 90%;
     --input: 20 6% 90%;
-    --ring: 32 95% 44%;
-    /* --background: var(--baige);
-    --foreground: var(--deep-blue);
-    --card: var(--baige);
-    --card-foreground: var(--deep-blue);
-    --popover: var(--baige);
-    --popover-foreground: var(--deep-blue);
-    --primary: 215 31% 30%;
-    --primary-foreground: var(--baige);
-    --secondary: var(--almost-black);
-    --secondary-foreground: var(--almost-white);
-    --muted: 0 0% 40%;
-    --muted-foreground: 24 5.4% 63.9%;
-    --accent: var(--amber-600);
-    --accent-foreground: var(--very-white);
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 60 9% 98%;
-    --border: 20 6% 90%;
-    --input: 20 6% 90%;
-    --ring: var(--amber-600); */
+    --ring: 351 95% 71%;
 
     --radius: 0.5rem;
 

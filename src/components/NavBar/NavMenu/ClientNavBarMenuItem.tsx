@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { ReactNode, useMemo } from "react";
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import Link from "next/link";
