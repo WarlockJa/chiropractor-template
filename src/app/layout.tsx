@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Martel, Poppins } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { getLocale, getMessages } from "next-intl/server";
@@ -18,15 +18,9 @@ import Footer from "@/components/Footer/Footer";
 import NextTransitionBar from "next-transition-bar";
 import { Toaster } from "@/components/ui/sonner";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const martel = Martel({
+const raleway = Raleway({
   subsets: ["latin-ext"],
-  variable: "--font-martel",
+  variable: "--font-raleway",
   weight: ["400", "600", "700", "800", "900"],
 });
 
@@ -58,9 +52,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body
-        className={`${martel.variable} ${poppins.variable} font-poppins min-h-screen`}
-      >
+      <body className={`${raleway.variable} font-raleway min-h-screen`}>
         <AnimatePresence>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider

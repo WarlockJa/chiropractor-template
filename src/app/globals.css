@@ -15,11 +15,8 @@ main {
   filter: blur(12px);
 }
 
-.font-poppins {
-  font-family: var(--font-poppins);
-}
-.font-martel {
-  font-family: var(--font-martel);
+.font-raleway {
+  font-family: var(--font-raleway);
 }
 
 @layer base {

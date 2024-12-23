@@ -3,7 +3,7 @@ import NavMenu from "./NavMenu/NavMenu";
 import SheetMenu from "./SheetMenu/SheetMenu";
 import { brandName } from "@/appConfig";
 import Link from "next/link";
-import CustomImage from "../CustomImage";
+import CustomImage from "@/components/CustomImage";
 import NavBarClient from "./NavBarClient/NavBarClient";
 
 export default async function NavBar() {

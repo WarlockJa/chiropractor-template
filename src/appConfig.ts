@@ -1,7 +1,7 @@
 import { env } from "./lib/env.mjs";
 
 // namings
-export const brandName = "COMPURERY";
+export const brandName = "CHIROPRACTOR";
 // export const brandName = "Tx Computers";
 export const brandAddress = [
   "77 Massachusetts Ave ",

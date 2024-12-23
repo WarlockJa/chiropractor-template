@@ -11,12 +11,9 @@ import HomeMacRightPanel from "@/components/Home/MacSection/HomeMacRightPanel";
 import ContactsFooter from "@/components/ContactsFooter";
 import HomeWindowsLeftPanel from "@/components/Home/WindowsSection/HomeWindowsLeftPanel";
 import HomeWindowsRightPanel from "@/components/Home/WindowsSection/HomeWindowsRightPanel";
-import HomeServicesLeftPanel from "@/components/Home/ServicesSection/HomeServicesLeftPanel";
-import HomeServicesRightPanel from "@/components/Home/ServicesSection/HomeServicesRightPanel";
 
 export default function Home() {
   const t = useTranslations("Home");
-  const tServices = useTranslations("Services");
   const titles = [
     t("hero.titles.1"),
     t("hero.titles.2"),
@@ -33,19 +30,17 @@ export default function Home() {
   ];
 
   return (
-    <div>
-      <HeaderImage
+    <div className="mt-28">
+      {/* <HeaderImage
         dbImageName="liifjmtbmc1svy1z9ka6mhzm-repair-center.webp"
         className="relative h-screen w-screen"
       >
         <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around text-primary-foreground">
-          {/* brackets */}
           <div className="absolute left-[5%] top-24 h-20 w-20 border-l border-t border-primary-foreground"></div>
           <div className="absolute right-[5%] top-24 h-20 w-20 border-r border-t border-primary-foreground"></div>
           <div className="absolute bottom-24 left-[5%] h-20 w-20 border-b border-l border-primary-foreground"></div>
           <div className="absolute bottom-24 right-[5%] h-20 w-20 border-b border-r border-primary-foreground"></div>
 
-          {/* fading text */}
           <div>
             <ChangingText
               textArray={titles}
@@ -62,14 +57,14 @@ export default function Home() {
             />
           </div>
         </div>
-      </HeaderImage>
+      </HeaderImage> */}
 
       {/* Short About Us */}
-      <SlideinSection
+      {/* <SlideinSection
         className="py-8"
         leftContent={<HomeAboutUsLeftPanel />}
         rightContent={<HomeAboutUsRightPanel />}
-      />
+      /> */}
 
       {/* Services */}
       {/* <div className="w-screen bg-primary/30 pt-6 md:pt-16">
@@ -87,12 +82,12 @@ export default function Home() {
       </div> */}
 
       {/* Supported equipment */}
-      <section className="mx-auto my-16 flex flex-col items-center justify-between overflow-hidden rounded-xl shadow-xl lg:max-w-screen-lg">
+      {/* <section className="mx-auto my-16 flex flex-col items-center justify-between overflow-hidden rounded-xl shadow-xl lg:max-w-screen-lg">
         <SupportedEquipment />
-      </section>
+      </section> */}
 
       {/* macBook */}
-      <div className="w-screen bg-primary/30 pt-6 md:pt-16">
+      {/* <div className="w-screen bg-primary/30 pt-6 md:pt-16">
         <CustomHeader
           text={t("mac_repair_center").toUpperCase()}
           fontSizeRem={2}
@@ -108,10 +103,10 @@ export default function Home() {
           rightContent={<HomeMacRightPanel vertical />}
           vertical
         />
-      </div>
+      </div> */}
 
       {/* windows */}
-      <div className="w-screen bg-primary/30 pt-6 md:pt-16">
+      {/* <div className="w-screen bg-primary/30 pt-6 md:pt-16">
         <CustomHeader
           text={t("fixing_all_windows_issues").toUpperCase()}
           fontSizeRem={2}
@@ -127,10 +122,10 @@ export default function Home() {
           rightContent={<HomeWindowsRightPanel vertical />}
           vertical
         />
-      </div>
+      </div> */}
 
       {/* Footer Contact */}
-      <ContactsFooter />
+      {/* <ContactsFooter /> */}
     </div>
   );
 }

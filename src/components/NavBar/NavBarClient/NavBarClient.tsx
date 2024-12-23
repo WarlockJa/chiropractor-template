@@ -10,7 +10,7 @@ export default function NavBarClient({ children }: { children: ReactNode }) {
   return (
     <div
       className={cn(
-        "fixed left-0 right-0 top-0 z-30 flex flex-col items-center gap-2 bg-primary/60 p-4 pt-10 text-primary-foreground transition-all",
+        "fixed left-0 right-0 top-0 z-30 flex flex-col items-center gap-2 bg-primary/60 p-8 text-primary-foreground transition-all",
         isScrolled && "bg-primary p-2",
       )}
     >
@@ -22,7 +22,7 @@ export default function NavBarClient({ children }: { children: ReactNode }) {
           )}
         >
           {/* Contact bar */}
-          <ContactsPanel />
+          {/* <ContactsPanel /> */}
         </div>
         {children}
       </div>

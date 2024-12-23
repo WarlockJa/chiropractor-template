@@ -12,12 +12,11 @@ export default async function CRUDPage() {
   const user = session?.user;
 
   if (!user) redirect("/");
-  // if (!user) redirect("/api/auth/signin?callbackUrl=/crud");
 
   return (
-    <>
+    <div className="mx-auto mt-28 max-w-screen-lg">
       <UserTable />
       {user.role === "admin" && <AddUserForm />}
-    </>
+    </div>
   );
 }
