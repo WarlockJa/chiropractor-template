@@ -1,0 +1,138 @@
+import ChangingText from "@/components/UniversalComponents/ChangingText/ChangingText";
+import HeaderImage from "@/components/HeaderImage";
+import { useTranslations } from "next-intl";
+import SupportedEquipment from "@/components/SupportedEquipment/SupportedEquipment";
+import SlideinSection from "@/components/UniversalComponents/SlideinSection/SlideinSections";
+import CustomHeader from "@/components/CustomHeader";
+import HomeAboutUsLeftPanel from "@/components/Home/AboutUsSection/HomeAboutUsLeftPanel";
+import HomeAboutUsRightPanel from "@/components/Home/AboutUsSection/HomeAboutUsRightPanel";
+import HomeMacLeftPanel from "@/components/Home/MacSection/HomeMacLeftPanel";
+import HomeMacRightPanel from "@/components/Home/MacSection/HomeMacRightPanel";
+import ContactsFooter from "@/components/ContactsFooter";
+import HomeWindowsLeftPanel from "@/components/Home/WindowsSection/HomeWindowsLeftPanel";
+import HomeWindowsRightPanel from "@/components/Home/WindowsSection/HomeWindowsRightPanel";
+import HomeServicesLeftPanel from "@/components/Home/ServicesSection/HomeServicesLeftPanel";
+import HomeServicesRightPanel from "@/components/Home/ServicesSection/HomeServicesRightPanel";
+
+export default function Home() {
+  const t = useTranslations("Home");
+  const tServices = useTranslations("Services");
+  const titles = [
+    t("hero.titles.1"),
+    t("hero.titles.2"),
+    t("hero.titles.3"),
+    t("hero.titles.4"),
+    t("hero.titles.5"),
+  ];
+  const descriptions = [
+    t("hero.descriptions.1"),
+    t("hero.descriptions.2"),
+    t("hero.descriptions.3"),
+    t("hero.descriptions.4"),
+    t("hero.descriptions.5"),
+  ];
+
+  return (
+    <div>
+      <HeaderImage
+        dbImageName="liifjmtbmc1svy1z9ka6mhzm-repair-center.webp"
+        className="relative h-screen w-screen"
+      >
+        <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around text-primary-foreground">
+          {/* brackets */}
+          <div className="absolute left-[5%] top-24 h-20 w-20 border-l border-t border-primary-foreground"></div>
+          <div className="absolute right-[5%] top-24 h-20 w-20 border-r border-t border-primary-foreground"></div>
+          <div className="absolute bottom-24 left-[5%] h-20 w-20 border-b border-l border-primary-foreground"></div>
+          <div className="absolute bottom-24 right-[5%] h-20 w-20 border-b border-r border-primary-foreground"></div>
+
+          {/* fading text */}
+          <div>
+            <ChangingText
+              textArray={titles}
+              className="text-[clamp(1rem,10vw,6rem)] font-semibold uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
+              durationMs={8000}
+              center
+            />
+            <ChangingText
+              textArray={descriptions}
+              className="text-xl drop-shadow-[3px_3px_1.5px_rgba(0,0,0,0.8)] lg:text-3xl"
+              durationMs={8000}
+              transitionPercent={15}
+              center
+            />
+          </div>
+        </div>
+      </HeaderImage>
+
+      {/* Short About Us */}
+      <SlideinSection
+        className="py-8"
+        leftContent={<HomeAboutUsLeftPanel />}
+        rightContent={<HomeAboutUsRightPanel />}
+      />
+
+      {/* Services */}
+      {/* <div className="w-screen bg-primary/30 pt-6 md:pt-16">
+        <CustomHeader
+          text={tServices("our_services").toLocaleUpperCase()}
+          fontSizeRem={2}
+          className="flex justify-center"
+        />
+        <SlideinSection
+          className="py-8"
+          leftContent={<HomeServicesLeftPanel vertical />}
+          rightContent={<HomeServicesRightPanel vertical />}
+          vertical
+        />
+      </div> */}
+
+      {/* Supported equipment */}
+      <section className="mx-auto my-16 flex flex-col items-center justify-between overflow-hidden rounded-xl shadow-xl lg:max-w-screen-lg">
+        <SupportedEquipment />
+      </section>
+
+      {/* macBook */}
+      <div className="w-screen bg-primary/30 pt-6 md:pt-16">
+        <CustomHeader
+          text={t("mac_repair_center").toUpperCase()}
+          fontSizeRem={2}
+          className="flex items-center justify-center px-2"
+        />
+        <CustomHeader
+          text={t("repairing_all_mac")}
+          className="flex justify-center px-2"
+        />
+        <SlideinSection
+          className="py-8"
+          leftContent={<HomeMacLeftPanel vertical />}
+          rightContent={<HomeMacRightPanel vertical />}
+          vertical
+        />
+      </div>
+
+      {/* windows */}
+      <div className="w-screen bg-primary/30 pt-6 md:pt-16">
+        <CustomHeader
+          text={t("fixing_all_windows_issues").toUpperCase()}
+          fontSizeRem={2}
+          className="flex items-center justify-center px-2"
+        />
+        <CustomHeader
+          text={t("repairing_all_in_ones")}
+          className="flex justify-center px-2"
+        />
+        <SlideinSection
+          className="py-8"
+          leftContent={<HomeWindowsLeftPanel vertical />}
+          rightContent={<HomeWindowsRightPanel vertical />}
+          vertical
+        />
+      </div>
+
+      {/* Footer Contact */}
+      <ContactsFooter />
+    </div>
+  );
+}
+
+export const runtime = "edge";

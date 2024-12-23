@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  transition-property: opacity, background, transform, filter;
+  transition-timing-function: linear;
+  transition-duration: 300ms;
+}
+
+.page-transition {
+  opacity: 0;
+  background: black;
+  transform: translateY(40px);
+  filter: blur(12px);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
+}
+.font-martel {
+  font-family: var(--font-martel);
+}
+
+@layer base {
+  :root {
+    /* palette colors */
+    --deep-blue: 215 31% 30%;
+    --dark-blue: 257 17% 14%;
+    --light-blue: 210 36% 63%;
+    --lighter-blue: 210 36% 73%;
+    --darker-gray: 25 0% 40%;
+    --light-gray: 25 0% 70%;
+    --baige: 0 29% 95%;
+    --almost-black: 257 17% 8%;
+    --almost-white: 257 17% 83%;
+    --very-white: 0 90% 100%;
+    --amber-600: 32 95% 44%;
+    /* --orange: 21, 100%, 65%; */
+    /* palette colors */
+
+    --background: 0 29% 95%;
+    --foreground: 215 31% 30%;
+    --card: 0 29% 95%;
+    --card-foreground: 215 31% 30%;
+    --popover: 0 29% 95%;
+    --popover-foreground: 215 31% 30%;
+    --primary: 215 31% 30%;
+    --primary-foreground: 0 29% 95%;
+    --secondary: 257 17% 8%;
+    --secondary-foreground: 257 17% 83%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 32 95% 44%;
+    --accent-foreground: 0 90% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 60 9% 98%;
+    --border: 20 6% 90%;
+    --input: 20 6% 90%;
+    --ring: 32 95% 44%;
+    /* --background: var(--baige);
+    --foreground: var(--deep-blue);
+    --card: var(--baige);
+    --card-foreground: var(--deep-blue);
+    --popover: var(--baige);
+    --popover-foreground: var(--deep-blue);
+    --primary: 215 31% 30%;
+    --primary-foreground: var(--baige);
+    --secondary: var(--almost-black);
+    --secondary-foreground: var(--almost-white);
+    --muted: 0 0% 40%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: var(--amber-600);
+    --accent-foreground: var(--very-white);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 60 9% 98%;
+    --border: 20 6% 90%;
+    --input: 20 6% 90%;
+    --ring: var(--amber-600); */
+
+    --radius: 0.5rem;
+
+    --chart-1: 173 58% 39%;
+    --chart-2: 197 37% 24%;
+    --chart-3: 43 74% 66%;
+    --chart-4: 27 87% 67%;
+    --chart-5: 12 76% 61%;
+  }
+
+  .dark {
+    --background: var(--almost-black);
+    --foreground: var(--almost-white);
+
+    --card: var(--almost-black);
+    --card-foreground: var(--almost-white);
+
+    --popover: var(--almost-black);
+    --popover-foreground: var(--almost-white);
+
+    --primary: 215 31% 30%;
+    --primary-foreground: var(--almost-white);
+
+    --secondary: var(--almost-black);
+    --secondary-foreground: var(--almost-white);
+
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+
+    --accent: 32 95% 44%;
+    --accent-foreground: 215 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    /* --ring: 24 5.7% 82.9%; */
+    --ring: 32 95% 44%;
+
+    --chart-1: 160 60% 45%;
+    --chart-2: 30 80% 55%;
+    --chart-3: 280 65% 60%;
+    --chart-4: 340 75% 55%;
+    --chart-5: 220 70% 50%;
+  }
+
+  .font-outline {
+    -webkit-text-stroke: 1px hsl(var(--almost-black));
+    /* -webkit-text-stroke: 1px hsl(var(--foreground)); */
+  }
+  .font-outline-2 {
+    -webkit-text-stroke: 2px hsl(var(--almost-black));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

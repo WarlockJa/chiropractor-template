@@ -1,0 +1,265 @@
+{
+  "LocaleSwitcher": {
+    "ru": "🇷🇺 Русский",
+    "en": "🇺🇸 English",
+    "tr": "🇹🇷 Türkçe",
+    "label": "Dil"
+  },
+  "NotFound": {
+    "title": "Bu sayfa bulunamadı",
+    "go_back": "Geri dön"
+  },
+  "ThemeToggle": {
+    "theme": "Tema",
+    "light": "ışık",
+    "dark": "karanlık",
+    "system": "sistem"
+  },
+  "NavMenu": {
+    "home": "Anasayfa",
+    "about": "Hakkımızda",
+    "practice_areas": "Uygulama Alanları",
+    "testimonials": "Tanıklıklar",
+    "blogs": "Blog",
+    "contacts": "İletişim",
+    "toggle_menu": "Menüyü aç/kapat",
+    "admin_console": "Yönetici konsolu",
+    "sign_in": "Oturum Aç",
+    "sign_out": "Çıkış Yap",
+    "settings": "Ayarlar",
+    "services": "Hizmetleremiz"
+  },
+  "GoogleMaps": {
+    "reviews": "yorumlar",
+    "large_view": "geniş görünüm",
+    "directions": "yol tarifi"
+  },
+  "ContactForm": {
+    "reach_us": "Bize Ulaşın",
+    "send_us_a_message": "Bize Mesaj Gönderin",
+    "name": "Adın",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "your_message": "Mesaj",
+    "send_message": "Mesaj Gönder",
+    "message_sent_toast_title": "Mesaj Gönderildi!",
+    "message_sent_toast_description": "İlginiz için teşekkür ederiz! Kısa süre içinde sizinle iletişime geçeceğiz."
+  },
+  "AddressCard": {
+    "phone": "Telefon",
+    "email": "E-posta",
+    "whatsapp": "WhatsApp"
+  },
+  "Footer": {
+    "home": "Anasayfa",
+    "about": "Hakkımızda",
+    "services": "Hizmetleremiz",
+    "contacts": "İletişim",
+    "quick_links": "Hızlı Bağlantılar",
+    "get_in_touch": "İletişime Geçin",
+    "follow_us": "Bizi Takip Edin",
+    "rights_reserved": "Tüm hakları saklıdır",
+    "privacy_policy": "Gizlilik Politikası",
+    "disclaimer": "Feragat",
+    "developed_by": "Geliştiren",
+    "for_business": "İşletmeler İçin",
+    "for_individuals": "Bireyler İçin",
+    "mediations": "Arabuluculuklar",
+    "appeals": "İtirazlar",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "map_directions": "Harita ve Yol Tarifi"
+  },
+  "SignIn": {
+    "sign_in": "Oturum Aç",
+    "sign_in_description": "Aşağıdaki seçeneklerden birini kullanarak hesabınıza giriş yapın",
+    "sign_in_google": "Google ile oturum açın",
+    "email": "E-posta",
+    "sign_in_email": "E-posta ile oturum açın",
+    "email_placeholder": "E-postanızı girin"
+  },
+  "Errors": {
+    "rate_limit_title": "Oran sınırı aşıldı",
+    "rate_limit_description": "Çok fazla Oturum Açma denemesi. Daha sonra tekrar deneyin.",
+    "general_error_title": "Bir şeyler ters gitti",
+    "insufficient_rights_title": "Yetersiz haklar",
+    "insufficient_rights_delete_blog": "Blogları silme hakkınız yok",
+    "insufficient_rights_create_blog": "Blog oluşturma hakkınız yok",
+    "insufficient_rights_update_blog": "Blogları güncelleme hakkınız yok",
+    "insufficient_rights_delete_image": "Görüntüleri silme hakkınız yok"
+  },
+  "ContactsPanel": {
+    "brand_weekend_closed": "Cmt-Pzr: kapalı"
+  },
+  "SupportedEquipment": {
+    "supported_equipment": "Desteklenen Ekipman"
+  },
+  "Blog": {
+    "are_you_sure_delete_blog_title": "Bu blogu silmek istediğinizden emin misiniz?",
+    "are_you_sure_delete_blog_description": "Sil'e basarsanız aşağıdaki blog yazısı kalıcı olarak silinecektir. Bu işlem geri alınamaz.",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "create_new_blog": "Yeni Blog Yazısı Oluştur",
+    "creating_new_blog": "Yeni Blog Yazısı Oluşturuluyor",
+    "blog_saved": "Blog kaydedildi!",
+    "blog_updated": "Blog {title} güncellendi"
+  },
+  "Image": {
+    "image_in_use": "Görüntü kullanımda",
+    "image_delete": "Blog Görüntüsünü Sil"
+  },
+  "Cards": {
+    "repair_center": "Servis Merkezi",
+    "custom_pc_build_repair": "Özel PC yapımı ve onarımı",
+    "data_recovery": "Veri Kurtarma",
+    "tech_protection_warranty": "Teknoloji Sigortası Koruma Planı",
+    "remote_it_support": "Uzaktan BT desteği",
+    "onsite_tech_visit": "Yerinde teknik ziyaret",
+    "mac_battery_replacement": "MacBook Batarya Değişimi",
+    "mac_logic_board_repair": "MacBook Mantık Kartı Tamiri",
+    "mac_screen_replacement": "MacBook Ekran Değişimi",
+    "mac_spill_repair": "MacBook Sıvı Dökülmesi Tamiri",
+    "mac_wont_power_up": "MacBook Açılmıyor",
+    "mac_data_recovery": "MacBook Veri Kurtarma",
+    "windows_laptop_screen_replacement": "Windows Dizüstü Bilgisayar Ekran Değişimi",
+    "windows_laptop_spill_repair": "Windows Dizüstü Bilgisayar Sıvı Dökülmesi Tamiri",
+    "windows_data_recovery": "Windows Veri Kurtarma",
+    "windows_laptop_wont_start": "Windows Dizüstü Bilgisayar Başlamıyor",
+    "slow_pc_issue": "Yavaş PC Sorunu",
+    "windows_pc_wont_start": "Windows PC Başlamıyor"
+  },
+  "Services": {
+    "header_image_alt": "Ortada bir dizüstü bilgisayarın bulunduğu, üzeri çeşitli bilgisayar parçalarıyla kaplı çalışma masası",
+    "footer_image_alt": "Ekranlarında HTML kodu görünen iki dizüstü bilgisayar.",
+    "mac_repair_center": "Apple Teknik Servisi",
+    "repairing_all_mac": "Ana kartlar ve tüm MacBook, iMac ve Mac Pro sorunlarının onarımı",
+    "fixing_all_windows_issues": "Tüm Windows/PC sorunlarının tamiri",
+    "repairing_all_in_ones": "Dizüstü bilgisayarlar, masaüstü bilgisayarlar, PC'ler, özel oyun makineleri, hepsi bir arada bilgisayarlar ve tabletlerin tamiri",
+    "our_services": "Hizmetlerimiz",
+    "footer_title": "Bilgisayarınızın Tamiri Gerekir mi?",
+    "footer_button_text": "Ücretsiz Teşhis Alın"
+  },
+  "Home": {
+    "hero": {
+      "titles": {
+        "1": "Verimli",
+        "2": "Güvenilir",
+        "3": "Tecrübeli",
+        "4": "İstikrarlı",
+        "5": "Sonuç Odaklı"
+      },
+      "descriptions": {
+        "1": "Her seviyede bilgisayar onarımı için profesyonel hizmet.",
+        "2": "Bilgisayarınızı kendimiz gibi önemsiyoruz.",
+        "3": "Her müşteriye özel çözümler sunuyoruz.",
+        "4": "Yüksek kaliteli hizmet garantisi veriyoruz.",
+        "5": "Bilgisayar sorunlarınız için güvenilir çözüm ortağınız."
+      },
+      "contacts_button": "Bugün İletişime Geçin"
+    },
+    "header_image_alt": "Ortada bir dizüstü bilgisayarın bulunduğu, üzeri çeşitli bilgisayar parçalarıyla kaplı çalışma masası",
+    "mac_repair_center": "Apple Teknik Servisi",
+    "repairing_all_mac": "Ana kartlar ve tüm MacBook, iMac ve Mac Pro sorunlarının onarımı",
+    "fixing_all_windows_issues": "Tüm Windows/PC sorunlarının tamiri",
+    "repairing_all_in_ones": "Dizüstü bilgisayarlar, masaüstü bilgisayarlar, PC'ler, özel oyun makineleri, hepsi bir arada bilgisayarlar ve tabletlerin tamiri"
+  },
+  "Disclaimer": {
+    "disclaimer": "Feragat",
+    "text1": "Web sitemizde doğru ve güncel bilgiler sunmaya çalışsak da, içeriğin tam doğruluğunu veya güvenilirliğini garanti edemeyiz. Verilen bilgiler sadece genel bilgilendirme amaçlıdır ve profesyonel tavsiye olarak kabul edilmemelidir.",
+    "text2": "İçerikteki herhangi bir hata, eksiklik veya yanlışlık veya sunulan bilgilere güvenmekten kaynaklanan herhangi bir kayıp veya hasar için sorumlu değiliz. Bilgilere dayanarak kararlar vermeden önce bilgileri doğrulamanız sizin sorumluluğunuzdadır.",
+    "text3": "Lütfen hizmetlerimizin herkes için uygun olmayabileceğini unutmayın. Özel ihtiyaçlarınıza göre özel tavsiye almak için bir profesyonel ile görüşmenizi öneririz.",
+    "text4": "Web sitemizi kullanarak bu hüküm ve koşullara uymayı kabul edersiniz."
+  },
+  "PrivacyPolicy": {
+    "privacy_policy": "Gizlilik Politikası",
+    "effective_date": "Geçerlilik Tarihi {date}",
+    "preamble": "{entity} gizliliğinizi korumayı taahhüt eder. Bu Gizlilik Politikası, web sitemizi ziyaret ettiğinizde veya hizmetlerimizle etkileşimde bulunduğunuzda kişisel bilgilerinizi nasıl topladığımızı, kullandığımızı ve açıkladığımızı özetler.",
+    "information_we_collect": {
+      "title": "Topladığımız Bilgiler",
+      "item1": {
+        "title": "Kişisel Bilgiler",
+        "text": "Hesap oluşturduğunuzda veya bizimle iletişime geçtiğinizde adınızı, e-posta adresinizi ve parolanızı toplayabiliriz."
+      },
+      "item2": {
+        "title": "Kullanım Verileri",
+        "text": "IP adresiniz, tarayıcı türünüz ve ziyaret edilen sayfalar gibi web sitemizle nasıl etkileşimde bulunduğunuz hakkında bilgi toplayabiliriz."
+      }
+    },
+    "how_we_use_your_information": {
+      "title": "Bilgilerinizi Nasıl Kullanıyoruz",
+      "item1": {
+        "title": "Kimlik Doğrulama",
+        "text": "Web sitemiz ve hizmetlerimize erişiminizi doğrulamak için bilgilerinizi kullanıyoruz."
+      },
+      "item2": {
+        "title": "İletişim",
+        "text": "Sorularınızı yanıtlamak veya güncellemeler sağlamak için iletişim bilgilerinizi kullanabiliriz."
+      },
+      "item3": {
+        "title": "Analiz",
+        "text": "Web sitemizi ve hizmetlerimizi geliştirmek için kullanım verilerini kullanabiliriz."
+      }
+    },
+    "data_sharing": {
+      "title": "Veri Paylaşımı",
+      "item1": {
+        "title": "Üçüncü Taraf Hizmet Sağlayıcıları",
+        "text": "Web sitemizi ve hizmetlerimizi çalıştırmamıza yardımcı olan üçüncü taraf hizmet sağlayıcıları ile kişisel bilgilerinizi paylaşabiliriz (örneğin, kimlik doğrulama, e-posta teslimatı için)."
+      },
+      "item2": {
+        "title": "Yasal Gereksinimler",
+        "text": "Yasal yükümlülüklere uymak veya haklarımızı korumak için bilgilerinizi açıklayabiliriz."
+      }
+    },
+    "data_security": {
+      "title": "Veri Güvenliği",
+      "text1": "Kişisel bilgilerinizi yetkisiz erişim, kayıp veya değişiklikten korumak için makul güvenlik önlemleri uyguluyoruz."
+    },
+    "your_rights": {
+      "title": "Haklarınız",
+      "text1": "Kişisel verilerinize erişme, düzeltme veya silme hakkına sahipsiniz.",
+      "text2": "Bu hakları {email} adresinden bizimle iletişime geçerek kullanabilirsiniz."
+    },
+    "cookies_and_tracking": {
+      "title": "Çerezler ve Takip",
+      "text1": "Kullanıcı deneyiminizi geliştirmek ve kullanım verilerini toplamak için çerezler kullanıyoruz. Çerez tercihlerinizi tarayıcı ayarlarınızdan yönetebilirsiniz."
+    },
+    "third_party_services": {
+      "title": "Üçüncü Taraf Hizmetleri",
+      "text1": "Kişisel bilgi toplayan ve işleyen üçüncü taraf hizmetleri kullanabiliriz. Daha fazla bilgi için bu hizmetlerin gizlilik politikalarına bakın."
+    },
+    "childrens_privacy": {
+      "title": "Çocukların Gizliliği",
+      "text1": "Web sitemiz {age} yaşından küçük çocuklar için tasarlanmamıştır. Bilerek çocuklardan kişisel bilgi toplamıyoruz."
+    },
+    "changes_to_this_policy": {
+      "title": "Bu Politika'da Değişiklikler",
+      "text1": "Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Herhangi bir önemli değişiklikten sizi web sitemizde güncellenmiş politikayı yayınlayarak bilgilendireceğiz."
+    }
+  },
+  "About": {
+    "about": "Hakkımızda",
+    "what_people_say": "İnsanlar hakkında ne diyor",
+    "our_goals": "Hedeflerimiz",
+    "your_computer_our_priority": "Bilgisayarınız, önceliğimiz.",
+    "is_your_computer_slow": "Bilgisayarınız bir salyangozdan daha yavaş mı çalışıyor? Sinir bozucu hata mesajlarıyla mı uğraşıyorsunuz? Daha fazla aramayın! Uzman teknisyenlerimiz bilgisayarınızdaki tüm sorunları teşhis etmek ve çözmek için burada. Virüs kaldırmaktan donanım yükseltmelerine kadar, sizi kapladık. Hızlı, güvenilir ve uygun fiyatlı bilgisayar onarım hizmetlerinin farkını yaşayın.",
+    "breathe_new_life_into_your_device": "Cihazınıza yeni bir hayat verin.",
+    "dont_let_malfunction_disrupt": "Arızalı bir bilgisayarın üretkenliğinizi veya eğlencenizi bozmasına izin vermeyin. Ekibimiz, dizüstü bilgisayar ekranı değiştirme, veri kurtarma ve yazılım yükleme dahil olmak üzere geniş bir yelpazede onarım konusunda uzmanlaşmıştır. Cihazınızı en kısa sürede çalışır hale getireceğiz. Bilgisayarınızın hak ettiği özeni göstermek için bize güvenin.",
+    "your_local_tech_experts": "Yerel teknoloji uzmanlarınız.",
+    "were_not_just_a_repair_shop": "Biz sadece bir tamir dükkanı değiliz; mahalle bilgisayar uzmanlarınızız. Yılların deneyimi ve müşteri memnuniyetine bağlılığımızla, sizi dijital dünyada yönlendirmek için buradayız. Sorun gidermeden faydalı tavsiyeler vermeye kadar, her şeyde teknoloji kaynağınız biziz."
+  },
+  "AboutUsShort": {
+    "welcome": "hoş geldiniz",
+    "words_about_us": "Hakkımızda birkaç söz",
+    "read_more": "daha"
+  },
+  "PracticeAreas": {
+    "practice_areas": "Uygulama Alanları"
+  },
+  "Testimonials": {
+    "testimonials": "Tanıklıklar"
+  },
+  "Contacts": {
+    "contacts": "İletişim"
+  }
+}
