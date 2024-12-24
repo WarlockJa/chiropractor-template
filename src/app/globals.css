@@ -41,13 +41,14 @@ main {
     /* palette colors */
 
     --background: 0 29% 95%;
-    --foreground: 222 47% 11%;
+    /* --foreground: 222 47% 11%; */
+    --foreground: 21 92% 14%;
     --card: 0 29% 95%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 21 92% 14%;
     --popover: 0 29% 95%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 21 92% 14%;
     --primary: 0 29% 95%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 21 92% 14%;
     --secondary: 257 17% 8%;
     --secondary-foreground: 0 29% 95%;
     --muted: 0 0% 39%;

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Compurery Admin Dashboard",
-  description: "Administrator tools for Compurery Technology Solutions website",
+  title: "Chiropractor Admin Dashboard",
+  description: "Administrator tools for Chiropractor Template website",
 };
 
 export default async function AdminLayout({

@@ -1,7 +1,7 @@
 import ChangingText from "@/components/UniversalComponents/ChangingText/ChangingText";
 import HeaderImage from "@/components/HeaderImage";
 import { useTranslations } from "next-intl";
-import SupportedEquipment from "@/components/SupportedEquipment/SupportedEquipment";
+import SupportedEquipment from "@/components/AboutPractitioner/AboutPractitioner";
 import SlideinSection from "@/components/UniversalComponents/SlideinSection/SlideinSections";
 import CustomHeader from "@/components/CustomHeader";
 import HomeAboutUsLeftPanel from "@/components/Home/AboutUsSection/HomeAboutUsLeftPanel";
@@ -17,6 +17,10 @@ import AnimatedText from "@/components/UniversalComponents/AnimatedText";
 import { CustomButton } from "@/components/CustomButton";
 import Link from "next/link";
 import CarouselSlide from "@/components/Home/HeroCarousel/CarouselSlide";
+import AboutPractitioner from "@/components/AboutPractitioner/AboutPractitioner";
+import ServicesCarousel from "@/components/Home/ServicesCarousel/ServicesCarousel";
+import { servicesData } from "@/components/Home/ServicesCarousel/servicesData";
+import ServiceCard from "@/components/Home/ServicesCarousel/ServiceCard";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -48,6 +52,26 @@ export default function Home() {
         slide3={
           <CarouselSlide dbImageName="exogrs7vnwozoytui3rhfz04-top-slide3.webp" />
         }
+      />
+
+      {/* About Practitioner */}
+      <div className="bg-gradient-to-tr from-background from-60% via-accent to-background">
+        <div className="mx-auto grid max-w-screen-xl grid-cols-[2fr,1fr] gap-4 py-20">
+          <CustomImage
+            dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
+            className="aspect-video max-w-screen-md rounded-md shadow-md shadow-accent"
+          />
+          {/* <div className="aspect-video max-w-screen-md rounded-md">
+        </div> */}
+          <AboutPractitioner className="shadow-md shadow-accent" />
+        </div>
+      </div>
+
+      {/* Services Carousel */}
+      <ServicesCarousel
+        carouselItems={servicesData.map((item) => (
+          <ServiceCard {...item} />
+        ))}
       />
 
       {/* <HeaderImage

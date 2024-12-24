@@ -25,14 +25,12 @@ export default function HeroCarousel({
       opts={{
         loop: true,
       }}
-      plugins={
-        [
-          // Autoplay({
-          //   delay: 7000,
-          //   active: !hover,
-          // }),
-        ]
-      }
+      plugins={[
+        Autoplay({
+          delay: 7000,
+          active: !hover,
+        }),
+      ]}
     >
       <CarouselContent className="h-screen md:h-[40em] xl:h-[60em]">
         <CarouselItem>{slide1}</CarouselItem>

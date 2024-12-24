@@ -52,7 +52,7 @@ export const brandMetadataUrl = env.NEXT_PUBLIC_URI;
 export const brandMetadataSiteName = "Compurery Technology Solutions";
 export const brandMetadataCanonical = env.NEXT_PUBLIC_URI;
 export const brandMetadataImage = {
-  url: `${env.NEXT_PUBLIC_R2_URI}/nbvfa3n7ybokrr7lysl2e003-logo.webp`,
+  url: `${env.NEXT_PUBLIC_R2_URI}/tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png`,
   width: 874,
   height: 275,
   alt: "Compurery Technology Solutions",

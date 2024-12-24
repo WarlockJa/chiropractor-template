@@ -1,6 +1,6 @@
 import HeaderImage from "@/components/HeaderImage";
 import { useTranslations } from "next-intl";
-import SupportedEquipment from "@/components/SupportedEquipment/SupportedEquipment";
+import SupportedEquipment from "@/components/AboutPractitioner/AboutPractitioner";
 import { laptopPC, macBook } from "@/components/ServiceCard/cardData";
 import ServiceCard from "@/components/ServiceCard/ServiceCard";
 

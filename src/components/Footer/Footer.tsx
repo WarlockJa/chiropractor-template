@@ -36,7 +36,7 @@ export default function Footer() {
           <h3 className="text-2xl">{brandName}</h3>
           <div className="h-28">
             {/* TEST logo.webp */}
-            <CustomImage dbImageName="o3uowmy2saktgyo5d7u6iu3m-icon.webp" />
+            <CustomImage dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png" />
           </div>
         </Link>
 

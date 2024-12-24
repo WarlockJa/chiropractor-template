@@ -23,9 +23,9 @@ export default async function NavBar() {
               className="flex items-center gap-2 text-2xl xsm:mx-4"
               aria-label="home page"
             >
-              <div className="h-12 w-12">
+              <div className="h-20 w-20">
                 <CustomImage
-                  dbImageName={"wvd8t6wxk8iw4ldqa26x56b7-logo_alpha.png"}
+                  dbImageName={"tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"}
                 />
               </div>
               {brandName}

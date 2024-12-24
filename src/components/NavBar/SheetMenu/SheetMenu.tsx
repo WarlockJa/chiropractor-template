@@ -32,7 +32,7 @@ export default function SheetMenu({ user }: { user: User | undefined }) {
           <span className="sr-only">{t("toggle_menu")}</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-full bg-primary/60 text-primary-foreground xsm:w-3/4">
+      <SheetContent className="w-full bg-primary/80 text-primary-foreground xsm:w-3/4">
         <SheetDescription className="mt-8 font-medium text-primary-foreground">
           {/* Menu Items for Mobile View */}
           <nav className="flex flex-col gap-2 text-lg">
@@ -40,7 +40,7 @@ export default function SheetMenu({ user }: { user: User | undefined }) {
               <Link key={item.title} href={item.href}>
                 <SheetMenuItem withSheetClose>
                   <div className="flex px-2 py-1 text-primary-foreground">
-                    {t(item.title)}
+                    {t(item.title).toLocaleUpperCase()}
                   </div>
                 </SheetMenuItem>
               </Link>

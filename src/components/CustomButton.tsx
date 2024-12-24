@@ -71,8 +71,8 @@ const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <TextShimmer
           duration={hover ? 1 : 0}
           className={cn(
-            textClassName,
             "text-xl [--base-color:hsl(var(--primary-foreground))] [--base-gradient-color:theme(colors.rose.400)] dark:[--base-color:hsl(var(--primary-foreground))] dark:[--base-gradient-color:theme(colors.rose.400)]",
+            textClassName,
           )}
           // className={
           //   "dark:hover:[--base-color:theme(colors.blue.400)] dark:hover:[--base-gradient-color:theme(colors.blue.700)]",
