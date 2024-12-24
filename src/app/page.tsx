@@ -70,7 +70,7 @@ export default function Home() {
       {/* Services Carousel */}
       <ServicesCarousel
         carouselItems={servicesData.map((item) => (
-          <ServiceCard {...item} />
+          <ServiceCard key={item.title} {...item} />
         ))}
       />
 
