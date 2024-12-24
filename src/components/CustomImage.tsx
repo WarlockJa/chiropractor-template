@@ -32,7 +32,7 @@ export default async function CustomImage({
         blurDataURL={blurHashToDataURL(defaultBlurhash)}
         width={640}
         height={480}
-        className={cn(className, "h-full w-full object-cover")}
+        className={cn("h-full w-full object-cover", className)}
         sizes="100vw"
       />
     );
@@ -41,12 +41,9 @@ export default async function CustomImage({
   // fetching image data from the DB
   let image: SelectImages | undefined;
   if (imageId) {
-    image = // await db.select().from(images).where(eq(images.imageId, imageId))
-      (await getCachedImageId(imageId))[0];
+    image = (await getCachedImageId(imageId))[0];
   } else if (dbImageName) {
-    image =
-      // await db.select().from(images).where(eq(images.name, dbImageName))
-      (await getCachedImageName(dbImageName))[0];
+    image = (await getCachedImageName(dbImageName))[0];
   }
 
   // displaying image
@@ -60,7 +57,7 @@ export default async function CustomImage({
       blurDataURL={blurHashToDataURL(image.blurhash ?? defaultBlurhash)}
       width={image.width}
       height={image.height}
-      className="h-full w-full object-cover"
+      className={cn("h-full w-full object-cover", className)}
       sizes="100vw"
     />
   ) : (
@@ -72,7 +69,7 @@ export default async function CustomImage({
       blurDataURL={defaultBlurhash}
       width={1024}
       height={1024}
-      className="z-0 h-full w-full object-cover"
+      className={cn("h-full w-full object-cover", className)}
       sizes="100vw"
     />
   );

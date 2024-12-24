@@ -61,7 +61,7 @@ export default async function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NextTransitionBar />
+              <NextTransitionBar color="#fb6f84" />
               <main>
                 <Toaster />
                 <NavBar />

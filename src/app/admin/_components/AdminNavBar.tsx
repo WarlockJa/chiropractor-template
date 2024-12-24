@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AdminNavBar() {
   return (
-    <nav className="mt-24 flex w-full gap-4">
+    <nav className="flex w-full gap-4">
       <Button asChild>
         <Link href={"/admin/images"}>Images</Link>
       </Button>

@@ -22,7 +22,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-slate-600">
+    <main className="mt-28 flex min-h-screen flex-col items-center bg-slate-600">
       <div className="mx-auto w-full max-w-screen-lg">{children}</div>
     </main>
   );

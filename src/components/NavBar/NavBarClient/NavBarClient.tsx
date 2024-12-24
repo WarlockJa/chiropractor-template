@@ -10,12 +10,11 @@ export default function NavBarClient({ children }: { children: ReactNode }) {
   return (
     <div
       className={cn(
-        // "fixed left-0 right-0 top-0 z-30 flex flex-col items-center gap-2 bg-gradient-to-b from-background/60 to-background/20 p-8 text-primary-foreground transition-all",
-        "fixed left-0 right-0 top-0 z-30 flex flex-col items-center gap-2 bg-background/60 p-8 text-primary-foreground transition-all",
+        "fixed left-0 right-0 top-0 z-30 flex flex-col items-center gap-2 bg-background/60 py-8 pr-4 text-primary-foreground transition-all lg:px-8",
         isScrolled && "bg-primary p-2",
       )}
     >
-      <div className="flex w-full justify-between">
+      <div className="mx-auto flex w-full max-w-screen-2xl justify-between">
         <div
           className={cn(
             "fixed inset-x-0 top-0 bg-background transition-all",
