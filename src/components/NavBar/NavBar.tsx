@@ -5,6 +5,7 @@ import { brandName } from "@/appConfig";
 import Link from "next/link";
 import CustomImage from "@/components/CustomImage";
 import NavBarClient from "./NavBarClient/NavBarClient";
+import ContactsPanel from "./ContactsPanel/ContactsPanel";
 
 export default async function NavBar() {
   try {
@@ -13,27 +14,37 @@ export default async function NavBar() {
     const user = session?.user;
 
     return (
-      <NavBarClient>
-        {/* LOGO */}
-        <Link
-          href={"/"}
-          className="flex items-center gap-2 text-2xl xsm:mx-4"
-          aria-label="home page"
-        >
-          <div className="h-12 w-12">
-            <CustomImage
-              dbImageName={"wvd8t6wxk8iw4ldqa26x56b7-logo_alpha.png"}
-            />
-          </div>
-          {brandName}
-        </Link>
+      <div className="fixed left-0 right-0 top-0 z-30 flex flex-col">
+        <NavBarClient>
+          <div className="flex w-full items-center justify-between">
+            {/* LOGO */}
+            <Link
+              href={"/"}
+              className="flex items-center gap-2 text-2xl xsm:mx-4"
+              aria-label="home page"
+            >
+              <div className="h-12 w-12">
+                <CustomImage
+                  dbImageName={"wvd8t6wxk8iw4ldqa26x56b7-logo_alpha.png"}
+                />
+              </div>
+              {brandName}
+            </Link>
 
-        {/* Authentication and Mobile Menu */}
-        <div className="ml-auto flex items-center gap-8 xsm:mr-4">
-          <NavMenu />
-          <SheetMenu user={user} />
-        </div>
-      </NavBarClient>
+            {/* Authentication and Mobile Menu */}
+            <div className="ml-auto flex items-center gap-8 xsm:mr-4">
+              <NavMenu />
+              <SheetMenu user={user} />
+            </div>
+          </div>
+
+          <div className="hidden items-center justify-center gap-2 md:flex 2xl:gap-8">
+            {/* Contact bar */}
+            <ContactsPanel />
+          </div>
+        </NavBarClient>
+        <ContactsPanel className="border-t bg-background/60 transition-opacity md:hidden" />
+      </div>
     );
   } catch (error: any) {
     throw new Error(error.message);

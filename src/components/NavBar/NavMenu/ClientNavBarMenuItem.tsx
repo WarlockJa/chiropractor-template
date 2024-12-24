@@ -34,7 +34,7 @@ export default function ClientNavBarMenuItem({
         t(title).toLocaleUpperCase()
       ) : (
         <Link
-          className="text-xl transition-colors hover:text-accent"
+          className="text-nowrap text-xl transition-all hover:text-accent hover:drop-shadow-[1px_1px_1px_rgba(0,0,0,0.8)]"
           href={href}
         >
           {t(title).toLocaleUpperCase()}

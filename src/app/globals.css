@@ -19,6 +19,10 @@ main {
   font-family: var(--font-raleway);
 }
 
+.font-roboto {
+  font-family: var(--font-roboto);
+}
+
 @layer base {
   :root {
     /* palette colors */

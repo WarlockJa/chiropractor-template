@@ -72,13 +72,13 @@ export default async function NavMenu() {
   const tServices = await getTranslations("Services");
   const tNavMenu = await getTranslations("NavMenu");
   return (
-    <NavigationMenu className="hidden lg:block">
+    <NavigationMenu className="hidden xl:block">
       <NavigationMenuList className="gap-4">
         <NavigationMenuItem className="relative">
           <ClientNavBarMenuItem {...MENU_ITEMS[0]} />
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="relative bg-transparent text-xl">
+          <NavigationMenuTrigger className="relative bg-transparent text-xl transition-all hover:drop-shadow-[1px_1px_1px_rgba(0,0,0,0.8)]">
             <ClientNavBarMenuItem {...MENU_ITEMS[1]} dropdown />
           </NavigationMenuTrigger>
           <NavigationMenuContent>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import { Raleway, Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { getLocale, getMessages } from "next-intl/server";
@@ -22,6 +22,12 @@ const raleway = Raleway({
   subsets: ["latin-ext"],
   variable: "--font-raleway",
   weight: ["400", "600", "700", "800", "900"],
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  weight: ["100", "300", "400"],
 });
 
 export const metadata: Metadata = {
@@ -52,7 +58,9 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale}>
-      <body className={`${raleway.variable} font-raleway min-h-screen`}>
+      <body
+        className={`${raleway.variable} ${roboto.variable} font-raleway min-h-screen`}
+      >
         <AnimatePresence>
           <NextIntlClientProvider messages={messages}>
             <ThemeProvider
