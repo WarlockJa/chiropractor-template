@@ -4,10 +4,10 @@ import { env } from "@/lib/env.mjs";
 import AddressCard from "./_components/AddressCard";
 import getCachedGoogleData from "@/lib/cache/getCachedGoogleData";
 import { getLocale, getTranslations } from "next-intl/server";
-import ContactForm from "@/components/ContactForm/ContactForm";
+import ContactForm from "@/components/pages/ContactForm/ContactForm";
 import { Locale } from "@/i18n/config";
-import CustomImage from "@/components/CustomImage";
-import HeaderImage from "@/components/HeaderImage";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
+import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 
 export default async function ContactPage() {
   // translations

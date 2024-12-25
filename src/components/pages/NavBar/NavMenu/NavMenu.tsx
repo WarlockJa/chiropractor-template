@@ -8,10 +8,10 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { services } from "@/components/ServiceCard/cardData";
+import { services } from "@/components/temp/ServiceCard/cardData";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
-import CustomImage from "@/components/CustomImage";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 import ClientNavBarMenuItem from "./ClientNavBarMenuItem";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";

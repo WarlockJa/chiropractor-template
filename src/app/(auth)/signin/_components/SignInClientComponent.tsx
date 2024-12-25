@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { LoaderButton } from "@/components/LoaderButton";
+import { LoaderButton } from "@/components/UniversalComponents/LoaderButton";
 import GoogleIcon from "@/components/Icons/GoogleIcon";
 import {
   Card,

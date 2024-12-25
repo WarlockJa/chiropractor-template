@@ -1,5 +1,5 @@
-import { CustomButton } from "@/components/CustomButton";
-import CustomHeader from "@/components/CustomHeader";
+import { CustomButton } from "@/components/UniversalComponents/CustomButton";
+import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 

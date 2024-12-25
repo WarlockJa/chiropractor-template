@@ -1,13 +1,13 @@
-import HeaderImage from "@/components/HeaderImage";
+import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import GoogleReviews from "@/components/UniversalComponents/GoogleMaps/GoogleReviews";
 import { Locale } from "@/i18n/config";
 import getCachedGoogleData from "@/lib/cache/getCachedGoogleData";
 import { getLocale, getTranslations } from "next-intl/server";
 import { env } from "@/lib/env.mjs";
 import { brandPlaceId } from "@/appConfig";
-import CustomHeader from "@/components/CustomHeader";
+import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import SlideinSection from "@/components/UniversalComponents/SlideinSection/SlideinSections";
-import ContactsFooter from "@/components/ContactsFooter";
+import ContactsFooter from "@/components/pages/ContactsFooter";
 
 export default async function AboutPage() {
   const t = await getTranslations("About");

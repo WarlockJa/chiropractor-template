@@ -3,7 +3,7 @@
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 import { deleteImageAction } from "./_actions/actions";
-import { DeleteButton } from "@/components/DeleteButton";
+import { DeleteButton } from "@/components/UniversalComponents/DeleteButton";
 import { useTranslations } from "next-intl";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 

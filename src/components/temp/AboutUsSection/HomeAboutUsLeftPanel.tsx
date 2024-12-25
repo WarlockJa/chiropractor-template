@@ -1,5 +1,5 @@
-import CustomHeader from "@/components/CustomHeader";
-import CustomImage from "@/components/CustomImage";
+import CustomHeader from "@/components/UniversalComponents/CustomHeader";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 import { useTranslations } from "next-intl";
 
 export default function HomeAboutUsLeftPanel() {

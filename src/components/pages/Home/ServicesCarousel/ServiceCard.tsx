@@ -6,9 +6,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ServiceData } from "./servicesData";
-import CustomImage from "@/components/CustomImage";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 import Link from "next/link";
-import { CustomButton } from "@/components/CustomButton";
+import { CustomButton } from "@/components/UniversalComponents/CustomButton";
 
 export default function ServiceCard({
   dbImageName,

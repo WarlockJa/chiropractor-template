@@ -1,15 +1,14 @@
-import HeaderImage from "@/components/HeaderImage";
+import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import { CustomButton } from "./CustomButton";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import CustomHeader from "./CustomHeader";
+} from "@/components/ui/card";
+import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import { Mail, MapPin, Smartphone } from "lucide-react";
 import {
   brandAddress,
@@ -18,7 +17,8 @@ import {
   brandPhone,
   brandWhatsApp,
 } from "@/appConfig";
-import WhatsAppIcon from "./Icons/WhatsAppIcon";
+import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
+import { CustomButton } from "@/components/UniversalComponents/CustomButton";
 
 export default async function ContactsFooter() {
   // const t = await getTranslations("Services");

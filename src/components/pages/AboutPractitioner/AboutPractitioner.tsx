@@ -1,4 +1,4 @@
-import CustomHeader from "@/components/CustomHeader";
+import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import { useTranslations } from "next-intl";
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { differenceInYears } from "date-fns";
-import ChangingNumber from "../UniversalComponents/ChangingNumber/ChangingNumber";
+import ChangingNumber from "../../UniversalComponents/ChangingNumber/ChangingNumber";
 
 export default function AboutPractitioner({
   className,

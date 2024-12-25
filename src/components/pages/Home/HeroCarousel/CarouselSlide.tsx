@@ -1,5 +1,5 @@
-import { CustomButton } from "@/components/CustomButton";
-import CustomImage from "@/components/CustomImage";
+import { CustomButton } from "@/components/UniversalComponents/CustomButton";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 import AnimatedText from "@/components/UniversalComponents/AnimatedText";
 import Link from "next/link";
 

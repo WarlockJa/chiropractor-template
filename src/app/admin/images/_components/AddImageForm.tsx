@@ -1,6 +1,6 @@
 "use client";
 
-import { LoaderButton } from "@/components/LoaderButton";
+import { LoaderButton } from "@/components/UniversalComponents/LoaderButton";
 import { Input } from "@/components/ui/input";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";

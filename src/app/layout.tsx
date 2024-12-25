@@ -13,8 +13,8 @@ import {
   brandMetadataUrl,
   brandName,
 } from "@/appConfig";
-import NavBar from "@/components/NavBar/NavBar";
-import Footer from "@/components/Footer/Footer";
+import NavBar from "@/components/pages/NavBar/NavBar";
+import Footer from "@/components/pages/Footer/Footer";
 import NextTransitionBar from "next-transition-bar";
 import { Toaster } from "@/components/ui/sonner";
 

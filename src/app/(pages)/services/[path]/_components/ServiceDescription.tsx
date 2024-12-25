@@ -1,4 +1,4 @@
-import HeaderImage from "@/components/HeaderImage";
+import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { IServicePaths } from "../_lib/servicesData";
 import { getTranslations } from "next-intl/server";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";

@@ -1,8 +1,8 @@
-import HeaderImage from "@/components/HeaderImage";
+import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { useTranslations } from "next-intl";
-import SupportedEquipment from "@/components/AboutPractitioner/AboutPractitioner";
-import { laptopPC, macBook } from "@/components/ServiceCard/cardData";
-import ServiceCard from "@/components/ServiceCard/ServiceCard";
+import SupportedEquipment from "@/components/pages/AboutPractitioner/AboutPractitioner";
+import { laptopPC, macBook } from "@/components/temp/ServiceCard/cardData";
+import ServiceCard from "@/components/temp/ServiceCard/ServiceCard";
 
 export default function Home() {
   const t = useTranslations("Services");

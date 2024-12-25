@@ -7,7 +7,7 @@ import {
   brandName,
 } from "@/appConfig";
 import { Metadata } from "next";
-import ContactsFooter from "@/components/ContactsFooter";
+import ContactsFooter from "@/components/pages/ContactsFooter";
 
 export const metadata: Metadata = {
   title: `${brandName} services`,

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ArrowBigRight } from "lucide-react";
-import HeaderImage from "../HeaderImage";
+import HeaderImage from "../../UniversalComponents/HeaderImage";
 import Link from "next/link";
 
 export default function ServiceCard({

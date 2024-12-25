@@ -18,7 +18,7 @@ import {
 import { useTranslations } from "next-intl";
 import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
 import Link from "next/link";
-import CustomImage from "@/components/CustomImage";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 import InstagramIcon from "@/components/Icons/InstagramIcon";
 
 export default function Footer() {

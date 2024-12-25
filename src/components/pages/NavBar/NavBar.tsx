@@ -3,7 +3,7 @@ import NavMenu from "./NavMenu/NavMenu";
 import SheetMenu from "./SheetMenu/SheetMenu";
 import { brandName } from "@/appConfig";
 import Link from "next/link";
-import CustomImage from "@/components/CustomImage";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 import NavBarClient from "./NavBarClient/NavBarClient";
 import ContactsPanel from "./ContactsPanel/ContactsPanel";
 

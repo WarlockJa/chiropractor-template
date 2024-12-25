@@ -10,9 +10,13 @@ import {
   TelegramIcon,
   InstagramIcon,
 } from "next-share";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import Link from "next/link";
 import { env } from "@/lib/env.mjs";
 
