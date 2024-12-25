@@ -20,6 +20,9 @@ import ServiceCard from "@/components/pages/Home/ServicesCarousel/ServiceCard";
 import TestimonialsCarousel from "@/components/pages/Home/TestimonialsCarousel/TestimonialsCarousel";
 import { testimonialsData } from "@/components/pages/Home/TestimonialsCarousel/testimonialsData";
 import TestimonialCard from "@/components/pages/Home/TestimonialsCarousel/TestimonialCard";
+import TeamCarousel from "@/components/pages/Home/TeamCarousel/TeamCarousel";
+import { teamData } from "@/components/pages/Home/TeamCarousel/testimonialsData";
+import TeamCard from "@/components/pages/Home/TeamCarousel/TeamCard";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -39,7 +42,7 @@ export default function Home() {
   ];
 
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* Hero Carousel */}
       <HeroCarousel
         slide1={
@@ -67,6 +70,10 @@ export default function Home() {
       </div>
 
       {/* Services Carousel */}
+      <div className="flex flex-col items-center pt-20">
+        <div className="text-xl text-accent">WHAT WE CAN OFFER</div>
+        <CustomHeader text="OUR SERVICES" fontSizeRem={3} />
+      </div>
       <ServicesCarousel
         carouselItems={servicesData.map((item) => (
           <ServiceCard key={item.title} {...item} />
@@ -86,6 +93,17 @@ export default function Home() {
           className="mx-auto my-20 w-screen max-w-screen-xsm"
         />
       </HeaderImage>
+
+      {/* Our Team */}
+      <div className="flex flex-col items-center py-20">
+        <div className="text-xl text-accent">NICE TO MEET YOU</div>
+        <CustomHeader text="OUR TEAM" fontSizeRem={3} />
+        <TeamCarousel
+          carouselItems={teamData.map((item, index) => (
+            <TeamCard key={index} {...item} />
+          ))}
+        />
+      </div>
 
       {/* <HeaderImage
         dbImageName="liifjmtbmc1svy1z9ka6mhzm-repair-center.webp"

@@ -35,7 +35,7 @@ export default function ServicesCarousel({
   useEffect(() => {
     if (!api) return;
 
-    if (current === carouselItems.length + 4) {
+    if (current === carouselItems.length + 3) {
       api.scrollTo(2, true);
     }
 

@@ -6,10 +6,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
 import { ReactNode } from "react";
 
-export default function TestimonialsCarousel({
+export default function TeamCarousel({
   carouselItems,
   delayMs = 4000,
   className,
@@ -23,10 +24,10 @@ export default function TestimonialsCarousel({
       opts={{
         loop: true,
       }}
-      className={className}
+      className={cn(className, "relative")}
       plugins={[Autoplay({ delay: delayMs, stopOnInteraction: true })]}
     >
-      <CarouselContent className="mx-auto max-w-screen-xsm">
+      <CarouselContent className="mx-auto max-w-screen-xsm md:w-screen md:max-w-screen-lg">
         {/* adding slides from both sides to imitate infinite loop */}
         {carouselItems.map((item, index) => (
           <CarouselItem className="mx-2 select-none pl-0" key={index}>
@@ -34,8 +35,8 @@ export default function TestimonialsCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-4 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
-      <CarouselNext className="absolute right-4 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
+      <CarouselPrevious className="absolute left-10 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80 md:left-0 md:top-full" />
+      <CarouselNext className="absolute right-10 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80 md:right-0 md:top-full" />
     </Carousel>
   );
 }
