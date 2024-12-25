@@ -22,7 +22,7 @@ export default function TestimonialCard({
         <CardTitle>
           {<Quote size={96} className="mx-auto text-accent" />}
         </CardTitle>
-        <CardDescription className="indent-12">{quote}</CardDescription>
+        <CardDescription className="py-4 indent-12">{quote}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center">
         <CustomImage

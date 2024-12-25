@@ -26,7 +26,7 @@ export default function TestimonialsCarousel({
       className={className}
       plugins={[Autoplay({ delay: delayMs, stopOnInteraction: true })]}
     >
-      <CarouselContent className="mx-auto max-w-screen-xsm">
+      <CarouselContent className="mx-auto max-w-screen-lg">
         {/* adding slides from both sides to imitate infinite loop */}
         {carouselItems.map((item, index) => (
           <CarouselItem className="mx-2 select-none pl-0" key={index}>

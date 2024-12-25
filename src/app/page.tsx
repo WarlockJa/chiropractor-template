@@ -90,7 +90,7 @@ export default function Home() {
           carouselItems={testimonialsData.map((item, index) => (
             <TestimonialCard key={index} {...item} />
           ))}
-          className="mx-auto my-20 w-screen max-w-screen-xsm"
+          className="mx-auto my-20 w-screen max-w-screen-lg"
         />
       </HeaderImage>
 
