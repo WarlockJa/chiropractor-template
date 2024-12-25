@@ -17,6 +17,9 @@ import AboutPractitioner from "@/components/pages/AboutPractitioner/AboutPractit
 import ServicesCarousel from "@/components/pages/Home/ServicesCarousel/ServicesCarousel";
 import { servicesData } from "@/components/pages/Home/ServicesCarousel/servicesData";
 import ServiceCard from "@/components/pages/Home/ServicesCarousel/ServiceCard";
+import TestimonialsCarousel from "@/components/pages/Home/TestimonialsCarousel/TestimonialsCarousel";
+import { testimonialsData } from "@/components/pages/Home/TestimonialsCarousel/testimonialsData";
+import TestimonialCard from "@/components/pages/Home/TestimonialsCarousel/TestimonialCard";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -70,6 +73,19 @@ export default function Home() {
         ))}
         className="my-20"
       />
+
+      {/* Testimonials */}
+      <HeaderImage
+        dbImageName="nldbl1esytsx2lg47trp4mac-bg-1.jpg"
+        className="relative h-[36em] w-screen"
+      >
+        <TestimonialsCarousel
+          carouselItems={testimonialsData.map((item, index) => (
+            <TestimonialCard key={index} {...item} />
+          ))}
+          className="mx-auto my-20 w-screen max-w-screen-xsm"
+        />
+      </HeaderImage>
 
       {/* <HeaderImage
         dbImageName="liifjmtbmc1svy1z9ka6mhzm-repair-center.webp"
