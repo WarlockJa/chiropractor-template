@@ -35,7 +35,7 @@ export default async function ContactPage() {
       </div>
       <HeaderImage
         className="relative h-[43em] w-screen lg:h-[40em]"
-        dbImageName="vogdhqtxfngbldic0vvwpdvb-support.webp"
+        dbImageName="e4i9z2bzgbytqz303c8c2p60-bg-2.webp"
       >
         <ContactForm />
       </HeaderImage>

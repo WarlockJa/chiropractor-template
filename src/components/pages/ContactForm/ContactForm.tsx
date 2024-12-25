@@ -63,7 +63,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="m-auto w-full max-w-xl bg-primary/50 py-10 text-primary-foreground xsm:px-10 lg:flex lg:max-w-screen-lg">
+    <div className="m-auto w-full max-w-xl bg-primary/80 py-10 text-primary-foreground xsm:px-10 lg:flex lg:max-w-screen-lg">
       <div className="mb-8 flex flex-col items-center pl-8 lg:mt-4 lg:flex-1 lg:items-start">
         <div className="relative">
           <p className="text-xl">{tContact("reach_us")}</p>

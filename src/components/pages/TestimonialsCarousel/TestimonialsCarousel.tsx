@@ -24,7 +24,12 @@ export default function TestimonialsCarousel({
         loop: true,
       }}
       className={className}
-      plugins={[Autoplay({ delay: delayMs, stopOnInteraction: true })]}
+      plugins={[
+        Autoplay({
+          delay: delayMs,
+          stopOnInteraction: true,
+        }),
+      ]}
     >
       <CarouselContent className="mx-auto max-w-screen-lg">
         {/* adding slides from both sides to imitate infinite loop */}
@@ -34,8 +39,8 @@ export default function TestimonialsCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-4 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
-      <CarouselNext className="absolute right-4 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
+      <CarouselPrevious className="absolute left-2 top-2/3 h-20 w-20 border-accent bg-transparent text-muted opacity-20 transition-all hover:opacity-80" />
+      <CarouselNext className="absolute right-2 top-2/3 h-20 w-20 border-accent bg-transparent text-muted opacity-20 transition-all hover:opacity-80" />
     </Carousel>
   );
 }

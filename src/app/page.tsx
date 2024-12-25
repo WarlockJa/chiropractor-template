@@ -17,9 +17,9 @@ import AboutPractitioner from "@/components/pages/AboutPractitioner/AboutPractit
 import ServicesCarousel from "@/components/pages/Home/ServicesCarousel/ServicesCarousel";
 import { servicesData } from "@/components/pages/Home/ServicesCarousel/servicesData";
 import ServiceCard from "@/components/pages/Home/ServicesCarousel/ServiceCard";
-import TestimonialsCarousel from "@/components/pages/Home/TestimonialsCarousel/TestimonialsCarousel";
-import { testimonialsData } from "@/components/pages/Home/TestimonialsCarousel/testimonialsData";
-import TestimonialCard from "@/components/pages/Home/TestimonialsCarousel/TestimonialCard";
+import TestimonialsCarousel from "@/components/pages/TestimonialsCarousel/TestimonialsCarousel";
+import { testimonialsData } from "@/components/pages/TestimonialsCarousel/testimonialsData";
+import TestimonialCard from "@/components/pages/TestimonialsCarousel/TestimonialCard";
 import TeamCarousel from "@/components/pages/Home/TeamCarousel/TeamCarousel";
 import { teamData } from "@/components/pages/Home/TeamCarousel/testimonialsData";
 import TeamCard from "@/components/pages/Home/TeamCarousel/TeamCard";

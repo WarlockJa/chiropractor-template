@@ -25,7 +25,12 @@ export default function TeamCarousel({
         loop: true,
       }}
       className={cn(className, "relative")}
-      plugins={[Autoplay({ delay: delayMs, stopOnInteraction: true })]}
+      plugins={[
+        Autoplay({
+          delay: delayMs,
+          stopOnInteraction: true,
+        }),
+      ]}
     >
       <CarouselContent className="mx-auto max-w-screen-xsm md:w-screen md:max-w-screen-lg">
         {/* adding slides from both sides to imitate infinite loop */}
@@ -35,8 +40,8 @@ export default function TeamCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-10 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80 md:left-0 md:top-full" />
-      <CarouselNext className="absolute right-10 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80 md:right-0 md:top-full" />
+      <CarouselPrevious className="absolute left-16 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80 md:left-0 md:top-full" />
+      <CarouselNext className="absolute right-16 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80 md:right-0 md:top-full" />
     </Carousel>
   );
 }

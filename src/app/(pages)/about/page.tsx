@@ -8,6 +8,10 @@ import { brandPlaceId } from "@/appConfig";
 import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import SlideinSection from "@/components/UniversalComponents/SlideinSection/SlideinSections";
 import ContactsFooter from "@/components/pages/ContactsFooter";
+import AboutPractitioner from "@/components/pages/AboutPractitioner/AboutPractitioner";
+import TestimonialsCarousel from "@/components/pages/TestimonialsCarousel/TestimonialsCarousel";
+import { testimonialsData } from "@/components/pages/TestimonialsCarousel/testimonialsData";
+import TestimonialCard from "@/components/pages/TestimonialsCarousel/TestimonialCard";
 
 export default async function AboutPage() {
   const t = await getTranslations("About");
@@ -21,33 +25,18 @@ export default async function AboutPage() {
   return (
     <div className="mt-28">
       <HeaderImage
-        dbImageName="rmg62f1nfm2ohghvf9qx7py6-beach-laptop.webp"
+        dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
         className="relative h-96 w-screen"
       >
-        <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around text-primary-foreground">
+        <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
             {t("about")}
           </h1>
         </div>
       </HeaderImage>
 
-      {/* Google reviews */}
-      <div className="w-screen bg-primary/30 md:py-16">
-        <CustomHeader
-          text={t("what_people_say")}
-          className="flex justify-center px-2"
-          fontSizeRem={3}
-        />
-        <section className="mx-auto flex flex-col items-center justify-between overflow-hidden">
-          <GoogleReviews
-            locale={locale}
-            placeInfo={placeInfo.status === "OK" ? placeInfo.result : undefined}
-          />
-        </section>
-      </div>
-
       {/* Our Goals */}
-      <div className="w-screen md:py-16">
+      <div className="w-screen md:py-20">
         <CustomHeader
           text={t("our_goals")}
           className="flex justify-center px-2"
@@ -57,22 +46,22 @@ export default async function AboutPage() {
         <SlideinSection
           className="my-8"
           leftContent={
-            <div className="flex h-full items-center justify-center bg-primary-foreground p-8">
+            <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
                   text={t("your_computer_our_priority")}
-                  className="flex justify-center text-primary"
+                  className="flex justify-center"
                   fontSizeRem={2}
                 />
               </div>
             </div>
           }
           rightContent={
-            <div className="flex h-full items-center justify-center bg-primary/80 p-8">
+            <div className="flex h-full items-center justify-center p-8">
               <div className="mr-auto max-w-screen-sm">
                 <CustomHeader
                   text={t("is_your_computer_slow")}
-                  className="flex justify-center leading-8 text-primary-foreground"
+                  className="flex justify-center leading-8"
                 />
               </div>
             </div>
@@ -81,21 +70,21 @@ export default async function AboutPage() {
         <SlideinSection
           className="my-8"
           leftContent={
-            <div className="flex h-full items-center justify-center bg-primary/80 p-8">
+            <div className="flex h-full items-center justify-center p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
                   text={t("dont_let_malfunction_disrupt")}
-                  className="flex justify-center leading-8 text-primary-foreground"
+                  className="flex justify-center leading-8"
                 />
               </div>
             </div>
           }
           rightContent={
-            <div className="flex h-full items-center justify-center bg-primary-foreground p-8">
+            <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="mr-auto max-w-screen-sm">
                 <CustomHeader
                   text={t("breathe_new_life_into_your_device")}
-                  className="flex justify-center text-primary"
+                  className="flex justify-center"
                   fontSizeRem={2}
                 />
               </div>
@@ -106,11 +95,11 @@ export default async function AboutPage() {
         <SlideinSection
           className="my-8"
           leftContent={
-            <div className="flex h-full items-center justify-center bg-primary-foreground p-8">
+            <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
                   text={t("your_local_tech_experts")}
-                  className="flex justify-center text-primary"
+                  className="flex justify-center"
                   fontSizeRem={2}
                 />
               </div>
@@ -121,13 +110,44 @@ export default async function AboutPage() {
               <div className="mr-auto max-w-screen-sm">
                 <CustomHeader
                   text={t("were_not_just_a_repair_shop")}
-                  className="flex justify-center leading-8 text-primary-foreground"
+                  className="flex justify-center leading-8"
                 />
               </div>
             </div>
           }
         />
       </div>
+      {/* About Practitioner */}
+      <div className="mx-auto w-screen max-w-screen-lg">
+        <AboutPractitioner />
+      </div>
+
+      {/* Google reviews */}
+      <div className="w-screen bg-primary/30 pt-20">
+        <CustomHeader
+          text={t("what_people_say")}
+          className="flex justify-center px-2"
+          fontSizeRem={3}
+        />
+        {/* <section className="mx-auto flex flex-col items-center justify-between overflow-hidden">
+          <GoogleReviews
+            locale={locale}
+            placeInfo={placeInfo.status === "OK" ? placeInfo.result : undefined}
+          />
+        </section> */}
+      </div>
+      {/* Testimonials */}
+      <HeaderImage
+        dbImageName="nldbl1esytsx2lg47trp4mac-bg-1.jpg"
+        className="relative h-[36em] w-screen"
+      >
+        <TestimonialsCarousel
+          carouselItems={testimonialsData.map((item, index) => (
+            <TestimonialCard key={index} {...item} />
+          ))}
+          className="mx-auto my-20 w-screen max-w-screen-lg"
+        />
+      </HeaderImage>
 
       {/* Footer Contact */}
       <ContactsFooter />
