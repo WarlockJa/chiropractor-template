@@ -11,7 +11,7 @@ export const brandAddress = [
 export const brandEmail = "roman.s@warlockja.com";
 export const brandPhone = { number: "5555555555", string: "555 555-55-55" };
 // export const brandPhone = { number: "12819191327", string: "+1 281-919-1327" };
-export const brandWhatsApp = "905310884191";
+export const brandWhatsApp = { number: "5310884191", string: "531 088 4191" };
 // TODO translate
 export const brandWorkHours = "9:00 - 18:00 / ";
 

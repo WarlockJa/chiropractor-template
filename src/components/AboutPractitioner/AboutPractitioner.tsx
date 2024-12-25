@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { differenceInYears } from "date-fns";
-import { cn } from "@/lib/utils";
 
 export default function AboutPractitioner({
   className,
@@ -18,7 +17,7 @@ export default function AboutPractitioner({
   const t = useTranslations("SupportedEquipment");
   return (
     // TODO add translation
-    <Card className={cn("my-8", className)}>
+    <Card className={className}>
       <CardHeader>
         <CardTitle>
           <CustomHeader

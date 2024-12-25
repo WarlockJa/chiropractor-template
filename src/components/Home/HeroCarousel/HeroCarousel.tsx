@@ -32,7 +32,7 @@ export default function HeroCarousel({
         }),
       ]}
     >
-      <CarouselContent className="h-screen md:h-[40em] xl:h-[60em]">
+      <CarouselContent className="h-screen md:h-[40em] xl:h-[62em]">
         <CarouselItem>{slide1}</CarouselItem>
         <CarouselItem>{slide2}</CarouselItem>
         <CarouselItem>{slide3}</CarouselItem>

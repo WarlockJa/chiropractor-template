@@ -56,14 +56,14 @@ export default function Home() {
 
       {/* About Practitioner */}
       <div className="bg-gradient-to-tr from-background from-60% via-accent to-background">
-        <div className="mx-auto grid max-w-screen-xl grid-cols-[2fr,1fr] gap-4 py-20">
+        <div className="mx-auto grid max-w-screen-xl justify-center py-20 md:gap-4 lg:grid-cols-[2fr,1fr]">
           <CustomImage
             dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
             className="aspect-video max-w-screen-md rounded-md shadow-md shadow-accent"
           />
           {/* <div className="aspect-video max-w-screen-md rounded-md">
         </div> */}
-          <AboutPractitioner className="shadow-md shadow-accent" />
+          <AboutPractitioner className="max-w-screen-sm shadow-md shadow-accent" />
         </div>
       </div>
 
@@ -72,6 +72,7 @@ export default function Home() {
         carouselItems={servicesData.map((item) => (
           <ServiceCard key={item.title} {...item} />
         ))}
+        className="my-20"
       />
 
       {/* <HeaderImage
@@ -168,7 +169,7 @@ export default function Home() {
       </div> */}
 
       {/* Footer Contact */}
-      {/* <ContactsFooter /> */}
+      <ContactsFooter />
     </div>
   );
 }

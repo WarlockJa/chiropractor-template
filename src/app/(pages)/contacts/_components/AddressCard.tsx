@@ -38,12 +38,12 @@ export default function AddressCard() {
             {brandEmail}
           </Link>
           <Link
-            href={`https://wa.me/${brandWhatsApp}`}
+            href={`https://wa.me/${brandWhatsApp.number}`}
             target="_blank"
             className="flex items-center gap-2 transition-colors hover:text-accent"
           >
             <WhatsAppIcon className="h-5 w-5 fill-current stroke-current" />{" "}
-            {brandWhatsApp}
+            {brandWhatsApp.string}
           </Link>
         </div>
       </CardContent>

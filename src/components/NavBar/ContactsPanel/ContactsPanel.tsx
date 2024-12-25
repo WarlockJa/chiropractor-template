@@ -40,7 +40,7 @@ export default function ContactsPanel({ className }: { className?: string }) {
       </Link>
       {/* socials */}
       <div className="flex justify-end gap-4">
-        <Link target="_blank" href={`https://wa.me/${brandWhatsApp}`}>
+        <Link target="_blank" href={`https://wa.me/${brandWhatsApp.number}`}>
           <WhatsAppIcon className="h-8 w-8 fill-accent transition-all hover:fill-green-600 hover:drop-shadow-[1px_1px_1px_rgba(0,0,0,0.8)]" />
         </Link>
         <Link target="_blank" href={brandFB}>

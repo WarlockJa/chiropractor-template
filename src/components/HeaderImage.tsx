@@ -14,7 +14,7 @@ export default function HeaderImage({
 }) {
   return (
     <div className={className}>
-      <div className="absolute inset-0 z-10 bg-black/50"></div>
+      <div className="absolute inset-0 z-10 bg-foreground/10"></div>
       <CustomImage imageId={imageId} dbImageName={dbImageName} />
       <div className="absolute inset-0 z-20 flex items-center justify-center">
         {children}

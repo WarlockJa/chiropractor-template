@@ -11,9 +11,11 @@ import { ReactNode, useEffect, useState } from "react";
 export default function ServicesCarousel({
   carouselItems,
   delayMs = 4000,
+  className,
 }: {
   carouselItems: ReactNode[];
   delayMs?: number;
+  className?: string;
 }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -49,6 +51,7 @@ export default function ServicesCarousel({
         loop: true,
         startIndex: 2,
       }}
+      className={className}
       plugins={[
         Autoplay({
           delay: () =>

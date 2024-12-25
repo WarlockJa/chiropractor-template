@@ -3,6 +3,14 @@ import CustomImage from "@/components/CustomImage";
 import AnimatedText from "@/components/UniversalComponents/AnimatedText";
 import Link from "next/link";
 
+/*
+This is a finicky component. In order to be responsive it has to be of fixed height
+breaks md: lg: should be provided at:
+  HeroCarousel -> CarouselContent,
+  CarouselSlide -> CustomImage,
+  CarouselSlide -> Following the image div text wrapper
+*/
+
 export default function CarouselSlide({
   dbImageName,
 }: {
@@ -12,10 +20,10 @@ export default function CarouselSlide({
     <div className="relative">
       <CustomImage
         dbImageName={dbImageName}
-        className="h-screen w-screen md:h-[40em] xl:h-[60em]"
+        className="h-screen w-screen md:h-[40em] xl:h-[62em]"
       />
-      <div className="absolute inset-x-0 top-0 mx-auto h-screen w-full max-w-screen-2xl md:h-[40em] xl:h-[60em]">
-        <div className="absolute bottom-[5%] left-[7%] mx-auto flex flex-col gap-2 2xl:left-0">
+      <div className="absolute inset-x-0 top-0 mx-auto h-screen w-full max-w-screen-2xl md:h-[40em] xl:h-[62em]">
+        <div className="absolute bottom-[20%] left-[7%] mx-auto flex flex-col gap-2 2xl:left-0">
           <AnimatedText
             className="text-background drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
             delay={1}

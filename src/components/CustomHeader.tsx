@@ -1,11 +1,15 @@
+import { cn } from "@/lib/utils";
+
 export default function CustomHeader({
   text,
   fontSizeRem = 1,
   className,
+  textClassName,
 }: {
   text: string;
   fontSizeRem?: number;
   className?: string;
+  textClassName?: string;
 }) {
   return (
     <div className={className}>
@@ -20,7 +24,7 @@ export default function CustomHeader({
           {text.slice(0, 1)}
         </div>
         <h1
-          className="text-foreground"
+          className={cn("text-foreground", textClassName)}
           style={{ fontSize: `${fontSizeRem}rem` }}
         >
           {text}
