@@ -1,10 +1,10 @@
 import { brandCoordinates, brandPlaceId } from "@/appConfig";
 import GoogleMaps from "@/components/UniversalComponents/GoogleMaps/GoogleMaps";
 import { env } from "@/lib/env.mjs";
-import AddressCard from "./_components/AddressCard";
+import AddressCard from "../../../components/pages/Contacts/AddressCard";
 import getCachedGoogleData from "@/lib/cache/getCachedGoogleData";
 import { getLocale, getTranslations } from "next-intl/server";
-import ContactForm from "@/components/pages/ContactForm/ContactForm";
+import ContactForm from "@/components/pages/Contacts/ContactForm/ContactForm";
 import { Locale } from "@/i18n/config";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
@@ -28,7 +28,10 @@ export default async function ContactPage() {
           coordinates={brandCoordinates}
           placeInfo={placeInfo.status === "OK" ? placeInfo.result : undefined}
           pinchild={
-            <CustomImage dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png" />
+            <CustomImage
+              dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"
+              className="h-8 w-8"
+            />
           }
         />
         <AddressCard />

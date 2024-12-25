@@ -49,7 +49,8 @@ export default async function AboutPage() {
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
-                  text={t("your_computer_our_priority")}
+                  // text={t("your_computer_our_priority")}
+                  text={"Lorem ipsum"}
                   className="flex justify-center"
                   fontSizeRem={2}
                 />
@@ -60,7 +61,9 @@ export default async function AboutPage() {
             <div className="flex h-full items-center justify-center p-8">
               <div className="mr-auto max-w-screen-sm">
                 <CustomHeader
-                  text={t("is_your_computer_slow")}
+                  text={
+                    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse rerum cupiditate perferendis maxime quos voluptates quibusdam natus culpa repellendus similique laudantium quidem cum tempora ratione sed, aliquid vel fugit quia."
+                  }
                   className="flex justify-center leading-8"
                 />
               </div>
@@ -73,7 +76,9 @@ export default async function AboutPage() {
             <div className="flex h-full items-center justify-center p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
-                  text={t("dont_let_malfunction_disrupt")}
+                  text={
+                    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse rerum cupiditate perferendis maxime quos voluptates quibusdam natus culpa repellendus similique laudantium quidem cum tempora ratione sed, aliquid vel fugit quia."
+                  }
                   className="flex justify-center leading-8"
                 />
               </div>
@@ -83,7 +88,7 @@ export default async function AboutPage() {
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="mr-auto max-w-screen-sm">
                 <CustomHeader
-                  text={t("breathe_new_life_into_your_device")}
+                  text={"Lorem ipsum"}
                   className="flex justify-center"
                   fontSizeRem={2}
                 />
@@ -98,7 +103,7 @@ export default async function AboutPage() {
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
-                  text={t("your_local_tech_experts")}
+                  text={"Lorem ipsum"}
                   className="flex justify-center"
                   fontSizeRem={2}
                 />
@@ -109,7 +114,9 @@ export default async function AboutPage() {
             <div className="flex h-full items-center justify-center bg-primary/80 p-8">
               <div className="mr-auto max-w-screen-sm">
                 <CustomHeader
-                  text={t("were_not_just_a_repair_shop")}
+                  text={
+                    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse rerum cupiditate perferendis maxime quos voluptates quibusdam natus culpa repellendus similique laudantium quidem cum tempora ratione sed, aliquid vel fugit quia."
+                  }
                   className="flex justify-center leading-8"
                 />
               </div>

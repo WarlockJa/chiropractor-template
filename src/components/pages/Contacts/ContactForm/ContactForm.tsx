@@ -66,9 +66,9 @@ export default function ContactForm() {
     <div className="m-auto w-full max-w-xl bg-primary/80 py-10 text-primary-foreground xsm:px-10 lg:flex lg:max-w-screen-lg">
       <div className="mb-8 flex flex-col items-center pl-8 lg:mt-4 lg:flex-1 lg:items-start">
         <div className="relative">
-          <p className="text-xl">{tContact("reach_us")}</p>
+          <p className="text-xl">{tContact("reach_us").toLocaleUpperCase()}</p>
           <h2 className="pr-2 text-3xl lg:text-5xl">
-            {tContact("send_us_a_message")}
+            {tContact("send_us_a_message").toLocaleUpperCase()}
           </h2>
           <div className="absolute -bottom-2 -left-4 h-8 w-24 border-b-2 border-l-2 border-primary-foreground lg:-bottom-8 lg:-left-12 lg:h-12 lg:w-2/5"></div>
         </div>

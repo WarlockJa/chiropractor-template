@@ -19,20 +19,20 @@ export default function AddressCard() {
         <CardTitle className="m-auto text-4xl">{brandName}</CardTitle>
       </CardHeader>
       <CardContent className="m-auto w-fit">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 font-sans">
           <div>{brandAddress[0]},</div>
           <div>{brandAddress[1]},</div>
           <div>{brandAddress[2]}</div>
           <Link
             href={`tel:${brandPhone.number}`}
-            className="flex items-center gap-2 transition-colors hover:text-accent"
+            className="flex items-center gap-2 font-sans transition-colors hover:text-accent"
           >
             <Phone />
             {brandPhone.string}
           </Link>
           <Link
             href={`mailto:${brandEmail}`}
-            className="flex items-center gap-2 transition-colors hover:text-accent"
+            className="flex items-center gap-2 font-sans transition-colors hover:text-accent"
           >
             <Mail />
             {brandEmail}
@@ -40,7 +40,7 @@ export default function AddressCard() {
           <Link
             href={`https://wa.me/${brandWhatsApp.number}`}
             target="_blank"
-            className="flex items-center gap-2 transition-colors hover:text-accent"
+            className="flex items-center gap-2 font-sans transition-colors hover:text-accent"
           >
             <WhatsAppIcon className="h-5 w-5 fill-current stroke-current" />{" "}
             {brandWhatsApp.string}

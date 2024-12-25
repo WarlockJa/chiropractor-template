@@ -39,7 +39,7 @@ function GoogleMapComponent({
         >
           <AdvancedMarker position={coordinates}>
             <Pin
-              background={"#cc2222"}
+              background={"#ffffff"}
               borderColor={"#232323"}
               // glyphColor={"#0f677a"}
               scale={1.2}
