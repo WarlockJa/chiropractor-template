@@ -8,13 +8,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { services } from "@/components/temp/ServiceCard/cardData";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 import ClientNavBarMenuItem from "./ClientNavBarMenuItem";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { servicesData } from "../../Home/ServicesCarousel/servicesData";
 
 export interface IItemNavBar {
   href: string;
@@ -52,7 +52,7 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <ChevronRight className="-translate-x-2 transition-transform group-hover:translate-x-0" />
+          <ChevronRight className="-translate-x-2 transition-transform group-hover:translate-x-0 group-hover:text-accent" />
           <div>
             <div className="text-sm font-medium">{title}</div>
             <p className="line-clamp-2 align-middle text-sm leading-snug text-muted-foreground">
@@ -83,26 +83,14 @@ export default async function NavMenu() {
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
-              {services.map((item) => (
+              {servicesData.map((item) => (
                 <ListItem
                   key={item.title}
-                  title={t(item.title)}
+                  title={item.title}
                   href={item.href}
                   className="relative"
                 />
               ))}
-              {/* Mac Services */}
-              <ListItem
-                title={tServices("mac_repair_center")}
-                href={"/services/#macservices"}
-                className="relative"
-              />
-              {/* Windows Serfices */}
-              <ListItem
-                title={tServices("fixing_all_windows_issues")}
-                href={"/services/#pcservices"}
-                className="relative"
-              />
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

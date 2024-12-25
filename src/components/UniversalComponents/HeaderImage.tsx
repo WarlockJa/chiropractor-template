@@ -16,11 +16,11 @@ export default function HeaderImage({
   return (
     <div
       className={cn(
-        "font-bold text-background dark:text-primary-foreground",
+        "relative font-bold text-background dark:text-primary-foreground",
         className,
       )}
     >
-      <div className="absolute inset-0 z-10 bg-foreground/10 dark:bg-background/70"></div>
+      <div className="absolute inset-0 z-10 bg-foreground/10"></div>
       <CustomImage imageId={imageId} dbImageName={dbImageName} />
       <div className="absolute inset-0 z-20 flex items-center justify-center">
         {children}

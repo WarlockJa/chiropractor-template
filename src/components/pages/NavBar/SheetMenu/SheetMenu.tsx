@@ -1,4 +1,4 @@
-import { Lock, LogIn, LogOut, Menu } from "lucide-react";
+import { Lock, LogIn, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -17,8 +17,8 @@ import LocaleSwitcher from "@/components/Locale/LocaleSwitcher";
 import { User } from "next-auth";
 import { useTranslations } from "next-intl";
 import { SignInLoaderButton } from "./SignInLoaderButton";
-import UserAvatar from "../UserAvatar";
 import Link from "next/link";
+import UserAvatar from "../UserAvatar";
 
 export default function SheetMenu({ user }: { user: User | undefined }) {
   // translations

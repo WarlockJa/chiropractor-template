@@ -27,6 +27,7 @@ export default async function ContactsFooter() {
       dbImageName="gotpr60kksd5ws1zz11nzmgj-map.png"
       className="relative h-[44em] w-screen md:h-[32em]"
     >
+      <div className="absolute inset-0 dark:bg-background/70"></div>
       <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-center gap-8">
         <Card className="mx-auto max-w-screen-xl">
           <CardHeader className="p-8">

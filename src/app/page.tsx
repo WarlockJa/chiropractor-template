@@ -86,6 +86,7 @@ export default function Home() {
         dbImageName="nldbl1esytsx2lg47trp4mac-bg-1.jpg"
         className="relative h-[36em] w-screen"
       >
+        <div className="absolute inset-0 dark:bg-background/70"></div>
         <TestimonialsCarousel
           carouselItems={testimonialsData.map((item, index) => (
             <TestimonialCard key={index} {...item} />
