@@ -1,7 +1,7 @@
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { useTranslations } from "next-intl";
 import { servicesData } from "@/components/pages/Home/ServicesCarousel/servicesData";
-import ServiceCardList from "@/components/temp/ServiceCardList/ServiceCardList";
+import ServiceCardList from "@/components/pages/Services/ServiceCardList/ServiceCardList";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 
 export default function Home() {

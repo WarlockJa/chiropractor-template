@@ -59,14 +59,11 @@ export function magicLinkEmail({
             font-size: 22px;
             font-family: Helvetica, Arial, sans-serif;
             color: ${textColor};
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1em;
           "
         >
           <img
             src="${imgUrl}"
+            style="max-height: 3em"
             alt="${brandName}"
           />
         </td>
