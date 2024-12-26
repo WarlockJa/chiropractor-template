@@ -15,7 +15,7 @@ import Link from "next/link";
 import CarouselSlide from "@/components/pages/Home/HeroCarousel/CarouselSlide";
 import AboutPractitioner from "@/components/pages/AboutPractitioner/AboutPractitioner";
 import ServicesCarousel from "@/components/pages/Home/ServicesCarousel/ServicesCarousel";
-import { servicesData } from "@/components/pages/Home/ServicesCarousel/servicesData";
+import { servicesData } from "@/components/pages/Services/servicesData";
 import ServiceCard from "@/components/pages/Home/ServicesCarousel/ServiceCard";
 import TestimonialsCarousel from "@/components/pages/TestimonialsCarousel/TestimonialsCarousel";
 import { testimonialsData } from "@/components/pages/TestimonialsCarousel/testimonialsData";
@@ -100,6 +100,7 @@ export default function Home() {
         <div className="text-xl text-accent">NICE TO MEET YOU</div>
         <CustomHeader text="OUR TEAM" fontSizeRem={3} />
         <TeamCarousel
+          delayMs={5000}
           carouselItems={teamData.map((item, index) => (
             <TeamCard key={index} {...item} />
           ))}

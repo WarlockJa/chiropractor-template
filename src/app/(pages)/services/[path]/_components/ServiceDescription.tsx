@@ -1,30 +1,30 @@
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
-import { IServicePaths } from "../_lib/servicesData";
-import { getTranslations } from "next-intl/server";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { ServiceData } from "@/components/pages/Services/servicesData";
 
 export default async function ServiceDescription({
   serviceData,
 }: {
-  serviceData: IServicePaths;
+  serviceData: ServiceData;
 }) {
-  const t = await getTranslations("Cards");
+  // const t = await getTranslations("Cards");
 
   return (
     <div className="mt-28">
       <HeaderImage
         dbImageName={serviceData.dbImageName}
-        containerClassName="relative h-96 w-screen"
+        containerClassName="relative h-96 w-screen max-w-screen-lg mx-auto"
       >
         {/* brackets */}
-        <div className="absolute left-[5%] top-8 h-20 w-20 border-l border-t border-primary-foreground"></div>
-        <div className="absolute right-[5%] top-8 h-20 w-20 border-r border-t border-primary-foreground"></div>
-        <div className="absolute bottom-8 left-[5%] h-20 w-20 border-b border-l border-primary-foreground"></div>
-        <div className="absolute bottom-8 right-[5%] h-20 w-20 border-b border-r border-primary-foreground"></div>
+        <div className="absolute left-[5%] top-8 h-20 w-20 border-l border-t border-background"></div>
+        <div className="absolute right-[5%] top-8 h-20 w-20 border-r border-t border-background"></div>
+        <div className="absolute bottom-8 left-[5%] h-20 w-20 border-b border-l border-background"></div>
+        <div className="absolute bottom-8 right-[5%] h-20 w-20 border-b border-r border-background"></div>
 
-        <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around text-primary-foreground">
+        <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
-            {t(serviceData.title)}
+            {/* {t(serviceData.title)} */}
+            {serviceData.title}
           </h1>
         </div>
       </HeaderImage>
@@ -37,7 +37,8 @@ export default async function ServiceDescription({
           quis?
         </p>
         <h2 className="mb-8 mt-4 text-center text-3xl">
-          {t(serviceData.title)}
+          {/* {t(serviceData.title)} */}
+          {serviceData.title}
         </h2>
         <ul className="ml-12 list-disc leading-8">
           <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
@@ -47,7 +48,8 @@ export default async function ServiceDescription({
         </ul>
 
         <h2 className="mb-8 mt-4 text-center text-3xl">
-          {t(serviceData.title)} repair costs:
+          {/* {t(serviceData.title)} repair costs: */}
+          {serviceData.title}
         </h2>
         <Table className="mx-auto max-w-md">
           <TableBody>

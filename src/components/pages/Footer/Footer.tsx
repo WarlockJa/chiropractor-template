@@ -20,6 +20,7 @@ import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
 import Link from "next/link";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 import InstagramIcon from "@/components/Icons/InstagramIcon";
+import { servicesData } from "../Services/servicesData";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -35,7 +36,6 @@ export default function Footer() {
         >
           <h3 className="text-2xl">{brandName}</h3>
           <div className="h-28">
-            {/* TEST logo.webp */}
             <CustomImage dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png" />
           </div>
         </Link>
@@ -45,31 +45,18 @@ export default function Footer() {
           <h1 className="bg-gradient-to-b from-secondary-foreground to-accent bg-clip-text text-xl text-transparent">
             {t("services")}
           </h1>
-          <div className="flex w-fit flex-col gap-4 text-sm">
-            <Link
-              className="transition-colors hover:text-accent"
-              href={"/contacts"}
-            >
-              {tCards("repair_center")}
-            </Link>
-            <Link
-              className="transition-colors hover:text-accent"
-              href={"/services/data-recovery"}
-            >
-              {tCards("data_recovery")}
-            </Link>
-            <Link
-              className="transition-colors hover:text-accent"
-              href={"/services/remote-support"}
-            >
-              {tCards("remote_it_support")}
-            </Link>
-            <Link
-              className="transition-colors hover:text-accent"
-              href={"/services/on-site"}
-            >
-              {tCards("onsite_tech_visit")}
-            </Link>
+          {/* <div className="flex w-fit flex-col gap-4 text-sm"> */}
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            {servicesData.map((item) => (
+              <Link
+                key={item.path}
+                className="transition-colors hover:text-accent"
+                href={item.href}
+              >
+                {/* TODO translate */}
+                {item.title}
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -102,47 +89,6 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-
-        {/* Get in Touch */}
-        {/* <div className="mx-auto flex flex-col items-center gap-4 p-2 xsm:items-start">
-          <h1 className="bg-gradient-to-b from-secondary-foreground to-accent bg-clip-text text-xl text-transparent">
-            {t("get_in_touch")}
-          </h1>
-          <div className="flex w-fit flex-col gap-4 text-sm">
-            <div className="text-xl">{brandName}</div>
-            <div className="">{brandAddress[0]}</div>
-            <div className="">{brandAddress[1]}</div>
-            <div className="">{brandAddress[2]}</div>
-            <NextLink
-              href={`tel:${brandPhone.number}`}
-              className="flex items-center gap-2 underline underline-offset-8 transition-colors hover:text-accent"
-            >
-              <Phone />
-              {brandPhone.string}
-            </NextLink>
-            <NextLink
-              href={`mailto:${brandEmail}`}
-              className="flex items-center gap-2 underline underline-offset-8 transition-colors hover:text-accent"
-            >
-              <Mail />
-              {brandEmail}
-            </NextLink>
-            <NextLink
-              href={`https://wa.me/${brandWhatsApp}`}
-              className="flex items-center gap-2 underline underline-offset-8 transition-colors hover:text-accent"
-            >
-              <WhatsAppIcon className="h-6 w-6 fill-secondary-foreground" />
-              {brandWhatsApp}
-            </NextLink>
-            <NextLink
-              href={brandMapDirectionsLink}
-              target="_blank"
-              className="flex items-center gap-2 underline underline-offset-4 transition-colors hover:text-accent"
-            >
-              <ExternalLink /> {t("map_directions")}
-            </NextLink>
-          </div>
-        </div> */}
 
         {/* Social */}
         <div className="flex flex-col gap-4 p-2 pl-12 xsm:pl-2">

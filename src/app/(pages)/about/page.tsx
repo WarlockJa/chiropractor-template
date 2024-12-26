@@ -44,7 +44,7 @@ export default async function AboutPage() {
         />
 
         <SlideinSection
-          className="my-8"
+          className="my-8 min-h-96"
           leftContent={
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
@@ -71,7 +71,7 @@ export default async function AboutPage() {
           }
         />
         <SlideinSection
-          className="my-8"
+          className="my-8 min-h-96"
           leftContent={
             <div className="flex h-full items-center justify-center p-8">
               <div className="ml-auto max-w-screen-sm">
@@ -98,7 +98,7 @@ export default async function AboutPage() {
           reverse
         />
         <SlideinSection
-          className="my-8"
+          className="my-8 min-h-96"
           leftContent={
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
@@ -148,6 +148,7 @@ export default async function AboutPage() {
         dbImageName="nldbl1esytsx2lg47trp4mac-bg-1.jpg"
         containerClassName="relative h-[36em] w-screen"
       >
+        <div className="absolute inset-0 dark:bg-background/70"></div>
         <TestimonialsCarousel
           carouselItems={testimonialsData.map((item, index) => (
             <TestimonialCard key={index} {...item} />

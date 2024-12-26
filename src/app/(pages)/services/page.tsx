@@ -1,6 +1,6 @@
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { useTranslations } from "next-intl";
-import { servicesData } from "@/components/pages/Home/ServicesCarousel/servicesData";
+import { servicesData } from "@/components/pages/Services/servicesData";
 import ServiceCardList from "@/components/pages/Services/ServiceCardList/ServiceCardList";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 
@@ -24,7 +24,8 @@ export default function Home() {
         {servicesData.map((item) => (
           <ServiceCardList
             key={item.title}
-            {...item}
+            href={item.href}
+            title={item.title}
             image={<CustomImage dbImageName={item.dbImageName} />}
           />
         ))}

@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ServiceData } from "./servicesData";
+import { ServiceData } from "../../Services/servicesData";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 import Link from "next/link";
 import { CustomButton } from "@/components/UniversalComponents/CustomButton";

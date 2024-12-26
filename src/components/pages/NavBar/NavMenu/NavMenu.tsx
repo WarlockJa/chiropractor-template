@@ -14,7 +14,7 @@ import CustomImage from "@/components/UniversalComponents/CustomImage";
 import ClientNavBarMenuItem from "./ClientNavBarMenuItem";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { servicesData } from "../../Home/ServicesCarousel/servicesData";
+import { servicesData } from "../../Services/servicesData";
 
 export interface IItemNavBar {
   href: string;

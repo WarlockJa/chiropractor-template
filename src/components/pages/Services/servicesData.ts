@@ -1,8 +1,20 @@
+import { ReactNode } from "react";
+import ServicePageColdLaser from "./ServicePages/ServicePageColdLaser";
+import ServicePageDetox from "./ServicePages/ServicePageDetox";
+import ServicePageFitness from "./ServicePages/ServicePageFitness";
+import ServicePageDietaryManagement from "./ServicePages/ServicePageDietaryManagement";
+import ServicePageHeatAndCold from "./ServicePages/ServicePageHeatAndCold";
+import ServicePageMassage from "./ServicePages/ServicePageMassage";
+import ServicePagePediatric from "./ServicePages/ServicePagePediatric";
+import ServicePageRelax from "./ServicePages/ServicePageRelax";
+
 export interface ServiceData {
   title: string;
   description: string;
   dbImageName: string;
   href: string;
+  path: string;
+  page: ({ serviceData }: { serviceData: ServiceData }) => JSX.Element;
 }
 
 export const servicesData: ServiceData[] = [
@@ -13,6 +25,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/cold-laser-therapy",
+    path: "cold-laser-therapy",
+    page: ServicePageColdLaser,
   },
   {
     title: "detox program",
@@ -21,6 +35,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/detox-program",
+    path: "detox-program",
+    page: ServicePageDetox,
   },
   {
     title: "fitness program",
@@ -29,6 +45,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/fitness-program",
+    path: "fitness-program",
+    page: ServicePageFitness,
   },
   {
     title: "dietary management",
@@ -37,6 +55,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/dietary-management",
+    path: "dietary-management",
+    page: ServicePageDietaryManagement,
   },
   {
     title: "heat and cold",
@@ -45,6 +65,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/heat-and-cold",
+    path: "heat-and-cold",
+    page: ServicePageHeatAndCold,
   },
   {
     title: "massage",
@@ -53,6 +75,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/massage-therapy",
+    path: "massage-therapy",
+    page: ServicePageMassage,
   },
   {
     title: "pediatric",
@@ -61,6 +85,8 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/pediatric",
+    path: "pediatric",
+    page: ServicePagePediatric,
   },
   {
     title: "relax therapy",
@@ -68,5 +94,11 @@ export const servicesData: ServiceData[] = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
     href: "/services/relax-therapy",
+    path: "relax-therapy",
+    page: ServicePageRelax,
   },
 ];
+
+export const getServiceData = ({ path }: { path: string }) => {
+  return servicesData.find((item) => item.path === path);
+};
