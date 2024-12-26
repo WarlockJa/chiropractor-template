@@ -7,22 +7,29 @@ export default function HeaderImage({
   className,
   imageId,
   dbImageName,
+  containerClassName,
 }: {
   children: ReactNode;
   className?: string;
   imageId?: number;
   dbImageName?: string;
+  containerClassName?: string;
 }) {
   return (
     <div
       className={cn(
         "relative font-bold text-background dark:text-primary-foreground",
-        className,
+        containerClassName,
       )}
     >
       <div className="absolute inset-0 z-10 bg-foreground/10"></div>
       <CustomImage imageId={imageId} dbImageName={dbImageName} />
-      <div className="absolute inset-0 z-20 flex items-center justify-center">
+      <div
+        className={cn(
+          "absolute inset-0 z-20 flex items-center justify-center",
+          className,
+        )}
+      >
         {children}
       </div>
     </div>

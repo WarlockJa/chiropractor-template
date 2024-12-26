@@ -54,7 +54,7 @@ const ListItem = React.forwardRef<
         >
           <ChevronRight className="-translate-x-2 transition-transform group-hover:translate-x-0 group-hover:text-accent" />
           <div>
-            <div className="text-sm font-medium">{title}</div>
+            <div className="font-medium">{title}</div>
             <p className="line-clamp-2 align-middle text-sm leading-snug text-muted-foreground">
               {children}
             </p>

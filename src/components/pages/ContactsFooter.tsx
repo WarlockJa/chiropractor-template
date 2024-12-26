@@ -91,7 +91,7 @@ export default async function ContactsFooter() {
         {/* <h1 className="mb-8 text-center text-3xl uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)] md:text-5xl">
           {t("footer_title")}
         </h1> */}
-        <Link href={"/contacts"} target="_blank">
+        <Link href={"/contacts"}>
           <CustomButton
             text={"Make an appointment".toLocaleUpperCase()}
             className="border-2 border-accent p-8 hover:bg-accent/5"
