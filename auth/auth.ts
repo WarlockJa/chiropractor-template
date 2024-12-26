@@ -5,7 +5,16 @@ import { db } from "@db/db-connection";
 import { accounts, users, sessions, verificationTokens } from "@db/schemaAuth";
 import { Provider } from "next-auth/providers";
 import { magicLinkEmail } from "@/emails/magicLinkEmail";
-import { brandAddress, brandName } from "@/appConfig";
+import {
+  brandAddress,
+  brandEmailBackgroundColor,
+  brandEmailButtonTextColor,
+  brandEmailColor,
+  brandEmailLogoUrl,
+  brandEmailMutedTextColor,
+  brandEmailTextColor,
+  brandName,
+} from "@/appConfig";
 import { env } from "@/lib/env.mjs";
 
 // const protectedRoutes: string[] = ["/crud"];
@@ -55,16 +64,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             subject: `Sign in to ${brandName}`,
             htmlContent: magicLinkEmail({
               magicLinkUrl: url,
-              imgUrl: `${env.NEXT_PUBLIC_URI}/default.webp`,
+              imgUrl: brandEmailLogoUrl,
               brandName,
               brandAddress: brandAddress.join(", "),
               appUrl: env.NEXT_PUBLIC_URI,
               bucketUrl: env.NEXT_PUBLIC_URI,
-              backgroundColor: "#fafafa",
-              brandColor: "#354964",
-              textColor: "#1c1917",
-              mutedText: "#535353",
-              buttonText: "#fafaf9",
+              backgroundColor: brandEmailBackgroundColor,
+              brandColor: brandEmailColor,
+              textColor: brandEmailTextColor,
+              mutedText: brandEmailMutedTextColor,
+              buttonText: brandEmailButtonTextColor,
             }),
           }),
           // Authentication will also vary from provider to provider, please see their docs.

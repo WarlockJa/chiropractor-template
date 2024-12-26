@@ -37,7 +37,7 @@ export default async function ContactPage() {
         <AddressCard />
       </div>
       <HeaderImage
-        className="relative h-[43em] w-screen lg:h-[40em]"
+        containerClassName="relative h-[43em] w-screen lg:h-[40em]"
         dbImageName="e4i9z2bzgbytqz303c8c2p60-bg-2.webp"
       >
         <ContactForm />

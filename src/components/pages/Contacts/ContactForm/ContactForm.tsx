@@ -29,6 +29,8 @@ export default function ContactForm() {
       toast(tContact("message_sent_toast_title"), {
         description: tContact("message_sent_toast_description"),
       });
+
+      form.reset();
     },
     onError({ error }) {
       if (error.serverError === "RateLimitError") {
@@ -151,10 +153,16 @@ export default function ContactForm() {
             )}
           />
           <LoaderButton
-            isDisabled={status === "executing"}
+            isDisabled={
+              status === "executing" ||
+              (form.getValues("email") === "" &&
+                form.getValues("message") === "" &&
+                form.getValues("name") === "" &&
+                form.getValues("phone") === "")
+            }
             isLoading={status === "executing"}
             variant={"secondary"}
-            className="w-full rounded-none border border-primary-foreground bg-primary text-xl text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+            className="w-full rounded-none border border-primary-foreground bg-primary text-xl text-primary-foreground hover:bg-accent hover:text-primary"
           >
             <Mail />
             {tContact("send_message")}

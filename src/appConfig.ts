@@ -63,3 +63,11 @@ export const brandMetadataTwitterAccount = "@RomanStepa49093";
 // metadata services
 export const brandMetadataServices =
   "We provide repair services with your MacBook, windows laptop or pc, remote tech support, on site support, custom pc build and repair, data recovery, computer os restoration and maintenance";
+
+// email constants
+export const brandEmailBackgroundColor = "#fafafa";
+export const brandEmailColor = "#fb6f84";
+export const brandEmailTextColor = "#1c1917";
+export const brandEmailMutedTextColor = "#535353";
+export const brandEmailButtonTextColor = "#fafaf9";
+export const brandEmailLogoUrl = `${env.NEXT_PUBLIC_URI}/logo.png`;

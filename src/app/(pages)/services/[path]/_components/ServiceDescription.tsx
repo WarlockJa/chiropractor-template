@@ -14,7 +14,7 @@ export default async function ServiceDescription({
     <div className="mt-28">
       <HeaderImage
         dbImageName={serviceData.dbImageName}
-        className="relative h-96 w-screen"
+        containerClassName="relative h-96 w-screen"
       >
         {/* brackets */}
         <div className="absolute left-[5%] top-8 h-20 w-20 border-l border-t border-primary-foreground"></div>

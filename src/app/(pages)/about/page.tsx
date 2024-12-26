@@ -26,7 +26,7 @@ export default async function AboutPage() {
     <div className="mt-28">
       <HeaderImage
         dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
-        className="relative h-96 w-screen"
+        containerClassName="relative h-96 w-screen"
       >
         <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
@@ -146,7 +146,7 @@ export default async function AboutPage() {
       {/* Testimonials */}
       <HeaderImage
         dbImageName="nldbl1esytsx2lg47trp4mac-bg-1.jpg"
-        className="relative h-[36em] w-screen"
+        containerClassName="relative h-[36em] w-screen"
       >
         <TestimonialsCarousel
           carouselItems={testimonialsData.map((item, index) => (

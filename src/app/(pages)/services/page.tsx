@@ -11,7 +11,7 @@ export default function Home() {
     <div className="mt-28">
       <HeaderImage
         dbImageName="qmhs5989heoch1m3893x3ple-services.webp"
-        className="relative h-96 w-screen"
+        containerClassName="relative h-96 w-screen"
       >
         <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">

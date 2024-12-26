@@ -63,6 +63,10 @@ export function contactEmailOwner({
             font-size: 22px;
             font-family: Helvetica, Arial, sans-serif;
             color: ${textColor};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
           "
         >
           <img
