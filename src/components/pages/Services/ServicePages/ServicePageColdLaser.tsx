@@ -48,7 +48,7 @@ export default function ServicePageColdLaser({
             <div className="text-justify">
               <CustomImage
                 dbImageName={serviceData.dbImageName}
-                className="max-w-96 rounded-md border border-accent md:float-right md:m-4"
+                className="max-w-96 rounded-md shadow-lg shadow-accent md:float-right md:m-4"
               />
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
               voluptate reiciendis at consequatur sunt, vitae nostrum mollitia
