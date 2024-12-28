@@ -1,6 +1,6 @@
 import { brandMetadataUrl } from "@/appConfig";
 import type { MetadataRoute } from "next";
-import { servicePaths } from "./(pages)/services/[path]/_lib/servicesData";
+// import { servicePaths } from "./(pages)/services/[path]/_lib/servicesData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const links = [

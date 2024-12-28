@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     url: brandMetadataUrl,
     siteName: brandMetadataSiteName,
     images: [brandMetadataImage],
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",

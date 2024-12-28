@@ -1,0 +1,364 @@
+/*
+ImagePrimitive is the base component used by the blog to CRUD images
+provides interface for file selection, Drag and Drop, and URL parsing
+URL and files are validated on the client before being passed to the
+server action as File[]
+*/
+
+"use client";
+import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { useEffect, useRef, useState } from "react";
+import { CloudUpload } from "lucide-react";
+import ImageSelector from "./_components/ImageSelector";
+import { useAtom } from "jotai";
+import { MAX_FILE_SIZE } from "@/appConfig";
+import { useTranslations } from "next-intl";
+import { HookActionStatus, useAction } from "next-safe-action/hooks";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { createId } from "@paralleldrive/cuid2";
+import { blogImagesAtom } from "../../../store/jotai";
+import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
+import { IParts_Image } from "../../../mdxtypes";
+import { createBlogImagesAction } from "./actions/image";
+
+interface IImagePrimitivesProps {
+  blogId: number;
+  imgSrc: string;
+  setImgSrcAndAria: ({
+    name,
+    aria,
+  }: {
+    name: string;
+    aria?: string;
+    imageId: number | null;
+  }) => void;
+}
+
+interface FileUploadItem {
+  file: File;
+  status: "pending" | "success" | "error";
+}
+
+// images upload handler
+const handleUpload = ({
+  execute,
+  status,
+  files,
+  blogId,
+}: {
+  execute: (formData: FormData) => void;
+  status: HookActionStatus;
+  files: File[];
+  blogId: number;
+}) => {
+  if (status === "executing") return;
+  const formData = new FormData();
+  formData.append("blog", blogId.toString());
+  files &&
+    [...files].forEach((element) => {
+      formData.append("imageFiles", element);
+    });
+  execute(formData);
+};
+
+export default function ImagePrimitive({
+  blogId,
+  imgSrc,
+  setImgSrcAndAria,
+}: IImagePrimitivesProps) {
+  const t = useTranslations("Errors");
+  // blog images data
+  const [images, setImages] = useAtom(blogImagesAtom);
+  // input file ref
+  const inputRef = useRef<HTMLInputElement>(null);
+  // file list
+  const [fileList, setFileList] = useState<FileUploadItem[]>([]);
+  const [executeFlag, setExecuteFlag] = useState<number>(0);
+  // url input value
+  const [url, setUrl] = useState("");
+
+  const { execute, status } = useAction(createBlogImagesAction, {
+    onError({ error, input }) {
+      // unauthorised access
+      if (error.serverError === "UnauthorisedAccess") {
+        toast(t("insufficient_rights_title"), {
+          description: t("insufficient_rights_update_blog"),
+        });
+
+        return;
+      }
+
+      // rate limit exceeded
+      if (error.serverError === "RateLimitError") {
+        toast(t("rate_limit_title"), {
+          description: "Too many image uploads. Try again later.",
+        });
+
+        return;
+      }
+
+      // user storage quota exceeded
+      if (error.serverError === "R2StorageLimitExceeded") {
+        toast("Storage quota exceeded", {
+          description: "There's no more room for images in your storage",
+        });
+
+        return;
+      }
+
+      // invalid image type
+      if (error.validationErrors?.imageFiles) {
+        // asserting form types
+        const inputImagesData = (input as FormData).getAll(
+          "imageFiles",
+        ) as Record<number, File>;
+
+        const imageErrors = (
+          <ol className="list-disc">
+            {Object.entries(error.validationErrors?.imageFiles).map((err) => (
+              <li key={err[0]}>
+                {`${inputImagesData[Number(err[0])].name}: ${err[1] && Object.values(err[1])} \n`}
+              </li>
+            ))}
+          </ol>
+        );
+
+        toast(
+          <SonnerErrorCard title={"Error adding image"} errors={imageErrors} />,
+        );
+
+        return;
+      }
+
+      toast(
+        <SonnerErrorCard
+          title={t("general_error_title")}
+          errors={JSON.stringify(error.validationErrors)}
+        />,
+      );
+    },
+
+    onSuccess({ data }) {
+      const newImages = data && data.filter((item) => item !== undefined);
+      if (newImages) {
+        // adding new blog images to the local state
+        setImages((prev) => [...prev, ...newImages]);
+
+        // showing toast notification
+        const uploadedImages = (
+          <ol className="list-disc">
+            {newImages.map((img) => (
+              <li key={img.name}>{img.name}</li>
+            ))}
+          </ol>
+        );
+
+        toast("New images uploaded: ", {
+          description: uploadedImages,
+        });
+      }
+    },
+  });
+
+  // file list processing
+  // when all files in fileList passed <img> check executeFlag will be equal
+  // to the length of the fileList, in which case erroneous files shown as a toast and
+  // proper image files passed to the server action
+  // NOTE: passing <img> does not guarantee server action success as it will exact its
+  // own validation on user rights, storage quota, and rate of invocation
+  useEffect(() => {
+    if (executeFlag === 0 || executeFlag !== fileList.length) return;
+
+    // processing errors
+    if (fileList.findIndex((item) => item.status === "error") !== -1) {
+      const imageErrors = (
+        <ol className="list-disc">
+          {fileList
+            .filter((entry) => entry.status === "error")
+            .map((errorEntry) => (
+              <li key={errorEntry.file.name}>{errorEntry.file.name}</li>
+            ))}
+        </ol>
+      );
+
+      toast(
+        <SonnerErrorCard
+          title={"Files are not valid images:"}
+          errors={imageErrors}
+        />,
+      );
+    }
+
+    // processing valid images
+    if (fileList.findIndex((item) => item.status === "success") !== -1) {
+      handleUpload({
+        blogId,
+        status,
+        execute,
+        files: fileList
+          .filter((entry) => entry.status === "success")
+          .map((validImage) => validImage.file),
+      });
+    }
+
+    setFileList([]);
+    setExecuteFlag(0);
+  }, [executeFlag]);
+
+  return (
+    <Card className="mx-4 w-[calc(100%_-_2rem)] transition-shadow hover:shadow hover:shadow-foreground">
+      <CardContent className="mt-6 flex gap-6">
+        {/* hidden <img> elements used to pre-emptively validate passed files as images */}
+        {fileList.length > 0 &&
+          fileList
+            .filter((item) => item.status === "pending")
+            .map((item, index) => (
+              <img
+                key={`${item.file.name}${index}`}
+                className="hidden"
+                aria-hidden
+                src={window.URL.createObjectURL(item.file)}
+                onLoad={() => {
+                  setFileList((prev) =>
+                    prev.map((entry) =>
+                      entry.file.name === item.file.name
+                        ? { file: item.file, status: "success" }
+                        : entry,
+                    ),
+                  );
+                  setExecuteFlag((prev) => prev + 1);
+                }}
+                onError={() => {
+                  setFileList((prev) =>
+                    prev.map((entry) =>
+                      entry.file.name === item.file.name
+                        ? { file: item.file, status: "error" }
+                        : entry,
+                    ),
+                  );
+                  setExecuteFlag((prev) => prev + 1);
+                }}
+              />
+            ))}
+
+        {/* Drag and Drop area combined with file selector and URL parser */}
+        <div
+          className="w-full rounded border-2 border-dashed border-muted"
+          style={
+            // TODO extract default image name somewhere
+            imgSrc && imgSrc !== "/default.jpg"
+              ? { borderColor: "lightgreen" }
+              : undefined
+          }
+          onDrop={(event) => {
+            event.preventDefault();
+            const files = [...event.dataTransfer.files];
+            const fileList: FileUploadItem[] = files.map((item) => ({
+              file: item,
+              status: "pending",
+            }));
+            // uploading images
+            setFileList((prev) => [...prev, ...fileList]);
+          }}
+          onDragOver={(event) => event.preventDefault()}
+        >
+          <div
+            className="m-2 cursor-pointer transition-opacity hover:opacity-80"
+            onClick={() => inputRef.current && inputRef.current.click()}
+          >
+            <CloudUpload
+              className={cn(
+                "mx-auto h-24 w-24 text-blue-400",
+                status === "executing" && "animate-spin",
+              )}
+              // style={filesRef.current ? { color: "green" } : undefined}
+            />
+            <div
+              className="text-lg text-blue-400"
+              // style={filesRef.current ? { color: "green" } : undefined}
+            >
+              <p className="text-center">Drag and Drop Image Files</p>
+              <p className="text-center">
+                Or Click to Select Images on Your PC
+              </p>
+              {/* URL parser. Loads image to the client for <img> check and, on success, passes it to the server action as a File */}
+              <div className="flex items-center gap-2">
+                Or{" "}
+                <Input
+                  type="url"
+                  value={url}
+                  onChange={(event) => setUrl(event.target.value)}
+                  placeholder="Post an Image URL"
+                  className="w-full placeholder:text-blue-400"
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={(event) => {
+                    event.stopPropagation();
+                    if (event.code === "Enter") {
+                      fetch(url)
+                        .then((response) => response.blob())
+                        .then((blob) => {
+                          setFileList((prev) => [
+                            ...prev,
+                            {
+                              file: new File([blob], createId(), {
+                                type: "image/jpeg",
+                              }),
+                              status: "pending",
+                            },
+                          ]);
+                          setUrl("");
+                        })
+                        .catch((error) => {
+                          toast(
+                            <SonnerErrorCard
+                              title="Error downloading URL image"
+                              errors={`Provided image URL returned an error: ${error}`}
+                            />,
+                          );
+                        });
+                    }
+                  }}
+                />
+              </div>
+
+              <p className="text-center">
+                File size limit {Math.floor(MAX_FILE_SIZE / 1000000)}MB
+              </p>
+            </div>
+          </div>
+          {/* Hidden input used to select files from user's PC */}
+          <input
+            disabled={status === "executing"}
+            type="file"
+            className="hidden"
+            ref={inputRef}
+            accept="image/*"
+            multiple
+            onChange={(event) => {
+              if (!event.target.files) return;
+              const files = [...event.target.files];
+              const fileList: FileUploadItem[] = files.map((item) => ({
+                file: item,
+                status: "pending",
+              }));
+              // uploading images
+              setFileList((prev) => [...prev, ...fileList]);
+            }}
+          />
+        </div>
+
+        {/* ImageSelector component. Indicates active image for the parent component of the
+        ImagePrimitive as well as the list of images associated with the blog */}
+        <ImageSelector
+          images={images}
+          selectedImage={imgSrc}
+          setSelectedImage={(data: Omit<IParts_Image, "type">) =>
+            setImgSrcAndAria(data)
+          }
+        />
+      </CardContent>
+    </Card>
+  );
+}

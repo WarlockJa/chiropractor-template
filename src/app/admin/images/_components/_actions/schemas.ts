@@ -8,7 +8,12 @@ export const createImageSchema = zfd.formData({
   imageFile: zfd.file(
     z.any().transform((file, ctx) => {
       if (file?.size === 0) {
-        return undefined;
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "unsupported image type",
+        });
+
+        return z.NEVER;
       } else {
         // testing for max size
         if (file?.size > MAX_FILE_SIZE) {

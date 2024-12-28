@@ -12,15 +12,14 @@ export const env = createEnv({
     AUTH_GOOGLE_SECRET: z.string().min(1),
     AUTH_SECRET: z.string().min(1),
     SMTP_URI: z.string().min(1),
-    SMTP_USER: z.string().min(1),
-    SMTP_PASSWORD: z.string().min(1),
-    SMTP_HOST: z.string().min(1),
-    SMTP_PORT: z.string().min(1),
     SMTP_FROM: z.string().min(1),
     SMTP_API_KEY: z.string().min(1),
     BLURHASHWORKER_URL: z.string().min(1),
     BLURHASHWORKER_HEADER: z.string().min(1),
     BLURHASHWORKER_ACCESS_KEY: z.string().min(1),
+    IMAGECAPTIONWORKER_URL: z.string().min(1),
+    IMAGECAPTIONWORKER_HEADER: z.string().min(1),
+    IMAGECAPTIONWORKER_ACCESS_KEY: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -58,5 +57,8 @@ export const env = createEnv({
     BLURHASHWORKER_URL: process.env.BLURHASHWORKER_URL,
     BLURHASHWORKER_HEADER: process.env.BLURHASHWORKER_HEADER,
     BLURHASHWORKER_ACCESS_KEY: process.env.BLURHASHWORKER_ACCESS_KEY,
+    IMAGECAPTIONWORKER_URL: process.env.IMAGECAPTIONWORKER_URL,
+    IMAGECAPTIONWORKER_HEADER: process.env.IMAGECAPTIONWORKER_HEADER,
+    IMAGECAPTIONWORKER_ACCESS_KEY: process.env.IMAGECAPTIONWORKER_ACCESS_KEY,
   },
 });

@@ -4,8 +4,6 @@ import { useTranslations } from "next-intl";
 import SupportedEquipment from "@/components/pages/AboutPractitioner/AboutPractitioner";
 import SlideinSection from "@/components/UniversalComponents/SlideinSection/SlideinSections";
 import CustomHeader from "@/components/UniversalComponents/CustomHeader";
-import HomeAboutUsLeftPanel from "@/components/temp/AboutUsSection/HomeAboutUsLeftPanel";
-import HomeAboutUsRightPanel from "@/components/temp/AboutUsSection/HomeAboutUsRightPanel";
 import ContactsFooter from "@/components/pages/ContactsFooter";
 import HeroCarousel from "@/components/pages/Home/HeroCarousel/HeroCarousel";
 import CustomImage from "@/components/UniversalComponents/CustomImage";

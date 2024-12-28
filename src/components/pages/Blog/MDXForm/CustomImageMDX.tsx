@@ -1,0 +1,48 @@
+"use client";
+
+import Image from "next/image";
+import { env } from "@/lib/env.mjs";
+import { blurHashToDataURL } from "@/lib/blurHashToDataURL";
+import { defaultBlurhash } from "@/appConfig";
+import { cn } from "@/lib/utils";
+import { IGenericImageProps } from "./mdxtypes";
+
+export default function CustomImageMDX({
+  image,
+  className,
+}: {
+  image: IGenericImageProps | null;
+  className?: string;
+}) {
+  return image && image.imageId && process.env.NODE_ENV !== "development" ? (
+    <Image
+      src={`${env.NEXT_PUBLIC_R2_URI}/${image.name}`}
+      // TODO add translation to alt and aria
+      alt={image.aria}
+      aria-label={image.aria}
+      placeholder="blur"
+      blurDataURL={blurHashToDataURL(image.blurhash ?? defaultBlurhash)}
+      width={image.width}
+      height={image.height}
+      // className={cn("h-full w-full object-contain", className)}
+      className={cn("h-full w-full object-scale-down", className)}
+      // className={cn("h-full w-full object-cover", className)}
+      sizes="100vw"
+    />
+  ) : (
+    <Image
+      src={`${env.NEXT_PUBLIC_R2_URI}/default.webp`}
+      alt={"default image"}
+      aria-label={"default image"}
+      placeholder="blur"
+      blurDataURL={defaultBlurhash}
+      width={2048}
+      height={1365}
+      // className={cn("h-full w-full object-contain", className)}
+      className={cn("h-full w-full object-scale-down", className)}
+      // className={cn("h-full w-full object-cover", className)}
+      // className={cn("h-full border-8 border-red-400 object-contain", className)}
+      sizes="100vw"
+    />
+  );
+}

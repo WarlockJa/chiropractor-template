@@ -11,3 +11,10 @@ export class UnauthorisedAccessError extends Error {
     this.name = "UnauthorisedAccess";
   }
 }
+
+export class R2StorageLimitExceededError extends Error {
+  constructor() {
+    super("R2StorageLimitExceeded");
+    this.name = "Storage limit exceeded";
+  }
+}

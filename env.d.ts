@@ -4,4 +4,7 @@ interface CloudflareEnv {
 	R2: R2Bucket;
 	DB: D1Database;
 	CWBlurhash: Fetcher;
+	CWImageCaption: Fetcher;
+	VECTORIZE: VectorizeIndex;
+	AI: Ai;
 }

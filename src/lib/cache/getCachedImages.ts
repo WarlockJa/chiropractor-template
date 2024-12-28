@@ -3,6 +3,7 @@ import { images } from "@db/schemaImage";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
 
+// TODO delete or replace
 export const getCachedImages = cache(async () => {
   const getCachedData = unstable_cache(
     async () => {

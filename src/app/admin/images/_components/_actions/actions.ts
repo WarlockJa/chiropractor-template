@@ -52,7 +52,6 @@ async function createImage({
   imageFile,
   width,
 }: z.infer<typeof createImageSchema>) {
-  if (!imageFile) return;
   // generating cuid2 to be used as image unique prefix allows images with the same name to be saved separately
   const prefix = createId();
 
@@ -149,6 +148,7 @@ export const deleteImageAction = actionClient
 
     // removing service image from DB and R2
     const image = await deleteImage({ imageId });
+    // TODO make impossible to delete blog images OR invalidate blog images cache
     revalidateTag("imagesTag");
     revalidateTag(`imageNameTag${image.name}`);
     revalidateTag(`imageIdTag${image.imageId}`);

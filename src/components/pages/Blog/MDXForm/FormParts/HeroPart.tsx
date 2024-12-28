@@ -1,0 +1,133 @@
+import SimpleTextPrimitive from "./primitives/SimpleTextPrimitive";
+import { usePartWrapperContext } from "./wrappers/PartWrapper";
+import ImagePrimitive from "./primitives/ImagePrimitive/ImagePrimitive";
+import MDXEditorPrimitive from "./primitives/MDXEditorPrimitive";
+import { useState } from "react";
+import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
+import PartHeader from "./primitives/PartHeader";
+import { IParts_Hero } from "../mdxtypes";
+
+interface IHeroPartFormValues extends IFormValues {
+  originalState: IParts_Hero;
+  currentValues: IParts_Hero;
+}
+
+// Hero part edit form
+export default function HeroPart({ blogId }: { blogId: number }) {
+  // FormPartSelector which calls this component, ensures type correctness.
+  // Asserting the correct type for local TS functionality
+  const { formValues, setFormValues } = usePartWrapperContext() as {
+    formValues: IHeroPartFormValues;
+    setFormValues: React.Dispatch<React.SetStateAction<IHeroPartFormValues>>;
+  };
+
+  // primitive isOkToSave aggregate
+  const [isOkToSavePart, setIsOkToSavePart] = useState({
+    simpleText: false,
+    image: false,
+    mdxEditor: false,
+  });
+
+  // not using this type validation to preserve a single origin of truth for the type field located in mdxtypes.d.ts
+  // if(formValues.type !== 0)
+  return (
+    <>
+      <PartHeader partName="Main Part" />
+      <SimpleTextPrimitive
+        labelText="Blog Title"
+        placeholderText="Enter blog title"
+        setText={(text: string) => {
+          // evaluating if it is ok to save the whole part
+          // finding if a primitive has changed
+          const simpleText = formValues.originalState.title !== text;
+          // saving change state for the primitive
+          setIsOkToSavePart((prev) => ({ ...prev, simpleText }));
+
+          // comparing with the rest of the primitives
+          const isOkToSave = isOkToSaveAggregate({
+            aggregate: isOkToSavePart,
+            current: { simpleText },
+            override: {
+              value: Boolean(formValues.currentValues.name),
+            },
+          });
+
+          setFormValues((prev) => ({
+            ...prev,
+            currentValues: { ...prev.currentValues, title: text },
+            isOkToSave,
+          }));
+        }}
+        text={formValues.currentValues.title}
+        required
+      />
+
+      <ImagePrimitive
+        blogId={blogId}
+        imgSrc={formValues.currentValues.name}
+        setImgSrcAndAria={(data: {
+          name: string;
+          aria?: string;
+          imageId: number | null;
+        }) => {
+          // evaluating if it is ok to save the whole part
+          // finding if a primitive has changed
+          const image = formValues.originalState.name !== data.name;
+          // saving change state for the primitive
+          setIsOkToSavePart((prev) => ({ ...prev, image }));
+
+          // comparing with the rest of the primitives
+          const isOkToSave = isOkToSaveAggregate({
+            aggregate: isOkToSavePart,
+            current: { image },
+          });
+
+          setFormValues((prev) => ({
+            ...prev,
+            currentValues: {
+              ...prev.currentValues,
+              ...data,
+              previewImage: data.imageId ?? null,
+            },
+            isOkToSave,
+          }));
+        }}
+      />
+
+      <MDXEditorPrimitive
+        markdown={formValues.currentValues.description}
+        setMarkdown={(text) => {
+          // evaluating if it is ok to save the whole part
+          // finding if a primitive has changed
+          const mdxEditor = formValues.originalState.description !== text;
+          // saving change state for the primitive
+          setIsOkToSavePart((prev) => ({ ...prev, mdxEditor }));
+
+          // comparing with the rest of the primitives
+          const isOkToSave = isOkToSaveAggregate({
+            aggregate: isOkToSavePart,
+            current: { mdxEditor },
+            override: {
+              value: Boolean(formValues.currentValues.name),
+            },
+          });
+
+          setFormValues((prev) => ({
+            ...prev,
+            currentValues: { ...prev.currentValues, description: text },
+            isOkToSave,
+          }));
+        }}
+        labelText="Blog description"
+        placeholder="Blog description"
+        showPlugins
+      />
+
+      {!isOkToSavePart.image && !formValues.currentValues.previewImage && (
+        <p className="bg-destructive p-2 text-destructive-foreground">
+          Add and/or select an image to be able to publish blog
+        </p>
+      )}
+    </>
+  );
+}

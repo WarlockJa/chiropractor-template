@@ -16,7 +16,9 @@ export default async function NotFound() {
     >
       <title>{title}</title>
       <h1 className="text-xl">{t("title").toLocaleUpperCase()}</h1>
-      <p className="text-9xl text-accent md:text-[20rem]">404</p>
+      <p className="text-9xl text-accent drop-shadow-[8px_8px_4px_rgba(0,0,0,0.8)] md:text-[20rem]">
+        404
+      </p>
       <Link href={"/"}>
         <CustomButton
           text={t("go_back")}

@@ -6,6 +6,7 @@ export default process.env.LOCAL_DB_PATH
         "./db/schemaAuth.ts",
         "./db/schemaLog.ts",
         "./db/schemaImage.ts",
+        "./db/schemaBlog.ts",
       ],
       dialect: "sqlite",
       dbCredentials: {
@@ -19,6 +20,7 @@ export default process.env.LOCAL_DB_PATH
         "./db/schemaAuth.ts",
         "./db/schemaLog.ts",
         "./db/schemaImage.ts",
+        "./db/schemaBlog.ts",
       ],
       out: "./drizzle",
     } satisfies Config);

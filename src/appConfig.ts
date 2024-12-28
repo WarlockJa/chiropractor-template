@@ -50,6 +50,23 @@ export const brandMetadataImage = {
   type: "image/png",
 };
 export const brandMetadataTwitterAccount = "@RomanStepa49093";
+export const defaultMetadata = {
+  title: brandName,
+  description: brandMetadataDescritpion,
+  openGraph: {
+    title: brandName,
+    description: brandMetadataDescritpion,
+    url: brandMetadataUrl,
+    siteName: brandMetadataSiteName,
+    images: [brandMetadataImage],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: brandMetadataTwitterAccount,
+    creator: brandMetadataTwitterAccount,
+  },
+};
 
 // metadata services
 export const brandMetadataServices =
