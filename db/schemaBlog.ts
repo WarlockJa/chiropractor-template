@@ -54,7 +54,7 @@ export const blogs_images = sqliteTable(
       .references(() => blogs.blogId, { onDelete: "cascade" }),
     imageId: integer("imageId")
       .notNull()
-      .references(() => blogs.blogId, { onDelete: "cascade" }),
+      .references(() => images.imageId, { onDelete: "cascade" }),
   },
   (blog_image) => ({
     pk_blog_image: primaryKey({

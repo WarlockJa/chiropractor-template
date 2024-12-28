@@ -22,6 +22,8 @@ import { blogImagesAtom } from "../../../store/jotai";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { IParts_Image } from "../../../mdxtypes";
 import { createBlogImagesAction } from "./actions/image";
+import { getFileExtension } from "@/lib/getFileExtension";
+import { TImageFile } from "./actions/schemas";
 
 interface IImagePrimitivesProps {
   blogId: number;
@@ -36,8 +38,7 @@ interface IImagePrimitivesProps {
   }) => void;
 }
 
-interface FileUploadItem {
-  file: File;
+interface FileUploadItem extends TImageFile {
   status: "pending" | "success" | "error";
 }
 
@@ -45,21 +46,26 @@ interface FileUploadItem {
 const handleUpload = ({
   execute,
   status,
-  files,
+  imageFiles,
   blogId,
 }: {
   execute: (formData: FormData) => void;
   status: HookActionStatus;
-  files: File[];
+  imageFiles: FileUploadItem[];
   blogId: number;
 }) => {
   if (status === "executing") return;
   const formData = new FormData();
-  formData.append("blog", blogId.toString());
-  files &&
-    [...files].forEach((element) => {
-      formData.append("imageFiles", element);
-    });
+  formData.append("blogId", blogId.toString());
+  imageFiles.forEach((item) => {
+    formData.append("imageFiles", item.file);
+    formData.append("imageWidths", item.width.toString());
+    formData.append("imageHeigths", item.height.toString());
+  });
+  // files &&
+  //   [...files].forEach((element) => {
+  //     formData.append("imageFiles", element);
+  //   });
   execute(formData);
 };
 
@@ -81,6 +87,7 @@ export default function ImagePrimitive({
 
   const { execute, status } = useAction(createBlogImagesAction, {
     onError({ error, input }) {
+      console.log("ERROR: ", error);
       // unauthorised access
       if (error.serverError === "UnauthorisedAccess") {
         toast(t("insufficient_rights_title"), {
@@ -104,6 +111,18 @@ export default function ImagePrimitive({
         toast("Storage quota exceeded", {
           description: "There's no more room for images in your storage",
         });
+
+        return;
+      }
+
+      // generic server error toast
+      if (error.serverError) {
+        toast(
+          <SonnerErrorCard
+            title={t("general_error_title")}
+            errors={error.serverError}
+          />,
+        );
 
         return;
       }
@@ -141,6 +160,7 @@ export default function ImagePrimitive({
     },
 
     onSuccess({ data }) {
+      // toast("DATA", { description: JSON.stringify(data) });
       const newImages = data && data.filter((item) => item !== undefined);
       if (newImages) {
         // adding new blog images to the local state
@@ -170,6 +190,7 @@ export default function ImagePrimitive({
   // own validation on user rights, storage quota, and rate of invocation
   useEffect(() => {
     if (executeFlag === 0 || executeFlag !== fileList.length) return;
+    console.log("FLAG2: ", executeFlag);
 
     // processing errors
     if (fileList.findIndex((item) => item.status === "error") !== -1) {
@@ -197,9 +218,12 @@ export default function ImagePrimitive({
         blogId,
         status,
         execute,
-        files: fileList
+        imageFiles: fileList
           .filter((entry) => entry.status === "success")
-          .map((validImage) => validImage.file),
+          .map((validImage) => validImage),
+        // files: fileList
+        //   .filter((entry) => entry.status === "success")
+        //   .map((validImage) => validImage.file),
       });
     }
 
@@ -207,11 +231,50 @@ export default function ImagePrimitive({
     setExecuteFlag(0);
   }, [executeFlag]);
 
+  // checking added files for being a proper image via <img> element
+  // adding width and height to the execute data object
+  useEffect(() => {
+    console.log("FILES: ", fileList);
+    fileList
+      .filter((item) => item.status === "pending")
+      .map((item) => {
+        const img = new Image();
+
+        img.src = window.URL.createObjectURL(item.file);
+
+        img.onload = () => {
+          setFileList((prev) =>
+            prev.map((entry) =>
+              entry.file.name === item.file.name
+                ? {
+                    file: item.file,
+                    status: "success",
+                    height: img.height,
+                    width: img.width,
+                  }
+                : entry,
+            ),
+          );
+          setExecuteFlag((prev) => prev + 1);
+        };
+        img.onerror = () => {
+          setFileList((prev) =>
+            prev.map((entry) =>
+              entry.file.name === item.file.name
+                ? { file: item.file, status: "error", height: 0, width: 0 }
+                : entry,
+            ),
+          );
+          setExecuteFlag((prev) => prev + 1);
+        };
+      });
+  }, [fileList.length]);
+
   return (
     <Card className="mx-4 w-[calc(100%_-_2rem)] transition-shadow hover:shadow hover:shadow-foreground">
       <CardContent className="mt-6 flex gap-6">
         {/* hidden <img> elements used to pre-emptively validate passed files as images */}
-        {fileList.length > 0 &&
+        {/* {fileList.length > 0 &&
           fileList
             .filter((item) => item.status === "pending")
             .map((item, index) => (
@@ -241,7 +304,7 @@ export default function ImagePrimitive({
                   setExecuteFlag((prev) => prev + 1);
                 }}
               />
-            ))}
+            ))} */}
 
         {/* Drag and Drop area combined with file selector and URL parser */}
         <div
@@ -258,6 +321,8 @@ export default function ImagePrimitive({
             const fileList: FileUploadItem[] = files.map((item) => ({
               file: item,
               status: "pending",
+              width: 0,
+              height: 0,
             }));
             // uploading images
             setFileList((prev) => [...prev, ...fileList]);
@@ -303,9 +368,11 @@ export default function ImagePrimitive({
                             ...prev,
                             {
                               file: new File([blob], createId(), {
-                                type: "image/jpeg",
+                                type: `image/${getFileExtension(url)}`,
                               }),
                               status: "pending",
+                              width: 0,
+                              height: 0,
                             },
                           ]);
                           setUrl("");
@@ -342,6 +409,8 @@ export default function ImagePrimitive({
               const fileList: FileUploadItem[] = files.map((item) => ({
                 file: item,
                 status: "pending",
+                width: 0,
+                height: 0,
               }));
               // uploading images
               setFileList((prev) => [...prev, ...fileList]);

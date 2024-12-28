@@ -91,7 +91,7 @@ CREATE TABLE `blog_image` (
 	`imageId` integer NOT NULL,
 	PRIMARY KEY(`blogId`, `imageId`),
 	FOREIGN KEY (`blogId`) REFERENCES `blog`(`blogId`) ON UPDATE no action ON DELETE cascade,
-	FOREIGN KEY (`imageId`) REFERENCES `blog`(`blogId`) ON UPDATE no action ON DELETE cascade
+	FOREIGN KEY (`imageId`) REFERENCES `image`(`imageId`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE TABLE `blog_tag` (

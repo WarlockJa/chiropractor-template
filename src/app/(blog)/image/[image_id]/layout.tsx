@@ -8,6 +8,7 @@ import {
   defaultMetadata,
 } from "@/appConfig";
 import { getCachedImageBlog } from "@/lib/cache/blog/getCachedImageBlog";
+import { getFileExtension } from "@/lib/getFileExtension";
 
 type Props = {
   params: { image_id: number };
@@ -45,7 +46,7 @@ export async function generateMetadata(
             width: imageBlog.image.width,
             height: imageBlog.image.height,
             alt: imageBlog.image.aria,
-            type: `image/${imageBlog.image.name.slice(imageBlog.image.name.lastIndexOf(".") + 1)}`,
+            type: `image/${getFileExtension(imageBlog.image.name)}`,
           },
         ],
         siteName: brandMetadataSiteName,

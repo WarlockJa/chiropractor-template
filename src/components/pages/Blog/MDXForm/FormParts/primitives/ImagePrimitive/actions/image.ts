@@ -24,7 +24,12 @@ import { env } from "@/lib/env.mjs";
 import { defaultBlurhash, USER_STORAGE_LIMIT } from "@/appConfig";
 import { getCachedUsedR2Storage } from "@/lib/cache/blog/getCachedUsedR2Storage";
 import { rateLimitByIp } from "@/lib/rateLimiting/limiters";
-import { SelectBlogImage, SelectBlogs } from "@db/schemaBlog";
+import {
+  blogs,
+  blogs_images,
+  SelectBlogImage,
+  SelectBlogs,
+} from "@db/schemaBlog";
 import { CWBlurhash } from "@cf/blurhash/blurhash";
 import userCanEditBlog from "../../../../lib/userCanEditBlog";
 import { getCachedImageBlog } from "@/lib/cache/blog/getCachedImageBlog";
@@ -37,15 +42,8 @@ export const createBlogImagesAction = actionClient
     const session = await getSession();
     const user = session?.user;
 
-    // fetching actual blog data for the parsed id
-    // const blogData = await getCachedBlog(parsedInput.blog);
-
-    // // checking user rights
-    // const editRights = getCatalogNodeEditRights({
-    //   ownerId: blogData.owner,
-    //   userId: user?.id,
-    //   userRole: user?.role,
-    // });
+    // console.log("DATA: ", parsedInput);
+    // return { ok: true };
 
     // protecting from unauthorised access
     if (!userCanEditBlog({ user }) || !user) {
@@ -59,6 +57,7 @@ export const createBlogImagesAction = actionClient
       throw new UnauthorisedAccessError();
     }
 
+    // TODO rate limit before file data transfer?
     // rate limiting action to 100 per hour
     await rateLimitByIp({
       key: `createImage${user.id}`,
@@ -66,11 +65,18 @@ export const createBlogImagesAction = actionClient
       window: 60 * 60 * 1000,
     });
 
+    // reassembling parsed file and file dimensions array into a single array
+    const parsedImages = parsedInput.imageFiles.map((file, index) => ({
+      file: file,
+      width: parsedInput.imageWidths[index],
+      height: parsedInput.imageHeigths[index],
+    }));
+
     // checking user storage limit
     const userUsedR2Storage = await getCachedUsedR2Storage();
     console.log(userUsedR2Storage);
 
-    const newFilesSize = parsedInput.imageFiles.reduce(
+    const newFilesSize = parsedImages.reduce(
       (sum, item) => (item.file ? (sum += item.file.size) : sum),
       0,
     );
@@ -80,7 +86,7 @@ export const createBlogImagesAction = actionClient
       throw new R2StorageLimitExceededError();
     }
 
-    const createImagePromises = parsedInput.imageFiles.map(
+    const createImagePromises = parsedImages.map(
       (item) => item && createImage(item, { blogId: parsedInput.blogId }),
     );
     const result = await Promise.all(createImagePromises);
@@ -93,7 +99,7 @@ export const createBlogImagesAction = actionClient
   });
 async function createImage(
   { file, height, width }: z.infer<typeof imageFileSchema>,
-  blogId: Pick<SelectBlogs, "blogId">,
+  { blogId }: Pick<SelectBlogs, "blogId">,
 ): Promise<SelectImages> {
   // generating cuid2 to be used as image unique prefix allows images with the same name to be saved separately
   const prefix = createId();
@@ -154,9 +160,10 @@ async function createImage(
     throw new Error(error.message);
   }
 
-  // creating DB image record
+  // creating DB image and blog_image records
   try {
-    return (
+    // creating image DB record and returning object to use the imageId
+    const result = (
       await db
         .insert(images)
         .values({
@@ -169,6 +176,14 @@ async function createImage(
         })
         .returning()
     )[0];
+
+    // creating recrod for the blog_image table
+    await db.insert(blogs_images).values({
+      blogId,
+      imageId: result.imageId,
+    });
+
+    return result;
   } catch (error: any) {
     // if error writing to R2 then deleting previously created DB record
     await Promise.all([
@@ -179,6 +194,7 @@ async function createImage(
         text: error.message,
         type: "error",
       }),
+      db.delete(images).where(eq(images.name, `${prefix}-${file.name}`)),
       r2.delete(`${prefix}-${file.name}`),
     ]);
     throw new Error(error.message);
