@@ -25,7 +25,7 @@ export const blogs = sqliteTable("blog", {
   //     AFTER UPDATE ON blog FOR EACH ROW
   //     WHEN OLD.updated_at = NEW.updated_at OR OLD.updated_at IS NULL
   // BEGIN
-  //     UPDATE blog SET updated_at=(STRFTIME('%s', 'now')) WHERE id=NEW.id;
+  //     UPDATE blog SET updated_at=(STRFTIME('%s', 'now')) WHERE blogId=NEW.blogId;
   // END;
   title: text("title").notNull(),
   description: text("description"),
@@ -137,7 +137,7 @@ export const comments = sqliteTable("comment", {
   //     AFTER UPDATE ON comment FOR EACH ROW
   //     WHEN OLD.updated_at = NEW.updated_at OR OLD.updated_at IS NULL
   // BEGIN
-  //     UPDATE comment SET updated_at=(STRFTIME('%s', 'now')) WHERE id=NEW.id;
+  //     UPDATE comment SET updated_at=(STRFTIME('%s', 'now')) WHERE commentId=NEW.commentId;
   // END;
   // self referencing foreign key
   repliesTo: integer("replyTo").references(

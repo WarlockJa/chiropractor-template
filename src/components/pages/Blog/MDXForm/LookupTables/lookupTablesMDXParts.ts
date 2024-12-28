@@ -1,20 +1,17 @@
 // gathering of different lookup tables used in MDXForm components
 // meant to be edited all at once, when component added/changed
 
-import { defaultBlurhash } from "@/appConfig";
 import { SelectImages } from "@db/schemaImage";
 import { TNonHeroParts, TParts } from "../mdxtypes";
 
 // conversion from TParts object to MDX string
 export const lookupTable_PartsToMDX: { [key: number]: string } = {
   999: "<Divider index={$index} />" + "\n",
-  0:
-    "<HeroComponent $name $aria $blurhash $width $height $sizeBytes $title $description />\n" +
-    "\n",
+  0: "<HeroComponent $imageId $title $description />\n" + "\n",
   1: "## $title\n" + "\n" + "$text\n" + "\n",
   2:
-    "<ImageMDX $name $aria $blurhash $imageId $width $height $sizeBytes />\n" +
-    "\n",
+    // "<ImageMDX $name $aria $blurhash $imageId $width $height $sizeBytes />\n" +
+    "<ImageMDX $imageId />\n" + "\n",
   3: "---\n" + "\n",
   4: "<Video $videoId />\n" + "\n",
   5: "<TableMDX $tableData />\n" + "\n",
@@ -36,12 +33,6 @@ export const lookupTable_Parts: TNonHeroParts[] = [
   {
     type: 2,
     imageId: null,
-    name: "",
-    aria: "",
-    blurhash: defaultBlurhash,
-    height: 0,
-    width: 0,
-    sizeBytes: 0,
   },
   // Separator Part
   { type: 3 },
@@ -85,7 +76,7 @@ export const getUsedImagesArray = ({
       case 0:
         {
           const foundUsedImage = blogImages.find(
-            (img) => img.imageId === part.previewImage,
+            (img) => img.imageId === part.imageId,
           )?.imageId;
           if (foundUsedImage) {
             resultArray.push(foundUsedImage);
@@ -96,7 +87,7 @@ export const getUsedImagesArray = ({
       case 2:
         {
           const foundUsedImage = blogImages.find(
-            (img) => img.name === part.name,
+            (img) => img.imageId === part.imageId,
           )?.imageId;
           if (foundUsedImage) {
             resultArray.push(foundUsedImage);
@@ -108,7 +99,7 @@ export const getUsedImagesArray = ({
         {
           part.images.forEach((image) => {
             const foundUsedImage = blogImages.find(
-              (img) => img.name === image.name,
+              (img) => img.imageId === image,
             )?.imageId;
             if (foundUsedImage) {
               resultArray.push(foundUsedImage);
@@ -121,7 +112,7 @@ export const getUsedImagesArray = ({
         {
           part.images.forEach((image) => {
             const foundUsedImage = blogImages.find(
-              (img) => img.name === image.name,
+              (img) => img.imageId === image,
             )?.imageId;
             if (foundUsedImage) {
               resultArray.push(foundUsedImage);

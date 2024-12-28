@@ -1,7 +1,12 @@
 import { SelectImages } from "@db/schemaImage";
 
+// client side replacement for imageId from SelectImages interface inferred from images DB model
+// It is possible for client images to have imageId null if they are yet to be filled
+type TPartImageId = number | null;
+
+// overwriting SelectImages interface imageId with client side on
 interface IGenericImageProps extends SelectImages {
-  imageId: number | null;
+  imageId: TPartImageId;
 }
 
 // blog parts
@@ -10,11 +15,11 @@ interface IParts_Divider {
   index: number;
 }
 
-interface IParts_Hero extends IGenericImageProps {
+interface IParts_Hero {
   type: 0;
   title: string;
   description: string;
-  previewImage: number | null;
+  imageId: TPartImageId;
 }
 
 interface IParts_Paragraph {
@@ -23,8 +28,9 @@ interface IParts_Paragraph {
   text: string;
 }
 
-interface IParts_Image extends IGenericImageProps {
+interface IParts_Image {
   type: 2;
+  imageId: TPartImageId;
 }
 
 interface IParts_Separator {
@@ -58,7 +64,7 @@ interface IParts_TableMDX {
 
 interface IParts_CarouselMDX {
   type: 6;
-  images: IGenericImageProps[];
+  images: TPartImageId[];
   loop?: boolean;
   fade?: boolean;
   autoScroll?: boolean;
@@ -67,7 +73,7 @@ interface IParts_CarouselMDX {
 
 interface IParts_Gallery {
   type: 7;
-  images: IGenericImageProps[];
+  images: TPartImageId[];
 }
 
 // making copy of ChartConfig type to not import it

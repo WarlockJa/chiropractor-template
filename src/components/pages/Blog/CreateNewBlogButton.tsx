@@ -41,7 +41,7 @@ export default function CreateNewBlogButton({
       action={execute.bind(null, {
         title: initBlogData[0].title,
         description: initBlogData[0].description,
-        previewImage: initBlogData[0].previewImage,
+        previewImage: initBlogData[0].imageId,
         mdx: JSON.stringify(initBlogData),
       })}
       className={className}

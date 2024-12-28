@@ -83,7 +83,7 @@ CREATE TRIGGER [UPDATE_BLOG]
 	AFTER UPDATE ON blog FOR EACH ROW
 	WHEN OLD.updated_at = NEW.updated_at OR OLD.updated_at IS NULL
 BEGIN
-	UPDATE blog SET updated_at=(STRFTIME('%s', 'now')) WHERE id=NEW.id;
+	UPDATE blog SET updated_at=(STRFTIME('%s', 'now')) WHERE blogId=NEW.blogId;
 END;
 --> statement-breakpoint
 CREATE TABLE `blog_image` (
@@ -128,7 +128,7 @@ CREATE TRIGGER [UPDATE_COMMENT]
 	AFTER UPDATE ON comment FOR EACH ROW
 	WHEN OLD.updated_at = NEW.updated_at OR OLD.updated_at IS NULL
 BEGIN
-	UPDATE comment SET updated_at=(STRFTIME('%s', 'now')) WHERE id=NEW.id;
+	UPDATE comment SET updated_at=(STRFTIME('%s', 'now')) WHERE commentId=NEW.commentId;
 END;
 --> statement-breakpoint
 CREATE TABLE `tag` (

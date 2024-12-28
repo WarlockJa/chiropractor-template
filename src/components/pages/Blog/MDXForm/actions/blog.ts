@@ -7,7 +7,7 @@ import { UnauthorisedAccessError } from "@/lib/rateLimiting/errors";
 import { actionClient } from "@/lib/safeAction";
 import { db } from "@db/db-connection";
 import { blogs, blogs_images } from "@db/schemaBlog";
-import { eq, inArray } from "drizzle-orm";
+import { eq, inArray, sql } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { z } from "zod";
@@ -17,10 +17,9 @@ import {
   deleteBlogSchema,
   updateBlogSchema,
 } from "./schemas";
-import { getCachedBlog } from "@/lib/cache/blog/getCachedBlog";
 import convertMDXtoVectorizableString from "../lib/convertMDXtoVectorizableString";
 import userCanEditBlog from "../lib/userCanEditBlog";
-import { images, SelectImages } from "@db/schemaImage";
+import { images } from "@db/schemaImage";
 import { r2 } from "@cf/bucket/r2";
 
 // Create Blog
@@ -141,24 +140,25 @@ export const updateBlogAction = actionClient
           mdx: JSON.parse(result[0].mdx),
         }),
       };
-
       // // queue accepts stringified objects (see QueueMessageBody type)
       // const addVectorizeBlogData: QueueMessageBody = {
       //   id: "Vectorize Upsert",
       //   body: JSON.stringify(upsertBody),
       // };
       // q.send(JSON.stringify(addVectorizeBlogData));
-
       // TODO add vectorization
     }
 
     return result;
   });
 async function updateBlog(data: z.infer<typeof updateBlogSchema>) {
+  // destructuring data to select only updatable properties
+  const { blogId, ...newData } = data;
+
   try {
     const result = await db
       .update(blogs)
-      .set(data)
+      .set(newData)
       .where(eq(blogs.blogId, data.blogId))
       .returning();
 

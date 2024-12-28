@@ -5,7 +5,7 @@ import MDXEditorPrimitive from "./primitives/MDXEditorPrimitive";
 import { useState } from "react";
 import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
-import { IParts_Hero } from "../mdxtypes";
+import { IGenericImageProps, IParts_Hero } from "../mdxtypes";
 
 interface IHeroPartFormValues extends IFormValues {
   originalState: IParts_Hero;
@@ -48,7 +48,7 @@ export default function HeroPart({ blogId }: { blogId: number }) {
             aggregate: isOkToSavePart,
             current: { simpleText },
             override: {
-              value: Boolean(formValues.currentValues.name),
+              value: Boolean(formValues.currentValues.imageId),
             },
           });
 
@@ -64,15 +64,12 @@ export default function HeroPart({ blogId }: { blogId: number }) {
 
       <ImagePrimitive
         blogId={blogId}
-        imgSrc={formValues.currentValues.name}
-        setImgSrcAndAria={(data: {
-          name: string;
-          aria?: string;
-          imageId: number | null;
-        }) => {
+        // imgSrc={formValues.currentValues.name}
+        imageId={formValues.currentValues.imageId}
+        setImageId={({ imageId }: Pick<IGenericImageProps, "imageId">) => {
           // evaluating if it is ok to save the whole part
           // finding if a primitive has changed
-          const image = formValues.originalState.name !== data.name;
+          const image = formValues.originalState.imageId !== imageId;
           // saving change state for the primitive
           setIsOkToSavePart((prev) => ({ ...prev, image }));
 
@@ -86,12 +83,40 @@ export default function HeroPart({ blogId }: { blogId: number }) {
             ...prev,
             currentValues: {
               ...prev.currentValues,
-              ...data,
-              previewImage: data.imageId ?? null,
+              imageId,
             },
             isOkToSave,
           }));
         }}
+        // setImgSrcAndAria={(data: {
+        //   name: string;
+        //   aria?: string;
+        //   imageId: number | null;
+        // }) => {
+        //   // evaluating if it is ok to save the whole part
+        //   // finding if a primitive has changed
+        //   const image = formValues.originalState.name !== data.name;
+        //   // saving change state for the primitive
+        //   setIsOkToSavePart((prev) => ({ ...prev, image }));
+
+        //   // comparing with the rest of the primitives
+        //   const isOkToSave = isOkToSaveAggregate({
+        //     aggregate: isOkToSavePart,
+        //     current: { image },
+        //   });
+
+        //   console.log()
+
+        //   setFormValues((prev) => ({
+        //     ...prev,
+        //     currentValues: {
+        //       ...prev.currentValues,
+        //       ...data,
+        //       previewImage: data.imageId ?? null,
+        //     },
+        //     isOkToSave,
+        //   }));
+        // }}
       />
 
       <MDXEditorPrimitive
@@ -108,7 +133,7 @@ export default function HeroPart({ blogId }: { blogId: number }) {
             aggregate: isOkToSavePart,
             current: { mdxEditor },
             override: {
-              value: Boolean(formValues.currentValues.name),
+              value: Boolean(formValues.currentValues.imageId),
             },
           });
 
@@ -123,7 +148,7 @@ export default function HeroPart({ blogId }: { blogId: number }) {
         showPlugins
       />
 
-      {!isOkToSavePart.image && !formValues.currentValues.previewImage && (
+      {!isOkToSavePart.image && !formValues.currentValues.imageId && (
         <p className="bg-destructive p-2 text-destructive-foreground">
           Add and/or select an image to be able to publish blog
         </p>

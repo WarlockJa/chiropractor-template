@@ -33,7 +33,12 @@ export default async function changeUserRole({
     .returning();
 
   // console.log(dbSuccess);
-  // writeLogEntry({code: LOG_CODES.security.user_role_updated, source: "changeUserRole", type: "security", text: JSON.stringify(dbSuccess)})
+  writeLogEntry({
+    code: LOG_CODES.security.user_role_updated,
+    source: "changeUserRole",
+    type: "security",
+    text: JSON.stringify(dbSuccess),
+  });
 
   revalidatePath("/crud");
 }

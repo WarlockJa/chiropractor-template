@@ -153,7 +153,7 @@ export default function MDXFormEditable({
             <div
               className="flex items-center gap-2 bg-background p-2"
               title={
-                !parts[0].previewImage
+                !parts[0].imageId
                   ? "Set an image to Main Part to publish post"
                   : "Publish to let people see your post!"
               }
@@ -162,7 +162,7 @@ export default function MDXFormEditable({
               <Switch
                 id="publishedSwitch"
                 checked={currentBlogData.published}
-                disabled={!parts[0].previewImage}
+                disabled={!parts[0].imageId}
                 onCheckedChange={(e) =>
                   setCurrentBlogData((prev) => ({ ...prev, published: e }))
                 }
@@ -179,7 +179,7 @@ export default function MDXFormEditable({
                     blogId,
                     title: parts[0].title,
                     description: parts[0].description,
-                    previewImage: parts[0].previewImage,
+                    previewImage: parts[0].imageId,
                     mdx: JSON.stringify(parts),
                     published: currentBlogData.published,
                     // tags: currentBlogData.tags,

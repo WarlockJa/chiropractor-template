@@ -2,26 +2,24 @@
 
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { SelectImages } from "@db/schemaImage";
 import { Check, X } from "lucide-react";
 import { deleteBlogImageAction } from "../actions/image";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { blogImagesAtom, blogUsedImagesAtom } from "../../../../store/jotai";
 import { useAction } from "next-safe-action/hooks";
 import { useTranslations } from "next-intl";
 // import CustomImage from "@/components/CustomImage";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
-import { IParts_Image } from "../../../../mdxtypes";
+import { IGenericImageProps, TPartImageId } from "../../../../mdxtypes";
 import CustomImageMDX from "../../../../CustomImageMDX";
 
 interface IImageSelectorProps {
-  images: SelectImages[];
-  selectedImage: string | undefined;
-  setSelectedImage: (data: Omit<IParts_Image, "type">) => void;
+  selectedImage: TPartImageId;
+  // selectedImage: string | undefined;
+  setSelectedImage: ({ imageId }: Pick<IGenericImageProps, "imageId">) => void;
 }
 
 export default function ImageSelector({
-  images,
   selectedImage,
   setSelectedImage,
 }: IImageSelectorProps) {
@@ -55,7 +53,7 @@ export default function ImageSelector({
     },
   });
   // blog images data
-  const setImages = useSetAtom(blogImagesAtom);
+  const [images, setImages] = useAtom(blogImagesAtom);
   // blog used images data
   const usedImages = useAtomValue(blogUsedImagesAtom);
 
@@ -69,7 +67,7 @@ export default function ImageSelector({
             style={
               // stored value is a image name without resoltuion prefix
               // comparing values using slice
-              selectedImage === img.name
+              selectedImage === img.imageId
                 ? {
                     borderColor: "lightgreen",
                     borderWidth: "0.25rem",
@@ -78,12 +76,12 @@ export default function ImageSelector({
                 : undefined
             }
             title={
-              usedImages.includes(img.imageId) || img.name === selectedImage
+              usedImages.includes(img.imageId) || img.imageId === selectedImage
                 ? "Image is in use and cannot be deleted"
                 : "Image is not in use and can be safely deleted"
             }
             // saving image data
-            onClick={() => setSelectedImage({ ...img })}
+            onClick={() => setSelectedImage({ imageId: img.imageId })}
           >
             <Button
               type="button"
@@ -93,10 +91,11 @@ export default function ImageSelector({
               disabled={
                 status === "executing" ||
                 usedImages.includes(img.imageId) ||
-                img.name === selectedImage
+                img.imageId === selectedImage
               }
               title={
-                usedImages.includes(img.imageId) || img.name === selectedImage
+                usedImages.includes(img.imageId) ||
+                img.imageId === selectedImage
                   ? tImage("image_in_use")
                   : tImage("image_delete")
               }
@@ -106,7 +105,7 @@ export default function ImageSelector({
               }}
             >
               {usedImages.includes(img.imageId) ||
-              img.name === selectedImage ? (
+              img.imageId === selectedImage ? (
                 <Check />
               ) : (
                 <X className="text-destructive" />

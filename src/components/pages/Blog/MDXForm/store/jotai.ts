@@ -1,4 +1,3 @@
-import { defaultBlurhash } from "@/appConfig";
 import { SelectImages } from "@db/schemaImage";
 import { atom } from "jotai";
 import { TParts } from "../mdxtypes";
@@ -13,13 +12,14 @@ export const initBlogData: TParts = [
     title: "",
     description: "",
     imageId: null,
-    name: "",
-    aria: "",
-    previewImage: null,
-    blurhash: defaultBlurhash,
-    height: 0,
-    width: 0,
-    sizeBytes: 0,
+    // TODO delete
+    // name: "",
+    // aria: "",
+    // previewImage: null,
+    // blurhash: defaultBlurhash,
+    // height: 0,
+    // width: 0,
+    // sizeBytes: 0,
   },
   {
     type: 999,

@@ -1,4 +1,3 @@
-import { defaultBlurhash } from "@/appConfig";
 import { lookupTable_PartsToMDX } from "./lookupTablesMDXParts";
 import { TAllBlogParts } from "../mdxtypes";
 
@@ -18,16 +17,17 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
       case 0:
         combinedPartsString += lookupTable_PartsToMDX[part.type]
           .replace("$title", `title="${part.title}"`)
-          .replace("$name", part.name ? `name="${part.name}"` : "")
-          .replace(
-            "$blurhash",
-            `blurhash="${part.blurhash ?? defaultBlurhash}"`,
-          )
-          .replace("$aria", `aria="${part.aria}"`)
-          .replace("$width", `width="${part.width}"`)
-          .replace("$height", `height="${part.height}"`)
-          .replace("$sizeBytes", `sizeBytes="${part.sizeBytes}"`)
-          .replace("$description", `description="${part.description}"`);
+          .replace("$description", `description="${part.description}"`)
+          .replace("$imageId", `imageId="${part.imageId}"`);
+        // .replace("$name", part.name ? `name="${part.name}"` : "")
+        // .replace(
+        //   "$blurhash",
+        //   `blurhash="${part.blurhash ?? defaultBlurhash}"`,
+        // )
+        // .replace("$aria", `aria="${part.aria}"`)
+        // .replace("$width", `width="${part.width}"`)
+        // .replace("$height", `height="${part.height}"`)
+        // .replace("$sizeBytes", `sizeBytes="${part.sizeBytes}"`)
         break;
 
       // Paragraph Part
@@ -39,17 +39,19 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
 
       // Image Part
       case 2:
-        combinedPartsString += lookupTable_PartsToMDX[part.type]
-          .replace("$name", `name="${part.name}"`)
-          .replace(
-            "$blurhash",
-            `blurhash="${part.blurhash ?? defaultBlurhash}"`,
-          )
-          .replace("$aria", `aria="${part.aria}"`)
-          .replace("$width", `width="${part.width}"`)
-          .replace("$height", `height="${part.height}"`)
-          .replace("$imageId", `imageId="${part.imageId}"`)
-          .replace("$sizeBytes", `sizeBytes="${part.sizeBytes}"`);
+        combinedPartsString += lookupTable_PartsToMDX[part.type].replace(
+          "$imageId",
+          `imageId="${part.imageId}"`,
+        );
+        // .replace("$name", `name="${part.name}"`)
+        // .replace(
+        //   "$blurhash",
+        //   `blurhash="${part.blurhash ?? defaultBlurhash}"`,
+        // )
+        // .replace("$aria", `aria="${part.aria}"`)
+        // .replace("$width", `width="${part.width}"`)
+        // .replace("$height", `height="${part.height}"`)
+        // .replace("$sizeBytes", `sizeBytes="${part.sizeBytes}"`);
         break;
 
       // Separator Part

@@ -11,7 +11,7 @@ export default function CustomImageMDX({
   image,
   className,
 }: {
-  image: IGenericImageProps | null;
+  image: IGenericImageProps | null | undefined;
   className?: string;
 }) {
   return image && image.imageId && process.env.NODE_ENV !== "development" ? (

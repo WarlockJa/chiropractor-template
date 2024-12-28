@@ -22,7 +22,7 @@ export const createBlogSchema =
 // because not all of them are required for update
 // combining with a required blog id field to for a resulting schema
 export const updateBlogSchema = z.custom<
-  Partial<Omit<SelectBlogs, "createdAt" | "updatedAt" | "blogId">> &
+  Partial<Omit<SelectBlogs, "createdAt" | "updatedAt" | "blogId" | "owner">> &
     Pick<SelectBlogs, "blogId">
 >();
 

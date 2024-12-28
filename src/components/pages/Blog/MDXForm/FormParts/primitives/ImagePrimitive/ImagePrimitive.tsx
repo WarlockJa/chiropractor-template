@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { useEffect, useRef, useState } from "react";
 import { CloudUpload } from "lucide-react";
 import ImageSelector from "./_components/ImageSelector";
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { MAX_FILE_SIZE } from "@/appConfig";
 import { useTranslations } from "next-intl";
 import { HookActionStatus, useAction } from "next-safe-action/hooks";
@@ -20,22 +20,24 @@ import { cn } from "@/lib/utils";
 import { createId } from "@paralleldrive/cuid2";
 import { blogImagesAtom } from "../../../store/jotai";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
-import { IParts_Image } from "../../../mdxtypes";
+import { IGenericImageProps, TPartImageId } from "../../../mdxtypes";
 import { createBlogImagesAction } from "./actions/image";
 import { getFileExtension } from "@/lib/getFileExtension";
 import { TImageFile } from "./actions/schemas";
 
 interface IImagePrimitivesProps {
   blogId: number;
-  imgSrc: string;
-  setImgSrcAndAria: ({
-    name,
-    aria,
-  }: {
-    name: string;
-    aria?: string;
-    imageId: number | null;
-  }) => void;
+  // imgSrc: string;
+  imageId: TPartImageId;
+  setImageId: ({ imageId }: Pick<IGenericImageProps, "imageId">) => void;
+  // setImgSrcAndAria: ({
+  //   name,
+  //   aria,
+  // }: {
+  //   name: string;
+  //   aria?: string;
+  //   imageId: number | null;
+  // }) => void;
 }
 
 interface FileUploadItem extends TImageFile {
@@ -71,12 +73,14 @@ const handleUpload = ({
 
 export default function ImagePrimitive({
   blogId,
-  imgSrc,
-  setImgSrcAndAria,
+  imageId,
+  setImageId,
+  // setImgSrcAndAria,
 }: IImagePrimitivesProps) {
   const t = useTranslations("Errors");
   // blog images data
-  const [images, setImages] = useAtom(blogImagesAtom);
+  // const [images, setImages] = useAtom(blogImagesAtom);
+  const setImages = useSetAtom(blogImagesAtom);
   // input file ref
   const inputRef = useRef<HTMLInputElement>(null);
   // file list
@@ -190,7 +194,6 @@ export default function ImagePrimitive({
   // own validation on user rights, storage quota, and rate of invocation
   useEffect(() => {
     if (executeFlag === 0 || executeFlag !== fileList.length) return;
-    console.log("FLAG2: ", executeFlag);
 
     // processing errors
     if (fileList.findIndex((item) => item.status === "error") !== -1) {
@@ -221,9 +224,6 @@ export default function ImagePrimitive({
         imageFiles: fileList
           .filter((entry) => entry.status === "success")
           .map((validImage) => validImage),
-        // files: fileList
-        //   .filter((entry) => entry.status === "success")
-        //   .map((validImage) => validImage.file),
       });
     }
 
@@ -234,7 +234,6 @@ export default function ImagePrimitive({
   // checking added files for being a proper image via <img> element
   // adding width and height to the execute data object
   useEffect(() => {
-    console.log("FILES: ", fileList);
     fileList
       .filter((item) => item.status === "pending")
       .map((item) => {
@@ -273,47 +272,12 @@ export default function ImagePrimitive({
   return (
     <Card className="mx-4 w-[calc(100%_-_2rem)] transition-shadow hover:shadow hover:shadow-foreground">
       <CardContent className="mt-6 flex gap-6">
-        {/* hidden <img> elements used to pre-emptively validate passed files as images */}
-        {/* {fileList.length > 0 &&
-          fileList
-            .filter((item) => item.status === "pending")
-            .map((item, index) => (
-              <img
-                key={`${item.file.name}${index}`}
-                className="hidden"
-                aria-hidden
-                src={window.URL.createObjectURL(item.file)}
-                onLoad={() => {
-                  setFileList((prev) =>
-                    prev.map((entry) =>
-                      entry.file.name === item.file.name
-                        ? { file: item.file, status: "success" }
-                        : entry,
-                    ),
-                  );
-                  setExecuteFlag((prev) => prev + 1);
-                }}
-                onError={() => {
-                  setFileList((prev) =>
-                    prev.map((entry) =>
-                      entry.file.name === item.file.name
-                        ? { file: item.file, status: "error" }
-                        : entry,
-                    ),
-                  );
-                  setExecuteFlag((prev) => prev + 1);
-                }}
-              />
-            ))} */}
-
         {/* Drag and Drop area combined with file selector and URL parser */}
         <div
           className="w-full rounded border-2 border-dashed border-muted"
           style={
             // TODO extract default image name somewhere
-            imgSrc && imgSrc !== "/default.jpg"
-              ? { borderColor: "lightgreen" }
-              : undefined
+            imageId ? { borderColor: "lightgreen" } : undefined
           }
           onDrop={(event) => {
             event.preventDefault();
@@ -421,10 +385,12 @@ export default function ImagePrimitive({
         {/* ImageSelector component. Indicates active image for the parent component of the
         ImagePrimitive as well as the list of images associated with the blog */}
         <ImageSelector
-          images={images}
-          selectedImage={imgSrc}
-          setSelectedImage={(data: Omit<IParts_Image, "type">) =>
-            setImgSrcAndAria(data)
+          selectedImage={imageId}
+          setSelectedImage={
+            ({ imageId }: Pick<IGenericImageProps, "imageId">) =>
+              // setSelectedImage={(data: Omit<IParts_Image, "type">) =>
+              setImageId({ imageId })
+            // setImgSrcAndAria(data)
           }
         />
       </CardContent>
