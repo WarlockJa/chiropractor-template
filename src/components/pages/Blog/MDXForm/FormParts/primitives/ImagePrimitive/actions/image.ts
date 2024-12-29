@@ -146,7 +146,11 @@ async function createImage(
         CWImageCaption.fetch(
           `${env.IMAGECAPTIONWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
           { headers: imageCaptionHeaders },
-        ).then((response) => response.text()),
+        )
+          .then(
+            (response) => response.json() as unknown as { description: string },
+          )
+          .then((result) => result.description),
       ]);
     }
   } catch (error: any) {

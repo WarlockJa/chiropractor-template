@@ -88,7 +88,6 @@ export default async function MDXBlogPage({
             blogId={blogData.blog.blogId}
             blogImages={blogImages}
             published={blogData.blog.published ?? false}
-            // tags={blogData.tags ?? ""}
             tags={""}
           />
         </Suspense>
