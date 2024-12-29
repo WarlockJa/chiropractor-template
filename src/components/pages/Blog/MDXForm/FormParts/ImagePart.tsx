@@ -1,17 +1,17 @@
 import { usePartWrapperContext } from "./wrappers/PartWrapper";
 import ImagePrimitive from "./primitives/ImagePrimitive/ImagePrimitive";
-import SimpleTextPrimitive from "./primitives/SimpleTextPrimitive";
 import { useState } from "react";
 import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
-import { IParts_Image } from "../mdxtypes";
+import { IGenericImageProps, IParts_Image } from "../mdxtypes";
+import { SelectBlogs } from "@db/schemaBlog";
 
 interface IImagePartFormValues extends IFormValues {
   originalState: IParts_Image;
   currentValues: IParts_Image;
 }
 
-export default function ImagePart({ blogId }: { blogId: number }) {
+export default function ImagePart({ blogId }: Pick<SelectBlogs, "blogId">) {
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -21,7 +21,6 @@ export default function ImagePart({ blogId }: { blogId: number }) {
 
   // primitive isOkToSave aggregate
   const [isOkToSavePart, setIsOkToSavePart] = useState({
-    simpleText: false,
     image: false,
   });
 
@@ -32,15 +31,11 @@ export default function ImagePart({ blogId }: { blogId: number }) {
       <PartHeader partName="Image Part" />
       <ImagePrimitive
         blogId={blogId}
-        imgSrc={formValues.currentValues.name}
-        setImgSrcAndAria={(data: {
-          name: string;
-          aria?: string;
-          imageId: number | null;
-        }) => {
+        imageId={formValues.currentValues.imageId}
+        setImageId={({ imageId }: Pick<IGenericImageProps, "imageId">) => {
           // evaluating if it is ok to save the whole part
           // finding if a primitive has changed
-          const image = formValues.originalState.name !== data.name;
+          const image = formValues.originalState.imageId !== imageId;
           // saving change state for the primitive
           setIsOkToSavePart((prev) => ({ ...prev, image }));
 
@@ -52,38 +47,10 @@ export default function ImagePart({ blogId }: { blogId: number }) {
 
           setFormValues((prev) => ({
             ...prev,
-            currentValues: { ...prev.currentValues, ...data },
+            currentValues: { ...prev.currentValues, imageId },
             isOkToSave,
           }));
         }}
-      />
-      <SimpleTextPrimitive
-        setText={(text: string) => {
-          // evaluating if it is ok to save the whole part
-          // finding if a primitive has changed
-          const simpleText = formValues.originalState.aria !== text;
-          // saving change state for the primitive
-          setIsOkToSavePart((prev) => ({ ...prev, simpleText }));
-
-          // comparing with the rest of the primitives
-          const isOkToSave = isOkToSaveAggregate({
-            aggregate: isOkToSavePart,
-            current: { simpleText },
-            override: {
-              value: Boolean(formValues.currentValues.name),
-            },
-          });
-
-          setFormValues((prev) => ({
-            ...prev,
-            // TODO should be no aria passed from the client
-            currentValues: { ...prev.currentValues, aria: text },
-            isOkToSave,
-          }));
-        }}
-        labelText="Blog Image Description"
-        text={formValues.currentValues.aria}
-        placeholderText="Image description"
       />
     </>
   );

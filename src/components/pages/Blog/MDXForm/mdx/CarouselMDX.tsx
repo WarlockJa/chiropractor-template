@@ -11,18 +11,18 @@ import Fade from "embla-carousel-fade";
 import { useEffect, useState } from "react";
 import { Circle, CircleDot, Maximize } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { IGenericImageProps } from "../mdxtypes";
 import CustomImageMDX from "../CustomImageMDX";
 import ModalImagesViewer from "../../ModalImagesViewer";
+import { TPartImageId } from "../mdxtypes";
 
 export default function CarouselMDX({
-  images,
+  imageIds,
   autoScroll,
   autoScrollSpeed,
   fade,
   loop,
 }: {
-  images: string | undefined;
+  imageIds: string;
   loop?: boolean;
   fade?: boolean;
   autoScroll?: boolean;
@@ -32,17 +32,8 @@ export default function CarouselMDX({
   const [api, setApi] = useState<CarouselApi>();
   // carousel hover state
   const [carouselHover, setCarouselHover] = useState(false);
-  // slides state
-  const [data] = useState<IGenericImageProps[] | undefined>(() => {
-    try {
-      if (images) {
-        return JSON.parse(images) as IGenericImageProps[];
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    return undefined;
-  });
+  // slides data state
+  const [data] = useState<TPartImageId[]>(() => JSON.parse(imageIds));
   // plugins array
   const [plugins] = useState(() => {
     const pluginsArray = [];
@@ -79,7 +70,7 @@ export default function CarouselMDX({
       : api.plugins().autoplay.play();
   }, [api, carouselHover, autoScroll]);
 
-  return data ? (
+  return (
     <>
       <Carousel
         setApi={setApi}
@@ -92,16 +83,16 @@ export default function CarouselMDX({
         onMouseLeave={() => setCarouselHover(false)}
       >
         <CarouselContent>
-          {data.map((img, index) => (
-            <CarouselItem key={img.name.concat(index.toString())}>
-              <CustomImageMDX image={img} className="h-96 max-h-96" />
+          {data.map((imageId, index) => (
+            <CarouselItem key={`${imageId}${index}`}>
+              <CustomImageMDX imageId={imageId} className="h-96 max-h-96" />
             </CarouselItem>
           ))}
         </CarouselContent>
         <CarouselPrevious type="button" />
         <CarouselNext type="button" />
         <ModalImagesViewer
-          images={data}
+          imageIds={data}
           activeImageIndex={activeSlide}
           parentApi={api}
         >
@@ -131,5 +122,5 @@ export default function CarouselMDX({
         </ul>
       </Carousel>
     </>
-  ) : null;
+  );
 }

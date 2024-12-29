@@ -31,7 +31,7 @@ export async function generateMetadata(
       description: `${convertCodesToSpecialCharacters(blogData.blog.description ?? "")} ${blogData.owner?.name} - ${brandName}`,
       images: `${env.NEXT_PUBLIC_R2_URI}/${blogData.image?.name}`,
       type: "website",
-      url: `${env.NEXT_PUBLIC_URI}/${params.blog_id}`,
+      url: `${env.NEXT_PUBLIC_URI}/blog/${params.blog_id}`,
     },
     twitter: {
       card: "summary_large_image",

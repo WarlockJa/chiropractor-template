@@ -111,7 +111,7 @@ export default function ImageSelector({
                 <X className="text-destructive" />
               )}
             </Button>
-            <CustomImageMDX image={img} />
+            <CustomImageMDX imageId={img.imageId} />
           </li>
         ))}
       </ul>

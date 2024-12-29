@@ -16,8 +16,9 @@ export const lookupTable_PartsToMDX: { [key: number]: string } = {
   4: "<Video $videoId />\n" + "\n",
   5: "<TableMDX $tableData />\n" + "\n",
   6:
-    "<CarouselMDX $images $loop $fade $autoScroll $autoScrollSpeed />\n" + "\n",
-  7: "<Gallery $images />\n" + "\n",
+    "<CarouselMDX $imageIds $loop $fade $autoScroll $autoScrollSpeed />\n" +
+    "\n",
+  7: "<Gallery $imageIds />\n" + "\n",
   8:
     "<Chart $chartData $chartConfig $chartType $chartTitle $chartDescription />\n" +
     "\n",
@@ -41,9 +42,9 @@ export const lookupTable_Parts: TNonHeroParts[] = [
   // Table Part
   { type: 5, tableData: undefined },
   // Carousel Part
-  { type: 6, images: [], autoScrollSpeed: 4 },
+  { type: 6, imageIds: [], autoScrollSpeed: 4 },
   // Gallery Part
-  { type: 7, images: [] },
+  { type: 7, imageIds: [] },
   // Chart Part
   {
     type: 8,
@@ -97,9 +98,9 @@ export const getUsedImagesArray = ({
       // Carousel Part
       case 6:
         {
-          part.images.forEach((image) => {
+          part.imageIds.forEach((imageId) => {
             const foundUsedImage = blogImages.find(
-              (img) => img.imageId === image,
+              (img) => img.imageId === imageId,
             )?.imageId;
             if (foundUsedImage) {
               resultArray.push(foundUsedImage);
@@ -110,9 +111,9 @@ export const getUsedImagesArray = ({
       // Gallery Part
       case 7:
         {
-          part.images.forEach((image) => {
+          part.imageIds.forEach((imageId) => {
             const foundUsedImage = blogImages.find(
-              (img) => img.imageId === image,
+              (img) => img.imageId === imageId,
             )?.imageId;
             if (foundUsedImage) {
               resultArray.push(foundUsedImage);

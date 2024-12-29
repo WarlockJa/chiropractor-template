@@ -9,11 +9,11 @@ import {
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Circle, CircleDot, Plus, Trash2 } from "lucide-react";
-import { IGenericImageProps } from "../../mdxtypes";
+import { TPartImageId } from "../../mdxtypes";
 import CustomImageMDX from "../../CustomImageMDX";
 
 interface ICarouselMDXPrimitiveProps {
-  images: IGenericImageProps[];
+  imageIds: TPartImageId[];
   addNewSlide: () => void;
   activeSlide: number;
   setActiveSlide: (newActiveSlide: number) => void;
@@ -22,7 +22,7 @@ interface ICarouselMDXPrimitiveProps {
 
 export default function CarouselMDXPrimitive({
   activeSlide,
-  images,
+  imageIds,
   setActiveSlide,
   addNewSlide,
   deleteCurrentSlide,
@@ -35,8 +35,8 @@ export default function CarouselMDXPrimitive({
     currentSlidesNumber: number;
     previousSlidesNumber: number;
   }>({
-    currentSlidesNumber: images.length,
-    previousSlidesNumber: images.length,
+    currentSlidesNumber: imageIds.length,
+    previousSlidesNumber: imageIds.length,
   });
 
   // slide number detection
@@ -56,9 +56,9 @@ export default function CarouselMDXPrimitive({
   useEffect(() => {
     setSlidesCount({
       previousSlidesNumber: slidesCount.currentSlidesNumber,
-      currentSlidesNumber: images.length,
+      currentSlidesNumber: imageIds.length,
     });
-  }, [images.length]);
+  }, [imageIds.length]);
   // the second useEffect controls if switch to the last slide is needed
   useEffect(() => {
     if (!api) return;
@@ -71,16 +71,16 @@ export default function CarouselMDXPrimitive({
     <div className="my-4 flex flex-col border-2 md:flex-row">
       <Carousel setApi={setApi} className="mx-auto w-full max-w-screen-md">
         <CarouselContent>
-          {images.map((img, index) => (
-            <CarouselItem key={img.name.concat(index.toString())}>
-              <CustomImageMDX image={img} className="h-96 max-h-96" />
+          {imageIds.map((imageId, index) => (
+            <CarouselItem key={`${imageId}${index}`}>
+              <CustomImageMDX imageId={imageId} className="h-96 max-h-96" />
             </CarouselItem>
           ))}
         </CarouselContent>
         <CarouselPrevious type="button" />
         <CarouselNext type="button" />
         <ul className="flex justify-center">
-          {images.map((_, index) => (
+          {imageIds.map((_, index) => (
             <Button
               type="button"
               key={`dot${index}`}
@@ -100,7 +100,7 @@ export default function CarouselMDXPrimitive({
           title="Delete Slide"
           className="h-full w-full p-0 hover:text-destructive md:w-12"
           onClick={deleteCurrentSlide}
-          disabled={images.length < 2}
+          disabled={imageIds.length < 2}
         >
           <Trash2 size={32} />
         </Button>

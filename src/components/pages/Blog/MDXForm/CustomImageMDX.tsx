@@ -5,16 +5,27 @@ import { env } from "@/lib/env.mjs";
 import { blurHashToDataURL } from "@/lib/blurHashToDataURL";
 import { defaultBlurhash } from "@/appConfig";
 import { cn } from "@/lib/utils";
-import { IGenericImageProps } from "./mdxtypes";
+import { TPartImageId } from "./mdxtypes";
+import { useAtomValue } from "jotai";
+import { blogImagesAtom } from "./store/jotai";
+import { useMemo } from "react";
 
 export default function CustomImageMDX({
-  image,
+  imageId,
   className,
 }: {
-  image: IGenericImageProps | null | undefined;
+  imageId: TPartImageId;
   className?: string;
 }) {
-  return image && image.imageId && process.env.NODE_ENV !== "development" ? (
+  // blog images data
+  const images = useAtomValue(blogImagesAtom);
+
+  const image = useMemo(
+    () => images.find((img) => img.imageId === imageId),
+    [imageId, images],
+  );
+
+  return image && process.env.NODE_ENV !== "development" ? (
     <Image
       src={`${env.NEXT_PUBLIC_R2_URI}/${image.name}`}
       // TODO add translation to alt and aria

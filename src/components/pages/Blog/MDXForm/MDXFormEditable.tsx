@@ -55,8 +55,6 @@ export default function MDXFormEditable({
     published,
     tags,
   });
-  // catalog data state
-  // const [catalog, setCatalog] = useAtom(catalogAtom);
 
   // loading MDX as TParts array into local state on component load
   useEffect(() => {
@@ -101,34 +99,6 @@ export default function MDXFormEditable({
     },
 
     onSuccess({ input, data }) {
-      // updating catalog node with new preview image
-      // if (catalog && data && data[0]) {
-      //   // finding new preview image src in the local store
-      //   const newImageSrc = blogImages.find(
-      //     (img) => img.id === data[0].previewImage,
-      //   )?.src;
-
-      //   // updating local catalog state with new preview image data
-      //   setCatalog((prev) =>
-      //     prev
-      //       ? prev.map((node) =>
-      //           node.blog === data[0].id
-      //             ? {
-      //                 ...node,
-      //                 fileData: node.fileData && {
-      //                   ...node.fileData,
-      //                   src: newImageSrc,
-      //                   title: data[0].title,
-      //                   description: data[0].description,
-      //                   updatedAt: data[0].updatedAt,
-      //                 },
-      //               }
-      //             : node,
-      //         )
-      //       : null,
-      //   );
-      // }
-
       toast(tBlog("blog_saved"), {
         description: tBlog("blog_updated", { title: input.title }),
       });
@@ -182,7 +152,6 @@ export default function MDXFormEditable({
                     previewImage: parts[0].imageId,
                     mdx: JSON.stringify(parts),
                     published: currentBlogData.published,
-                    // tags: currentBlogData.tags,
                   })
                 }
               >

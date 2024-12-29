@@ -1,7 +1,9 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { env } from "@/lib/env.mjs";
 import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
 import useMouseCoords from "./MDXForm/hooks/useMouseCoords";
+import { useAtomValue } from "jotai";
+import { blogImagesAtom } from "./MDXForm/store/jotai";
 
 interface ImagePanningData {
   maxX: number;
@@ -53,14 +55,21 @@ const calculateImagePanning = ({
 export default function ModalImageCloseUp({
   clickX,
   clickY,
-  imageSrc,
+  imageId,
   activeSlide = 0,
 }: {
   clickX: number;
   clickY: number;
-  imageSrc: string;
+  imageId: number;
   activeSlide?: number;
 }) {
+  // blog images data
+  const images = useAtomValue(blogImagesAtom);
+  const image = useMemo(
+    () => images.find((img) => img.imageId === imageId),
+    [imageId, images],
+  );
+
   // mouse coordinates
   const { x, y } = useMouseCoords({ clickX, clickY });
   // image ref
@@ -88,7 +97,7 @@ export default function ModalImageCloseUp({
   // in development we access R2 via default url
   const isProd = process.env.NODE_ENV === "production";
 
-  return (
+  return image ? (
     <div
       style={{
         width: `${imgRef.current?.naturalWidth}px`,
@@ -97,17 +106,16 @@ export default function ModalImageCloseUp({
       }}
       className="fixed inset-0"
     >
-      {/* TODO check if img can be replaced with CustomComponentMDX */}
       <img
         ref={imgRef}
         src={
           isProd
-            ? `${env.NEXT_PUBLIC_R2_URI}/${imageSrc}`
+            ? `${env.NEXT_PUBLIC_R2_URI}/${image?.name}`
             : `${env.NEXT_PUBLIC_R2_URI}/default.webp`
         }
         onLoad={() => setLoaded(true)}
       />
       {!loaded && <LoaderSpinner />}
     </div>
-  );
+  ) : null;
 }

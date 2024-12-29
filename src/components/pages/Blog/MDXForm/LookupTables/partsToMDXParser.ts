@@ -19,15 +19,6 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
           .replace("$title", `title="${part.title}"`)
           .replace("$description", `description="${part.description}"`)
           .replace("$imageId", `imageId="${part.imageId}"`);
-        // .replace("$name", part.name ? `name="${part.name}"` : "")
-        // .replace(
-        //   "$blurhash",
-        //   `blurhash="${part.blurhash ?? defaultBlurhash}"`,
-        // )
-        // .replace("$aria", `aria="${part.aria}"`)
-        // .replace("$width", `width="${part.width}"`)
-        // .replace("$height", `height="${part.height}"`)
-        // .replace("$sizeBytes", `sizeBytes="${part.sizeBytes}"`)
         break;
 
       // Paragraph Part
@@ -43,15 +34,6 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
           "$imageId",
           `imageId="${part.imageId}"`,
         );
-        // .replace("$name", `name="${part.name}"`)
-        // .replace(
-        //   "$blurhash",
-        //   `blurhash="${part.blurhash ?? defaultBlurhash}"`,
-        // )
-        // .replace("$aria", `aria="${part.aria}"`)
-        // .replace("$width", `width="${part.width}"`)
-        // .replace("$height", `height="${part.height}"`)
-        // .replace("$sizeBytes", `sizeBytes="${part.sizeBytes}"`);
         break;
 
       // Separator Part
@@ -78,7 +60,7 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
       // Carousel Part
       case 6:
         combinedPartsString += lookupTable_PartsToMDX[part.type]
-          .replace("$images", `images={'${JSON.stringify(part.images)}'}`)
+          .replace("$imageIds", `imageIds={'${JSON.stringify(part.imageIds)}'}`)
           .replace("$loop", part.loop ? `loop` : "")
           .replace("$fade", part.fade ? `fade` : "")
           .replace("$autoScroll", part.autoScroll ? `autoScroll` : "")
@@ -93,8 +75,8 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
       // Gallery Part
       case 7:
         combinedPartsString += lookupTable_PartsToMDX[part.type].replace(
-          "$images",
-          `images={'${JSON.stringify(part.images)}'}`,
+          "$imageIds",
+          `imageIds={'${JSON.stringify(part.imageIds)}'}`,
         );
         break;
 

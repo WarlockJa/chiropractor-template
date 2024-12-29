@@ -4,7 +4,7 @@ interface IIsOkToSaveAggregateProps {
   override?: { value: boolean };
 }
 
-// this function aggregates states of the part primitives and defines if the whole part is allowed to save
+// this function aggregates states of the part primitives and defines if the whole part is allowed to be saved
 export default function isOkToSaveAggregate({
   aggregate,
   current,

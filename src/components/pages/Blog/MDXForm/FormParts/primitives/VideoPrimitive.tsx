@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { alphanumeric } from "@/lib/regex";
+import { alphanumericWithDashUnderscore } from "@/lib/regex";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -11,7 +11,10 @@ interface IVideoPrimitiveProps {
   setVideoId: (text: string) => void;
 }
 
-const videoIdSchema = z.string().length(11).regex(alphanumeric);
+const videoIdSchema = z
+  .string()
+  .length(11)
+  .regex(alphanumericWithDashUnderscore);
 
 const getYTVideoIdFromURI = ({ url }: { url: string }): string | undefined => {
   const videoIdIndex = url.lastIndexOf("watch?v=");

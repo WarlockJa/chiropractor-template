@@ -6,6 +6,7 @@ import { useState } from "react";
 import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
 import { IGenericImageProps, IParts_Hero } from "../mdxtypes";
+import { SelectBlogs } from "@db/schemaBlog";
 
 interface IHeroPartFormValues extends IFormValues {
   originalState: IParts_Hero;
@@ -13,7 +14,7 @@ interface IHeroPartFormValues extends IFormValues {
 }
 
 // Hero part edit form
-export default function HeroPart({ blogId }: { blogId: number }) {
+export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -64,7 +65,6 @@ export default function HeroPart({ blogId }: { blogId: number }) {
 
       <ImagePrimitive
         blogId={blogId}
-        // imgSrc={formValues.currentValues.name}
         imageId={formValues.currentValues.imageId}
         setImageId={({ imageId }: Pick<IGenericImageProps, "imageId">) => {
           // evaluating if it is ok to save the whole part
@@ -88,35 +88,6 @@ export default function HeroPart({ blogId }: { blogId: number }) {
             isOkToSave,
           }));
         }}
-        // setImgSrcAndAria={(data: {
-        //   name: string;
-        //   aria?: string;
-        //   imageId: number | null;
-        // }) => {
-        //   // evaluating if it is ok to save the whole part
-        //   // finding if a primitive has changed
-        //   const image = formValues.originalState.name !== data.name;
-        //   // saving change state for the primitive
-        //   setIsOkToSavePart((prev) => ({ ...prev, image }));
-
-        //   // comparing with the rest of the primitives
-        //   const isOkToSave = isOkToSaveAggregate({
-        //     aggregate: isOkToSavePart,
-        //     current: { image },
-        //   });
-
-        //   console.log()
-
-        //   setFormValues((prev) => ({
-        //     ...prev,
-        //     currentValues: {
-        //       ...prev.currentValues,
-        //       ...data,
-        //       previewImage: data.imageId ?? null,
-        //     },
-        //     isOkToSave,
-        //   }));
-        // }}
       />
 
       <MDXEditorPrimitive

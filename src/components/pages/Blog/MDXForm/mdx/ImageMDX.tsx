@@ -3,26 +3,18 @@ import { Maximize } from "lucide-react";
 import CustomImageMDX from "../CustomImageMDX";
 import ModalImagesViewer from "../../ModalImagesViewer";
 import { TPartImageId } from "../mdxtypes";
-import { useAtomValue } from "jotai";
-import { useMemo } from "react";
-import { blogImagesAtom } from "../store/jotai";
 
 export default function ImageMDX({ imageId }: { imageId: TPartImageId }) {
-  const blogImages = useAtomValue(blogImagesAtom);
-  const image = useMemo(
-    () => blogImages.find((item) => item.imageId === imageId),
-    [imageId],
-  );
   return (
     <div className="relative">
       <CustomImageMDX
-        image={image}
+        imageId={imageId}
         className="max-h-screen"
         // TODO check for vestiges
         // className="max-h-[calc(100vh_-_var(--header-height))]"
       />
-      {image && (
-        <ModalImagesViewer images={[image]}>
+      {imageId && (
+        <ModalImagesViewer imageIds={[imageId]}>
           <Button
             type="button"
             variant={"ghost"}

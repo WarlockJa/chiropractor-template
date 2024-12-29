@@ -64,7 +64,7 @@ interface IParts_TableMDX {
 
 interface IParts_CarouselMDX {
   type: 6;
-  images: TPartImageId[];
+  imageIds: TPartImageId[];
   loop?: boolean;
   fade?: boolean;
   autoScroll?: boolean;
@@ -73,7 +73,7 @@ interface IParts_CarouselMDX {
 
 interface IParts_Gallery {
   type: 7;
-  images: TPartImageId[];
+  imageIds: TPartImageId[];
 }
 
 // making copy of ChartConfig type to not import it

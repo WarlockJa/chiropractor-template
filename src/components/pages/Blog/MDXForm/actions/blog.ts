@@ -7,7 +7,7 @@ import { UnauthorisedAccessError } from "@/lib/rateLimiting/errors";
 import { actionClient } from "@/lib/safeAction";
 import { db } from "@db/db-connection";
 import { blogs, blogs_images } from "@db/schemaBlog";
-import { eq, inArray, sql } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { z } from "zod";
@@ -129,6 +129,7 @@ export const updateBlogAction = actionClient
     }
 
     const result = await updateBlog(parsedInput);
+    console.log(result);
 
     // TODO add vectorization
     // in production adding data to Vectorize

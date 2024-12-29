@@ -21,18 +21,17 @@ import { Circle, CircleDot, X } from "lucide-react";
 import ModalImageCloseUp from "./ModalImageCloseUp";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
-import { IGenericImageProps } from "./MDXForm/mdxtypes";
 import { controlActiveAtom } from "./MDXForm/store/jotai";
 import CustomImageMDX from "./MDXForm/CustomImageMDX";
 
 // modal viewer for images
 export default function ModalImagesViewer({
-  images,
+  imageIds,
   activeImageIndex,
   children,
   parentApi,
 }: {
-  images: IGenericImageProps[];
+  imageIds: (number | null)[];
   children: ReactNode;
   activeImageIndex?: number;
   parentApi?: CarouselApi;
@@ -123,29 +122,29 @@ export default function ModalImagesViewer({
           className="max-h-screen bg-secondary"
         >
           <CarouselContent className="m-0">
-            {images.map((img, index) => (
+            {imageIds.map((imageId, index) => (
               <CarouselItem
-                key={`${img.imageId}${index}`}
+                key={`${imageId}${index}`}
                 className="h-screen w-screen"
               >
-                {closeUp.open && activeSlide === index && (
+                {closeUp.open && activeSlide === index && imageId && (
                   <ModalImageCloseUp
                     clickX={closeUp.clickX}
                     clickY={closeUp.clickY}
-                    imageSrc={img.name}
+                    imageId={imageId}
                     activeSlide={activeSlide}
                   />
                 )}
 
-                <CustomImageMDX image={img} />
+                <CustomImageMDX imageId={imageId} />
               </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselPrevious type="button" />
           <CarouselNext type="button" />
           <ul className="absolute bottom-0 left-0 right-0 flex justify-center">
-            {images.length > 1 &&
-              images.map((_, index) => (
+            {imageIds.length > 1 &&
+              imageIds.map((_, index) => (
                 <Button
                   type="button"
                   key={`dot${index}`}
