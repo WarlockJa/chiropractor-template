@@ -19,12 +19,6 @@ export default function CustomImageMDX({
 }) {
   // blog images data
   const images = useAtomValue(blogImagesAtom);
-
-  // TEST
-  console.log("IMAGES: ", images);
-  console.log("IMAGEID: ", imageId);
-  // TEST
-
   const image = useMemo(
     () => images.find((img) => img.imageId === Number(imageId)),
     [imageId, images],

@@ -21,6 +21,7 @@ import convertMDXtoVectorizableString from "../lib/convertMDXtoVectorizableStrin
 import userCanEditBlog from "../lib/userCanEditBlog";
 import { images } from "@db/schemaImage";
 import { r2 } from "@cf/bucket/r2";
+import { q } from "@cf/queue/q";
 
 // Create Blog
 export const createBlogAction = actionClient
@@ -46,7 +47,6 @@ export const createBlogAction = actionClient
     }
     const blogId = await createBlog({ ...parsedInput, owner: user.id });
 
-    // TODO add vectorization
     // in production adding blog data to Vectorize
     if (process.env.NODE_ENV === "production") {
       // adding stripped blog data to Vectorize upsert body
@@ -56,14 +56,12 @@ export const createBlogAction = actionClient
           mdx: JSON.parse(parsedInput.mdx),
         }),
       };
-      // // queue accepts stringified objects (see QueueMessageBody type)
-      // const addVectorizeBlogData: QueueMessageBody = {
-      //   id: "Vectorize Upsert",
-      //   body: JSON.stringify(upsertBody),
-      // };
-      // q.send(JSON.stringify(addVectorizeBlogData));
-
-      // TODO add vectorization
+      // queue accepts stringified objects (see QueueMessageBody type)
+      const addVectorizeBlogData: QueueMessageBody = {
+        id: "Vectorize Upsert",
+        body: JSON.stringify(upsertBody),
+      };
+      q.send(JSON.stringify(addVectorizeBlogData));
     }
 
     // invalidating cache tags
@@ -131,7 +129,6 @@ export const updateBlogAction = actionClient
     const result = await updateBlog(parsedInput);
     console.log(result);
 
-    // TODO add vectorization
     // in production adding data to Vectorize
     if (process.env.NODE_ENV === "production") {
       // adding stripped blog data to Vectorize upsert body
@@ -141,13 +138,12 @@ export const updateBlogAction = actionClient
           mdx: JSON.parse(result[0].mdx),
         }),
       };
-      // // queue accepts stringified objects (see QueueMessageBody type)
-      // const addVectorizeBlogData: QueueMessageBody = {
-      //   id: "Vectorize Upsert",
-      //   body: JSON.stringify(upsertBody),
-      // };
-      // q.send(JSON.stringify(addVectorizeBlogData));
-      // TODO add vectorization
+      // queue accepts stringified objects (see QueueMessageBody type)
+      const addVectorizeBlogData: QueueMessageBody = {
+        id: "Vectorize Upsert",
+        body: JSON.stringify(upsertBody),
+      };
+      q.send(JSON.stringify(addVectorizeBlogData));
     }
 
     return result;

@@ -5,6 +5,7 @@ interface CloudflareEnv {
 	DB: D1Database;
 	CWBlurhash: Fetcher;
 	CWImageCaption: Fetcher;
+	Q: Queue;
 	VECTORIZE: VectorizeIndex;
 	AI: Ai;
 }

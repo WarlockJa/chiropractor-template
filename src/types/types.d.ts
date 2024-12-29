@@ -6,3 +6,19 @@ interface FileUploadItem {
   width?: number;
   aria: string;
 }
+
+// queue types
+interface QueueMessageBody {
+  id:
+    | "log"
+    | "R2 Delete"
+    | "New Image"
+    | "Vectorize Upsert"
+    | "Vectorize Delete";
+  body: string;
+}
+// upsert to Vectorize data
+interface VectorizeUpsertQueueItem {
+  id: string;
+  value: string;
+}

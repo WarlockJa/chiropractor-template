@@ -20,20 +20,13 @@ import {
   deleteImageSchema,
   imageFileSchema,
 } from "./schemas";
-import { env } from "@/lib/env.mjs";
 import { defaultBlurhash, USER_STORAGE_LIMIT } from "@/appConfig";
 import { getCachedUsedR2Storage } from "@/lib/cache/blog/getCachedUsedR2Storage";
 import { rateLimitByIp } from "@/lib/rateLimiting/limiters";
-import {
-  blogs,
-  blogs_images,
-  SelectBlogImage,
-  SelectBlogs,
-} from "@db/schemaBlog";
-import { CWBlurhash } from "@cf/blurhash/blurhash";
+import { blogs_images, SelectBlogImage, SelectBlogs } from "@db/schemaBlog";
 import userCanEditBlog from "../../../../lib/userCanEditBlog";
 import { getCachedImageBlog } from "@/lib/cache/blog/getCachedImageBlog";
-import { CWImageCaption } from "@cf/imageCaption/imageCaption";
+import { q } from "@cf/queue/q";
 
 export const createBlogImagesAction = actionClient
   .schema(createBlogImagesSchema)
@@ -120,49 +113,50 @@ async function createImage(
     throw new Error(error.message);
   }
 
-  // generating blurhash and caption in production
-  let blurhash: string = defaultBlurhash;
-  let caption: string = "default caption";
-  try {
-    // TODO make a Q
-    if (process.env.NODE_ENV === "production") {
-      const blurhashHeaders = new Headers();
-      blurhashHeaders.append(
-        env.BLURHASHWORKER_HEADER,
-        env.BLURHASHWORKER_ACCESS_KEY,
-      );
+  // TODO delete
+  // // generating blurhash and caption in production
+  // let blurhash: string = defaultBlurhash;
+  // let caption: string = "default caption";
+  // try {
+  //   // TODO make a Q
+  //   if (process.env.NODE_ENV === "production") {
+  //     const blurhashHeaders = new Headers();
+  //     blurhashHeaders.append(
+  //       env.BLURHASHWORKER_HEADER,
+  //       env.BLURHASHWORKER_ACCESS_KEY,
+  //     );
 
-      const imageCaptionHeaders = new Headers();
-      imageCaptionHeaders.append(
-        env.IMAGECAPTIONWORKER_HEADER,
-        env.IMAGECAPTIONWORKER_ACCESS_KEY,
-      );
+  //     const imageCaptionHeaders = new Headers();
+  //     imageCaptionHeaders.append(
+  //       env.IMAGECAPTIONWORKER_HEADER,
+  //       env.IMAGECAPTIONWORKER_ACCESS_KEY,
+  //     );
 
-      [blurhash, caption] = await Promise.all([
-        CWBlurhash.fetch(
-          `${env.BLURHASHWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
-          { headers: blurhashHeaders },
-        ).then((response) => response.text()),
-        CWImageCaption.fetch(
-          `${env.IMAGECAPTIONWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
-          { headers: imageCaptionHeaders },
-        )
-          .then(
-            (response) => response.json() as unknown as { description: string },
-          )
-          .then((result) => result.description),
-      ]);
-    }
-  } catch (error: any) {
-    // in case of error writing a log entry about R2 operation fail
-    await writeLogEntry({
-      code: LOG_CODES.error.storage_operation_fail,
-      source: "createImage",
-      text: error.message,
-      type: "error",
-    });
-    throw new Error(error.message);
-  }
+  //     [blurhash, caption] = await Promise.all([
+  //       CWBlurhash.fetch(
+  //         `${env.BLURHASHWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
+  //         { headers: blurhashHeaders },
+  //       ).then((response) => response.text()),
+  //       CWImageCaption.fetch(
+  //         `${env.IMAGECAPTIONWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
+  //         { headers: imageCaptionHeaders },
+  //       )
+  //         .then(
+  //           (response) => response.json() as unknown as { description: string },
+  //         )
+  //         .then((result) => result.description),
+  //     ]);
+  //   }
+  // } catch (error: any) {
+  //   // in case of error writing a log entry about R2 operation fail
+  //   await writeLogEntry({
+  //     code: LOG_CODES.error.storage_operation_fail,
+  //     source: "createImage",
+  //     text: error.message,
+  //     type: "error",
+  //   });
+  //   throw new Error(error.message);
+  // }
 
   // creating DB image and blog_image records
   try {
@@ -172,14 +166,27 @@ async function createImage(
         .insert(images)
         .values({
           name: `${prefix}-${file.name}`,
-          blurhash,
+          blurhash: defaultBlurhash,
           width,
           height,
           sizeBytes: file.size,
-          aria: caption,
+          aria: "default caption",
         })
         .returning()
     )[0];
+
+    // generating blurhash and caption in production
+    if (process.env.NODE_ENV === "production") {
+      // queue accepts stringified objects (see QueueMessageBody type)
+      const newImage: QueueMessageBody = {
+        id: "New Image",
+        body: JSON.stringify({
+          imageId: result.imageId.toString(),
+          name: result.name,
+        }),
+      };
+      q.send(JSON.stringify(newImage));
+    }
 
     // creating recrod for the blog_image table
     await db.insert(blogs_images).values({

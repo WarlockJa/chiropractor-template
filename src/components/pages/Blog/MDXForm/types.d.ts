@@ -1,29 +1,3 @@
-// interface IBlogPost {
-//   id: string;
-//   title: string;
-//   description: string | null;
-//   previewImage: string | null;
-//   updatedAt: Date;
-// }
-
-// TODO change when done
-// interface QueueMessageBody {
-//   id:
-//     | "log"
-//     | "R2 Delete"
-//     | "Blurhash"
-//     | "AI Image Caption"
-//     | "Vectorize Upsert"
-//     | "Vectorize Delete";
-//   body: string;
-// }
-
-// upsert to Vectorize data
-interface VectorizeUpsertQueueItem {
-  id: string;
-  value: string;
-}
-
 // PartWrapper type for formValues
 interface IFormValues {
   originalState: TAllBlogParts;
