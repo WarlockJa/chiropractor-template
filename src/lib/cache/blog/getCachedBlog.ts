@@ -1,7 +1,6 @@
 import { db } from "@db/db-connection";
 import { users } from "@db/schemaAuth";
 import { blogs, SelectBlogs } from "@db/schemaBlog";
-import { images, SelectImages } from "@db/schemaImage";
 import { eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
@@ -12,7 +11,6 @@ export interface CachedBlog {
     name: string | null;
     image: string | null;
   } | null;
-  image: SelectImages | null;
 }
 
 export const getCachedBlog = cache(
@@ -29,13 +27,10 @@ export const getCachedBlog = cache(
                   name: users.name,
                   image: users.image,
                 },
-                image: images,
               })
               .from(blogs)
               // owner data
               .leftJoin(users, eq(users.id, blogs.owner))
-              // preview image
-              .leftJoin(images, eq(images.imageId, blogs.previewImage))
               .where(eq(blogs.blogId, blogId))
           )[0]
         );

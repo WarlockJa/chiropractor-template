@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { env } from "@/lib/env.mjs";
-import { getCachedImageBlog } from "@/lib/cache/blog/getCachedImageBlog";
-import CustomImageMDX from "@/components/pages/Blog/MDXForm/CustomImageMDX";
 import Link from "next/link";
 import BlogImageNotFound from "./not-found";
+import { db } from "@db/db-connection";
+import { blogs } from "@db/schemaBlog";
+import { eq } from "drizzle-orm";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
+import { ArrowLeft } from "lucide-react";
 
 export default async function BlogImagePage({
   params,
@@ -12,23 +15,41 @@ export default async function BlogImagePage({
 }) {
   try {
     // getting image data
-    const imageBlog = await getCachedImageBlog(params.image_id);
+    // const imageBlog = await getCachedImageBlog(params.image_id);
+    // TODO cache with KV
+    const imageBlog = (
+      await db
+        .select()
+        .from(blogs)
+        .where(eq(blogs.previewImage, params.image_id))
+    )[0];
 
     // if no blog associated with the image returning 404
-    if (!imageBlog.blog_image) return BlogImageNotFound();
+    if (!imageBlog) return BlogImageNotFound();
 
     return (
       <section className="mx-auto flex flex-col items-center justify-center overflow-hidden">
         <div className="relative h-screen w-screen">
           {/* CustomImage will hit cached fetch query */}
-          <CustomImageMDX image={imageBlog.image} />
+          <CustomImage imageId={params.image_id} />
 
-          <Button variant={"link"} asChild className="absolute left-4 top-4">
+          <Button
+            variant={"link"}
+            asChild
+            className="group absolute left-0 top-28 h-fit rounded-none bg-background/60"
+          >
             <Link
-              href={`${env.NEXT_PUBLIC_URI}/blog/${imageBlog.blog_image.blogId}`}
+              href={`${env.NEXT_PUBLIC_URI}/blog/${imageBlog.blogId}`}
+              className="flex items-center gap-2"
             >
               {/* TODO translate */}
-              Read the whole story
+              <ArrowLeft
+                className="transition-transform group-hover:-translate-x-2"
+                size={28}
+              />
+              <div className="text-3xl text-accent drop-shadow-[2px_2px_2px_rgba(0,0,0,0.8)]">
+                Read the whole story
+              </div>
             </Link>
           </Button>
         </div>

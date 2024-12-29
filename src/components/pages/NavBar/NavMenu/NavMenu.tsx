@@ -18,7 +18,7 @@ import { servicesData } from "../../Services/servicesData";
 
 export interface IItemNavBar {
   href: string;
-  title: "about" | "contacts" | "home" | "services";
+  title: "about" | "contacts" | "home" | "services" | "blog";
 }
 export const MENU_ITEMS: IItemNavBar[] = [
   {
@@ -29,6 +29,10 @@ export const MENU_ITEMS: IItemNavBar[] = [
   {
     href: "/about",
     title: "about",
+  },
+  {
+    href: "/blog",
+    title: "blog",
   },
   {
     href: "/contacts",

@@ -4,6 +4,7 @@ import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
 import useMouseCoords from "./MDXForm/hooks/useMouseCoords";
 import { useAtomValue } from "jotai";
 import { blogImagesAtom } from "./MDXForm/store/jotai";
+import { defaultImageName } from "@/appConfig";
 
 interface ImagePanningData {
   maxX: number;
@@ -111,7 +112,7 @@ export default function ModalImageCloseUp({
         src={
           isProd
             ? `${env.NEXT_PUBLIC_R2_URI}/${image?.name}`
-            : `${env.NEXT_PUBLIC_R2_URI}/default.webp`
+            : `${env.NEXT_PUBLIC_R2_URI}/${defaultImageName}`
         }
         onLoad={() => setLoaded(true)}
       />

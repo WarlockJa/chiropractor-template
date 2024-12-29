@@ -3,7 +3,7 @@
 // WARNING because this is a server component it needs to be nested as a children prop
 // when used inside of the client components
 
-import { defaultBlurhash } from "@/appConfig";
+import { defaultBlurhash, defaultImageName } from "@/appConfig";
 import { blurHashToDataURL } from "@/lib/blurHashToDataURL";
 import { getCachedImageId } from "@/lib/cache/getCachedImageId";
 import { getCachedImageName } from "@/lib/cache/getCachedImageName";
@@ -23,9 +23,21 @@ export default async function CustomImage({
 }) {
   // development environment workaround to access images
   if (process.env.NODE_ENV === "development") {
-    return (
+    return dbImageName ? (
       <Image
         src={`${env.NEXT_PUBLIC_R2_URI}/${dbImageName}`}
+        alt={"development"}
+        aria-label={"development"}
+        placeholder="blur"
+        blurDataURL={blurHashToDataURL(defaultBlurhash)}
+        width={640}
+        height={480}
+        className={cn("h-full w-full object-cover", className)}
+        sizes="100vw"
+      />
+    ) : (
+      <Image
+        src={`${env.NEXT_PUBLIC_R2_URI}/${defaultImageName}`}
         alt={"development"}
         aria-label={"development"}
         placeholder="blur"
@@ -62,7 +74,7 @@ export default async function CustomImage({
     />
   ) : (
     <Image
-      src={`${env.NEXT_PUBLIC_R2_URI}/default.webp`}
+      src={`${env.NEXT_PUBLIC_R2_URI}/${defaultImageName}`}
       alt={"default image"}
       aria-label={"default image"}
       placeholder="blur"

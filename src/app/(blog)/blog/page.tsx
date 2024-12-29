@@ -34,10 +34,10 @@ export default async function BlogPage({
       <section className="mx-auto mt-28 flex min-h-screen w-screen flex-col items-center justify-center overflow-hidden">
         <CreateNewBlogButton className="mx-auto w-screen max-w-screen-lg" />
         {pageBlogs && pageBlogs.length > 0
-          ? pageBlogs.map((blog) => (
+          ? pageBlogs.map((blogData) => (
               <PostCard
-                key={blog.blog.blogId}
-                blog={blog}
+                key={blogData.blog.blogId}
+                blogData={blogData}
                 deleteRights={userCanEditBlog({ user })}
               />
             ))

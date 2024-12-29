@@ -51,7 +51,7 @@ export async function generateMetadata(
         ],
         siteName: brandMetadataSiteName,
         type: "website",
-        url: `${env.NEXT_PUBLIC_URI}/image/${params.image_id}`,
+        url: `${env.NEXT_PUBLIC_URI}/blog/${blogData.blog.blogId}`,
       },
       twitter: {
         card: "summary_large_image",

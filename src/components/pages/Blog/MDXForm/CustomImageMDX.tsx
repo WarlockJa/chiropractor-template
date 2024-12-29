@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { env } from "@/lib/env.mjs";
 import { blurHashToDataURL } from "@/lib/blurHashToDataURL";
-import { defaultBlurhash } from "@/appConfig";
+import { defaultBlurhash, defaultImageName } from "@/appConfig";
 import { cn } from "@/lib/utils";
 import { TPartImageId } from "./mdxtypes";
 import { useAtomValue } from "jotai";
@@ -42,7 +42,7 @@ export default function CustomImageMDX({
     />
   ) : (
     <Image
-      src={`${env.NEXT_PUBLIC_R2_URI}/default.webp`}
+      src={`${env.NEXT_PUBLIC_R2_URI}/${defaultImageName}`}
       alt={"default image"}
       aria-label={"default image"}
       placeholder="blur"

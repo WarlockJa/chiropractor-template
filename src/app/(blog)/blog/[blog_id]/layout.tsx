@@ -2,11 +2,14 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { env } from "@/lib/env.mjs";
 import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialCharacters";
 import {
+  brandMetadataImage,
   brandMetadataTwitterAccount,
   brandName,
   defaultMetadata,
 } from "@/appConfig";
 import { getCachedBlog } from "@/lib/cache/blog/getCachedBlog";
+import { getCachedImageId } from "@/lib/cache/getCachedImageId";
+import { getFileExtension } from "@/lib/getFileExtension";
 
 type Props = {
   params: { blog_id: number };
@@ -20,6 +23,10 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   // fetching cached blog data
   const blogData = await getCachedBlog(params.blog_id);
+  // fetching blog preview image
+  const blogImage = blogData.blog.previewImage
+    ? (await getCachedImageId(blogData.blog.previewImage))[0]
+    : null;
 
   if (!blogData) return defaultMetadata;
 
@@ -29,7 +36,17 @@ export async function generateMetadata(
     openGraph: {
       title: `${convertCodesToSpecialCharacters(blogData.blog.title) ?? ""} ${blogData.owner?.name}`,
       description: `${convertCodesToSpecialCharacters(blogData.blog.description ?? "")} ${blogData.owner?.name} - ${brandName}`,
-      images: `${env.NEXT_PUBLIC_R2_URI}/${blogData.image?.name}`,
+      images: [
+        blogImage
+          ? {
+              url: `${env.NEXT_PUBLIC_R2_URI}/${blogImage.name}`,
+              width: blogImage.width,
+              height: blogImage.height,
+              alt: blogImage.aria,
+              type: getFileExtension(blogImage.name),
+            }
+          : brandMetadataImage,
+      ],
       type: "website",
       url: `${env.NEXT_PUBLIC_URI}/blog/${params.blog_id}`,
     },
