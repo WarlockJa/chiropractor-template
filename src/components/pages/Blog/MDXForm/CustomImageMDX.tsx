@@ -26,7 +26,7 @@ export default function CustomImageMDX({
   // TEST
 
   const image = useMemo(
-    () => images.find((img) => img.imageId === imageId),
+    () => images.find((img) => img.imageId === Number(imageId)),
     [imageId, images],
   );
 
