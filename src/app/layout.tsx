@@ -17,6 +17,7 @@ import NavBar from "@/components/pages/NavBar/NavBar";
 import Footer from "@/components/pages/Footer/Footer";
 import NextTransitionBar from "next-transition-bar";
 import { Toaster } from "@/components/ui/sonner";
+import SearchBar from "@/components/pages/SearchBar/SearchBar";
 
 const raleway = Raleway({
   subsets: ["latin-ext"],
@@ -74,6 +75,7 @@ export default async function RootLayout({
               <main>
                 <Toaster />
                 <NavBar />
+                <SearchBar />
                 <>{children}</>
                 <Footer />
               </main>

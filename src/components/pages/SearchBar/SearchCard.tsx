@@ -1,0 +1,56 @@
+"use client";
+
+import { Link } from "react-transition-progress/next";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialCharacters";
+import { Eye, Heart, ScrollText, ThumbsUp } from "lucide-react";
+import { intlFormat } from "date-fns";
+import { CachedBlog } from "@/lib/cache/blog/getCachedBlog";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomImageMDX from "../Blog/MDXForm/CustomImageMDX";
+
+export default function SearchCard({
+  blog,
+  owner,
+  // aria,
+  // blur,
+  // id,
+  // name,
+  // owner,
+  // src,
+  // title,
+  // updatedAt,
+}: CachedBlog) {
+  return (
+    <Link href={`/blog/${blog.blogId}`}>
+      <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-foreground">
+        <CardContent className="p-0">
+          <CustomImageMDX imageId={blog.previewImage} />
+        </CardContent>
+        <CardHeader className="flex flex-col bg-foreground/10 p-2">
+          <CardTitle className="flex-1">
+            {convertCodesToSpecialCharacters(blog.title)}
+          </CardTitle>
+          <div className="flex w-full flex-wrap justify-between gap-2 text-sm">
+            <p className="flex">
+              <ThumbsUp size={20} /> 12
+            </p>
+            <p className="flex">
+              <ScrollText size={20} /> 12
+            </p>
+            <p className="flex">
+              <Eye size={20} /> 123
+            </p>
+            <p className="flex">
+              <Heart size={20} />
+            </p>
+            <div className="ml-auto flex gap-2 text-sm">
+              {owner?.name}
+              <p>{intlFormat(blog.updatedAt)}</p>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+    </Link>
+  );
+}

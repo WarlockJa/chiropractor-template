@@ -22,3 +22,9 @@ interface VectorizeUpsertQueueItem {
   id: string;
   value: string;
 }
+
+// response from vectorize
+interface EmbeddingResponse {
+  shape: number[];
+  data: number[][];
+}

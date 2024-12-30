@@ -1,6 +1,6 @@
 import { getRequestContext } from "@cloudflare/next-on-pages";
 
-export const vectorize =
+export const ai =
   process.env.NODE_ENV === "development"
-    ? getRequestContext().env.VECTORIZE
-    : (process.env as unknown as CloudflareEnv).VECTORIZE;
+    ? getRequestContext().env.AI
+    : (process.env as unknown as CloudflareEnv).AI;

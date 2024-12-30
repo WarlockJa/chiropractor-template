@@ -17,7 +17,7 @@ export default async function CustomImage({
   dbImageName,
   className,
 }: {
-  imageId?: number;
+  imageId?: number | null;
   dbImageName?: string;
   className?: string;
 }) {
