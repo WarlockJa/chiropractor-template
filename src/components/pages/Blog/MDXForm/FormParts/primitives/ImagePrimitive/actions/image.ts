@@ -207,19 +207,6 @@ async function deleteBlogImage({ imageId }: z.infer<typeof deleteImageSchema>) {
     body: JSON.stringify([data.image.name]),
   };
   q.send(JSON.stringify(deleteR2File));
-  // // deleting image files from R2
-  // try {
-  //   await r2.delete(data.image.name);
-  // } catch (error: any) {
-  //   // in case of error writing a log entry about R2 operation fail
-  //   await writeLogEntry({
-  //     code: LOG_CODES.error.storage_operation_fail,
-  //     source: "deleteImage",
-  //     text: error.message,
-  //     type: "error",
-  //   });
-  //   throw new Error(error.message);
-  // }
 
   // deleting DB record and revalidating images cache for the blog
   try {

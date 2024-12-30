@@ -233,7 +233,7 @@ async function deleteBlog({ blogId }: z.infer<typeof deleteBlogSchema>) {
   // queue accepts stringified objects (see QueueMessageBody type)
   const addVectorizeBlogData: QueueMessageBody = {
     id: "Vectorize Delete",
-    body: blogId.toString(),
+    body: `blogId${blogId}`,
   };
   q.send(JSON.stringify(addVectorizeBlogData));
 
