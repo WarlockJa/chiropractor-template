@@ -204,7 +204,7 @@ async function deleteBlogImage({ imageId }: z.infer<typeof deleteImageSchema>) {
   // adding queue task to delete image from R2
   const deleteR2File: QueueMessageBody = {
     id: "R2 Delete",
-    body: JSON.stringify([imageId]),
+    body: JSON.stringify([data.image.name]),
   };
   q.send(JSON.stringify(deleteR2File));
   // // deleting image files from R2
