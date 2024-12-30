@@ -211,7 +211,6 @@ async function deleteBlog({ blogId }: z.infer<typeof deleteBlogSchema>) {
     .where(eq(blogs_images.blogId, blogId));
 
   // forming delete promises
-  const deleteR2Promises = blogImages.map((item) => r2.delete(item.name));
   const deleteImagesPromise = db.delete(images).where(
     inArray(
       images.imageId,
@@ -221,7 +220,22 @@ async function deleteBlog({ blogId }: z.infer<typeof deleteBlogSchema>) {
   const deleteBlogPromise = db.delete(blogs).where(eq(blogs.blogId, blogId));
 
   // executing delete promises
-  await Promise.all([deleteR2Promises, deleteImagesPromise, deleteBlogPromise]);
+  await Promise.all([deleteImagesPromise, deleteBlogPromise]);
+
+  // adding queue task to delete images from R2
+  const deleteR2File: QueueMessageBody = {
+    id: "R2 Delete",
+    body: JSON.stringify(blogImages.map((item) => item.name)),
+  };
+  q.send(JSON.stringify(deleteR2File));
+
+  // adding queue task to delete vectorize vector for the deleted blog
+  // queue accepts stringified objects (see QueueMessageBody type)
+  const addVectorizeBlogData: QueueMessageBody = {
+    id: "Vectorize Delete",
+    body: blogId.toString(),
+  };
+  q.send(JSON.stringify(addVectorizeBlogData));
 
   // revalidate cache
   blogImages.forEach((item) => {

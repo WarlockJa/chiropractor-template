@@ -35,9 +35,6 @@ export const createBlogImagesAction = actionClient
     const session = await getSession();
     const user = session?.user;
 
-    // console.log("DATA: ", parsedInput);
-    // return { ok: true };
-
     // protecting from unauthorised access
     if (!userCanEditBlog({ user }) || !user) {
       // writing log entry
@@ -67,7 +64,7 @@ export const createBlogImagesAction = actionClient
 
     // checking user storage limit
     const userUsedR2Storage = await getCachedUsedR2Storage();
-    console.log(userUsedR2Storage);
+    // console.log(userUsedR2Storage);
 
     const newFilesSize = parsedImages.reduce(
       (sum, item) => (item.file ? (sum += item.file.size) : sum),
@@ -112,52 +109,6 @@ async function createImage(
 
     throw new Error(error.message);
   }
-
-  // TODO delete
-  // // generating blurhash and caption in production
-  // let blurhash: string = defaultBlurhash;
-  // let caption: string = "default caption";
-  // try {
-  //   // TODO make a Q
-  //   if (process.env.NODE_ENV === "production") {
-  //     const blurhashHeaders = new Headers();
-  //     blurhashHeaders.append(
-  //       env.BLURHASHWORKER_HEADER,
-  //       env.BLURHASHWORKER_ACCESS_KEY,
-  //     );
-
-  //     const imageCaptionHeaders = new Headers();
-  //     imageCaptionHeaders.append(
-  //       env.IMAGECAPTIONWORKER_HEADER,
-  //       env.IMAGECAPTIONWORKER_ACCESS_KEY,
-  //     );
-
-  //     [blurhash, caption] = await Promise.all([
-  //       CWBlurhash.fetch(
-  //         `${env.BLURHASHWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
-  //         { headers: blurhashHeaders },
-  //       ).then((response) => response.text()),
-  //       CWImageCaption.fetch(
-  //         `${env.IMAGECAPTIONWORKER_URL}?img=${env.NEXT_PUBLIC_R2_URI}/${prefix}-${file.name}`,
-  //         { headers: imageCaptionHeaders },
-  //       )
-  //         .then(
-  //           (response) => response.json() as unknown as { description: string },
-  //         )
-  //         .then((result) => result.description),
-  //     ]);
-  //   }
-  // } catch (error: any) {
-  //   // in case of error writing a log entry about R2 operation fail
-  //   await writeLogEntry({
-  //     code: LOG_CODES.error.storage_operation_fail,
-  //     source: "createImage",
-  //     text: error.message,
-  //     type: "error",
-  //   });
-  //   throw new Error(error.message);
-  // }
-
   // creating DB image and blog_image records
   try {
     // creating image DB record and returning object to use the imageId
@@ -250,19 +201,25 @@ async function deleteBlogImage({ imageId }: z.infer<typeof deleteImageSchema>) {
     throw new Error(error.message);
   }
 
-  // deleting image files from R2
-  try {
-    await r2.delete(data.image.name);
-  } catch (error: any) {
-    // in case of error writing a log entry about R2 operation fail
-    await writeLogEntry({
-      code: LOG_CODES.error.storage_operation_fail,
-      source: "deleteImage",
-      text: error.message,
-      type: "error",
-    });
-    throw new Error(error.message);
-  }
+  // adding queue task to delete image from R2
+  const deleteR2File: QueueMessageBody = {
+    id: "R2 Delete",
+    body: JSON.stringify([imageId]),
+  };
+  q.send(JSON.stringify(deleteR2File));
+  // // deleting image files from R2
+  // try {
+  //   await r2.delete(data.image.name);
+  // } catch (error: any) {
+  //   // in case of error writing a log entry about R2 operation fail
+  //   await writeLogEntry({
+  //     code: LOG_CODES.error.storage_operation_fail,
+  //     source: "deleteImage",
+  //     text: error.message,
+  //     type: "error",
+  //   });
+  //   throw new Error(error.message);
+  // }
 
   // deleting DB record and revalidating images cache for the blog
   try {
