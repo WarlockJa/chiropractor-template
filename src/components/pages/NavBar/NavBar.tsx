@@ -6,6 +6,7 @@ import Link from "next/link";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
 import NavBarClient from "./NavBarClient/NavBarClient";
 import ContactsPanel from "./ContactsPanel/ContactsPanel";
+import SearchSheet from "../SearchBar/SearchSheet";
 
 export default async function NavBar() {
   try {
@@ -28,12 +29,13 @@ export default async function NavBar() {
                   dbImageName={"tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"}
                 />
               </div>
-              {brandName}
+              <div className="hidden md:block">{brandName}</div>
             </Link>
 
             {/* Authentication and Mobile Menu */}
             <div className="ml-auto flex items-center gap-8 xsm:mr-4">
               <NavMenu />
+              <SearchSheet />
               <SheetMenu user={user} />
             </div>
           </div>

@@ -15,17 +15,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import SearchCard from "./SearchCard";
 import { CachedBlog } from "@/lib/cache/blog/getCachedBlog";
 import { searchAction } from "./actions/search";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { searchSchema } from "./actions/schemas";
 import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const SEARCH_RESULT = [
   {
@@ -49,19 +45,18 @@ const SEARCH_RESULT = [
   },
 ];
 
-export default function SearchBar({ searchQuery }: { searchQuery?: string }) {
+export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
   const t = useTranslations("Errors");
 
   // search results
-  const [searchResults, setSearchResults] = useState<
-    CachedBlog[] | undefined
-  >();
+  const [searchResults, setSearchResults] = useState<CachedBlog[] | undefined>(
+    // @ts-ignore
+    process.env.NODE_ENV === "development"
+      ? Array(20).fill(SEARCH_RESULT[0])
+      : undefined,
+  );
   // process.env.NODE_ENV === "production" ? undefined : TEMP_DATA,
-  // popup open/close trigger ref
-  const popupTriggerRef = useRef<HTMLButtonElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  // tracking search results menu open state
-  const [searchOpen, setSearchOpen] = useState(false);
 
   // next-safe-action
   const { execute, status } = useAction(searchAction, {
@@ -109,76 +104,63 @@ export default function SearchBar({ searchQuery }: { searchQuery?: string }) {
       execute({ searchValue: searchQuery });
     }
   }, []);
-
   return (
-    <div className="sticky top-1 z-50">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="relative w-full"
-        >
-          <FormField
-            control={form.control}
-            name="searchValue"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <search className="relative mx-auto w-full max-w-2xl">
-                    <Input
-                      {...field}
-                      ref={searchInputRef}
-                      type="text"
-                      placeholder={"Find what you like..."}
-                      className="rounded-full border-none bg-primary/20 px-6 py-6 pr-12 transition-all hover:outline-none hover:ring-2 hover:ring-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground"
-                      max={100}
-                      onClick={() => {
-                        if (searchOpen) return;
-
-                        searchResults && popupTriggerRef.current?.click();
-                      }}
-                    />
-                    <Search className="absolute right-4 top-1/2 -translate-y-1/2 transform text-primary-foreground" />
-                  </search>
-                </FormControl>
-                <FormMessage className="absolute -bottom-5 left-0 right-0 text-center" />
-              </FormItem>
-            )}
-          />
-          <button
-            type="submit"
-            className="hidden"
-            aria-hidden
-            onClick={() => {
-              if (searchOpen) return;
-
-              searchResults && popupTriggerRef.current?.click();
-            }}
-          >
-            SUBMIT
-          </button>
-        </form>
-      </Form>
-      <Popover onOpenChange={(e) => setSearchOpen(e)}>
-        <PopoverTrigger
-          ref={popupTriggerRef}
-          className="mx-auto w-full"
-        ></PopoverTrigger>
-        <PopoverContent
-          className="grid max-h-96 w-full max-w-screen-lg grid-flow-row grid-cols-2 gap-1 overflow-y-scroll rounded-lg border-2 border-foreground bg-secondary/60"
-          onOpenAutoFocus={(e) => e.preventDefault()}
-        >
+    <Sheet>
+      <SheetTrigger
+        className="flex w-12 items-center justify-center rounded-2xl border-2 p-2 transition-colors hover:border-accent hover:text-accent"
+        title="search"
+      >
+        <Search />
+      </SheetTrigger>
+      <SheetContent
+        side={"top"}
+        className="mx-auto h-screen w-screen max-w-screen-lg p-2"
+      >
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="searchValue"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <search className="relative mb-4 mt-12 flex">
+                      <Input
+                        {...field}
+                        ref={searchInputRef}
+                        type="text"
+                        placeholder={"Search for..."}
+                        className="mx-8 rounded-full border-none bg-primary/20 px-6 py-6 pr-12 ring-1 ring-accent transition-all hover:ring-2 focus-visible:outline-none focus-visible:ring-2"
+                        max={100}
+                      />
+                      <Search className="pointer-events-none absolute right-12 top-3 text-primary-foreground" />
+                    </search>
+                  </FormControl>
+                  <FormMessage className="absolute inset-x-0 top-24 text-center" />
+                </FormItem>
+              )}
+            />
+            <button type="submit" className="hidden" aria-hidden>
+              SUBMIT
+            </button>
+          </form>
+        </Form>
+        <div className="grid h-[88%] grid-flow-row gap-1 overflow-y-scroll rounded-lg p-2 md:grid-cols-2">
           {status === "executing" ? (
-            <div className="h-96 w-screen max-w-screen-lg">
+            <div className="h-96">
               <LoaderSpinner />
             </div>
-          ) : (
-            searchResults &&
-            searchResults.map((item) => (
-              <SearchCard key={`searchResult${item.blog.blogId}`} {...item} />
-            ))
-          )}
-        </PopoverContent>
-      </Popover>
-    </div>
+          ) : searchResults ? (
+            searchResults.length > 0 ? (
+              searchResults.map((item) => (
+                <SearchCard key={`searchResult${item.blog.blogId}`} {...item} />
+              ))
+            ) : (
+              <p className="text-center">There was no results</p>
+            )
+          ) : null}
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 }

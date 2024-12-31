@@ -31,29 +31,17 @@ export const getCachedSearch = cache(
           topK: limit,
         });
 
-        // const headers = new Headers();
-        // headers.append(env.EMBEDDINGS_HEADER, env.EMBEDDINGS_ACCESS_KEY);
-
-        // const vectorizeResult = await CWHobbyEmbeddings.fetch(
-        //   `${env.EMBEDDINGS_URL}?query=${value}&topK=${limit}`,
-        //   { headers },
-        // ).then((response) => response.text());
-
         try {
-          // const resObj: SearchResults = JSON.parse(vectorizeResult);
-
-          // creating promises to find catalog nodes associated with blogs returned by Vectorize
+          // creating promises to find blogs returned by Vectorize query
           // filtering out results that are lower than 0.55 in likeliness on the cosine scale from 0 to 1
           // where 1 is the highest match value
 
           const blogPromises = matches.matches
             .filter((item) => item.score > 0.55)
+            // TODO implement sorting based on likeness and search item prefix (e.g. "blogId")
             .map((item) => getCachedBlog(Number(item.id.slice(6))));
 
-          // const catalogPromises = resObj.matches.matches
-          //   .filter((item) => item.score > 0.55)
-          //   .map((item) => getCachedFeedItemDataForBlogId(item.id));
-
+          // awaiting all promises
           const result = await Promise.all(blogPromises);
 
           return result;

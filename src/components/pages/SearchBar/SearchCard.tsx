@@ -1,29 +1,17 @@
 "use client";
 
-import { Link } from "react-transition-progress/next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialCharacters";
 import { Eye, Heart, ScrollText, ThumbsUp } from "lucide-react";
 import { intlFormat } from "date-fns";
 import { CachedBlog } from "@/lib/cache/blog/getCachedBlog";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
 import CustomImageMDX from "../Blog/MDXForm/CustomImageMDX";
+import Link from "next/link";
 
-export default function SearchCard({
-  blog,
-  owner,
-  // aria,
-  // blur,
-  // id,
-  // name,
-  // owner,
-  // src,
-  // title,
-  // updatedAt,
-}: CachedBlog) {
+export default function SearchCard({ blog, owner }: CachedBlog) {
   return (
     <Link href={`/blog/${blog.blogId}`}>
-      <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-foreground">
+      <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-accent">
         <CardContent className="p-0">
           <CustomImageMDX imageId={blog.previewImage} />
         </CardContent>
