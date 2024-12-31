@@ -4,7 +4,6 @@ interface Env {
 	R2: R2Bucket;
 	DB: D1Database;
 	CWBlurhash: Fetcher;
-	CWImageCaption: Fetcher;
 	Q: Queue;
 	VECTORIZE: VectorizeIndex;
 	AI: Ai;
