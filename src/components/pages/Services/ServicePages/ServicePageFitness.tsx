@@ -17,7 +17,7 @@ export default function ServicePageFitness({
   serviceData: ServiceData;
 }) {
   return (
-    <div className="mt-28">
+    <div className="mt-24 md:mt-28">
       <HeaderImage
         dbImageName={serviceData.dbImageName}
         containerClassName="relative h-96 w-screen max-w-screen-lg mx-auto"
@@ -48,7 +48,7 @@ export default function ServicePageFitness({
             <div className="text-justify">
               <CustomImage
                 dbImageName={serviceData.dbImageName}
-                className="max-w-96 rounded-md shadow-lg shadow-accent md:float-right md:m-4"
+                className="mx-auto max-w-96 rounded-md shadow-lg shadow-accent sm:float-right sm:m-4"
               />
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
               voluptate reiciendis at consequatur sunt, vitae nostrum mollitia

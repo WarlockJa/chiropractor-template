@@ -129,7 +129,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
                         {...field}
                         ref={searchInputRef}
                         type="text"
-                        placeholder={"Search for..."}
+                        placeholder={"Search on this website"}
                         className="mx-8 rounded-full border-none bg-primary/20 px-6 py-6 pr-12 ring-1 ring-accent transition-all hover:ring-2 focus-visible:outline-none focus-visible:ring-2"
                         max={100}
                       />
