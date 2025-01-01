@@ -3,7 +3,9 @@ import { servicesData } from "@/components/pages/Services/servicesData";
 import { db } from "@db/db-connection";
 import { blogs } from "@db/schemaBlog";
 import type { MetadataRoute } from "next";
-// import { servicePaths } from "./(pages)/services/[path]/_lib/servicesData";
+// https://spacejelly.dev/posts/how-to-add-a-sitemap-rss-feed-in-next-js-app-router
+
+export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const links = [
@@ -50,6 +52,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
   ];
+
+  console.log("TEST: ", brandMetadataUrl);
 
   // adding services paths
   servicesData.forEach((service) => {

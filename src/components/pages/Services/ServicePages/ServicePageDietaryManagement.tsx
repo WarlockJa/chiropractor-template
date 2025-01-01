@@ -60,8 +60,8 @@ export default function ServicePageDietaryManagement({
               feel energised, balanced and above all, healthier. Healthy eating
               promotes the long-term aim of maintaining a well-balanced diet.
               Having a healthy diet is important for your health and well-being.
-              Eating a wide variety of foods, and ensuring that you don't eat
-              too much salt, sugar, or saturated fats is essential.{" "}
+              Eating a wide variety of foods, and ensuring that you don&apos;t
+              eat too much salt, sugar, or saturated fats is essential.{" "}
             </p>
             <h3>What are the benefits of eating healthily?</h3>
             <p>
@@ -102,8 +102,8 @@ export default function ServicePageDietaryManagement({
             <p>
               It&apos;s important to note that healthy eating is different from
               dieting, and doesn&apos;t aim to reduce a significant amount of
-              weight in a short space of time. It's more than losing weight, it
-              focuses on all-around good health and its benefits.
+              weight in a short space of time. It&apos;s more than losing
+              weight, it focuses on all-around good health and its benefits.
               &apos;Dieting&apos; is used to describe the process of cutting
               down or cutting out certain food groups, typically to aid rapid
               weight-loss. Diets aren&apos;t necessarily a healthy option: they
@@ -140,10 +140,10 @@ export default function ServicePageDietaryManagement({
               meet your micronutrient needs. Making healthier choices and
               learning more about different food groups, eating a balanced diet,
               and what foods you should try not to eat too often can all help.
-              It's important to make sure you get enough calories to help fuel
-              how active you are. This means both eating and drinking enough to
-              give you energy. When we eat too much, we end up storing the
-              excess as fat. When we don't eat enough, we lose weight.{" "}
+              It&apos;s important to make sure you get enough calories to help
+              fuel how active you are. This means both eating and drinking
+              enough to give you energy. When we eat too much, we end up storing
+              the excess as fat. When we don&apos;t eat enough, we lose weight.{" "}
             </p>
             <h3>What are healthy foods to eat?</h3>
             <p>
