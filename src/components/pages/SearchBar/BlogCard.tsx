@@ -2,11 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialCharacters";
-import { Eye, Heart, ScrollText, ThumbsUp } from "lucide-react";
 import { intlFormat } from "date-fns";
-import { CachedBlog } from "@/lib/cache/blog/getCachedBlog";
 import CustomImageMDX from "../Blog/MDXForm/CustomImageMDX";
 import Link from "next/link";
+import { CachedBlog } from "@/lib/cache/blog/blog";
 
 export default function BlogCard({ blog, owner }: CachedBlog) {
   return (

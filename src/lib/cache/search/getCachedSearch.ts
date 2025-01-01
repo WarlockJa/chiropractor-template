@@ -2,7 +2,8 @@ import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { ai } from "@cf/ai/ai";
 import { vectorize } from "@cf/vectorize/vectorize";
-import { CachedBlog, getCachedBlog } from "../blog/getCachedBlog";
+import { CachedBlog } from "../blog/blog";
+import { getCachedBlogId } from "../blog/getCachedBlogId";
 
 export interface CachedSearchResult {
   pages: VectorizeMatch[];
@@ -53,7 +54,7 @@ export const getCachedSearch = cache(
               (item) => item.score > 0.55 && item.id.slice(0, 6) === "blogId",
             )
             .sort((a, b) => (a.score > b.score ? -1 : 1))
-            .map((item) => getCachedBlog(Number(item.id.slice(6))));
+            .map((item) => getCachedBlogId(Number(item.id.slice(6))));
 
           // awaiting all promises
           const blogs = await Promise.all(blogPromises);

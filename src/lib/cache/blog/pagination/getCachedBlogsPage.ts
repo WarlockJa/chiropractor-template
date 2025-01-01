@@ -3,7 +3,7 @@ import { blogs } from "@db/schemaBlog";
 import { asc, eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
-import { getCachedBlog } from "../getCachedBlog";
+import { getCachedBlogId } from "../getCachedBlogId";
 
 // TODO add filetring by TAG and cache tag for TAG
 export const getCachedBlogsPage = cache(
@@ -15,13 +15,13 @@ export const getCachedBlogsPage = cache(
 
           const blogsIds = userCanEditBlog
             ? await db
-                .select({ blogId: blogs.blogId })
+                .select({ blogId: blogs.blogId, blogName: blogs.blogName })
                 .from(blogs)
                 .orderBy(asc(blogs.updatedAt))
                 .limit(limit)
                 .offset(limit * (page ?? 0))
             : await db
-                .select({ blogId: blogs.blogId })
+                .select({ blogId: blogs.blogId, blogName: blogs.blogName })
                 .from(blogs)
                 .where(eq(blogs.published, true))
                 .orderBy(asc(blogs.updatedAt))
@@ -29,7 +29,7 @@ export const getCachedBlogsPage = cache(
                 .offset(limit * (page ?? 0));
 
           return await Promise.all(
-            blogsIds.map((id) => getCachedBlog(id.blogId)),
+            blogsIds.map((id) => getCachedBlogId(id.blogId)),
           );
         } catch (error) {
           console.log(error);

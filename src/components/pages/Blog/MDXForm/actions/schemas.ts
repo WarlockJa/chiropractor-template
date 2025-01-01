@@ -7,14 +7,20 @@ export const createBlogActionSchema =
   z.custom<
     Omit<
       SelectBlogs,
-      "blogId" | "createdAt" | "updatedAt" | "published" | "owner" | "views"
+      | "blogId"
+      | "blogName"
+      | "createdAt"
+      | "updatedAt"
+      | "published"
+      | "owner"
+      | "views"
     >
   >();
 export const createBlogSchema =
   z.custom<
     Omit<
       SelectBlogs,
-      "blogId" | "createdAt" | "updatedAt" | "published" | "views"
+      "blogId" | "blogName" | "createdAt" | "updatedAt" | "published" | "views"
     >
   >();
 
@@ -22,7 +28,12 @@ export const createBlogSchema =
 // because not all of them are required for update
 // combining with a required blog id field to for a resulting schema
 export const updateBlogSchema = z.custom<
-  Partial<Omit<SelectBlogs, "createdAt" | "updatedAt" | "blogId" | "owner">> &
+  Partial<
+    Omit<
+      SelectBlogs,
+      "createdAt" | "updatedAt" | "blogId" | "blogName" | "owner"
+    >
+  > &
     Pick<SelectBlogs, "blogId">
 >();
 

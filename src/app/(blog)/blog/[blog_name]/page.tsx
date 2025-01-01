@@ -3,7 +3,6 @@ import { isNotFoundError } from "next/dist/client/components/not-found";
 import { serialize } from "next-mdx-remote/serialize";
 import getSession from "@/lib/db/getSession";
 import remarkGFM from "remark-gfm";
-import { getCachedBlog } from "@/lib/cache/blog/getCachedBlog";
 import { getCachedBlogImages } from "@/lib/cache/blog/getCachedBlogImages";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -13,11 +12,12 @@ import MDXRemoteWrapper from "@/components/pages/Blog/MDXForm/MDXRemoteWrapper";
 import MDXFormEditable from "@/components/pages/Blog/MDXForm/MDXFormEditable";
 import userCanEditBlog from "@/components/pages/Blog/MDXForm/lib/userCanEditBlog";
 import { TAllBlogParts } from "@/components/pages/Blog/MDXForm/mdxtypes";
+import { getCachedBlogName } from "@/lib/cache/blog/getCachedBlogName";
 
 export default async function MDXBlogPage({
   params,
 }: {
-  params: { blog_id: number };
+  params: { blog_name: string };
 }) {
   try {
     const session = await getSession();
@@ -26,8 +26,8 @@ export default async function MDXBlogPage({
     // reading cached MDX data
     // additional cache revalidation check for user role change
     const [blogData, blogImages] = await Promise.all([
-      getCachedBlog(params.blog_id),
-      getCachedBlogImages(params.blog_id),
+      getCachedBlogName(params.blog_name),
+      getCachedBlogImages(params.blog_name),
     ]);
 
     // if blog not published redirecting user

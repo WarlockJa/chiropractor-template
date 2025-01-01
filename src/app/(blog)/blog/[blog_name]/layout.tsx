@@ -7,12 +7,12 @@ import {
   brandName,
   defaultMetadata,
 } from "@/appConfig";
-import { getCachedBlog } from "@/lib/cache/blog/getCachedBlog";
 import { getCachedImageId } from "@/lib/cache/getCachedImageId";
 import { getFileExtension } from "@/lib/getFileExtension";
+import { getCachedBlogName } from "@/lib/cache/blog/getCachedBlogName";
 
 type Props = {
-  params: { blog_id: number };
+  params: { blog_name: string };
   // searchParams: { [key: string]: string | string[] | undefined };
 };
 
@@ -22,7 +22,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   // fetching cached blog data
-  const blogData = await getCachedBlog(params.blog_id);
+  const blogData = await getCachedBlogName(params.blog_name);
   // fetching blog preview image
   const blogImage = blogData.blog.previewImage
     ? (await getCachedImageId(blogData.blog.previewImage))[0]
@@ -48,7 +48,7 @@ export async function generateMetadata(
           : brandMetadataImage,
       ],
       type: "website",
-      url: `${env.NEXT_PUBLIC_URI}/blog/${params.blog_id}`,
+      url: `${env.NEXT_PUBLIC_URI}/blog/${params.blog_name}`,
     },
     twitter: {
       card: "summary_large_image",

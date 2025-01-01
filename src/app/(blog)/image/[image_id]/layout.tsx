@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { env } from "@/lib/env.mjs";
 import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialCharacters";
-import { getCachedBlog } from "@/lib/cache/blog/getCachedBlog";
+import { getCachedBlogId } from "@/lib/cache/blog/getCachedBlogId";
 import {
   brandMetadataSiteName,
   brandMetadataTwitterAccount,
@@ -28,7 +28,7 @@ export async function generateMetadata(
     if (!imageBlog.blog_image) return defaultMetadata;
 
     // getting post data
-    const blogData = await getCachedBlog(imageBlog.blog_image.blogId);
+    const blogData = await getCachedBlogId(imageBlog.blog_image.blogId);
 
     return {
       title: convertCodesToSpecialCharacters(blogData.blog.title),

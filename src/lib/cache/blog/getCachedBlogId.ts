@@ -1,19 +1,12 @@
 import { db } from "@db/db-connection";
 import { users } from "@db/schemaAuth";
-import { blogs, SelectBlogs } from "@db/schemaBlog";
+import { blogs } from "@db/schemaBlog";
 import { eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
+import { CachedBlog } from "./blog";
 
-export interface CachedBlog {
-  blog: SelectBlogs;
-  owner: {
-    name: string | null;
-    image: string | null;
-  } | null;
-}
-
-export const getCachedBlog = cache(
+export const getCachedBlogId = cache(
   async (blogId: number): Promise<CachedBlog> => {
     const getCachedData = unstable_cache(
       async (blogId: number) => {

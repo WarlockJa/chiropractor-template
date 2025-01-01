@@ -23,6 +23,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { TParts } from "./mdxtypes";
+import { usePathname, useRouter } from "next/navigation";
 
 interface IMDXFormProps {
   source?: TParts;
@@ -41,6 +42,9 @@ export default function MDXFormEditable({
 }: IMDXFormProps) {
   const t = useTranslations("Errors");
   const tBlog = useTranslations("Blog");
+  // reading pathname to track changes in blog name
+  const pathname = usePathname();
+  const router = useRouter();
   // mdx parts
   const [parts, setParts] = useAtom(blogPartsAtom);
   // index of the edited part
@@ -99,10 +103,16 @@ export default function MDXFormEditable({
     },
 
     onSuccess({ input, data }) {
+      if (!data) return;
+
       toast(tBlog("blog_saved"), {
         description: tBlog("blog_updated", { title: input.title }),
       });
       setEdit(false);
+
+      // navigating to new route if title has been changed
+      if (pathname !== `/blog/${data[0].blogName}`)
+        router.replace(`/blog/${data[0].blogName}`);
     },
   });
 
