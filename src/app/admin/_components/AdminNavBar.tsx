@@ -9,6 +9,9 @@ export default function AdminNavBar() {
       <Button asChild>
         <Link href={"/admin/images"}>Images</Link>
       </Button>
+      <Button asChild>
+        <Link href={"/admin/vectorize"}>Vectorize</Link>
+      </Button>
     </nav>
   );
 }

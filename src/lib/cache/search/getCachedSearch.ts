@@ -4,6 +4,11 @@ import { ai } from "@cf/ai/ai";
 import { vectorize } from "@cf/vectorize/vectorize";
 import { CachedBlog, getCachedBlog } from "../blog/getCachedBlog";
 
+export interface CachedSearchResult {
+  pages: VectorizeMatch[];
+  blogs: CachedBlog[];
+}
+
 export const getCachedSearch = cache(
   async ({
     value,
@@ -11,12 +16,12 @@ export const getCachedSearch = cache(
   }: {
     value: string;
     limit?: number;
-  }): Promise<CachedBlog[] | undefined> => {
+  }): Promise<CachedSearchResult | undefined> => {
     const getCachedData = unstable_cache(
       async (
         value: string,
         limit: number,
-      ): Promise<CachedBlog[] | undefined> => {
+      ): Promise<CachedSearchResult | undefined> => {
         console.log(`Fetching search for: ${value}`);
 
         // generating query vector
@@ -31,27 +36,39 @@ export const getCachedSearch = cache(
           topK: limit,
         });
 
+        // filtering pages vectors
+        const pages = matches.matches
+          .filter(
+            (item) => item.score > 0.55 && item.id.slice(0, 6) !== "blogId",
+          )
+          .sort((a, b) => (a.score > b.score ? -1 : 1));
+
         try {
           // creating promises to find blogs returned by Vectorize query
           // filtering out results that are lower than 0.55 in likeliness on the cosine scale from 0 to 1
           // where 1 is the highest match value
 
           const blogPromises = matches.matches
-            .filter((item) => item.score > 0.55)
-            // TODO implement sorting based on likeness and search item prefix (e.g. "blogId")
+            .filter(
+              (item) => item.score > 0.55 && item.id.slice(0, 6) === "blogId",
+            )
+            .sort((a, b) => (a.score > b.score ? -1 : 1))
             .map((item) => getCachedBlog(Number(item.id.slice(6))));
 
           // awaiting all promises
-          const result = await Promise.all(blogPromises);
+          const blogs = await Promise.all(blogPromises);
 
-          return result;
+          return { pages, blogs };
         } catch (error) {
           // TODO LOG error
           return undefined;
         }
       },
       [`searchQuery${value}${limit}`],
-      { revalidate: 60 * 60 * 24, tags: [`searchQueryTag${value}${limit}`] },
+      {
+        revalidate: 60 * 60 * 24,
+        tags: [`searchQueryTag${value}${limit}`, "searchTag"],
+      },
     );
 
     return await getCachedData(value, limit);

@@ -17,7 +17,7 @@ export default function ServicePageRelax({
   serviceData: ServiceData;
 }) {
   return (
-    <div className="mt-24 md:mt-28">
+    <div className="prose mx-auto mt-24 w-screen max-w-screen-lg text-foreground dark:prose-invert md:mt-28">
       <HeaderImage
         dbImageName={serviceData.dbImageName}
         containerClassName="relative h-96 w-screen max-w-screen-lg mx-auto"
@@ -50,44 +50,77 @@ export default function ServicePageRelax({
                 dbImageName={serviceData.dbImageName}
                 className="mx-auto max-w-96 rounded-md shadow-lg shadow-accent sm:float-right sm:m-4"
               />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-              voluptate reiciendis at consequatur sunt, vitae nostrum mollitia
-              culpa eaque? Voluptate optio saepe nulla dolores doloremque
-              recusandae autem eligendi quo ipsam! Molestias accusamus,
-              excepturi alias perspiciatis maxime repudiandae neque veniam,
-              temporibus optio provident pariatur recusandae iste? Vero, nisi
-              debitis tempore omnis sed id fugit totam atque nam, exercitationem
-              saepe ducimus dolorum? Dolorem in labore debitis corporis quod
-              aliquid ad sapiente velit. Expedita dicta ducimus aliquid
-              assumenda non rem sunt perferendis quos fugiat, debitis libero
-              culpa pariatur voluptatum ut nulla amet iste? Nihil omnis quidem
-              excepturi dolor necessitatibus laborum enim cumque dolores quaerat
-              neque optio magni accusantium rerum tenetur nisi quam veniam quis,
-              consequatur exercitationem aliquid reiciendis cum dolorum? Nemo,
-              perspiciatis accusamus? Libero omnis reiciendis sint praesentium
-              vero dolores, accusantium possimus magnam aperiam maxime tempore?
-              Neque error assumenda, molestias aliquid, possimus quibusdam,
-              incidunt obcaecati minima quos corrupti cupiditate animi maxime a
-              eum. Nulla consectetur placeat, repellat vel repellendus quidem
-              iste impedit fuga debitis quisquam, exercitationem nisi, sint
-              quod! Provident et architecto pariatur ratione velit ut quaerat
-              cupiditate ad quibusdam, quam est veniam!
+              One of the most important things to keep in mind during a
+              chiropractic adjustment is staying relaxed. However, if you
+              haven&apos;t had a chiropractic adjustment, or tend to be anxious
+              you might appreciate some tips for relaxing during a chiropractic
+              adjustment.
             </div>
+            <h2>Why Should I Be Relaxed?</h2>
+            <p>
+              You may be wondering, why should I be relaxed for a chiropractic
+              adjustment? A chiropractic adjustment is designed to realign your
+              spine to help assist the health of your musculoskeletal system. If
+              you aren&apos;t relaxed during your adjustment it may be more
+              difficult for your chiropractor to properly align your spine.
+              Relaxing will help prevent a patient from tensing their muscles
+              and achieve a better and more comfortable adjustment. Someone
+              who&apos;s tensing their muscles may feel more discomfort during
+              an adjustment than a person whose muscles are relaxed. By being
+              relaxed you&apos;ll get the most out of your chiropractic
+              adjustment.
+            </p>
+            <h2>Tips For Relaxing During Chiropractic Adjustment</h2>
+            <p>
+              Staying relaxed is important for getting the most out of your
+              chiropractic adjustment as well as minimizing discomfort. One
+              major thing you can do to stay relaxed is focus on your breathing.
+              Regulating your breathing to a slow, steady rate will help you
+              stay relaxed. It will also allow the greatest possible movement
+              from your joints, which will help the adjustment progress
+              smoothly. Try to avoid tensing up your muscles. If you do tense up
+              or resist it can adversely affect your adjustment and may give you
+              discomfort. Try to stay still so your chiropractor can position
+              you in the best way for your chiropractic adjustment. Further,
+              many patients find that they are more relaxed by avoiding highly
+              caffeinated beverages prior to their appointments. Patients should
+              try to hydrate before and after their appointments to help their
+              bodies adjust.
+            </p>
+            <h2>Do Adjustments Hurt?</h2>
+            <p>
+              Chiropractic adjustments shouldn&apos;t hurt. However, if a
+              patient involuntarily stiffens to tense their muscles there could
+              be discomfort that isn&apos;t typical. Recent trauma can also make
+              a chiropractic adjustment less comfortable. Things like whiplash
+              from car accidents can change how an adjustment feels. If you do
+              or don&apos;t hear pops or cracks during your adjustment that is
+              completely normal. Not hearing pops doesn&apos;t mean the
+              adjustment isn&apos;t working. After an adjustment, much like
+              after a workout, you may feel sore, or tired. You will be moving
+              differently after your alignment and your body, including muscles,
+              ligaments, and tendons, have to adjust to moving properly. The
+              soreness will go away after a while.
+            </p>
+            <h2>Summary</h2>
+            <p>
+              Staying relaxed during a chiropractic adjustment can help prevent
+              discomfort and help your chiropractor properly perform your
+              alignment. Keep in mind that adjustments typically don&apos;t
+              hurt, they actually can relieve pain. If you come to the
+              chiropractor in a lot of pain, various other adjustive techniques
+              may be used to avoid causing more pain during the adjustment until
+              you are ready and comfortable to be adjusted by hand. Focusing on
+              your breathing and avoiding tensing your muscles can help you stay
+              relaxed. Also, make sure to drink plenty of water and avoid
+              caffeine prior to your appointments.
+            </p>
           </div>
 
-          <ul className="ml-12 list-disc leading-8">
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-            <li>Perferendis nesciunt, eos, optio reiciendis beatae,</li>
-            <li>
-              dicta ea quia delectus assumenda saepe cupiditate voluptates?
-            </li>
-            <li>Vitae eos consequatur obcaecati id alias possimus odit?</li>
-          </ul>
-
           <div className="p-2">
-            <CustomHeader text="PEOPLE OFTEN ASK" fontSizeRem={3} />
+            <CustomHeader text="PEOPLE OFTEN ASK" fontSizeRem={2} />
             <Accordion type="single" collapsible className="shadow">
-              <AccordionItem value="item-1">
+              <AccordionItem value="item-1" className="*:m-0">
                 <AccordionTrigger className="rounded px-4 text-xl uppercase hover:bg-accent/20">
                   Question One
                 </AccordionTrigger>
@@ -98,8 +131,8 @@ export default function ServicePageRelax({
                   quisquam distinctio perspiciatis fugiat adipisci.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger className="rounded px-4 text-xl uppercase hover:bg-accent/20">
+              <AccordionItem value="item-2" className="*:m-0">
+                <AccordionTrigger className="mrounded px-4 text-xl uppercase hover:bg-accent/20">
                   Question Two
                 </AccordionTrigger>
                 <AccordionContent className="my-2 rounded bg-muted/20 p-4 text-xl">
@@ -109,7 +142,7 @@ export default function ServicePageRelax({
                   quisquam distinctio perspiciatis fugiat adipisci.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-3">
+              <AccordionItem value="item-3" className="*:m-0">
                 <AccordionTrigger className="rounded px-4 text-xl uppercase hover:bg-accent/20">
                   Question Three
                 </AccordionTrigger>
@@ -120,7 +153,7 @@ export default function ServicePageRelax({
                   quisquam distinctio perspiciatis fugiat adipisci.
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem value="item-4">
+              <AccordionItem value="item-4" className="*:m-0">
                 <AccordionTrigger className="rounded px-4 text-xl uppercase hover:bg-accent/20">
                   Question Four
                 </AccordionTrigger>
@@ -134,39 +167,29 @@ export default function ServicePageRelax({
             </Accordion>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>
-                <CustomHeader text="OUR PRICES" fontSizeRem={3} />
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Table className="mx-auto max-w-md">
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="font-medium">Procedure One</TableCell>
-                    <TableCell>$100</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">Procedure Two</TableCell>
-                    <TableCell>$200</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">
-                      Procedure Three
-                    </TableCell>
-                    <TableCell>$300</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-medium">
-                      Procedure Four
-                    </TableCell>
-                    <TableCell>$500</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
+          <div className="p-2">
+            <CustomHeader text="OUR PRICES" fontSizeRem={2} />
+            <Table className="mx-auto my-0 max-w-md text-xl">
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium">Procedure One</TableCell>
+                  <TableCell className="font-sans">$100</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Procedure Two</TableCell>
+                  <TableCell className="font-sans">$200</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Procedure Three</TableCell>
+                  <TableCell className="font-sans">$300</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Procedure Four</TableCell>
+                  <TableCell className="font-sans">$500</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
         </div>
       </section>
     </div>

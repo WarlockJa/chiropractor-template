@@ -1,5 +1,5 @@
 import { getServiceData } from "@/components/pages/Services/servicesData";
-import ServiceDescription from "./_components/ServiceDescription";
+import { getServicePage } from "@/components/pages/Services/servicesPages";
 import { notFound } from "next/navigation";
 
 export default function ServicePage({
@@ -7,10 +7,11 @@ export default function ServicePage({
 }: {
   params: { path: string };
 }) {
+  const servicePage = getServicePage({ path });
   const serviceData = getServiceData({ path });
-  if (!serviceData) return notFound();
+  if (!serviceData || !servicePage) return notFound();
 
-  return <serviceData.page serviceData={serviceData} />;
+  return <servicePage.page serviceData={serviceData} />;
 }
 
 export const runtime = "edge";

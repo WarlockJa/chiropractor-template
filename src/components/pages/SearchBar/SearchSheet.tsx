@@ -15,13 +15,14 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
-import SearchCard from "./SearchCard";
-import { CachedBlog } from "@/lib/cache/blog/getCachedBlog";
+import BlogCard from "./BlogCard";
 import { searchAction } from "./actions/search";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { searchSchema } from "./actions/schemas";
 import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { CachedSearchResult } from "@/lib/cache/search/getCachedSearch";
+import PageCard from "./PageCard";
 
 const SEARCH_RESULT = [
   {
@@ -49,10 +50,12 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
   const t = useTranslations("Errors");
 
   // search results
-  const [searchResults, setSearchResults] = useState<CachedBlog[] | undefined>(
+  const [searchResults, setSearchResults] = useState<
+    CachedSearchResult | undefined
+  >(
     // @ts-ignore
     process.env.NODE_ENV === "development"
-      ? Array(20).fill(SEARCH_RESULT[0])
+      ? { blogs: Array(20).fill(SEARCH_RESULT[0]), pages: [] }
       : undefined,
   );
   // process.env.NODE_ENV === "production" ? undefined : TEMP_DATA,
@@ -90,6 +93,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
     resolver: zodResolver(searchSchema),
     defaultValues: {
       searchValue: searchQuery ?? "",
+      resultsNumber: 20,
     },
   });
 
@@ -145,22 +149,56 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
             </button>
           </form>
         </Form>
-        <div className="grid h-[88%] grid-flow-row gap-1 overflow-y-scroll rounded-lg p-2 md:grid-cols-2">
+        <div className="h-[88%] overflow-y-scroll rounded-lg p-2">
           {status === "executing" ? (
             <div className="h-96">
               <LoaderSpinner />
             </div>
-          ) : searchResults ? (
-            searchResults.length > 0 ? (
-              searchResults.map((item) => (
-                <SearchCard key={`searchResult${item.blog.blogId}`} {...item} />
-              ))
-            ) : (
-              <p className="text-center">There was no results</p>
-            )
-          ) : null}
+          ) : (
+            SearchResults({ searchResults })
+          )}
         </div>
       </SheetContent>
     </Sheet>
   );
 }
+
+const SearchResults = ({
+  searchResults,
+}: {
+  searchResults: CachedSearchResult | undefined;
+}) => {
+  if (!searchResults) return null;
+
+  if (searchResults.blogs.length === 0 && searchResults.pages.length === 0)
+    return <p className="text-center">There was no results</p>;
+
+  // constructing pages results
+  const pageCards = searchResults.pages.map((item) => (
+    <PageCard key={`searchResult${item.id}`} path={item.id} />
+  ));
+
+  // constructing blogs results
+  const blogCards = searchResults.blogs.map((item) => (
+    <BlogCard key={`searchResult${item.blog.blogId}`} {...item} />
+  ));
+
+  return (
+    <div className="flex flex-col">
+      {pageCards.length > 0 && (
+        <>
+          <h2 className="indent-8">Pages</h2>
+          <div className="grid grid-flow-row gap-1">{pageCards}</div>
+        </>
+      )}
+      {blogCards.length > 0 && (
+        <>
+          <h2 className="indent-8">Blogs</h2>
+          <div className="grid grid-flow-row gap-1 md:grid-cols-2">
+            {blogCards}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};

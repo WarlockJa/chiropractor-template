@@ -23,12 +23,12 @@ export default function CustomHeader({
         >
           {text.slice(0, 1)}
         </div>
-        <h1
+        <div
           className={cn("text-foreground", textClassName)}
           style={{ fontSize: `${fontSizeRem}rem` }}
         >
           {text}
-        </h1>
+        </div>
       </div>
     </div>
   );

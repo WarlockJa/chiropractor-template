@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </HeaderImage>
 
-      <div className="mx-auto grid w-screen max-w-screen-xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
         {servicesData.map((item) => (
           <ServiceCardList
             key={item.title}
