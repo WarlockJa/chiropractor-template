@@ -7,7 +7,7 @@ import { cache } from "react";
 export const getCachedImageName = cache(async (dbImageName: string) => {
   const getCachedData = unstable_cache(
     async (dbImageName: string) => {
-      console.log(`Fetching db images with ID ${dbImageName}`);
+      console.log(`Fetching db images with name ${dbImageName}`);
 
       const result = await db
         .select()
