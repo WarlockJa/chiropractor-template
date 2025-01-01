@@ -8,6 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { cn } from "@/lib/utils";
 
 const maxNumberOfPages = 8;
 
@@ -15,10 +16,12 @@ export default function BlogsListPagination({
   page,
   blogsNumber,
   limit,
+  className,
 }: {
   page: number;
   blogsNumber: number;
   limit: number;
+  className?: string;
 }) {
   const pagesArray = new Array(
     Math.ceil(blogsNumber / limit) > maxNumberOfPages
@@ -31,7 +34,12 @@ export default function BlogsListPagination({
   }
 
   return (
-    <Pagination className="fixed bottom-0 h-20 bg-gradient-to-t from-secondary to-transparent">
+    <Pagination
+      className={cn(
+        "h-20 bg-gradient-to-t from-secondary to-transparent",
+        className,
+      )}
+    >
       <PaginationContent>
         {page > 0 && (
           <PaginationItem>

@@ -6,13 +6,15 @@ export default function UserAvatar({
   image,
   name,
   title,
+  className,
 }: {
   image: string | null | undefined;
   name: string | null | undefined;
   title: string | null | undefined;
+  className?: string;
 }) {
   return (
-    <Avatar>
+    <Avatar className={className}>
       {image && <AvatarImage src={image} title={title ?? ""} />}
       <AvatarFallback className="bg-accent text-accent-foreground">
         {name?.slice(0, 2)}

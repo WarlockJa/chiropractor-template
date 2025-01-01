@@ -23,6 +23,7 @@ import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { CachedSearchResult } from "@/lib/cache/search/getCachedSearch";
 import PageCard from "./PageCard";
+import { cn } from "@/lib/utils";
 
 const SEARCH_RESULT = [
   {
@@ -52,12 +53,11 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
   // search results
   const [searchResults, setSearchResults] = useState<
     CachedSearchResult | undefined
-  >(
-    // @ts-ignore
-    process.env.NODE_ENV === "development"
-      ? { blogs: Array(20).fill(SEARCH_RESULT[0]), pages: [] }
-      : undefined,
-  );
+  >();
+  // @ts-ignore
+  // process.env.NODE_ENV === "development"
+  // ? { blogs: Array(20).fill(SEARCH_RESULT[0]), pages: [] }
+  // : undefined,
   // process.env.NODE_ENV === "production" ? undefined : TEMP_DATA,
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -118,7 +118,10 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
       </SheetTrigger>
       <SheetContent
         side={"top"}
-        className="mx-auto h-screen w-screen max-w-screen-lg p-2"
+        className={cn(
+          "mx-auto h-40 w-screen max-w-screen-lg p-2",
+          searchResults && "h-screen",
+        )}
       >
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>

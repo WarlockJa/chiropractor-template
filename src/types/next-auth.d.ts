@@ -5,7 +5,9 @@ declare module "next-auth" {
     user: User & DefaultSession["user"];
   }
 
+  type RoleTypes = "admin" | "owner" | "editor";
+
   interface User {
-    role: String | null;
+    role: RoleTypes | null;
   }
 }

@@ -23,19 +23,6 @@ export default async function MDXBlogPage({
     const session = await getSession();
     const user = session?.user;
 
-    // reading cached catalog data.
-    // const catalogData = await getCachedCatalogNodeData(params.catalog_id);
-
-    // if (!catalogData) return CatalogNotFound({ params });
-
-    // // catalog is a folder
-    // if (catalogData.folder)
-    //   // displaying catalog component
-    //   return <CatalogFolder catalog_id={catalogData.id} owner={params.user} />;
-
-    // // catalog is marked as file but has no blog associated with it TODO report DB inconsistency
-    // if (!catalogData.blog) return CatalogNotFound({ params });
-
     // reading cached MDX data
     // additional cache revalidation check for user role change
     const [blogData, blogImages] = await Promise.all([
@@ -43,18 +30,11 @@ export default async function MDXBlogPage({
       getCachedBlogImages(params.blog_id),
     ]);
 
-    // checking user rights
-    // const editRights = getCatalogNodeEditRights({
-    //   ownerId: params.user,
-    //   userId: user?.name,
-    //   userRole: user?.role,
-    // });
-
     // if blog not published redirecting user
-    // if (!editRights && !blogData.published) redirect(`/${params.user}`);
+    if (!userCanEditBlog({ user }) && !blogData.blog.published)
+      redirect(`/blog`);
     // if blog has no mdx data redirecting TODO report DB inconsistency
-    // TODO remove redirect
-    if (!blogData.blog.mdx) redirect(`/blogs`);
+    if (!blogData.blog.mdx) redirect(`/blog`);
 
     if (!userCanEditBlog({ user })) {
       // serializing string into an MDX component

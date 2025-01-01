@@ -5,8 +5,21 @@ import { CachedBlog } from "@/lib/cache/blog/getCachedBlog";
 import Link from "next/link";
 import { intlFormat } from "date-fns";
 import DeleteBlogButton from "@/components/pages/Blog/DeleteBlogButton";
-import { X } from "lucide-react";
+import { FileWarning, X } from "lucide-react";
 import UserAvatar from "@/components/pages/NavBar/UserAvatar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default async function PostCard({
   blogData,
@@ -16,43 +29,62 @@ export default async function PostCard({
   deleteRights?: boolean;
 }) {
   return (
-    <div className="bg-accent">
-      <div className="group relative mt-2 h-80 w-full overflow-hidden rounded">
-        <CustomImageMDX imageId={blogData.blog.previewImage} />
-        {/* <div className="absolute inset-0 z-[-1] transition-transform duration-300 group-hover:scale-110">
-          </div> */}
-
-        <Link href={`/blog/${blogData.blog.blogId}`}>
-          <div className="flex h-full flex-col justify-end rounded bg-gradient-to-b from-[#0004] from-50% to-black to-100% p-5 text-white transition-colors duration-300 hover:text-accent">
-            <p className="absolute bottom-2 right-2 text-sm text-white">
-              {intlFormat(blogData.blog.updatedAt)}
-            </p>
-            <h2 className="text-3xl">
+    <Link href={`/blog/${blogData.blog.blogId}`} className="group">
+      <Card className="grid h-48 grid-cols-2 overflow-hidden group-hover:shadow group-hover:shadow-accent">
+        <div className="relative overflow-hidden">
+          <CustomImageMDX
+            imageId={blogData.blog.previewImage}
+            className="absolute inset-0 object-cover transition-transform group-hover:scale-105"
+          />
+        </div>
+        <div className="relative">
+          <CardHeader>
+            <CardTitle className="text-xl">
               {convertCodesToSpecialCharacters(blogData.blog.title)}
-            </h2>
-            <p className="text-white">
+            </CardTitle>
+            <CardDescription className="line-clamp-4 text-ellipsis">
               {convertCodesToSpecialCharacters(blogData.blog.description ?? "")}
-            </p>
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="absolute bottom-2 right-2 flex items-center gap-2 p-0 pr-2 text-sm">
             <UserAvatar
               image={blogData.owner?.image}
               name={blogData.owner?.name}
               title={blogData.owner?.name}
+              className="h-8 w-8"
             />
             <p>{blogData.owner?.name}</p>
-          </div>
-        </Link>
-        {deleteRights && (
-          <DeleteBlogButton blogId={blogData.blog.blogId}>
-            <Button
-              size={"icon"}
-              variant={"ghost"}
-              className="absolute right-0 top-0 p-2 opacity-0 group-hover:opacity-100"
-            >
-              <X className="text-destructive" />
-            </Button>
-          </DeleteBlogButton>
-        )}
-      </div>
-    </div>
+            <p className="">{intlFormat(blogData.blog.updatedAt)}</p>
+          </CardContent>
+          {deleteRights && (
+            <div className="absolute right-0 top-0 p-2">
+              {!blogData.blog.published && (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="text-destructive transition-colors hover:opacity-70">
+                      <FileWarning />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      This blog is not yet published. It is only visible to
+                      users with editing rights
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )}
+              <DeleteBlogButton blogId={blogData.blog.blogId}>
+                <Button
+                  size={"icon"}
+                  variant={"ghost"}
+                  className="opacity-0 hover:bg-transparent group-hover:opacity-100"
+                  title="delete blog"
+                >
+                  <X className="text-destructive hover:opacity-70" />
+                </Button>
+              </DeleteBlogButton>
+            </div>
+          )}
+        </div>
+      </Card>
+    </Link>
   );
 }

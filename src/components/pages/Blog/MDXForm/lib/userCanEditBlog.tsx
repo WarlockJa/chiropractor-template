@@ -1,5 +1,7 @@
 import { User } from "next-auth";
 
+// returns TRUE if user has a role taht allows them to edit blogs
+// otherwise returns FALSE
 export default function userCanEditBlog({ user }: { user: User | undefined }) {
   return user?.role !== "editor" &&
     user?.role !== "owner" &&
