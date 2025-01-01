@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ],
         siteName: brandMetadataSiteName,
         type: "website",
-        url: `${env.NEXT_PUBLIC_URI}/${serviceData.href}`,
+        url: `${env.NEXT_PUBLIC_URI}${serviceData.href}`,
       },
       twitter: {
         card: "summary_large_image",
