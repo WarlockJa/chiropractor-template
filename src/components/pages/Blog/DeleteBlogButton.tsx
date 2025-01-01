@@ -43,6 +43,12 @@ export default function DeleteBlogButton({
           />,
         );
     },
+    onSuccess({ input }) {
+      // TODO add translations
+      toast("Blog deleted", {
+        description: `Successfully deleted blog ${input.blogId}`,
+      });
+    },
   });
   return (
     <AlertDialog>
@@ -62,7 +68,10 @@ export default function DeleteBlogButton({
           </AlertDialogCancel>
           <AlertDialogAction
             disabled={status === "executing"}
-            onClick={() => execute({ blogId })}
+            onClick={(e) => {
+              e.stopPropagation();
+              execute({ blogId });
+            }}
           >
             {tBlogs("delete")}
           </AlertDialogAction>

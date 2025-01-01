@@ -27,17 +27,8 @@ import { TImageFile } from "./actions/schemas";
 
 interface IImagePrimitivesProps {
   blogId: number;
-  // imgSrc: string;
   imageId: TPartImageId;
   setImageId: ({ imageId }: Pick<IGenericImageProps, "imageId">) => void;
-  // setImgSrcAndAria: ({
-  //   name,
-  //   aria,
-  // }: {
-  //   name: string;
-  //   aria?: string;
-  //   imageId: number | null;
-  // }) => void;
 }
 
 interface FileUploadItem extends TImageFile {
@@ -64,10 +55,7 @@ const handleUpload = ({
     formData.append("imageWidths", item.width.toString());
     formData.append("imageHeigths", item.height.toString());
   });
-  // files &&
-  //   [...files].forEach((element) => {
-  //     formData.append("imageFiles", element);
-  //   });
+
   execute(formData);
 };
 
@@ -75,11 +63,9 @@ export default function ImagePrimitive({
   blogId,
   imageId,
   setImageId,
-  // setImgSrcAndAria,
 }: IImagePrimitivesProps) {
   const t = useTranslations("Errors");
   // blog images data
-  // const [images, setImages] = useAtom(blogImagesAtom);
   const setImages = useSetAtom(blogImagesAtom);
   // input file ref
   const inputRef = useRef<HTMLInputElement>(null);
@@ -275,10 +261,7 @@ export default function ImagePrimitive({
         {/* Drag and Drop area combined with file selector and URL parser */}
         <div
           className="w-full rounded border-2 border-dashed border-muted"
-          style={
-            // TODO extract default image name somewhere
-            imageId ? { borderColor: "lightgreen" } : undefined
-          }
+          style={imageId ? { borderColor: "lightgreen" } : undefined}
           onDrop={(event) => {
             event.preventDefault();
             const files = [...event.dataTransfer.files];
@@ -386,12 +369,9 @@ export default function ImagePrimitive({
         ImagePrimitive as well as the list of images associated with the blog */}
         <ImageSelector
           selectedImage={imageId}
-          setSelectedImage={
-            ({ imageId }: Pick<IGenericImageProps, "imageId">) =>
-              // setSelectedImage={(data: Omit<IParts_Image, "type">) =>
-              setImageId({ imageId })
-            // setImgSrcAndAria(data)
-          }
+          setSelectedImage={({
+            imageId,
+          }: Pick<IGenericImageProps, "imageId">) => setImageId({ imageId })}
         />
       </CardContent>
     </Card>

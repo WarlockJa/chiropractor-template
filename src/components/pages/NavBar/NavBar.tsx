@@ -15,7 +15,7 @@ export default async function NavBar() {
     const user = session?.user;
 
     return (
-      <div className="fixed left-0 right-0 top-0 z-30 flex flex-col">
+      <div className="fixed left-0 right-0 top-0 z-40 flex flex-col">
         <NavBarClient>
           <div className="flex w-full items-center justify-between">
             {/* LOGO */}

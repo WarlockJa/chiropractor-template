@@ -29,8 +29,11 @@ export default async function PostCard({
   deleteRights?: boolean;
 }) {
   return (
-    <Link href={`/blog/${blogData.blog.blogId}`} className="group">
-      <Card className="grid h-48 grid-cols-2 overflow-hidden group-hover:shadow group-hover:shadow-accent">
+    <Card className="group relative overflow-hidden group-hover:shadow group-hover:shadow-accent">
+      <Link
+        href={`/blog/${blogData.blog.blogId}`}
+        className="grid h-48 grid-cols-2"
+      >
         <div className="relative overflow-hidden">
           <CustomImageMDX
             imageId={blogData.blog.previewImage}
@@ -56,35 +59,35 @@ export default async function PostCard({
             <p>{blogData.owner?.name}</p>
             <p className="">{intlFormat(blogData.blog.updatedAt)}</p>
           </CardContent>
-          {deleteRights && (
-            <div className="absolute right-0 top-0 p-2">
-              {!blogData.blog.published && (
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger className="text-destructive transition-colors hover:opacity-70">
-                      <FileWarning />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      This blog is not yet published. It is only visible to
-                      users with editing rights
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              )}
-              <DeleteBlogButton blogId={blogData.blog.blogId}>
-                <Button
-                  size={"icon"}
-                  variant={"ghost"}
-                  className="opacity-0 hover:bg-transparent group-hover:opacity-100"
-                  title="delete blog"
-                >
-                  <X className="text-destructive hover:opacity-70" />
-                </Button>
-              </DeleteBlogButton>
-            </div>
-          )}
         </div>
-      </Card>
-    </Link>
+      </Link>
+      {deleteRights && (
+        <div className="absolute right-0 top-0 p-2">
+          {!blogData.blog.published && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className="text-destructive transition-colors hover:opacity-70">
+                  <FileWarning />
+                </TooltipTrigger>
+                <TooltipContent>
+                  This blog is not yet published. It is only visible to users
+                  with editing rights
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+          <DeleteBlogButton blogId={blogData.blog.blogId}>
+            <Button
+              size={"icon"}
+              variant={"ghost"}
+              className="opacity-0 hover:bg-transparent group-hover:opacity-100"
+              title="delete blog"
+            >
+              <X className="text-destructive hover:opacity-70" />
+            </Button>
+          </DeleteBlogButton>
+        </div>
+      )}
+    </Card>
   );
 }

@@ -16,8 +16,10 @@ export default function partsToMDXParser(parts: TAllBlogParts[]) {
       // Hero Part
       case 0:
         combinedPartsString += lookupTable_PartsToMDX[part.type]
+          // .replaceAll("$title", part.title)
+          .replace("$description", part.description)
           .replace("$title", `title="${part.title}"`)
-          .replace("$description", `description="${part.description}"`)
+          // .replace("$description", `description="${part.description}"`)
           .replace("$imageId", `imageId="${part.imageId}"`);
         break;
 

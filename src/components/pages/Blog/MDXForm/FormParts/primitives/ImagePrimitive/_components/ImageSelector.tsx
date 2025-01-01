@@ -8,14 +8,12 @@ import { useAtom, useAtomValue } from "jotai";
 import { blogImagesAtom, blogUsedImagesAtom } from "../../../../store/jotai";
 import { useAction } from "next-safe-action/hooks";
 import { useTranslations } from "next-intl";
-// import CustomImage from "@/components/CustomImage";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { IGenericImageProps, TPartImageId } from "../../../../mdxtypes";
 import CustomImageMDX from "../../../../CustomImageMDX";
 
 interface IImageSelectorProps {
   selectedImage: TPartImageId;
-  // selectedImage: string | undefined;
   setSelectedImage: ({ imageId }: Pick<IGenericImageProps, "imageId">) => void;
 }
 
@@ -86,7 +84,7 @@ export default function ImageSelector({
             <Button
               type="button"
               variant={"ghost"}
-              className="absolute right-0 top-0 z-30"
+              className="absolute right-0 top-0 z-10"
               size={"icon"}
               disabled={
                 status === "executing" ||

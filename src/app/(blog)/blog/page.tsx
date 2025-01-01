@@ -33,8 +33,8 @@ export default async function BlogPage({
       LIMIT,
       userCanEditBlog({ user }),
     );
-    // display blogs with pagination
 
+    // display blogs with pagination
     return (
       <section className="relative mx-auto flex h-screen w-screen flex-col">
         {userCanEditBlog({ user }) && (

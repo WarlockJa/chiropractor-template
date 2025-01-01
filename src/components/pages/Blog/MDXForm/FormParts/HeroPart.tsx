@@ -110,7 +110,10 @@ export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
 
           setFormValues((prev) => ({
             ...prev,
-            currentValues: { ...prev.currentValues, description: text },
+            currentValues: {
+              ...prev.currentValues,
+              description: text,
+            },
             isOkToSave,
           }));
         }}

@@ -7,6 +7,7 @@ const CHAR_CODES_LOOKUP_TABLE = [
   [">", "&gt;"],
   ["\\", "&bsol;"],
 ];
+// Usain St. Leo Bolt (/ˈjuːseɪn/;[12] born 21 August 1986)
 
 export function convertSpecialCharactersToCodes(text: string | undefined) {
   if (!text) return "";

@@ -7,12 +7,7 @@ import { TPartImageId } from "../mdxtypes";
 export default function ImageMDX({ imageId }: { imageId: TPartImageId }) {
   return (
     <div className="relative">
-      <CustomImageMDX
-        imageId={imageId}
-        className="max-h-screen"
-        // TODO check for vestiges
-        // className="max-h-[calc(100vh_-_var(--header-height))]"
-      />
+      <CustomImageMDX imageId={imageId} className="max-h-screen" />
       {imageId && (
         <ModalImagesViewer imageIds={[imageId]}>
           <Button

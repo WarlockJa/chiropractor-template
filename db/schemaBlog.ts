@@ -12,6 +12,7 @@ import { images } from "./schemaImage";
 // Blogs model
 export const blogs = sqliteTable("blog", {
   blogId: integer("blogId").primaryKey(),
+  // blogName: text("blogName").unique().notNull(),
   owner: text("owner").references(() => users.id, { onDelete: "set null" }),
   createdAt: integer("created_at", { mode: "timestamp" })
     .notNull()

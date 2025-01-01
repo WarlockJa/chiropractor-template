@@ -117,7 +117,7 @@ export default function MDXFormEditable({
 
   return (
     <section className="relative pt-4">
-      <div className="sticky top-0 z-30 flex w-full justify-center border">
+      <div className="sticky top-28 z-20 flex w-full justify-center border">
         {edit ? (
           <>
             <div
@@ -179,8 +179,9 @@ export default function MDXFormEditable({
             type="button"
             onClick={() => setEdit(true)}
             className="w-full max-w-screen-lg rounded-none"
+            variant={"outline"}
           >
-            <p>Edit Blog</p>
+            Edit Blog
           </Button>
         )}
       </div>

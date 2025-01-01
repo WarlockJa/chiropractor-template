@@ -7,11 +7,10 @@ import { TNonHeroParts, TParts } from "../mdxtypes";
 // conversion from TParts object to MDX string
 export const lookupTable_PartsToMDX: { [key: number]: string } = {
   999: "<Divider index={$index} />" + "\n",
-  0: "<HeroComponent $imageId $title $description />\n" + "\n",
+  0: "<HeroComponent $title $imageId />\n" + "$description\n" + "\n",
+  // 0: "<HeroComponent $imageId $title $description />\n" + "\n",
   1: "## $title\n" + "\n" + "$text\n" + "\n",
-  2:
-    // "<ImageMDX $name $aria $blurhash $imageId $width $height $sizeBytes />\n" +
-    "<ImageMDX $imageId />\n" + "\n",
+  2: "<ImageMDX $imageId />\n" + "\n",
   3: "---\n" + "\n",
   4: "<Video $videoId />\n" + "\n",
   5: "<TableMDX $tableData />\n" + "\n",

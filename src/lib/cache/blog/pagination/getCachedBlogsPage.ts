@@ -32,6 +32,7 @@ export const getCachedBlogsPage = cache(
             blogsIds.map((id) => getCachedBlog(id.blogId)),
           );
         } catch (error) {
+          console.log(error);
           return null;
         }
       },
