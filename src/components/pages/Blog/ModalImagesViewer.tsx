@@ -195,7 +195,7 @@ export default function ModalImagesViewer({
         </Carousel>
         <SheetHeader className="absolute bottom-7 left-2">
           <Socials
-            url={`/image/${activeSlide}`}
+            url={`/image/${imageIds[activeSlide]}`}
             className="flex w-24 gap-1.5 rounded-sm"
           />
         </SheetHeader>
