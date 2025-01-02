@@ -34,11 +34,8 @@ export default function AboutPractitioner({
           Aliquid dolore natus sequi.
         </CardDescription>
       </CardHeader>
-      <CardContent className="mx-auto grid grid-cols-[1fr,1px,1fr,1px,1fr] justify-center">
+      <CardContent className="mx-auto grid grid-rows-[1fr,1px,1fr,1px,1fr] justify-center gap-4 sm:grid-cols-[1fr,1px,1fr,1px,1fr] sm:grid-rows-1 sm:gap-0">
         <div className="flex flex-col items-center">
-          {/* <div className="font-sans text-5xl font-bold text-accent">
-            {differenceInYears(new Date(), new Date("01 01 2014"))}
-          </div> */}
           <ChangingNumber
             className="font-sans text-5xl font-bold text-accent"
             numberToGetTo={differenceInYears(
@@ -50,7 +47,6 @@ export default function AboutPractitioner({
         </div>
         <div className="h-full bg-gradient-to-b from-background via-foreground to-background"></div>
         <div className="flex flex-col items-center">
-          {/* <div className="font-sans text-5xl font-bold text-accent">20</div> */}
           <ChangingNumber
             className="font-sans text-5xl font-bold text-accent"
             numberToGetTo={20}
@@ -59,7 +55,6 @@ export default function AboutPractitioner({
         </div>
         <div className="h-full bg-gradient-to-b from-background via-foreground to-background"></div>
         <div className="flex flex-col items-center">
-          {/* <div className="font-sans text-5xl font-bold text-accent">450+</div> */}
           <ChangingNumber
             className="font-sans text-5xl font-bold text-accent"
             numberToGetTo={450}

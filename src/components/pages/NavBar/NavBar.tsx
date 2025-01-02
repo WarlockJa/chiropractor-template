@@ -3,7 +3,6 @@ import NavMenu from "./NavMenu/NavMenu";
 import SheetMenu from "./SheetMenu/SheetMenu";
 import { brandName } from "@/appConfig";
 import Link from "next/link";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
 import NavBarClient from "./NavBarClient/NavBarClient";
 import ContactsPanel from "./ContactsPanel/ContactsPanel";
 import SearchSheet from "../SearchBar/SearchSheet";
@@ -25,9 +24,14 @@ export default async function NavBar() {
               aria-label="home page"
             >
               <div className="h-20 w-20">
-                <CustomImage
-                  dbImageName={"tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"}
+                <img
+                  src="/logo_alpha_pink.png"
+                  alt="chiropractor logo"
+                  className="object-contain"
                 />
+                {/* <CustomImage
+                  dbImageName={"tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"}
+                /> */}
               </div>
               <div className="hidden md:block">{brandName}</div>
             </Link>
@@ -45,7 +49,7 @@ export default async function NavBar() {
             <ContactsPanel />
           </div>
         </NavBarClient>
-        <ContactsPanel className="border-t bg-background/60 transition-opacity md:hidden" />
+        <ContactsPanel className="fixed inset-x-0 bottom-0 border-t bg-background/60 transition-opacity md:hidden" />
       </div>
     );
   } catch (error: any) {

@@ -29,7 +29,7 @@ export default async function AboutPage() {
         containerClassName="relative h-96 w-screen"
       >
         <div className="absolute inset-auto h-full w-full flex-col">
-          <h1 className="text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
+          <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
             {t("about")}
           </h1>
         </div>

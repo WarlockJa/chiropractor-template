@@ -56,7 +56,7 @@ export default async function MDXBlogPage({
       return (
         <main className="mx-auto mt-28 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg">
           <Suspense fallback={<LoaderSpinner />}>
-            <MDXRemoteWrapper props={source} />
+            <MDXRemoteWrapper props={source} blogImages={blogImages} />
           </Suspense>
         </main>
       );

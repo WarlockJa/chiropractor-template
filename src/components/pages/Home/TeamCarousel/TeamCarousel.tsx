@@ -23,6 +23,7 @@ export default function TeamCarousel({
     <Carousel
       opts={{
         loop: true,
+        duration: 15,
       }}
       className={cn(className, "relative")}
       plugins={[

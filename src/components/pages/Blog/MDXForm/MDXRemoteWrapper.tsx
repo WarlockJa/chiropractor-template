@@ -15,8 +15,11 @@ const CarouselMDX = lazy(() => import("./mdx/CarouselMDX"));
 const Gallery = lazy(() => import("./mdx/Gallery"));
 const Blockquote = lazy(() => import("./mdx/Blockquote"));
 const Chart = lazy(() => import("./mdx/Chart/Chart"));
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import HeroComponent from "./mdx/HeroComponent";
+import { SelectImages } from "@db/schemaImage";
+import { useSetAtom } from "jotai";
+import { blogImagesAtom } from "./store/jotai";
 
 interface IMDXRemoteWrapperProps {
   editFlag?: boolean;
@@ -24,12 +27,21 @@ interface IMDXRemoteWrapperProps {
     Record<string, unknown>,
     Record<string, unknown>
   >;
+  blogImages?: SelectImages[];
 }
 
 export default function MDXRemoteWrapper({
   editFlag,
   props,
+  blogImages,
 }: IMDXRemoteWrapperProps) {
+  // list DB records about post images
+  const setImages = useSetAtom(blogImagesAtom);
+  // loading blog images data into local state on component load
+  useEffect(() => {
+    blogImages && setImages(blogImages);
+  }, []);
+
   return (
     // <article className="prose mx-auto w-full max-w-screen-lg dark:prose-invert">
     <article className="prose w-full max-w-screen-lg dark:prose-invert *:mx-auto *:max-w-screen-sm [&>div]:max-w-screen-lg">

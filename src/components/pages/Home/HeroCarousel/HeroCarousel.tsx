@@ -24,6 +24,7 @@ export default function HeroCarousel({
     <Carousel
       opts={{
         loop: true,
+        duration: 20,
       }}
       plugins={[
         Autoplay({

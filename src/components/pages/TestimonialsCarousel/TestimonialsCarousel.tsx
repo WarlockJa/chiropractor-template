@@ -22,12 +22,12 @@ export default function TestimonialsCarousel({
     <Carousel
       opts={{
         loop: true,
+        duration: 15,
       }}
       className={className}
       plugins={[
         Autoplay({
           delay: delayMs,
-          stopOnInteraction: true,
         }),
       ]}
     >
@@ -39,8 +39,8 @@ export default function TestimonialsCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-2 top-2/3 h-20 w-20 border-accent bg-transparent text-muted opacity-20 transition-all hover:opacity-80" />
-      <CarouselNext className="absolute right-2 top-2/3 h-20 w-20 border-accent bg-transparent text-muted opacity-20 transition-all hover:opacity-80" />
+      <CarouselPrevious className="absolute left-2 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
+      <CarouselNext className="absolute right-2 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
     </Carousel>
   );
 }

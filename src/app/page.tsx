@@ -1,15 +1,9 @@
-import ChangingText from "@/components/UniversalComponents/ChangingText/ChangingText";
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { useTranslations } from "next-intl";
-import SupportedEquipment from "@/components/pages/AboutPractitioner/AboutPractitioner";
-import SlideinSection from "@/components/UniversalComponents/SlideinSection/SlideinSections";
 import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import ContactsFooter from "@/components/pages/ContactsFooter";
 import HeroCarousel from "@/components/pages/Home/HeroCarousel/HeroCarousel";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
-import AnimatedText from "@/components/UniversalComponents/AnimatedText";
-import { CustomButton } from "@/components/UniversalComponents/CustomButton";
-import Link from "next/link";
 import CarouselSlide from "@/components/pages/Home/HeroCarousel/CarouselSlide";
 import AboutPractitioner from "@/components/pages/AboutPractitioner/AboutPractitioner";
 import ServicesCarousel from "@/components/pages/Home/ServicesCarousel/ServicesCarousel";

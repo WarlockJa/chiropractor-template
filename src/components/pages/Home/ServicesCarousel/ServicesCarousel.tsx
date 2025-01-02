@@ -50,6 +50,7 @@ export default function ServicesCarousel({
       opts={{
         loop: true,
         startIndex: 2,
+        duration: 15,
       }}
       className={className}
       plugins={[
@@ -60,7 +61,6 @@ export default function ServicesCarousel({
               .map((_, index) =>
                 index < 2 || index === carouselItems.length + 3 ? 0 : delayMs,
               ),
-          stopOnInteraction: true,
         }),
       ]}
     >

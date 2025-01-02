@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import CustomImage from "@/components/UniversalComponents/CustomImage";
-import { Quote } from "lucide-react";
 import { TeamData } from "./testimonialsData";
 import Link from "next/link";
 import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
@@ -28,7 +20,8 @@ export default function TeamCard({
 }: TeamData) {
   return (
     <div className="grid gap-4 md:grid-cols-[1fr,1px,1fr]">
-      <div className="flex flex-col items-center overflow-hidden">
+      {/* <div className="flex flex-col items-center overflow-hidden"> */}
+      <div className="flex w-full flex-col items-center overflow-hidden">
         <CustomImage dbImageName={dbImageName} className="rounded-full" />
       </div>
       <div className="h-full bg-gradient-to-b from-background via-foreground to-background"></div>
