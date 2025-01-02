@@ -143,6 +143,7 @@ export default function MDXFormEditable({
                 id="publishedSwitch"
                 checked={currentBlogData.published}
                 disabled={!parts[0].imageId}
+                className="data-[state=checked]:bg-accent"
                 onCheckedChange={(e) =>
                   setCurrentBlogData((prev) => ({ ...prev, published: e }))
                 }

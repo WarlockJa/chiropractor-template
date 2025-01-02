@@ -14,13 +14,13 @@ export default function CustomImageMDX({
   imageId,
   className,
 }: {
-  imageId: TPartImageId;
+  imageId: TPartImageId | string;
   className?: string;
 }) {
   // blog images data
   const images = useAtomValue(blogImagesAtom);
   const image = useMemo(
-    () => images.find((img) => img.imageId === imageId),
+    () => images.find((img) => img.imageId.toString() === imageId?.toString()),
     [imageId, images],
   );
 

@@ -67,7 +67,7 @@ export default function ModalImageCloseUp({
   // blog images data
   const images = useAtomValue(blogImagesAtom);
   const image = useMemo(
-    () => images.find((img) => img.imageId === Number(imageId)),
+    () => images.find((img) => img.imageId.toString() === imageId?.toString()),
     [imageId, images, activeSlide],
   );
 
