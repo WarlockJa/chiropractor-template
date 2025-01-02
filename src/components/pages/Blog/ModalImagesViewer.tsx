@@ -6,6 +6,7 @@ import {
   SheetClose,
   SheetContent,
   SheetDescription,
+  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
@@ -25,6 +26,7 @@ import { controlActiveAtom } from "./MDXForm/store/jotai";
 import CustomImageMDX from "./MDXForm/CustomImageMDX";
 import { TPartImageId } from "./MDXForm/mdxtypes";
 import useIsMobile from "@/hooks/useIsMobile";
+import Socials from "./Socials";
 
 // modal viewer for images
 export default function ModalImagesViewer({
@@ -110,19 +112,7 @@ export default function ModalImagesViewer({
       >
         <SheetTitle className="hidden">Images Modal</SheetTitle>
         <SheetDescription className="hidden">Images Modal</SheetDescription>
-        {/* TODO check Socials */}
-        {/* <SheetHeader className="absolute bottom-8 left-4 z-10">
-          <SheetTitle></SheetTitle>
-          <SheetDescription>
-            {images[activeSlide].id && (
-              <Socials
-                url={`/image/${images[activeSlide].id}`}
-                instagram={images[activeSlide].instagram}
-                title={images[activeSlide].alt}
-              />
-            )}
-          </SheetDescription>
-        </SheetHeader> */}
+
         <Carousel
           setApi={setApi}
           opts={{ align: "start", loop: true }}
@@ -203,6 +193,12 @@ export default function ModalImagesViewer({
               ))}
           </ul>
         </Carousel>
+        <SheetHeader className="absolute bottom-7 left-2">
+          <Socials
+            url={`/image/${activeSlide}`}
+            className="flex w-24 gap-1.5 rounded-sm"
+          />
+        </SheetHeader>
         <SheetClose
           onClick={(e) => {
             e.stopPropagation();
@@ -212,7 +208,7 @@ export default function ModalImagesViewer({
         >
           <Button
             type="button"
-            className="absolute bottom-7 right-2 flex items-center rounded-sm px-1.5 text-xl transition-colors hover:bg-background hover:text-accent hover:underline"
+            className="absolute bottom-7 right-2 flex w-24 items-center rounded-sm px-1.5 text-xl transition-colors hover:bg-background hover:text-accent hover:underline"
           >
             <X size={24} />
             Close

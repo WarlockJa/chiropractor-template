@@ -50,8 +50,10 @@ main {
     --primary-foreground: 21 92% 8%;
     --secondary: 257 17% 8%;
     --secondary-foreground: 0 29% 95%;
-    --muted: 0 0% 39%;
-    --muted-foreground: 0 0% 47%;
+    --muted: 24 5% 64%;
+    --muted-foreground: 24 6% 83%;
+    /* --muted: 0 0% 39%;
+    --muted-foreground: 0 0% 47%; */
     --accent: 351 95% 71%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;

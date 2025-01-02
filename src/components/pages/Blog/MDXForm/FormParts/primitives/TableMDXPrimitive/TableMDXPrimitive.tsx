@@ -85,7 +85,7 @@ export default function TableMDXPrimitive({
         <Table ref={tableRef}>
           <TableCaption>
             <Input
-              className="text-center placeholder:text-muted"
+              className="text-center font-semibold text-foreground placeholder:text-muted"
               defaultValue={convertCodesToSpecialCharacters(
                 tableData.tableCaption,
               )}
@@ -109,7 +109,7 @@ export default function TableMDXPrimitive({
               {tableData.tableHeader.map((headerItem, index) => (
                 <TableHead
                   key={`tableHeader${index}${headerItem.caption}`}
-                  className={"transition-colors"}
+                  className={"font-semibold text-foreground transition-colors"}
                 >
                   <Input
                     tabIndex={index > 0 ? -1 : undefined}
@@ -214,7 +214,7 @@ export default function TableMDXPrimitive({
               ).map((item, index) => (
                 <TableCell
                   key={`tableFooter${index}`}
-                  className={"transition-colors"}
+                  className={"font-semibold text-foreground transition-colors"}
                 >
                   <Input
                     tabIndex={-1}

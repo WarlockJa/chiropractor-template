@@ -28,7 +28,7 @@ export default function TableMDX({
   return data ? (
     <Table>
       {data.tableCaption && (
-        <TableCaption>
+        <TableCaption className="font-semibold text-foreground">
           {convertCodesToSpecialCharacters(data.tableCaption)}
         </TableCaption>
       )}
@@ -38,6 +38,7 @@ export default function TableMDX({
             <TableHead
               key={headerItem.caption.concat(index.toString())}
               style={headerItem.style}
+              className="font-semibold text-foreground"
             >
               {convertCodesToSpecialCharacters(headerItem.caption)}
             </TableHead>
@@ -68,6 +69,7 @@ export default function TableMDX({
               <TableCell
                 key={`tableFooter${index}`}
                 style={data.tableHeader[index].style}
+                className="font-semibold text-foreground"
               >
                 {convertCodesToSpecialCharacters(item)}
               </TableCell>

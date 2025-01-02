@@ -119,7 +119,7 @@ export default function ChartPrimitive({
               {Object.keys(chartValues.chartData[0]).map((key, index) => (
                 <TableHead
                   key={`tableHead${index}${key}`}
-                  className="transition-colors"
+                  className="font-semibold text-foreground transition-colors"
                 >
                   <Input
                     tabIndex={index > 0 ? -1 : undefined}

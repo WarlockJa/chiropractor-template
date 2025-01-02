@@ -11,6 +11,7 @@ import userCanEditBlog from "@/components/pages/Blog/MDXForm/lib/userCanEditBlog
 import { TAllBlogParts } from "@/components/pages/Blog/MDXForm/mdxtypes";
 import { getCachedBlogName } from "@/lib/cache/blog/getCachedBlogName";
 import BlogNotFound from "./not-found";
+import Socials from "@/components/pages/Blog/Socials";
 
 export default async function MDXBlogPage({
   params,
@@ -72,6 +73,7 @@ export default async function MDXBlogPage({
               tags={""}
             />
           </Suspense>
+          <Socials url={`/blog/${blogData.blog.blogName}`} spread />
         </main>
       );
     }
