@@ -19,7 +19,7 @@ import {
 import handleTableArrowKeysNavigation from "./lib/tableArrowKeysNavigation";
 import { IParts_TableMDX_TableData, TTableActiveCell } from "../../../mdxtypes";
 
-export const TableColor = "hsl(var(--muted))";
+export const TableColor = "hsl(var(--input))";
 
 const InitTableData: IParts_TableMDX_TableData = {
   tableCaption: "Table Caption",

@@ -30,7 +30,7 @@ import {
   TChartPrimitiveErrorsMatrix,
 } from "./chartPrimitive";
 
-const TableColor = "hsl(var(--muted))";
+const TableColor = "hsl(var(--input))";
 
 // Bar Chart
 const initBarChartValues: Omit<IParts_Chart<string | number>, "type"> = {
