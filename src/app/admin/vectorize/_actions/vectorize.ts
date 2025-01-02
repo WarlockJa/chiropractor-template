@@ -58,7 +58,7 @@ async function addToVectorize({
 
       // adding vectors to Vectorize
       const result = await vectorize.upsert([vector]);
-      console.log("VECTORIZE_UPSERT: ", result);
+      // console.log("VECTORIZE_UPSERT: ", result);
       vectorizeRetries = 0;
 
       return result;
@@ -108,7 +108,7 @@ async function deleteFromVectorize({
     try {
       // deleting vectors from Vectorize
       const result = await vectorize.deleteByIds([id]);
-      console.log("VECTORIZE_DELETE: ", result);
+      // console.log("VECTORIZE_DELETE: ", result);
       vectorizeRetries = 0;
 
       return result;

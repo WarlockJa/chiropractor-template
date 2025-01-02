@@ -20,7 +20,7 @@ export default function CustomImageMDX({
   // blog images data
   const images = useAtomValue(blogImagesAtom);
   const image = useMemo(
-    () => images.find((img) => img.imageId === Number(imageId)),
+    () => images.find((img) => img.imageId === imageId),
     [imageId, images],
   );
 

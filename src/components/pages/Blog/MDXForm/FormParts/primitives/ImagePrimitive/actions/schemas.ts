@@ -26,7 +26,7 @@ export const imageFileSchema = z.object({
       }
       // testing for image type
       if (!ACCEPTED_IMAGE_TYPES.includes(file?.type.slice(0, 6))) {
-        console.log(file.type);
+        // console.log(file.type);
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           message: "unsupported image type",
@@ -65,7 +65,7 @@ export const createBlogImagesSchema = zfd.formData({
         }
         // testing for image type
         if (!ACCEPTED_IMAGE_TYPES.includes(file?.type.slice(0, 6))) {
-          console.log(file.type);
+          // console.log(file.type);
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: "unsupported image type",
@@ -81,37 +81,5 @@ export const createBlogImagesSchema = zfd.formData({
   imageHeigths: zfd.repeatableOfType(z.coerce.number().min(0)),
   blogId: z.coerce.number(),
 });
-// export const createImageSchema = zfd.formData({
-//   imageFiles: zfd.repeatableOfType(
-//     z.any().transform((file, ctx) => {
-//       if (file?.size === 0) {
-//         return undefined;
-//       } else {
-//         // testing for max size
-//         if (file?.size > MAX_FILE_SIZE) {
-//           ctx.addIssue({
-//             code: z.ZodIssueCode.custom,
-//             message: `max image size is ${Math.floor(MAX_FILE_SIZE / 1000000)}MB`,
-//           });
-
-//           return z.NEVER;
-//         }
-//         // testing for image type
-//         if (!ACCEPTED_IMAGE_TYPES.includes(file?.type.slice(0, 6))) {
-//           ctx.addIssue({
-//             code: z.ZodIssueCode.custom,
-//             message: "unsupported image type",
-//           });
-//           return z.NEVER;
-//         }
-
-//         return file as File;
-//       }
-//     }),
-//   ),
-//   blog: z.string().cuid2(),
-//   // aria: z.string().max(100).optional(),
-//   // instagram: z.string().max(100).optional(),
-// });
 
 export const deleteImageSchema = z.custom<Pick<SelectImages, "imageId">>();

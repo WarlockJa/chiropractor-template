@@ -19,7 +19,6 @@ partsToMDXParser >>
 
 mdx (folder) >>
     add new Part display component
-    add schema to validate new Part data
 MDXRemoteWrapper >>
     add new display component to MDXRemote {components: {...<Display Components>}}
 

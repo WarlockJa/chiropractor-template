@@ -5,6 +5,8 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -13,16 +15,16 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Circle, CircleDot, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Circle, CircleDot, X } from "lucide-react";
 // import Socials from "./Socials";
 import ModalImageCloseUp from "./ModalImageCloseUp";
 import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { controlActiveAtom } from "./MDXForm/store/jotai";
 import CustomImageMDX from "./MDXForm/CustomImageMDX";
+import { TPartImageId } from "./MDXForm/mdxtypes";
+import useIsMobile from "@/hooks/useIsMobile";
 
 // modal viewer for images
 export default function ModalImagesViewer({
@@ -31,7 +33,7 @@ export default function ModalImagesViewer({
   children,
   parentApi,
 }: {
-  imageIds: (number | null)[];
+  imageIds: TPartImageId[];
   children: ReactNode;
   activeImageIndex?: number;
   parentApi?: CarouselApi;
@@ -44,6 +46,9 @@ export default function ModalImagesViewer({
   const [closeUp, setCloseUp] = useState({ open: false, clickX: 0, clickY: 0 });
   // controls hover state
   const [controlActive, setControlActive] = useAtom(controlActiveAtom);
+
+  // verifying if viewed on the mobile device
+  const isMobile = useIsMobile();
 
   // tracking active slide change
   useEffect(() => {
@@ -103,6 +108,8 @@ export default function ModalImagesViewer({
               });
         }}
       >
+        <SheetTitle className="hidden">Images Modal</SheetTitle>
+        <SheetDescription className="hidden">Images Modal</SheetDescription>
         {/* TODO check Socials */}
         {/* <SheetHeader className="absolute bottom-8 left-4 z-10">
           <SheetTitle></SheetTitle>
@@ -125,36 +132,69 @@ export default function ModalImagesViewer({
             {imageIds.map((imageId, index) => (
               <CarouselItem
                 key={`${imageId}${index}`}
-                className="h-screen w-screen"
+                className="h-screen w-screen pl-0"
               >
-                {closeUp.open && activeSlide === index && imageId && (
-                  <ModalImageCloseUp
-                    clickX={closeUp.clickX}
-                    clickY={closeUp.clickY}
-                    imageId={imageId}
-                    activeSlide={activeSlide}
-                  />
-                )}
+                {closeUp.open &&
+                  activeSlide === index &&
+                  imageId &&
+                  !isMobile && (
+                    <ModalImageCloseUp
+                      clickX={closeUp.clickX}
+                      clickY={closeUp.clickY}
+                      imageId={imageId}
+                      activeSlide={activeSlide}
+                    />
+                  )}
 
                 <CustomImageMDX imageId={imageId} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious type="button" />
-          <CarouselNext type="button" />
+          <Button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              api?.scrollPrev();
+            }}
+            variant={"ghost"}
+            className={cn(
+              "fixed inset-y-0 left-0 hidden h-full p-0 text-secondary-foreground md:block",
+              (closeUp.open || imageIds.length === 1) && "md:hidden",
+            )}
+          >
+            <ChevronLeft size={96} />
+          </Button>
+          <Button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              api?.scrollNext();
+            }}
+            variant={"ghost"}
+            className={cn(
+              "fixed inset-y-0 right-0 hidden h-full p-0 text-secondary-foreground md:block",
+              (closeUp.open || imageIds.length === 1) && "md:hidden",
+            )}
+          >
+            <ChevronRight size={96} />
+          </Button>
           <ul className="absolute bottom-0 left-0 right-0 flex justify-center">
             {imageIds.length > 1 &&
               imageIds.map((_, index) => (
                 <Button
                   type="button"
+                  variant={"ghost"}
                   key={`dot${index}`}
                   size={"icon"}
-                  variant={"ghost"}
                   onFocus={(e) => e.currentTarget.blur()}
                   onClick={() => {
                     api?.scrollTo(index);
                     parentApi?.scrollTo(index);
                   }}
+                  className={cn(
+                    "text-secondary-foreground",
+                    closeUp.open && "hidden",
+                  )}
                   onMouseOver={() => setControlActive(true)}
                   onMouseLeave={() => setControlActive(false)}
                 >
@@ -168,11 +208,15 @@ export default function ModalImagesViewer({
             e.stopPropagation();
             setCloseUp((prev) => ({ ...prev, open: false }));
           }}
+          asChild
         >
-          <div className="absolute bottom-7 right-2 flex items-center rounded-sm px-1.5 text-xl transition-colors hover:bg-background hover:text-accent hover:underline">
+          <Button
+            type="button"
+            className="absolute bottom-7 right-2 flex items-center rounded-sm px-1.5 text-xl transition-colors hover:bg-background hover:text-accent hover:underline"
+          >
             <X size={24} />
             Close
-          </div>
+          </Button>
         </SheetClose>
       </SheetContent>
     </Sheet>

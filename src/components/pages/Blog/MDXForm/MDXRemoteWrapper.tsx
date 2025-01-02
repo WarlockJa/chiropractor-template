@@ -31,7 +31,8 @@ export default function MDXRemoteWrapper({
   props,
 }: IMDXRemoteWrapperProps) {
   return (
-    <article className="prose w-full max-w-screen-lg dark:prose-invert">
+    // <article className="prose mx-auto w-full max-w-screen-lg dark:prose-invert">
+    <article className="prose w-full max-w-screen-lg dark:prose-invert *:mx-auto *:max-w-screen-sm [&>div]:max-w-screen-lg">
       <MDXRemote
         {...props}
         // specifying the custom MDX components

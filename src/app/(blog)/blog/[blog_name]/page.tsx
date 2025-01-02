@@ -1,10 +1,7 @@
-import { isRedirectError } from "next/dist/client/components/redirect";
-import { isNotFoundError } from "next/dist/client/components/not-found";
 import { serialize } from "next-mdx-remote/serialize";
 import getSession from "@/lib/db/getSession";
 import remarkGFM from "remark-gfm";
 import { getCachedBlogImages } from "@/lib/cache/blog/getCachedBlogImages";
-import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import partsToMDXParser from "@/components/pages/Blog/MDXForm/LookupTables/partsToMDXParser";
 import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
@@ -13,6 +10,7 @@ import MDXFormEditable from "@/components/pages/Blog/MDXForm/MDXFormEditable";
 import userCanEditBlog from "@/components/pages/Blog/MDXForm/lib/userCanEditBlog";
 import { TAllBlogParts } from "@/components/pages/Blog/MDXForm/mdxtypes";
 import { getCachedBlogName } from "@/lib/cache/blog/getCachedBlogName";
+import BlogNotFound from "./not-found";
 
 export default async function MDXBlogPage({
   params,
@@ -32,9 +30,9 @@ export default async function MDXBlogPage({
 
     // if blog not published redirecting user
     if (!userCanEditBlog({ user }) && !blogData.blog.published)
-      redirect(`/blog`);
+      return BlogNotFound();
     // if blog has no mdx data redirecting TODO report DB inconsistency
-    if (!blogData.blog.mdx) redirect(`/blog`);
+    if (!blogData.blog.mdx) return BlogNotFound();
 
     if (!userCanEditBlog({ user })) {
       // serializing string into an MDX component
@@ -55,32 +53,31 @@ export default async function MDXBlogPage({
       );
 
       return (
-        <Suspense fallback={<LoaderSpinner />}>
-          <MDXRemoteWrapper props={source} />
-        </Suspense>
+        <main className="mx-auto mt-28 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg">
+          <Suspense fallback={<LoaderSpinner />}>
+            <MDXRemoteWrapper props={source} />
+          </Suspense>
+        </main>
       );
     } else {
       // MDXFormEditable accepts blog id as id param, passing blog id associated with the catalog node
       return (
-        <Suspense fallback={<LoaderSpinner />}>
-          <MDXFormEditable
-            source={JSON.parse(blogData.blog.mdx)}
-            blogId={blogData.blog.blogId}
-            blogImages={blogImages}
-            published={blogData.blog.published ?? false}
-            tags={""}
-          />
-        </Suspense>
+        <main className="mx-auto mt-28 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg">
+          <Suspense fallback={<LoaderSpinner />}>
+            <MDXFormEditable
+              source={JSON.parse(blogData.blog.mdx)}
+              blogId={blogData.blog.blogId}
+              blogImages={blogImages}
+              published={blogData.blog.published ?? false}
+              tags={""}
+            />
+          </Suspense>
+        </main>
       );
     }
   } catch (error: any) {
-    // if error is caused by nextjs redirect then redirect
-    if (isRedirectError(error)) throw error;
-    // if error is caused by nextjs notFound then display not-found page
-    if (isNotFoundError(error)) throw error;
-    // display error page
-    console.log(error.message);
-    // throw new Error(error.message);
+    // console.log(error.message);
+    return BlogNotFound();
   }
 }
 

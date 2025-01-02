@@ -127,7 +127,7 @@ export default function MDXFormEditable({
 
   return (
     <section className="relative pt-4">
-      <div className="sticky top-28 z-20 flex w-full justify-center border">
+      <div className="fixed bottom-0 z-20 flex w-full justify-center border md:sticky md:bottom-auto md:top-28">
         {edit ? (
           <>
             <div
@@ -196,7 +196,7 @@ export default function MDXFormEditable({
         )}
       </div>
 
-      <div className="p-4">
+      <>
         {serializedMDX_Part1 && (
           <MDXRemoteWrapper props={serializedMDX_Part1} editFlag={edit} />
         )}
@@ -208,7 +208,7 @@ export default function MDXFormEditable({
         {serializedMDX_Part2 && (
           <MDXRemoteWrapper props={serializedMDX_Part2} editFlag={edit} />
         )}
-      </div>
+      </>
     </section>
   );
 }

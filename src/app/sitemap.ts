@@ -55,8 +55,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  console.log("TEST: ", brandMetadataUrl);
-
   // adding services paths
   servicesData.forEach((service) => {
     links.push({

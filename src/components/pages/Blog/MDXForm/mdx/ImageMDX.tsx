@@ -12,7 +12,6 @@ export default function ImageMDX({ imageId }: { imageId: TPartImageId }) {
         <ModalImagesViewer imageIds={[imageId]}>
           <Button
             type="button"
-            variant={"ghost"}
             size={"icon"}
             className="absolute bottom-1 right-1"
             title="Fullscreen"

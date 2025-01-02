@@ -5,6 +5,7 @@ import {
   SheetClose,
   SheetContent,
   SheetDescription,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -33,7 +34,9 @@ export default function SheetMenu({ user }: { user: User | undefined }) {
         </Button>
       </SheetTrigger>
       <SheetContent className="w-full bg-primary/80 text-primary-foreground xsm:w-3/4">
-        <SheetDescription className="mt-8 font-medium text-primary-foreground">
+        <SheetTitle className="hidden">Menu</SheetTitle>
+        <SheetDescription className="hidden">Menu</SheetDescription>
+        <div className="mt-8 font-medium text-primary-foreground">
           {/* Menu Items for Mobile View */}
           <nav className="flex flex-col gap-2 text-lg">
             {MENU_ITEMS.map((item) => (
@@ -101,7 +104,7 @@ export default function SheetMenu({ user }: { user: User | undefined }) {
               </SheetMenuItem>
             </SignInLoaderButton>
           )}
-        </SheetDescription>
+        </div>
       </SheetContent>
     </Sheet>
   );

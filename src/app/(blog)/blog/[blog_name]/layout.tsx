@@ -65,9 +65,5 @@ export default async function BlogLayout({
   children: React.ReactNode;
   params: { blog_id: number };
 }>) {
-  return (
-    <div className="mx-auto mt-28 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg">
-      {children}
-    </div>
-  );
+  return <>{children}</>;
 }

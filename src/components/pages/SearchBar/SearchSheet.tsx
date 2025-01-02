@@ -20,7 +20,13 @@ import { searchAction } from "./actions/search";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { searchSchema } from "./actions/schemas";
 import LoaderSpinner from "@/components/UniversalComponents/LoaderSpinner";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { CachedSearchResult } from "@/lib/cache/search/getCachedSearch";
 import PageCard from "./PageCard";
 import { cn } from "@/lib/utils";
@@ -83,7 +89,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
     },
 
     onSuccess({ data }) {
-      console.log("SEARCH: ", data);
+      // console.log("SEARCH: ", data);
       setSearchResults(data);
     },
   });
@@ -123,6 +129,8 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
           searchResults && "h-screen",
         )}
       >
+        <SheetTitle className="hidden">Search Modal</SheetTitle>
+        <SheetDescription className="hidden">Search Modal</SheetDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField

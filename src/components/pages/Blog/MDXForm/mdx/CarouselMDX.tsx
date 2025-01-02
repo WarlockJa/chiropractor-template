@@ -9,11 +9,18 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { useEffect, useState } from "react";
-import { Circle, CircleDot, Maximize } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Circle,
+  CircleDot,
+  Maximize,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CustomImageMDX from "../CustomImageMDX";
 import ModalImagesViewer from "../../ModalImagesViewer";
 import { TPartImageId } from "../mdxtypes";
+import { cn } from "@/lib/utils";
 
 export default function CarouselMDX({
   imageIds,
@@ -74,7 +81,7 @@ export default function CarouselMDX({
     <>
       <Carousel
         setApi={setApi}
-        className="mx-auto w-full max-w-screen-md"
+        className="relative mx-auto w-full max-w-screen-md"
         opts={{ align: "start", loop }}
         plugins={plugins}
         onMouseOver={() => {
@@ -89,8 +96,32 @@ export default function CarouselMDX({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious type="button" />
-        <CarouselNext type="button" />
+
+        <Button
+          type="button"
+          onClick={() => api?.scrollPrev()}
+          variant={"ghost"}
+          disabled={!api?.canScrollPrev()}
+          className={cn(
+            "absolute inset-y-0 left-0 hidden h-full p-0 md:block",
+            data.length === 1 && "md:hidden",
+          )}
+        >
+          <ChevronLeft size={96} />
+        </Button>
+        <Button
+          type="button"
+          onClick={() => api?.scrollNext()}
+          disabled={!api?.canScrollNext()}
+          variant={"ghost"}
+          className={cn(
+            "absolute inset-y-0 right-0 hidden h-full p-0 md:block",
+            imageIds.length === 1 && "md:hidden",
+          )}
+        >
+          <ChevronRight size={96} />
+        </Button>
+
         <ModalImagesViewer
           imageIds={data}
           activeImageIndex={activeSlide}
@@ -98,7 +129,6 @@ export default function CarouselMDX({
         >
           <Button
             type="button"
-            variant={"ghost"}
             size={"icon"}
             className="absolute bottom-10 right-1"
             title="Fullscreen"

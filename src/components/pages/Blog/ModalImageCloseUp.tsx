@@ -61,14 +61,14 @@ export default function ModalImageCloseUp({
 }: {
   clickX: number;
   clickY: number;
-  imageId: number;
+  imageId: string | number;
   activeSlide?: number;
 }) {
   // blog images data
   const images = useAtomValue(blogImagesAtom);
   const image = useMemo(
-    () => images.find((img) => img.imageId === imageId),
-    [imageId, images],
+    () => images.find((img) => img.imageId === Number(imageId)),
+    [imageId, images, activeSlide],
   );
 
   // mouse coordinates
