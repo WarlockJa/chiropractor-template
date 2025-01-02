@@ -12,7 +12,7 @@ export default function HeroComponent({
 }: IParts_Hero) {
   return (
     <div className="relative">
-      <H1 className="font-outline absolute bottom-1 z-10 text-background drop-shadow-[2px_2px_1.5px_rgba(53,73,100,0.8)] dark:drop-shadow-[2px_2px_1.5px_rgba(208,204,219,0.8)]">
+      <H1 className="font-outline absolute bottom-1 z-10 text-slate-200 drop-shadow-[2px_2px_1.5px_rgba(53,73,100,0.8)] dark:drop-shadow-[2px_2px_1.5px_rgba(208,204,219,0.8)]">
         {/* <H1 className="font-outline absolute z-10 text-background drop-shadow-[2px_2px_1.5px_rgba(53,73,100,0.8)] dark:drop-shadow-[2px_2px_1.5px_rgba(208,204,219,0.8)]"> */}
         {title}
       </H1>

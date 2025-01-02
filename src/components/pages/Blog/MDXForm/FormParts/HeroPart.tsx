@@ -1,7 +1,6 @@
 import SimpleTextPrimitive from "./primitives/SimpleTextPrimitive";
 import { usePartWrapperContext } from "./wrappers/PartWrapper";
 import ImagePrimitive from "./primitives/ImagePrimitive/ImagePrimitive";
-import MDXEditorPrimitive from "./primitives/MDXEditorPrimitive";
 import { useState } from "react";
 import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
@@ -90,19 +89,20 @@ export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
         }}
       />
 
-      <MDXEditorPrimitive
-        markdown={formValues.currentValues.description}
-        setMarkdown={(text) => {
+      <SimpleTextPrimitive
+        labelText="Blog description"
+        placeholderText="Enter blog description"
+        setText={(text: string) => {
           // evaluating if it is ok to save the whole part
           // finding if a primitive has changed
-          const mdxEditor = formValues.originalState.description !== text;
+          const simpleText = formValues.originalState.description !== text;
           // saving change state for the primitive
-          setIsOkToSavePart((prev) => ({ ...prev, mdxEditor }));
+          setIsOkToSavePart((prev) => ({ ...prev, simpleText }));
 
           // comparing with the rest of the primitives
           const isOkToSave = isOkToSaveAggregate({
             aggregate: isOkToSavePart,
-            current: { mdxEditor },
+            current: { simpleText },
             override: {
               value: Boolean(formValues.currentValues.imageId),
             },
@@ -110,16 +110,11 @@ export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
 
           setFormValues((prev) => ({
             ...prev,
-            currentValues: {
-              ...prev.currentValues,
-              description: text,
-            },
+            currentValues: { ...prev.currentValues, description: text },
             isOkToSave,
           }));
         }}
-        labelText="Blog description"
-        placeholder="Blog description"
-        showPlugins
+        text={formValues.currentValues.description}
       />
 
       {!isOkToSavePart.image && !formValues.currentValues.imageId && (
