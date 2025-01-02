@@ -8,10 +8,6 @@ export default function A(
 ) {
   return (
     // @ts-ignore
-    <Link
-      {...props}
-      target="_blank"
-      className="text-muted-foreground hover:text-primary"
-    />
+    <Link {...props} target="_blank" className="hover:text-accent" />
   );
 }

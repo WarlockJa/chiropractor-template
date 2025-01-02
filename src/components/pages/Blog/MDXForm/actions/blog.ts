@@ -9,7 +9,6 @@ import { db } from "@db/db-connection";
 import { blogs, blogs_images } from "@db/schemaBlog";
 import { eq, inArray } from "drizzle-orm";
 import { revalidateTag } from "next/cache";
-import { isRedirectError } from "next/dist/client/components/redirect";
 import { z } from "zod";
 import {
   createBlogActionSchema,
@@ -63,51 +62,52 @@ async function createBlog({
   owner,
   title,
 }: z.infer<typeof createBlogSchema>) {
-  // generating name for the blog based on title or creating unique identifier if title is empty
-  const blogName = title.length > 3 ? slugify(title) : createId();
-  // testing that blog with generated name does not exist
-  // if it does exist increasing suffix and testing again
-  let blogSuffix;
-  let blogWithName;
+  // preparing loop data
+  // blogName is a slugified title
+  const blogName = title && title.length > 3 ? slugify(title) : createId();
+  // counter limits amount of attempts to create a unique name
+  let counter: number | undefined;
+  // blogNameWithSuffix is combined name with a counter suffix
   let blogNameWithSuffix = blogName;
+  // preserving error in case it is not caused by D1 unique constraint failure
+  let errorData: any;
   do {
-    blogWithName = await db
-      .select({ blogName: blogs.blogName })
-      .from(blogs)
-      .where(eq(blogs.blogName, blogNameWithSuffix));
-    if (blogWithName.length > 0) {
-      blogSuffix ? (blogSuffix += 1) : (blogSuffix = 1);
-      blogNameWithSuffix = blogName.concat("-", blogNameWithSuffix);
+    try {
+      const result = await db
+        .insert(blogs)
+        .values({
+          blogName: blogNameWithSuffix,
+          title,
+          description,
+          previewImage,
+          owner,
+          mdx,
+        })
+        .returning();
+
+      revalidateTag("blogPostsPages");
+
+      return result;
+    } catch (error: any) {
+      errorData = error;
+      // initiating/increasing counter
+      counter ? (counter += 1) : (counter = 1);
+      // generating name with a new suffix, or creating CUID on the last attempt
+      blogNameWithSuffix =
+        counter < 19 ? blogName.concat("-", counter.toString()) : createId();
     }
-  } while (blogWithName.length !== 0);
+    // limiting number of loops to 20
+  } while (counter < 20);
 
-  try {
-    const response = await db
-      .insert(blogs)
-      .values({
-        blogName: blogNameWithSuffix,
-        title,
-        description,
-        previewImage,
-        owner,
-        mdx,
-      })
-      .returning();
+  // throwing an error if update has failed
+  await writeLogEntry({
+    code: LOG_CODES.error.database_operation_fail,
+    source: "createBlog",
+    text: errorData.message,
+    type: "error",
+  });
 
-    return response[0].blogId;
-  } catch (error: any) {
-    // if error is caused by nextjs redirect then redirect
-    if (isRedirectError(error)) throw error;
-    // in case of error reading from DB attempting to write a log entry
-    await writeLogEntry({
-      code: LOG_CODES.error.database_operation_fail,
-      source: "createBlog",
-      text: error.message,
-      type: "error",
-    });
-
-    throw new Error(error.message);
-  }
+  throw new Error(errorData.message);
 }
 
 // update Blog
@@ -155,50 +155,49 @@ async function updateBlog(data: z.infer<typeof updateBlogSchema>) {
   // destructuring data to select only updatable properties
   const { blogId, ...newData } = data;
 
-  // generating name for the blog based on title or creating unique identifier if title is empty
+  // preparing loop data
+  // blogName is a slugified title
   const blogName =
     data.title && data.title.length > 3 ? slugify(data.title) : createId();
-  // testing that blog with generated name does not exist
-  // if it does exist increasing suffix and testing again
-  let blogSuffix;
-  let blogWithName;
+  // counter limits amount of attempts to create a unique name
+  let counter: number | undefined;
+  // blogNameWithSuffix is combined name with a counter suffix
   let blogNameWithSuffix = blogName;
+  // preserving error in case it is not caused by D1 unique constraint failure
+  let errorData: any;
   do {
-    blogWithName = await db
-      .select({ blogName: blogs.blogName })
-      .from(blogs)
-      .where(eq(blogs.blogName, blogNameWithSuffix));
-    if (blogWithName.length > 0) {
-      blogSuffix ? (blogSuffix += 1) : (blogSuffix = 1);
-      blogNameWithSuffix = blogName.concat("-", blogNameWithSuffix);
+    try {
+      const result = await db
+        .update(blogs)
+        .set({ ...newData, blogName: blogNameWithSuffix })
+        .where(eq(blogs.blogId, data.blogId))
+        .returning();
+
+      revalidateTag(`blogPostTag${result[0].blogId}`);
+      revalidateTag("blogPostsPages");
+      revalidateTag(`blogPostTag${result[0].blogName}`);
+
+      return result;
+    } catch (error: any) {
+      errorData = error;
+      // initiating/increasing counter
+      counter ? (counter += 1) : (counter = 1);
+      // generating name with a new suffix, or creating CUID on the last attempt
+      blogNameWithSuffix =
+        counter < 19 ? blogName.concat("-", counter.toString()) : createId();
     }
-  } while (blogWithName.length !== 0);
+    // limiting number of loops to 20
+  } while (counter < 20);
 
-  try {
-    const result = await db
-      .update(blogs)
-      .set({ ...newData, blogName: blogNameWithSuffix })
-      .where(eq(blogs.blogId, data.blogId))
-      .returning();
+  // throwing an error if update has failed
+  await writeLogEntry({
+    code: LOG_CODES.error.database_operation_fail,
+    source: "updateBlog",
+    text: errorData.message,
+    type: "error",
+  });
 
-    revalidateTag(`blogPostTag${result[0].blogId}`);
-    revalidateTag("blogPostsPages");
-    revalidateTag(`blogPostTag${result[0].blogName}`);
-
-    return result;
-  } catch (error: any) {
-    // if error is caused by nextjs redirect then redirect
-    if (isRedirectError(error)) throw error;
-    // in case of error reading from DB attempting to write a log entry
-    await writeLogEntry({
-      code: LOG_CODES.error.database_operation_fail,
-      source: "updateBlog",
-      text: error.message,
-      type: "error",
-    });
-
-    throw new Error(error.message);
-  }
+  throw new Error(errorData.message);
 }
 
 // Delete Blog and associated images

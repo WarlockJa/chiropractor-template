@@ -29,7 +29,7 @@ export default async function PostCard({
   deleteRights?: boolean;
 }) {
   return (
-    <Card className="group relative overflow-hidden group-hover:shadow group-hover:shadow-accent">
+    <Card className="group relative overflow-hidden hover:shadow hover:shadow-accent">
       <Link
         // href={`/blog/${blogData.blog.blogId}`}
         href={`/blog/${blogData.blog.blogName}`}
