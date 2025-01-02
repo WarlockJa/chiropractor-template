@@ -34,7 +34,7 @@ export default async function PostCard({
       <Link
         // href={`/blog/${blogData.blog.blogId}`}
         href={`/blog/${blogData.blog.blogName}`}
-        className="grid h-48 grid-cols-2"
+        className="grid h-96 grid-rows-2 sm:h-48 sm:grid-cols-2 sm:grid-rows-1"
       >
         <div className="relative overflow-hidden">
           <CustomImage
@@ -51,7 +51,7 @@ export default async function PostCard({
             <CardTitle className="text-xl">
               {convertCodesToSpecialCharacters(blogData.blog.title)}
             </CardTitle>
-            <CardDescription className="line-clamp-4 text-ellipsis">
+            <CardDescription className="line-clamp-4 text-ellipsis text-foreground">
               {convertCodesToSpecialCharacters(blogData.blog.description ?? "")}
             </CardDescription>
           </CardHeader>

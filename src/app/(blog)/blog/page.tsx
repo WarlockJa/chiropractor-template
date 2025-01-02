@@ -38,11 +38,11 @@ export default async function BlogPage({
     return (
       <section className="relative mx-auto flex h-screen w-screen flex-col">
         {userCanEditBlog({ user }) && (
-          <CreateNewBlogButton className="sticky mx-auto mt-28 w-screen max-w-screen-lg" />
+          <CreateNewBlogButton className="fixed bottom-0 z-20 flex w-full justify-center border md:sticky md:bottom-auto md:top-28" />
         )}
         <div
           className={cn(
-            "mx-auto h-[calc(100vh-7rem)] w-screen max-w-screen-lg overflow-y-scroll",
+            "mx-auto mt-28 h-[calc(100vh-7rem)] w-screen max-w-screen-lg overflow-y-scroll",
             !userCanEditBlog({ user }) && "mt-28",
           )}
         >
