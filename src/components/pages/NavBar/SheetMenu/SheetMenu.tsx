@@ -75,7 +75,6 @@ export default function SheetMenu({ user }: { user: User | undefined }) {
                   className="items-centerfont-medium flex w-full"
                   action={async () => {
                     "use server";
-                    // TODO check if needed
                     // revalidating blogs cache on user sing in state
                     revalidateTag("signInState");
                     await signOut();

@@ -25,10 +25,10 @@ export default async function AboutPage() {
   return (
     <div className="mt-28">
       <HeaderImage
-        dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
+        dbImageName="f9umjtc5n9r6d4tct6tk98p3-group-photo-short.webp"
         containerClassName="relative h-96 w-screen"
       >
-        <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
+        <div className="absolute inset-auto h-full w-full flex-col">
           <h1 className="text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
             {t("about")}
           </h1>
