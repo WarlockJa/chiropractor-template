@@ -20,6 +20,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CachedBlog } from "@/lib/cache/blog/blog";
+import CustomImage from "@/components/UniversalComponents/CustomImage";
 
 export default async function PostCard({
   blogData,
@@ -36,10 +37,14 @@ export default async function PostCard({
         className="grid h-48 grid-cols-2"
       >
         <div className="relative overflow-hidden">
-          <CustomImageMDX
+          <CustomImage
             imageId={blogData.blog.previewImage}
             className="absolute inset-0 object-cover transition-transform group-hover:scale-105"
           />
+          {/* <CustomImageMDX
+            imageId={blogData.blog.previewImage}
+            className="absolute inset-0 object-cover transition-transform group-hover:scale-105"
+          /> */}
         </div>
         <div className="relative">
           <CardHeader>

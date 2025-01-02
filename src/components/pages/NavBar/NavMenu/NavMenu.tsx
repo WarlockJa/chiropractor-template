@@ -9,11 +9,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/button";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
 import ClientNavBarMenuItem from "./ClientNavBarMenuItem";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { servicesData } from "../../Services/servicesData";
 
 export interface IItemNavBar {
@@ -104,6 +101,9 @@ export default async function NavMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem className="relative">
           <ClientNavBarMenuItem {...MENU_ITEMS[3]} />
+        </NavigationMenuItem>
+        <NavigationMenuItem className="relative">
+          <ClientNavBarMenuItem {...MENU_ITEMS[4]} />
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
