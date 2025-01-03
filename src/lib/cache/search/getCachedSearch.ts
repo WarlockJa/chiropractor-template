@@ -84,7 +84,8 @@ export const getCachedSearch = cache(
           ).map((item) => ({ blog: item[0], image: item[1].image }));
 
           return { pages, blogsWithImages };
-        } catch (error) {
+        } catch (error: any) {
+          throw new Error(error.message);
           // TODO LOG error
           return undefined;
         }
