@@ -35,7 +35,7 @@ export const searchAction = actionClient
     // filtering unpublished blogs for user without edit rights
     // const publishedBlogs = result.blogs.filter((item) => item.blog.published);
     const publishedBlogs = result.blogsWithImages.filter(
-      (item) => item.blog.blog.published,
+      (item) => item.blog.published,
     );
 
     // forming filtered result
