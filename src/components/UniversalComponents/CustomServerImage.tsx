@@ -16,10 +16,12 @@ export default async function CustomServerImage({
   imageId,
   dbImageName,
   className,
+  priority,
 }: {
   imageId?: number | null;
   dbImageName?: string;
   className?: string;
+  priority?: boolean;
 }) {
   // development environment workaround to access images
   if (process.env.NODE_ENV === "development") {
@@ -34,6 +36,7 @@ export default async function CustomServerImage({
         height={480}
         className={cn("h-full w-full object-cover", className)}
         sizes="100vw"
+        priority={priority}
       />
     ) : (
       <Image
@@ -46,6 +49,7 @@ export default async function CustomServerImage({
         height={480}
         className={cn("h-full w-full object-cover", className)}
         sizes="100vw"
+        priority={priority}
       />
     );
   }

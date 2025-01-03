@@ -67,38 +67,6 @@ export const getCachedSearch = cache(
               Number(item.id.slice(blogVectorizePrefix.length)),
             ),
           );
-          // const blogPromises = filteredSearchResults.map(item => getCachedBlogId(Number(item.id.slice(blogVectorizePrefix.length))))
-          // const blogPreviewImagePromises =
-
-          // const blogPromises = matches.matches
-          //   .filter(
-          //     (item) =>
-          //       item.score > 0.55 &&
-          //       item.id.slice(0, blogVectorizePrefix.length) ===
-          //         blogVectorizePrefix,
-          //   )
-          //   .sort((a, b) => (a.score > b.score ? -1 : 1))
-          //   .map((item) =>
-          //     Promise.all([
-          //       getCachedBlogId(
-          //         Number(item.id.slice(blogVectorizePrefix.length)),
-          //       ),
-          //       // TODO cache
-          //       db
-          //         .select()
-          //         .from(images)
-          //         .innerJoin(
-          //           blogs_images,
-          //           eq(blogs_images.imageId, images.imageId),
-          //         )
-          //         .where(
-          //           eq(
-          //             blogs_images.blogId,
-          //             Number(item.id.slice(blogVectorizePrefix.length)),
-          //           ),
-          //         ),
-          //     ]),
-          //   );
 
           // awaiting all promises
           const blogsWithImages: CachedBlogWithImage[] = await Promise.all(

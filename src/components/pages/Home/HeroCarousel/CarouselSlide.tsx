@@ -21,6 +21,7 @@ export default function CarouselSlide({
       <CustomServerImage
         dbImageName={dbImageName}
         className="h-screen w-screen md:h-[40em] xl:h-[62em]"
+        priority
       />
       <div className="absolute inset-x-0 top-0 mx-auto h-screen w-full max-w-screen-2xl md:h-[40em] xl:h-[62em]">
         <div className="absolute bottom-[25%] left-[7%] mx-auto flex flex-col gap-2 2xl:left-0">
