@@ -2,23 +2,10 @@ import NextLink from "next/link";
 import TwitterIcon from "@/components/Icons/TwitterIcon";
 import FacebookIcon from "@/components/Icons/FacebookIcon";
 import YoutubeIcon from "@/components/Icons/YoutubeIcon";
-import { ExternalLink, Mail, Phone } from "lucide-react";
-import {
-  brandAddress,
-  brandEmail,
-  brandFB,
-  brandIG,
-  brandMapDirectionsLink,
-  brandName,
-  brandPhone,
-  brandWhatsApp,
-  brandX,
-  brandYT,
-} from "@/appConfig";
+import { brandFB, brandIG, brandName, brandX, brandYT } from "@/appConfig";
 import { useTranslations } from "next-intl";
-import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
 import Link from "next/link";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import InstagramIcon from "@/components/Icons/InstagramIcon";
 import { servicesData } from "../Services/servicesData";
 
@@ -36,7 +23,7 @@ export default function Footer() {
         >
           <h3 className="text-2xl">{brandName}</h3>
           <div className="h-28">
-            <CustomImage dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png" />
+            <CustomServerImage dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png" />
           </div>
         </Link>
 

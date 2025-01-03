@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import { Quote } from "lucide-react";
 import { TestimonialsData } from "./testimonialsData";
 
@@ -25,7 +25,7 @@ export default function TestimonialCard({
         <CardDescription className="py-4 indent-12">{quote}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col items-center">
-        <CustomImage
+        <CustomServerImage
           dbImageName={dbImageName}
           className="aspect-square w-40 rounded-full"
         />

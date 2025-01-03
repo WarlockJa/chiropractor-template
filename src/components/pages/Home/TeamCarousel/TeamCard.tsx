@@ -1,4 +1,4 @@
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import { TeamData } from "./testimonialsData";
 import Link from "next/link";
 import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
@@ -22,8 +22,7 @@ export default function TeamCard({
     <div className="grid gap-4 md:grid-cols-[1fr,1px,1fr]">
       {/* <div className="flex flex-col items-center overflow-hidden"> */}
       <div className="flex w-full flex-col items-center">
-        {/* <CustomImage dbImageName={dbImageName} className="rounded-full" /> */}
-        <CustomImage
+        <CustomServerImage
           dbImageName={dbImageName}
           className="w-screen max-w-full rounded-full"
         />

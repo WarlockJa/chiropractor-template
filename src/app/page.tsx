@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import ContactsFooter from "@/components/pages/ContactsFooter";
 import HeroCarousel from "@/components/pages/Home/HeroCarousel/HeroCarousel";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import CarouselSlide from "@/components/pages/Home/HeroCarousel/CarouselSlide";
 import AboutPractitioner from "@/components/pages/AboutPractitioner/AboutPractitioner";
 import ServicesCarousel from "@/components/pages/Home/ServicesCarousel/ServicesCarousel";
@@ -52,7 +52,7 @@ export default function Home() {
       {/* About Practitioner */}
       <div className="bg-gradient-to-tr from-background from-60% via-accent to-background">
         <div className="mx-auto grid max-w-screen-xl justify-center py-20 md:gap-4 lg:grid-cols-[2fr,1fr]">
-          <CustomImage
+          <CustomServerImage
             dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
             className="aspect-video max-w-screen-md rounded-md shadow-md shadow-accent"
           />

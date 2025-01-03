@@ -1,5 +1,5 @@
 import { CustomButton } from "@/components/UniversalComponents/CustomButton";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import AnimatedText from "@/components/UniversalComponents/AnimatedText";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ import Link from "next/link";
 This is a finicky component. In order to be responsive it has to be of fixed height
 breaks md: lg: should be provided at:
   HeroCarousel -> CarouselContent,
-  CarouselSlide -> CustomImage,
+  CarouselSlide -> CustomServerImage,
   CarouselSlide -> Following the image div text wrapper
 */
 
@@ -18,7 +18,7 @@ export default function CarouselSlide({
 }) {
   return (
     <div className="relative">
-      <CustomImage
+      <CustomServerImage
         dbImageName={dbImageName}
         className="h-screen w-screen md:h-[40em] xl:h-[62em]"
       />

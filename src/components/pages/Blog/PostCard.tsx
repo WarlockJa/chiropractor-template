@@ -1,6 +1,5 @@
 import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialCharacters";
 import { Button } from "@/components/ui/button";
-import CustomImageMDX from "@/components/pages/Blog/MDXForm/CustomImageMDX";
 import Link from "next/link";
 import { intlFormat } from "date-fns";
 import DeleteBlogButton from "@/components/pages/Blog/DeleteBlogButton";
@@ -20,7 +19,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CachedBlog } from "@/lib/cache/blog/blog";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 
 export default async function PostCard({
   blogData,
@@ -36,7 +35,7 @@ export default async function PostCard({
         className="grid h-96 grid-rows-2 sm:h-48 sm:grid-cols-2 sm:grid-rows-1"
       >
         <div className="relative overflow-hidden">
-          <CustomImage
+          <CustomServerImage
             imageId={blogData.blog.previewImage}
             className="absolute inset-0 object-cover transition-transform group-hover:scale-105"
           />

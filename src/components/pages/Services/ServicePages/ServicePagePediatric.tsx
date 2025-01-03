@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 
 export default function ServicePagePediatric({
   serviceData,
@@ -45,7 +45,7 @@ export default function ServicePagePediatric({
             />
 
             <div className="text-justify">
-              <CustomImage
+              <CustomServerImage
                 dbImageName={serviceData.dbImageName}
                 className="mx-auto max-w-96 rounded-md shadow-lg shadow-accent sm:float-right sm:m-4"
               />

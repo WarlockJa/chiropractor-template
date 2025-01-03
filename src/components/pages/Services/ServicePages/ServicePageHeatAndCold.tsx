@@ -8,8 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 
 export default function ServicePageHeatAndCold({
   serviceData,
@@ -44,7 +43,7 @@ export default function ServicePageHeatAndCold({
             />
 
             <div className="text-justify">
-              <CustomImage
+              <CustomServerImage
                 dbImageName={serviceData.dbImageName}
                 className="mx-auto max-w-96 rounded-md shadow-lg shadow-accent sm:float-right sm:m-4"
               />

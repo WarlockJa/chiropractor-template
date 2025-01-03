@@ -2,7 +2,7 @@ import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { useTranslations } from "next-intl";
 import { servicesData } from "@/components/pages/Services/servicesData";
 import ServiceCardList from "@/components/pages/Services/ServiceCardList/ServiceCardList";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 
 export default function Home() {
   const t = useTranslations("Services");
@@ -26,7 +26,7 @@ export default function Home() {
             key={item.title}
             href={item.href}
             title={item.title}
-            image={<CustomImage dbImageName={item.dbImageName} />}
+            image={<CustomServerImage dbImageName={item.dbImageName} />}
           />
         ))}
       </div>

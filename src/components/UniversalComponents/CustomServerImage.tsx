@@ -1,4 +1,4 @@
-// CustomImage is a server component that fetches data from Images table
+// CustomServerImage is a server component that fetches data from Images table
 // when passed either imageId or name fields
 // WARNING because this is a server component it needs to be nested as a children prop
 // when used inside of the client components
@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { SelectImages } from "@db/schemaImage";
 import Image from "next/image";
 
-export default async function CustomImage({
+export default async function CustomServerImage({
   imageId,
   dbImageName,
   className,

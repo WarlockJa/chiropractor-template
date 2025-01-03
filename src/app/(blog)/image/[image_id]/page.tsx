@@ -5,7 +5,7 @@ import BlogImageNotFound from "./not-found";
 import { db } from "@db/db-connection";
 import { blogs } from "@db/schemaBlog";
 import { eq } from "drizzle-orm";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
+import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import { ArrowLeft } from "lucide-react";
 
 export default async function BlogImagePage({
@@ -30,8 +30,8 @@ export default async function BlogImagePage({
     return (
       <section className="mx-auto flex flex-col items-center justify-center overflow-hidden">
         <div className="relative h-screen w-screen">
-          {/* CustomImage will hit cached fetch query */}
-          <CustomImage imageId={params.image_id} />
+          {/* CustomServerImage will hit cached fetch query */}
+          <CustomServerImage imageId={params.image_id} />
 
           <Button
             variant={"link"}

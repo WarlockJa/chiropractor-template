@@ -29,9 +29,6 @@ export default async function NavBar() {
                   alt="chiropractor logo"
                   className="object-contain"
                 />
-                {/* <CustomImage
-                  dbImageName={"tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"}
-                /> */}
               </div>
               <div className="hidden md:block">{brandName}</div>
             </Link>

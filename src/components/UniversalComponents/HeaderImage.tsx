@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import CustomImage from "./CustomImage";
+import CustomServerImage from "./CustomServerImage";
 import { cn } from "@/lib/utils";
 
 export default function HeaderImage({
@@ -23,7 +23,7 @@ export default function HeaderImage({
       )}
     >
       <div className="absolute inset-0 z-10 bg-foreground/10"></div>
-      <CustomImage imageId={imageId} dbImageName={dbImageName} />
+      <CustomServerImage imageId={imageId} dbImageName={dbImageName} />
       <div
         className={cn(
           "absolute inset-0 z-20 flex items-center justify-center",

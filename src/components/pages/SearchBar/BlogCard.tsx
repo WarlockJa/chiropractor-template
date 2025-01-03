@@ -6,9 +6,7 @@ import { intlFormat } from "date-fns";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { BlogWithImage } from "@/lib/cache/search/getCachedSearch";
-import Image from "next/image";
-import { env } from "@/lib/env.mjs";
-import { blurHashToDataURL } from "@/lib/blurHashToDataURL";
+import CustomDataImage from "@/components/UniversalComponents/CustomDataImage";
 
 export default function BlogCard({
   blog,
@@ -25,17 +23,7 @@ export default function BlogCard({
       <SheetCloseWrapper withSheetClose>
         <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-accent">
           <CardContent className="p-0">
-            <Image
-              src={`${env.NEXT_PUBLIC_R2_URI}/${image.name}`}
-              alt={"development"}
-              aria-label={"development"}
-              placeholder="blur"
-              blurDataURL={blurHashToDataURL(image.blurhash)}
-              width={image.width}
-              height={image.height}
-              className={"h-full w-full object-cover"}
-              sizes="100vw"
-            />
+            <CustomDataImage dbImage={image} />
           </CardContent>
           <CardHeader className="flex flex-col bg-accent/10 p-2">
             <CardTitle className="flex-1">
