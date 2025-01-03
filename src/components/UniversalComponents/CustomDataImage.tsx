@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { SelectImages } from "@db/schemaImage";
 import Image from "next/image";
 
-export default async function CustomDataImage({
+export default function CustomDataImage({
   dbImage,
   className,
 }: {

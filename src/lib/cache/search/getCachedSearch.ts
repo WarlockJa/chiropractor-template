@@ -59,7 +59,6 @@ export const getCachedSearch = cache(
           // creating promises to find blogs returned by Vectorize query
           // filtering out results that are lower than 0.55 in likeliness on the cosine scale from 0 to 1
           // where 1 is the highest match value
-
           const blogPromises = matches.matches
             .filter(
               (item) =>

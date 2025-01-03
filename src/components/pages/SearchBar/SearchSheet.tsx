@@ -176,6 +176,7 @@ const SearchResults = ({
     />
   ));
 
+  console.log("BLOGSIMAGES: ", searchResults.blogsWithImages);
   // constructing blogs results
   const blogCards = searchResults.blogsWithImages
     // filter is for development mode, when results from Vectorize point to the blogs that do not exsit locally
