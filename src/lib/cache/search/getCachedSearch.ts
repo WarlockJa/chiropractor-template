@@ -67,7 +67,6 @@ export const getCachedSearch = cache(
                   blogVectorizePrefix,
             )
             .sort((a, b) => (a.score > b.score ? -1 : 1))
-            // TODO search results should be filtered by blogs being published if user has no edit rights
             .map((item) =>
               Promise.all([
                 getCachedBlogId(
