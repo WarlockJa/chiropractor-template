@@ -10,7 +10,6 @@ import Link from "next/link";
 import { getServiceData } from "../Services/servicesData";
 
 export default function PageCard({ path }: { path: string }) {
-  // const pageData = servicesData.find((item) => item.href === path);
   const pageData = getServiceData({ path });
 
   if (!pageData) return <p>Page not found</p>;

@@ -4,12 +4,14 @@ import { ai } from "@cf/ai/ai";
 import { vectorize } from "@cf/vectorize/vectorize";
 import { CachedBlog } from "../blog/blog";
 import { getCachedBlogId } from "../blog/getCachedBlogId";
+import { blogVectorizePrefix } from "@/components/pages/Blog/lib/prefixes";
 
 export interface CachedSearchResult {
   pages: VectorizeMatch[];
   blogs: CachedBlog[];
 }
 
+// TODO search results should be filtered by blogs being published if user has no edit rights
 export const getCachedSearch = cache(
   async ({
     value,
@@ -40,7 +42,10 @@ export const getCachedSearch = cache(
         // filtering pages vectors
         const pages = matches.matches
           .filter(
-            (item) => item.score > 0.55 && item.id.slice(0, 6) !== "blogId",
+            (item) =>
+              item.score > 0.55 &&
+              item.id.slice(0, blogVectorizePrefix.length) !==
+                blogVectorizePrefix,
           )
           .sort((a, b) => (a.score > b.score ? -1 : 1));
 
@@ -51,10 +56,17 @@ export const getCachedSearch = cache(
 
           const blogPromises = matches.matches
             .filter(
-              (item) => item.score > 0.55 && item.id.slice(0, 6) === "blogId",
+              (item) =>
+                item.score > 0.55 &&
+                item.id.slice(0, blogVectorizePrefix.length) ===
+                  blogVectorizePrefix,
             )
             .sort((a, b) => (a.score > b.score ? -1 : 1))
-            .map((item) => getCachedBlogId(Number(item.id.slice(6))));
+            .map((item) =>
+              getCachedBlogId(
+                Number(item.id.slice(blogVectorizePrefix.length)),
+              ),
+            );
 
           // awaiting all promises
           const blogs = await Promise.all(blogPromises);
