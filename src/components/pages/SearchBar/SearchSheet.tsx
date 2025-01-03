@@ -68,7 +68,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
     },
 
     onSuccess({ data }) {
-      console.log("SEARCH: ", data);
+      // console.log("SEARCH: ", data);
       setSearchResults(data);
     },
   });

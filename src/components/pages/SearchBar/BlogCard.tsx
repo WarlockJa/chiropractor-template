@@ -22,9 +22,12 @@ export default function BlogCard({
   return (
     <Link href={`/blog/${blog.blogName}`}>
       <SheetCloseWrapper withSheetClose>
-        <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-accent">
-          <CardContent className="p-0">
-            <CustomDataImage dbImage={image} />
+        <Card className="group relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-accent">
+          <CardContent className="relative overflow-hidden p-0">
+            <CustomDataImage
+              dbImage={image}
+              className="absolute inset-0 transition-transform group-hover:scale-105"
+            />
           </CardContent>
           <CardHeader className="flex flex-col bg-accent/10 p-2">
             <CardTitle className="flex-1">
