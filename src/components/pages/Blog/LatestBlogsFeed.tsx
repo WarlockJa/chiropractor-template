@@ -26,8 +26,11 @@ export default async function LatestBlogsFeed({
     <ul className={cn("w-full", className)}>
       {pageBlogs && pageBlogs.length > 0 ? (
         pageBlogs.map((blogData) => (
-          <li key={blogData.blog.blogId} className="flex items-center gap-8">
-            <ScrollText size={64} className="text-accent" />
+          <li
+            key={blogData.blog.blogId}
+            className="grid items-center md:grid-cols-[5em,1fr]"
+          >
+            <ScrollText size={64} className="hidden text-accent md:block" />
             <PostCard
               blogData={blogData}
               deleteRights={userCanEditBlog({ user })}
