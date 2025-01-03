@@ -11,7 +11,7 @@ export default function Gallery({ imageIds }: { imageIds: string }) {
 
   return data ? (
     <Card className="mb-8 shadow-lg">
-      <CardContent className="grid grid-cols-4 gap-1 p-2">
+      <CardContent className="grid grid-cols-1 gap-1 p-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data.map((imageId, index) => (
           <div key={`${imageId}${index}`}>
             <ModalImagesViewer imageIds={data} activeImageIndex={index}>

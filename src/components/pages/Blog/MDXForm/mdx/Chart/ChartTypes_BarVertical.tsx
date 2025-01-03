@@ -19,7 +19,10 @@ export default function ChartTypes_BarVertical({
 }: IChartTypes_BarProps) {
   const dataKeys = Object.keys(chartData[0]);
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+    <ChartContainer
+      config={chartConfig}
+      className="min-h-[200px] w-full [&_.recharts-radial-bar-background-sector]:fill-accent/20 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-accent/20"
+    >
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
         <XAxis

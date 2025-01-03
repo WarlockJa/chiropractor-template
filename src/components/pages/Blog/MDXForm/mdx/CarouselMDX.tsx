@@ -143,7 +143,7 @@ export default function CarouselMDX({
               key={`dot${index}`}
               size={"icon"}
               variant={"ghost"}
-              className="z-50"
+              className="z-10"
               onClick={() => api?.scrollTo(index)}
             >
               {activeSlide === index ? <CircleDot /> : <Circle />}

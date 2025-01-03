@@ -193,7 +193,7 @@ export default function ModalImagesViewer({
               ))}
           </ul>
         </Carousel>
-        <SheetHeader className="absolute bottom-7 left-2">
+        <SheetHeader className="absolute bottom-12 left-2">
           <Socials
             url={`/image/${imageIds[activeSlide]}`}
             className="flex w-24 gap-1.5 rounded-sm"
@@ -208,7 +208,7 @@ export default function ModalImagesViewer({
         >
           <Button
             type="button"
-            className="absolute bottom-7 right-2 flex w-24 items-center rounded-sm px-1.5 text-xl transition-colors hover:bg-background hover:text-accent hover:underline"
+            className="absolute bottom-12 right-2 flex w-24 items-center rounded-sm px-1.5 text-xl transition-colors hover:bg-background hover:text-accent hover:underline"
           >
             <X size={24} />
             Close

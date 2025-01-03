@@ -25,7 +25,7 @@ export default function ContactsPanel({ className }: { className?: string }) {
     <div
       className={cn(
         "flex flex-col items-center gap-2 p-2",
-        isScrolled && "opacity-0 md:opacity-100",
+        isScrolled && "pointer-events-none opacity-0 md:opacity-100",
         className,
       )}
     >

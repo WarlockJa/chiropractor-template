@@ -36,7 +36,7 @@ export default function BlogsListPagination({
   return (
     <Pagination
       className={cn(
-        "h-20 bg-gradient-to-t from-secondary to-transparent",
+        "h-20 bg-gradient-to-t from-accent/50 to-transparent",
         className,
       )}
     >

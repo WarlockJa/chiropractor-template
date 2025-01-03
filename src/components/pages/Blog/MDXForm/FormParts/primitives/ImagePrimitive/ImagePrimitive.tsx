@@ -257,7 +257,7 @@ export default function ImagePrimitive({
 
   return (
     <Card className="mx-4 w-[calc(100%_-_2rem)] transition-shadow hover:shadow hover:shadow-foreground">
-      <CardContent className="mt-6 flex gap-6">
+      <CardContent className="mt-6 flex flex-col gap-6 md:flex-row">
         {/* Drag and Drop area combined with file selector and URL parser */}
         <div
           className="w-full rounded border-2 border-dashed border-muted"

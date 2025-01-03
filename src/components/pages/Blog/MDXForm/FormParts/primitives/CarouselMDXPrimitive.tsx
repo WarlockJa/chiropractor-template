@@ -87,6 +87,7 @@ export default function CarouselMDXPrimitive({
               size={"icon"}
               variant={"ghost"}
               onClick={() => api?.scrollTo(index)}
+              className="z-10"
             >
               {activeSlide === index ? <CircleDot /> : <Circle />}
             </Button>
