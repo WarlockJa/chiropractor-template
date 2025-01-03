@@ -5,10 +5,17 @@ import { vectorize } from "@cf/vectorize/vectorize";
 import { CachedBlog } from "../blog/blog";
 import { getCachedBlogId } from "../blog/getCachedBlogId";
 import { blogVectorizePrefix } from "@/components/pages/Blog/lib/prefixes";
+import { getCachedImageBlog } from "../blog/getCachedImageBlog";
+import { SelectImages } from "@db/schemaImage";
+
+export interface BlogWithImage {
+  blog: CachedBlog;
+  image: SelectImages;
+}
 
 export interface CachedSearchResult {
   pages: VectorizeMatch[];
-  blogs: CachedBlog[];
+  blogsWithImages: BlogWithImage[];
 }
 
 export const getCachedSearch = cache(
@@ -63,15 +70,22 @@ export const getCachedSearch = cache(
             .sort((a, b) => (a.score > b.score ? -1 : 1))
             // TODO search results should be filtered by blogs being published if user has no edit rights
             .map((item) =>
-              getCachedBlogId(
-                Number(item.id.slice(blogVectorizePrefix.length)),
-              ),
+              Promise.all([
+                getCachedBlogId(
+                  Number(item.id.slice(blogVectorizePrefix.length)),
+                ),
+                getCachedImageBlog(
+                  Number(item.id.slice(blogVectorizePrefix.length)),
+                ),
+              ]),
             );
 
           // awaiting all promises
-          const blogs = await Promise.all(blogPromises);
+          const blogsWithImages: BlogWithImage[] = (
+            await Promise.all(blogPromises)
+          ).map((item) => ({ blog: item[0], image: item[1].image }));
 
-          return { pages, blogs };
+          return { pages, blogsWithImages };
         } catch (error) {
           // TODO LOG error
           return undefined;

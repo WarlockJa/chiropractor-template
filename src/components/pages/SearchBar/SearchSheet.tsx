@@ -160,7 +160,11 @@ const SearchResults = ({
 }) => {
   if (!searchResults) return null;
 
-  if (searchResults.blogs.length === 0 && searchResults.pages.length === 0)
+  // if (searchResults.blogs.length === 0 && searchResults.pages.length === 0)
+  if (
+    searchResults.blogsWithImages.length === 0 &&
+    searchResults.pages.length === 0
+  )
     return <p className="text-center">There was no results</p>;
 
   // constructing pages results
@@ -173,13 +177,13 @@ const SearchResults = ({
   ));
 
   // constructing blogs results
-  const blogCards = searchResults.blogs
+  const blogCards = searchResults.blogsWithImages
     // filter is for development mode, when results from Vectorize point to the blogs that do not exsit locally
-    .filter((item) => item)
+    .filter((item) => item.blog)
     .map((item) => (
       <BlogCard
         {...item}
-        key={`searchResult${item.blog.blogId}`}
+        key={`searchResult${item.blog.blog.blogId}`}
         SheetCloseWrapper={SheetCloseWrapper}
       />
     ));

@@ -8,7 +8,6 @@ import {
 import { rateLimitByIp } from "@/lib/rateLimiting/limiters";
 import getSession from "@/lib/db/getSession";
 import userCanEditBlog from "../../Blog/MDXForm/lib/userCanEditBlog";
-import { CachedBlog } from "@/lib/cache/blog/blog";
 
 // search action makes a request to the embeddings worker
 export const searchAction = actionClient
@@ -34,12 +33,15 @@ export const searchAction = actionClient
     if (!result || userCanEditBlog({ user })) return result;
 
     // filtering unpublished blogs for user without edit rights
-    const publishedBlogs = result.blogs.filter((item) => item.blog.published);
+    // const publishedBlogs = result.blogs.filter((item) => item.blog.published);
+    const publishedBlogs = result.blogsWithImages.filter(
+      (item) => item.blog.blog.published,
+    );
 
     // forming filtered result
     const searchResult: CachedSearchResult = {
       pages: result.pages,
-      blogs: publishedBlogs,
+      blogsWithImages: publishedBlogs,
     };
 
     return searchResult;
