@@ -34,7 +34,7 @@ export default function ChartTypes_Line({
           tickLine={false}
           axisLine={false}
           tickMargin={8}
-          tickFormatter={(value) => value.slice(0, 3)}
+          // tickFormatter={(value) => value.slice(0, 3)}
         />
         <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
