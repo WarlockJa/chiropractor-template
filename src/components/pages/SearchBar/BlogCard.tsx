@@ -9,7 +9,7 @@ import { CachedBlog } from "@/lib/cache/blog/blog";
 
 export default function BlogCard({ blog, owner }: CachedBlog) {
   return (
-    <Link href={`/blog/${blog.blogId}`}>
+    <Link href={`/blog/${blog.blogName}`}>
       <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-accent">
         <CardContent className="p-0">
           <CustomImageMDX imageId={blog.previewImage} />

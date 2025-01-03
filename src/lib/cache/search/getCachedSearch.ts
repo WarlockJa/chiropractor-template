@@ -11,7 +11,6 @@ export interface CachedSearchResult {
   blogs: CachedBlog[];
 }
 
-// TODO search results should be filtered by blogs being published if user has no edit rights
 export const getCachedSearch = cache(
   async ({
     value,
@@ -62,6 +61,7 @@ export const getCachedSearch = cache(
                   blogVectorizePrefix,
             )
             .sort((a, b) => (a.score > b.score ? -1 : 1))
+            // TODO search results should be filtered by blogs being published if user has no edit rights
             .map((item) =>
               getCachedBlogId(
                 Number(item.id.slice(blogVectorizePrefix.length)),

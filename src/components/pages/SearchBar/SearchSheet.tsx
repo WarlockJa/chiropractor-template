@@ -30,7 +30,6 @@ import {
 import { CachedSearchResult } from "@/lib/cache/search/getCachedSearch";
 import PageCard from "./PageCard";
 import { cn } from "@/lib/utils";
-import { revalidateTag } from "next/cache";
 
 const SEARCH_RESULT = [
   {

@@ -28,9 +28,12 @@ export default async function LatestBlogsFeed({
         pageBlogs.map((blogData) => (
           <li
             key={blogData.blog.blogId}
-            className="grid items-center md:grid-cols-[5em,1fr]"
+            className="group grid items-center md:grid-cols-[5em,1fr]"
           >
-            <ScrollText size={64} className="hidden text-accent md:block" />
+            <ScrollText
+              size={64}
+              className="hidden text-accent transition-transform group-hover:scale-105 md:block"
+            />
             <PostCard
               blogData={blogData}
               deleteRights={userCanEditBlog({ user })}
