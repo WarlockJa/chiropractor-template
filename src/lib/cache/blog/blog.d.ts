@@ -8,3 +8,12 @@ interface CachedBlog {
     image: string | null;
   } | null;
 }
+
+interface CachedBlogWithImage {
+  blog: SelectBlogs;
+  owner: {
+    name: string | null;
+    image: string | null;
+  } | null;
+  image: SelectImages | null;
+}

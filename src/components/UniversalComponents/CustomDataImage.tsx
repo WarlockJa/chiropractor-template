@@ -12,7 +12,7 @@ export default function CustomDataImage({
   dbImage,
   className,
 }: {
-  dbImage: SelectImages;
+  dbImage: SelectImages | null;
   className?: string;
 }) {
   // displaying image

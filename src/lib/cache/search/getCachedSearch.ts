@@ -2,20 +2,13 @@ import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { ai } from "@cf/ai/ai";
 import { vectorize } from "@cf/vectorize/vectorize";
-import { CachedBlog } from "../blog/blog";
-import { getCachedBlogId } from "../blog/getCachedBlogId";
+import { CachedBlogWithImage } from "../blog/blog";
 import { blogVectorizePrefix } from "@/components/pages/Blog/lib/prefixes";
-import { getCachedImageBlog } from "../blog/getCachedImageBlog";
-import { SelectImages } from "@db/schemaImage";
-
-export interface BlogWithImage {
-  blog: CachedBlog;
-  image: SelectImages;
-}
+import { getCachedBlogIdWithImage } from "../blog/getCachedBlogIdWithImage";
 
 export interface CachedSearchResult {
   pages: VectorizeMatch[];
-  blogsWithImages: BlogWithImage[];
+  blogsWithImages: CachedBlogWithImage[];
 }
 
 export const getCachedSearch = cache(
@@ -59,29 +52,58 @@ export const getCachedSearch = cache(
           // creating promises to find blogs returned by Vectorize query
           // filtering out results that are lower than 0.55 in likeliness on the cosine scale from 0 to 1
           // where 1 is the highest match value
-          const blogPromises = matches.matches
+          const filteredSearchResults = matches.matches
             .filter(
               (item) =>
                 item.score > 0.55 &&
                 item.id.slice(0, blogVectorizePrefix.length) ===
                   blogVectorizePrefix,
             )
-            .sort((a, b) => (a.score > b.score ? -1 : 1))
-            .map((item) =>
-              Promise.all([
-                getCachedBlogId(
-                  Number(item.id.slice(blogVectorizePrefix.length)),
-                ),
-                getCachedImageBlog(
-                  Number(item.id.slice(blogVectorizePrefix.length)),
-                ),
-              ]),
-            );
+            .sort((a, b) => (a.score > b.score ? -1 : 1));
+          // constructing promises
+
+          const blogPreviewImagePromises = filteredSearchResults.map((item) =>
+            getCachedBlogIdWithImage(
+              Number(item.id.slice(blogVectorizePrefix.length)),
+            ),
+          );
+          // const blogPromises = filteredSearchResults.map(item => getCachedBlogId(Number(item.id.slice(blogVectorizePrefix.length))))
+          // const blogPreviewImagePromises =
+
+          // const blogPromises = matches.matches
+          //   .filter(
+          //     (item) =>
+          //       item.score > 0.55 &&
+          //       item.id.slice(0, blogVectorizePrefix.length) ===
+          //         blogVectorizePrefix,
+          //   )
+          //   .sort((a, b) => (a.score > b.score ? -1 : 1))
+          //   .map((item) =>
+          //     Promise.all([
+          //       getCachedBlogId(
+          //         Number(item.id.slice(blogVectorizePrefix.length)),
+          //       ),
+          //       // TODO cache
+          //       db
+          //         .select()
+          //         .from(images)
+          //         .innerJoin(
+          //           blogs_images,
+          //           eq(blogs_images.imageId, images.imageId),
+          //         )
+          //         .where(
+          //           eq(
+          //             blogs_images.blogId,
+          //             Number(item.id.slice(blogVectorizePrefix.length)),
+          //           ),
+          //         ),
+          //     ]),
+          //   );
 
           // awaiting all promises
-          const blogsWithImages: BlogWithImage[] = (
-            await Promise.all(blogPromises)
-          ).map((item) => ({ blog: item[0], image: item[1].image }));
+          const blogsWithImages: CachedBlogWithImage[] = await Promise.all(
+            blogPreviewImagePromises,
+          );
 
           return { pages, blogsWithImages };
         } catch (error: any) {

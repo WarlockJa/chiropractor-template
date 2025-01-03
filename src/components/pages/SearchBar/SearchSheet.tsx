@@ -183,7 +183,7 @@ const SearchResults = ({
     .map((item) => (
       <BlogCard
         {...item}
-        key={`searchResult${item.blog.blog.blogId}`}
+        key={`searchResult${item.blog.blogId}`}
         SheetCloseWrapper={SheetCloseWrapper}
       />
     ));

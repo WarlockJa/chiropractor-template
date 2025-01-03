@@ -175,6 +175,7 @@ async function updateBlog(data: z.infer<typeof updateBlogSchema>) {
         .returning();
 
       revalidateTag(`blogPostTag${result[0].blogId}`);
+      revalidateTag(`blogPostWithImageTag${blogId}`);
       revalidateTag("blogPostsPages");
       revalidateTag(`blogPostTag${result[0].blogName}`);
 
@@ -279,6 +280,7 @@ async function deleteBlog({ blogId }: z.infer<typeof deleteBlogSchema>) {
   revalidateTag("usedR2StorageTag");
   revalidateTag("imagesTag"); // needs to be deleted TODO
   revalidateTag(`blogPostTag${blogId}`);
+  revalidateTag(`blogPostWithImageTag${blogId}`);
   revalidateTag(`blogPostTag${blogImages[0].blogName}`);
   revalidateTag(`blogImagesTag${blogId}`);
 }

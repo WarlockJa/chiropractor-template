@@ -5,21 +5,22 @@ import { convertCodesToSpecialCharacters } from "@/lib/convertStringSpecialChara
 import { intlFormat } from "date-fns";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { BlogWithImage } from "@/lib/cache/search/getCachedSearch";
 import CustomDataImage from "@/components/UniversalComponents/CustomDataImage";
+import { CachedBlogWithImage } from "@/lib/cache/blog/blog";
 
 export default function BlogCard({
   blog,
   image,
+  owner,
   SheetCloseWrapper,
-}: BlogWithImage & {
+}: CachedBlogWithImage & {
   SheetCloseWrapper: React.FC<{
     children: ReactNode;
     withSheetClose?: boolean;
   }>;
 }) {
   return (
-    <Link href={`/blog/${blog.blog.blogName}`}>
+    <Link href={`/blog/${blog.blogName}`}>
       <SheetCloseWrapper withSheetClose>
         <Card className="relative grid h-40 w-full grid-cols-2 overflow-hidden border-2 transition-shadow hover:shadow-accent">
           <CardContent className="p-0">
@@ -27,7 +28,7 @@ export default function BlogCard({
           </CardContent>
           <CardHeader className="flex flex-col bg-accent/10 p-2">
             <CardTitle className="flex-1">
-              {convertCodesToSpecialCharacters(blog.blog.title)}
+              {convertCodesToSpecialCharacters(blog.title)}
             </CardTitle>
             <div className="flex w-full flex-wrap justify-between gap-2 text-sm">
               {/* <p className="flex">
@@ -43,8 +44,8 @@ export default function BlogCard({
               <Heart size={20} />
             </p> */}
               <div className="ml-auto flex gap-2 text-sm">
-                {blog.owner?.name}
-                <p>{intlFormat(blog.blog.updatedAt)}</p>
+                {owner?.name}
+                <p>{intlFormat(blog.updatedAt)}</p>
               </div>
             </div>
           </CardHeader>
