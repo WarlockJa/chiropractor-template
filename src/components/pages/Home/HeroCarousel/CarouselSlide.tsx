@@ -23,7 +23,7 @@ export default function CarouselSlide({
         className="h-screen w-screen md:h-[40em] xl:h-[62em]"
       />
       <div className="absolute inset-x-0 top-0 mx-auto h-screen w-full max-w-screen-2xl md:h-[40em] xl:h-[62em]">
-        <div className="absolute bottom-[20%] left-[7%] mx-auto flex flex-col gap-2 2xl:left-0">
+        <div className="absolute bottom-[25%] left-[7%] mx-auto flex flex-col gap-2 2xl:left-0">
           <AnimatedText
             className="drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]"
             delay={1}

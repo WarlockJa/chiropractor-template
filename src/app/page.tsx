@@ -68,7 +68,7 @@ export default function Home() {
         carouselItems={servicesData.map((item) => (
           <ServiceCard key={item.title} {...item} />
         ))}
-        className="my-20"
+        className="my-12"
       />
 
       {/* Testimonials */}

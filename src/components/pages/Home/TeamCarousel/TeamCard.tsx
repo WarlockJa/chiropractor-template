@@ -21,8 +21,12 @@ export default function TeamCard({
   return (
     <div className="grid gap-4 md:grid-cols-[1fr,1px,1fr]">
       {/* <div className="flex flex-col items-center overflow-hidden"> */}
-      <div className="flex w-full flex-col items-center overflow-hidden">
-        <CustomImage dbImageName={dbImageName} className="rounded-full" />
+      <div className="flex w-full flex-col items-center">
+        {/* <CustomImage dbImageName={dbImageName} className="rounded-full" /> */}
+        <CustomImage
+          dbImageName={dbImageName}
+          className="w-screen max-w-full rounded-full"
+        />
       </div>
       <div className="h-full bg-gradient-to-b from-background via-foreground to-background"></div>
       <div className="mx-auto flex max-w-screen-xsm flex-col items-center gap-2 px-2">

@@ -39,7 +39,7 @@ export const servicesData: ServiceData[] = [
     dbImageName:
       "wtez8umrvq10q7n3belli49f-service-icon-dietary-management-1024x1024.webp",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque deleniti iste asperiores quod aperiam eveniet debitis doloribus, aliquam, ratione necessitatibus, earum voluptates facere voluptatem? Ab blanditiis iure error veniam dolor.",
+      "Healthy eating means ensuring your diet includes a variety of healthy, nutritious foods and drinks. Eating the right foods can give you energy, improve your well-being, and help you to feel healthier. We explain more about healthy eating, the differences between eating healthy and dieting, and how working with a nutritional professional can help you.",
     href: "/services/dietary-management",
     path: "dietary-management",
   },

@@ -31,7 +31,9 @@ export default function ServiceCard({
             />
           </Link>
         </CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="h-56 overflow-y-scroll rounded p-2 text-foreground shadow-sm shadow-accent">
+          {description}
+        </CardDescription>
       </CardHeader>
     </Card>
   );
