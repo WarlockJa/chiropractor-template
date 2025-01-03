@@ -23,6 +23,7 @@ import { q } from "@cf/queue/q";
 import slugify from "react-slugify";
 import { blogVectorizePrefix } from "../../lib/prefixes";
 import { createId } from "@paralleldrive/cuid2";
+import { r2 } from "@cf/bucket/r2";
 
 // Create Blog
 export const createBlogAction = actionClient
@@ -247,20 +248,27 @@ async function deleteBlog({ blogId }: z.infer<typeof deleteBlogSchema>) {
   // executing delete promises
   await Promise.all([deleteImagesPromise, deleteBlogPromise]);
 
-  // adding queue task to delete images from R2
-  const deleteR2File: QueueMessageBody = {
-    id: "R2 Delete",
-    body: JSON.stringify(blogImages.map((item) => item.name)),
-  };
-  q.send(JSON.stringify(deleteR2File));
+  // in production deleting data from R2 and Vectorize via queue
+  if (process.env.NODE_ENV === "production") {
+    // adding queue task to delete images from R2
+    const deleteR2File: QueueMessageBody = {
+      id: "R2 Delete",
+      body: JSON.stringify(blogImages.map((item) => item.name)),
+    };
+    q.send(JSON.stringify(deleteR2File));
 
-  // adding queue task to delete vectorize vector for the deleted blog
-  // queue accepts stringified objects (see QueueMessageBody type)
-  const addVectorizeBlogData: QueueMessageBody = {
-    id: "Vectorize Delete",
-    body: `${blogVectorizePrefix}${blogId}`,
-  };
-  q.send(JSON.stringify(addVectorizeBlogData));
+    // adding queue task to delete vectorize vector for the deleted blog
+    // queue accepts stringified objects (see QueueMessageBody type)
+    const addVectorizeBlogData: QueueMessageBody = {
+      id: "Vectorize Delete",
+      body: `${blogVectorizePrefix}${blogId}`,
+    };
+    q.send(JSON.stringify(addVectorizeBlogData));
+  } else {
+    // deleting blog images from the bucket in development
+    const r2DeletePromises = blogImages.map((img) => r2.delete(img.name));
+    await Promise.all(r2DeletePromises);
+  }
 
   // revalidate cache
   blogImages.forEach((item) => {

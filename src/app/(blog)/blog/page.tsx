@@ -6,7 +6,6 @@ import PostCard from "@/components/pages/Blog/PostCard";
 import CreateNewBlogButton from "@/components/pages/Blog/CreateNewBlogButton";
 import getSession from "@/lib/db/getSession";
 import userCanEditBlog from "@/components/pages/Blog/MDXForm/lib/userCanEditBlog";
-import { cn } from "@/lib/utils";
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { blogsLimit } from "@/appConfig";
 
@@ -54,7 +53,7 @@ export default async function BlogPage({
           {userCanEditBlog({ user }) && (
             <CreateNewBlogButton className="fixed bottom-0 z-20 flex w-screen justify-center md:sticky md:bottom-auto md:top-28 md:w-full" />
           )}
-          <div className={cn("w-full")}>
+          <div className="flex w-full flex-col gap-8">
             {pageBlogs && pageBlogs.length > 0 ? (
               pageBlogs.map((blogData) => (
                 <PostCard

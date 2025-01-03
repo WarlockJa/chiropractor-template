@@ -1,6 +1,6 @@
 import { db } from "@db/db-connection";
 import { blogs } from "@db/schemaBlog";
-import { asc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { getCachedBlogId } from "../getCachedBlogId";
@@ -17,14 +17,14 @@ export const getCachedBlogsPage = cache(
             ? await db
                 .select({ blogId: blogs.blogId, blogName: blogs.blogName })
                 .from(blogs)
-                .orderBy(asc(blogs.updatedAt))
+                .orderBy(desc(blogs.updatedAt))
                 .limit(limit)
                 .offset(limit * (page ?? 0))
             : await db
                 .select({ blogId: blogs.blogId, blogName: blogs.blogName })
                 .from(blogs)
                 .where(eq(blogs.published, true))
-                .orderBy(asc(blogs.updatedAt))
+                .orderBy(desc(blogs.updatedAt))
                 .limit(limit)
                 .offset(limit * (page ?? 0));
 

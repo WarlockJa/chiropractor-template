@@ -108,7 +108,7 @@ export default function TableMDXPrimitive({
             <TableRow>
               {tableData.tableHeader.map((headerItem, index) => (
                 <TableHead
-                  key={`tableHeader${index}${headerItem.caption}`}
+                  key={`tableHeader${index}${tableData.tableHeader.length}`}
                   className={"font-semibold text-foreground transition-colors"}
                 >
                   <Input

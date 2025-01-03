@@ -118,7 +118,7 @@ export default function ChartPrimitive({
             <TableRow>
               {Object.keys(chartValues.chartData[0]).map((key, index) => (
                 <TableHead
-                  key={`tableHead${index}${key}`}
+                  key={`tableHead${index}${chartValues.chartData!.length}`}
                   className="font-semibold text-foreground transition-colors"
                 >
                   <Input
