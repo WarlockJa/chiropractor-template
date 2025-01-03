@@ -37,10 +37,10 @@ export default async function BlogPage({
 
     // display blogs with pagination
     return (
-      <div className="mt-28">
+      <div className="mt-24 md:mt-28">
         <HeaderImage
           dbImageName="yap3o9c6fjge8bryubu3bw4t-beach-laptop.webp"
-          containerClassName="relative h-96 w-screen"
+          containerClassName="relative h-96 w-screen max-w-screen-2xl mx-auto"
         >
           <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
             <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
@@ -49,16 +49,11 @@ export default async function BlogPage({
           </div>
         </HeaderImage>
 
-        <section className="relative mx-auto flex h-screen w-screen flex-col">
+        <section className="relative mx-auto my-4 flex w-screen max-w-screen-lg flex-col rounded-lg shadow shadow-accent md:p-2">
           {userCanEditBlog({ user }) && (
-            <CreateNewBlogButton className="fixed bottom-0 z-20 flex w-full justify-center border md:sticky md:bottom-auto md:top-28" />
+            <CreateNewBlogButton className="fixed bottom-0 z-20 flex w-screen justify-center md:sticky md:bottom-auto md:top-28 md:w-full" />
           )}
-          <div
-            className={cn(
-              "mx-auto mt-28 h-[calc(100vh-7rem)] w-screen max-w-screen-lg overflow-y-scroll",
-              !userCanEditBlog({ user }) && "mt-28",
-            )}
-          >
+          <div className={cn("w-full")}>
             {pageBlogs && pageBlogs.length > 0 ? (
               pageBlogs.map((blogData) => (
                 <PostCard
@@ -75,7 +70,7 @@ export default async function BlogPage({
             blogsNumber={blogsCount}
             limit={LIMIT}
             page={page}
-            className="absolute bottom-0"
+            // className="absolute bottom-0"
           />
         </section>
       </div>

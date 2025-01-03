@@ -30,7 +30,7 @@ export default function SlideinSection({
     <section
       ref={ref}
       className={cn(
-        "mx-auto flex w-full flex-col gap-2 overflow-hidden lg:flex-row",
+        "mx-auto flex w-full flex-col overflow-hidden lg:flex-row",
         className,
         reverse && "flex-col-reverse",
         vertical && "sm:flex-row lg:flex-col",

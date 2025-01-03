@@ -8,10 +8,10 @@ export default function Home() {
   const t = useTranslations("Services");
 
   return (
-    <div className="mt-28">
+    <div className="mt-24 md:mt-28">
       <HeaderImage
         dbImageName="qmhs5989heoch1m3893x3ple-services.webp"
-        containerClassName="relative h-96 w-screen"
+        containerClassName="relative h-96 w-screen max-w-screen-2xl mx-auto"
       >
         <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </HeaderImage>
 
-      <div className="grid gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid w-screen max-w-screen-lg gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
         {servicesData.map((item) => (
           <ServiceCardList
             key={item.title}

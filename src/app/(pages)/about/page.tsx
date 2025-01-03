@@ -1,5 +1,5 @@
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
-import GoogleReviews from "@/components/UniversalComponents/GoogleMaps/GoogleReviews";
+// import GoogleReviews from "@/components/UniversalComponents/GoogleMaps/GoogleReviews";
 import { Locale } from "@/i18n/config";
 import getCachedGoogleData from "@/lib/cache/getCachedGoogleData";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -23,10 +23,10 @@ export default async function AboutPage() {
   });
   const placeInfo = await cachedGoogleData();
   return (
-    <div className="mt-28">
+    <div className="mt-24 md:mt-28">
       <HeaderImage
         dbImageName="f9umjtc5n9r6d4tct6tk98p3-group-photo-short.webp"
-        containerClassName="relative h-96 w-screen"
+        containerClassName="relative h-96 w-screen max-w-screen-2xl mx-auto"
       >
         <div className="absolute inset-auto h-full w-full flex-col">
           <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
@@ -36,20 +36,19 @@ export default async function AboutPage() {
       </HeaderImage>
 
       {/* Our Goals */}
-      <div className="w-screen md:py-20">
+      <div className="md:py-20">
         <CustomHeader
           text={t("our_goals")}
-          className="flex justify-center px-2"
+          className="mb-8 flex justify-center px-2"
           fontSizeRem={3}
         />
 
         <SlideinSection
-          className="my-8 min-h-96"
+          className="min-h-96"
           leftContent={
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
                 <CustomHeader
-                  // text={t("your_computer_our_priority")}
                   text={"Lorem ipsum"}
                   className="flex justify-center"
                   fontSizeRem={2}
@@ -71,7 +70,7 @@ export default async function AboutPage() {
           }
         />
         <SlideinSection
-          className="my-8 min-h-96"
+          className="min-h-96"
           leftContent={
             <div className="flex h-full items-center justify-center p-8">
               <div className="ml-auto max-w-screen-sm">
@@ -98,7 +97,7 @@ export default async function AboutPage() {
           reverse
         />
         <SlideinSection
-          className="my-8 min-h-96"
+          className="min-h-96"
           leftContent={
             <div className="flex h-full items-center justify-center bg-accent/20 p-8">
               <div className="ml-auto max-w-screen-sm">
@@ -131,11 +130,11 @@ export default async function AboutPage() {
 
       {/* Google reviews */}
       <div className="w-screen bg-primary/30 pt-20">
-        <CustomHeader
+        {/* <CustomHeader
           text={t("what_people_say")}
           className="flex justify-center px-2"
           fontSizeRem={3}
-        />
+        /> */}
         {/* <section className="mx-auto flex flex-col items-center justify-between overflow-hidden">
           <GoogleReviews
             locale={locale}
@@ -146,14 +145,21 @@ export default async function AboutPage() {
       {/* Testimonials */}
       <HeaderImage
         dbImageName="nldbl1esytsx2lg47trp4mac-bg-1.jpg"
-        containerClassName="relative h-[36em] w-screen"
+        containerClassName="relative h-[48em] sm:h-[40em] w-screen"
+        className="flex flex-col"
       >
+        <CustomHeader
+          text={t("what_people_say")}
+          className="z-10 flex justify-center px-2"
+          fontSizeRem={3}
+          textClassName="text-foreground"
+        />
         <div className="absolute inset-0 dark:bg-background/70"></div>
         <TestimonialsCarousel
           carouselItems={testimonialsData.map((item, index) => (
             <TestimonialCard key={index} {...item} />
           ))}
-          className="mx-auto my-20 w-screen max-w-screen-lg"
+          className="mx-auto my-4 w-screen max-w-screen-lg"
         />
       </HeaderImage>
 

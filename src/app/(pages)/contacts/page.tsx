@@ -6,7 +6,6 @@ import getCachedGoogleData from "@/lib/cache/getCachedGoogleData";
 import { getLocale, getTranslations } from "next-intl/server";
 import ContactForm from "@/components/pages/Contacts/ContactForm/ContactForm";
 import { Locale } from "@/i18n/config";
-import CustomImage from "@/components/UniversalComponents/CustomImage";
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 
 export default async function ContactPage() {
@@ -28,10 +27,13 @@ export default async function ContactPage() {
           coordinates={brandCoordinates}
           placeInfo={placeInfo.status === "OK" ? placeInfo.result : undefined}
           pinchild={
-            <CustomImage
-              dbImageName="tmanbs9ofqhp14okq8xvx59f-logo_alpha_pink.png"
-              className="h-8 w-8"
-            />
+            <div className="h-8 w-8">
+              <img
+                src="/logo_alpha_pink.png"
+                alt="chiropractor logo"
+                className="w-full object-contain"
+              />
+            </div>
           }
         />
         <AddressCard />

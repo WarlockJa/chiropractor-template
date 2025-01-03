@@ -39,8 +39,8 @@ export default function TestimonialsCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="absolute left-2 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
-      <CarouselNext className="absolute right-2 top-2/3 h-20 w-20 border-accent bg-transparent opacity-20 transition-all hover:opacity-80" />
+      <CarouselPrevious className="absolute left-2 top-2/3 h-20 w-20 border-accent bg-transparent text-foreground opacity-20 transition-all hover:opacity-80" />
+      <CarouselNext className="absolute right-2 top-2/3 h-20 w-20 border-accent bg-transparent text-foreground opacity-20 transition-all hover:opacity-80" />
     </Carousel>
   );
 }

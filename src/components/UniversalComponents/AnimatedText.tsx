@@ -22,7 +22,7 @@ export default function AnimatedText({
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.2, delay }}
+      transition={{ duration: 0.4, delay }}
       className={className}
     >
       {children}

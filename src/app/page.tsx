@@ -55,8 +55,6 @@ export default function Home() {
             dbImageName="djdiuae5tn1sj4lfg4cd76ny-group-photo.webp"
             className="aspect-video max-w-screen-md rounded-md shadow-md shadow-accent"
           />
-          {/* <div className="aspect-video max-w-screen-md rounded-md">
-        </div> */}
           <AboutPractitioner className="max-w-screen-sm shadow-md shadow-accent" />
         </div>
       </div>
