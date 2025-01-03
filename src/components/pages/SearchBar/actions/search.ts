@@ -1,10 +1,14 @@
 "use server";
 import { actionClient } from "@/lib/safeAction";
 import { searchSchema } from "./schemas";
-import { getCachedSearch } from "@/lib/cache/search/getCachedSearch";
+import {
+  CachedSearchResult,
+  getCachedSearch,
+} from "@/lib/cache/search/getCachedSearch";
 import { rateLimitByIp } from "@/lib/rateLimiting/limiters";
 import getSession from "@/lib/db/getSession";
 import userCanEditBlog from "../../Blog/MDXForm/lib/userCanEditBlog";
+import { CachedBlog } from "@/lib/cache/blog/blog";
 
 // search action makes a request to the embeddings worker
 export const searchAction = actionClient
@@ -26,16 +30,17 @@ export const searchAction = actionClient
       limit: resultsNumber,
     });
 
-    // filtering unpublished blogs
-    // TODO in this form results are cutting away from the limit found by Vectorize
-    // it would be better to maintain the limit of search results
-    const searchResult =
-      !result || !userCanEditBlog({ user })
-        ? result
-        : {
-            ...result,
-            blogs: result.blogs.filter((item) => item.blog.published),
-          };
+    // returning unfiltered search results if user have edit rights
+    if (!result || userCanEditBlog({ user })) return result;
+
+    // filtering unpublished blogs for user without edit rights
+    const publishedBlogs = result.blogs.filter((item) => item.blog.published);
+
+    // forming filtered result
+    const searchResult: CachedSearchResult = {
+      pages: result.pages,
+      blogs: publishedBlogs,
+    };
 
     return searchResult;
   });
