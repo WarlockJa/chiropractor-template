@@ -4,6 +4,7 @@ import getSession from "@/lib/db/getSession";
 import userCanEditBlog from "./MDXForm/lib/userCanEditBlog";
 import { cn } from "@/lib/utils";
 import PostCard from "./PostCard";
+import { ScrollText } from "lucide-react";
 
 export default async function LatestBlogsFeed({
   className,
@@ -22,18 +23,20 @@ export default async function LatestBlogsFeed({
   );
 
   return (
-    <div className={cn("w-full", className)}>
+    <ul className={cn("w-full", className)}>
       {pageBlogs && pageBlogs.length > 0 ? (
         pageBlogs.map((blogData) => (
-          <PostCard
-            key={blogData.blog.blogId}
-            blogData={blogData}
-            deleteRights={userCanEditBlog({ user })}
-          />
+          <li key={blogData.blog.blogId} className="flex items-center gap-8">
+            <ScrollText size={64} className="text-accent" />
+            <PostCard
+              blogData={blogData}
+              deleteRights={userCanEditBlog({ user })}
+            />
+          </li>
         ))
       ) : (
         <div className="text-center">No blogs found</div>
       )}
-    </div>
+    </ul>
   );
 }

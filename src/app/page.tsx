@@ -87,7 +87,7 @@ export default function Home() {
       </HeaderImage>
 
       {/* Blog Feed */}
-      <div className="mx-auto my-12 flex w-screen max-w-screen-lg flex-col items-center p-2">
+      <div className="mx-auto my-12 flex w-screen max-w-screen-lg flex-col items-center gap-6 p-2">
         <CustomHeader text="LATEST FROM OUR BLOG" fontSizeRem={2} />
         <LatestBlogsFeed className="flex flex-col gap-4" />
       </div>
