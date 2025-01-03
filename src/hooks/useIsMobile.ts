@@ -6,7 +6,7 @@ function testMobileFunction() {
 }
 
 export default function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(testMobileFunction());
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     setIsMobile(testMobileFunction());

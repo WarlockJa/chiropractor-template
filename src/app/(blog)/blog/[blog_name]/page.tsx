@@ -54,16 +54,17 @@ export default async function MDXBlogPage({
       );
 
       return (
-        <main className="mx-auto mt-28 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg">
+        <main className="mx-auto mt-24 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg md:mt-28">
           <Suspense fallback={<LoaderSpinner />}>
             <MDXRemoteWrapper props={source} blogImages={blogImages} />
+            <Socials url={`/blog/${blogData.blog.blogName}`} spread />
           </Suspense>
         </main>
       );
     } else {
       // MDXFormEditable accepts blog id as id param, passing blog id associated with the catalog node
       return (
-        <main className="mx-auto mt-28 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg">
+        <main className="mx-auto mt-24 min-h-[calc(100vh-7rem)] w-full max-w-screen-lg md:mt-28">
           <Suspense fallback={<LoaderSpinner />}>
             <MDXFormEditable
               source={JSON.parse(blogData.blog.mdx)}
@@ -72,8 +73,8 @@ export default async function MDXBlogPage({
               published={blogData.blog.published ?? false}
               tags={""}
             />
+            <Socials url={`/blog/${blogData.blog.blogName}`} spread />
           </Suspense>
-          <Socials url={`/blog/${blogData.blog.blogName}`} spread />
         </main>
       );
     }

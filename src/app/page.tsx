@@ -15,6 +15,7 @@ import TestimonialCard from "@/components/pages/TestimonialsCarousel/Testimonial
 import TeamCarousel from "@/components/pages/Home/TeamCarousel/TeamCarousel";
 import { teamData } from "@/components/pages/Home/TeamCarousel/testimonialsData";
 import TeamCard from "@/components/pages/Home/TeamCarousel/TeamCard";
+import LatestBlogsFeed from "@/components/pages/Blog/LatestBlogsFeed";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -84,6 +85,12 @@ export default function Home() {
           className="mx-auto my-20 w-screen max-w-screen-lg"
         />
       </HeaderImage>
+
+      {/* Blog Feed */}
+      <div className="mx-auto my-12 flex w-screen max-w-screen-lg flex-col items-center p-2">
+        <CustomHeader text="LATEST FROM OUR BLOG" fontSizeRem={2} />
+        <LatestBlogsFeed className="flex flex-col gap-4" />
+      </div>
 
       {/* Our Team */}
       <div className="flex flex-col items-center py-20">

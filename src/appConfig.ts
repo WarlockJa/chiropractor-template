@@ -36,6 +36,7 @@ export const defaultBlurhash =
 export const MAX_FILE_SIZE = 5000000; // 5MB
 export const USER_STORAGE_LIMIT = 100000000; // 100MB
 export const defaultImageName = "default.webp";
+export const blogsLimit = 4;
 
 // metadata
 export const brandMetadataDescritpion =

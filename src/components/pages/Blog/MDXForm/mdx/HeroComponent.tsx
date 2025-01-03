@@ -18,7 +18,7 @@ export default function HeroComponent({
       </H1>
       <CustomImageMDX
         imageId={imageId}
-        className="z-0 h-[50vh] min-h-[20em] object-cover"
+        className="z-0 mt-0 h-[50vh] min-h-[20em] object-cover"
       />
       {/* <div className="absolute bottom-1/2 h-1/2 w-full bg-gradient-to-t from-transparent from-50% to-black to-100%"></div> */}
       <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-b from-transparent from-50% to-black to-100%"></div>

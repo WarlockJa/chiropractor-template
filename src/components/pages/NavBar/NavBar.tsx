@@ -49,7 +49,7 @@ export default async function NavBar() {
             <ContactsPanel />
           </div>
         </NavBarClient>
-        <ContactsPanel className="fixed inset-x-0 bottom-0 border-t bg-background/60 transition-opacity md:hidden" />
+        <ContactsPanel className="fixed inset-x-0 bottom-0 border-t bg-background/90 transition-opacity md:hidden" />
       </div>
     );
   } catch (error: any) {

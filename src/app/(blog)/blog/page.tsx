@@ -2,15 +2,15 @@ import BlogsListPagination from "@/components/pages/Blog/BlogsListPagination";
 import { getCachedBlogsCount } from "@/lib/cache/blog/pagination/getCachedBlogsCount";
 import { getCachedBlogsPage } from "@/lib/cache/blog/pagination/getCachedBlogsPage";
 import { z } from "zod";
-import PostCard from "./_components/PostCard";
+import PostCard from "@/components/pages/Blog/PostCard";
 import CreateNewBlogButton from "@/components/pages/Blog/CreateNewBlogButton";
 import getSession from "@/lib/db/getSession";
 import userCanEditBlog from "@/components/pages/Blog/MDXForm/lib/userCanEditBlog";
 import { cn } from "@/lib/utils";
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
+import { blogsLimit } from "@/appConfig";
 
 const pageSchema = z.coerce.number().min(0);
-const LIMIT = 4;
 
 export default async function BlogPage({
   searchParams,
@@ -27,11 +27,12 @@ export default async function BlogPage({
     const blogsCount = await getCachedBlogsCount(userCanEditBlog({ user }));
     // reading url params for pagination
     const data = pageSchema.safeParse(searchParams.page);
-    let page = data.success && blogsCount >= LIMIT * data.data ? data.data : 0;
+    let page =
+      data.success && blogsCount >= blogsLimit * data.data ? data.data : 0;
 
     const pageBlogs = await getCachedBlogsPage(
       page,
-      LIMIT,
+      blogsLimit,
       userCanEditBlog({ user }),
     );
 
@@ -68,7 +69,7 @@ export default async function BlogPage({
           </div>
           <BlogsListPagination
             blogsNumber={blogsCount}
-            limit={LIMIT}
+            limit={blogsLimit}
             page={page}
             // className="absolute bottom-0"
           />

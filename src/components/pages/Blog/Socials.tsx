@@ -37,7 +37,7 @@ export default function Socials({
     <div className="my-2 flex items-center gap-4 rounded border-2 px-4 py-2 transition-colors hover:border-accent">
       <div className="flex items-center text-xl">
         <Share2 size={24} />
-        <span className="hidden md:block">&nbsp;Share:</span>
+        <span className="hidden xsm:block">&nbsp;Share:</span>
       </div>{" "}
       <SMButtons url={url} title={brandName} />
     </div>
