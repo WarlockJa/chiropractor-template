@@ -19,6 +19,7 @@ import {
   ITableStyle,
   TTableActiveCell,
 } from "../../../../mdxtypes";
+import { useTranslations } from "next-intl";
 
 interface ITableMenu extends ITableMDXPrimitiveProps {
   activeCell: TTableActiveCell;
@@ -299,6 +300,7 @@ export default function TableMenu({
   setTableData,
   setAcitveCell,
 }: ITableMenu) {
+  const tBlogTable = useTranslations("Blog.TablePart");
   return tableData ? (
     <div className="flex w-full justify-center rounded-t-lg p-1">
       <Button
@@ -306,7 +308,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Bold"
+        title={tBlogTable("menu_title_bold")}
         style={
           activeCell &&
           tableData.tableHeader[activeCell.column].style.fontWeight && {
@@ -325,7 +327,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Italic"
+        title={tBlogTable("menu_title_italic")}
         style={
           activeCell &&
           tableData.tableHeader[activeCell.column].style.fontStyle && {
@@ -344,7 +346,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Underline"
+        title={tBlogTable("menu_title_underline")}
         style={
           activeCell &&
           tableData.tableHeader[
@@ -371,7 +373,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Line Through"
+        title={tBlogTable("menu_title_line_through")}
         style={
           activeCell &&
           tableData.tableHeader[
@@ -399,7 +401,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Align Left"
+        title={tBlogTable("menu_title_align_left")}
         style={
           activeCell &&
           tableData.tableHeader[activeCell.column].style.textAlign === "left"
@@ -425,7 +427,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Align Center"
+        title={tBlogTable("menu_title_align_center")}
         style={
           activeCell &&
           tableData.tableHeader[activeCell.column].style.textAlign === "center"
@@ -451,7 +453,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Align Right"
+        title={tBlogTable("menu_title_align_right")}
         style={
           activeCell &&
           tableData.tableHeader[activeCell.column].style.textAlign === "right"
@@ -478,7 +480,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Insert Column"
+        title={tBlogTable("menu_title_insert_column")}
         onClick={() => {
           if (!activeCell) return;
           setAcitveCell({ ...activeCell, column: activeCell.column + 1 });
@@ -492,7 +494,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Delete Column"
+        title={tBlogTable("menu_title_delete_column")}
         onClick={() => {
           if (!activeCell) return;
           setAcitveCell({
@@ -509,7 +511,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Insert Row"
+        title={tBlogTable("menu_title_insert_row")}
         onClick={() => {
           if (!activeCell) return;
           setAcitveCell({
@@ -526,7 +528,7 @@ export default function TableMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Delete Row"
+        title={tBlogTable("menu_title_delete_row")}
         onClick={() => {
           if (!activeCell || activeCell.row === undefined) return;
           setAcitveCell({ ...activeCell, row: activeCell.row - 1 });

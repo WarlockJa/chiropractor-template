@@ -29,7 +29,7 @@ export default function ServiceCardList({
               duration={shimmer ? 1 : 0}
               className="text-xl [--base-color:hsl(var(--primary-foreground))] [--base-gradient-color:theme(colors.rose.400)] dark:[--base-color:hsl(var(--primary-foreground))] dark:[--base-gradient-color:theme(colors.rose.400)]"
             >
-              {title.toLocaleUpperCase()}
+              {title}
             </TextShimmer>
           </CardTitle>
         </CardHeader>

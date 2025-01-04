@@ -1,11 +1,12 @@
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
-import { useTranslations } from "next-intl";
 import { servicesData } from "@/components/pages/Services/servicesData";
 import ServiceCardList from "@/components/pages/Services/ServiceCardList/ServiceCardList";
 import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
+import { getTranslations } from "next-intl/server";
 
-export default function Home() {
-  const t = useTranslations("Services");
+export default async function Home() {
+  const tHeaders = await getTranslations("Headers");
+  const tServices = await getTranslations("Services");
 
   return (
     <div className="mt-24 md:mt-28">
@@ -15,7 +16,7 @@ export default function Home() {
       >
         <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
-            {t("our_services")}
+            {tHeaders("our_services")}
           </h1>
         </div>
       </HeaderImage>
@@ -25,7 +26,7 @@ export default function Home() {
           <ServiceCardList
             key={item.title}
             href={item.href}
-            title={item.title}
+            title={tServices(`${item.path}.title`).toLocaleUpperCase()}
             image={<CustomServerImage dbImageName={item.dbImageName} />}
           />
         ))}

@@ -9,10 +9,11 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
 
 const maxNumberOfPages = 8;
 
-export default function BlogsListPagination({
+export default async function BlogsListPagination({
   page,
   blogsNumber,
   limit,
@@ -23,6 +24,8 @@ export default function BlogsListPagination({
   limit: number;
   className?: string;
 }) {
+  const tPagination = await getTranslations("Pagination");
+
   const pagesArray = new Array(
     Math.ceil(blogsNumber / limit) > maxNumberOfPages
       ? maxNumberOfPages
@@ -43,7 +46,11 @@ export default function BlogsListPagination({
       <PaginationContent>
         {page > 0 && (
           <PaginationItem>
-            <PaginationPrevious href={`/blog?page=${page - 1}`} />
+            <PaginationPrevious
+              href={`/blog?page=${page - 1}`}
+              aria-label={tPagination("go_to_previous_page")}
+              text={tPagination("previous")}
+            />
           </PaginationItem>
         )}
 
@@ -69,13 +76,17 @@ export default function BlogsListPagination({
 
         {Math.ceil(blogsNumber / limit) - 1 - page > maxNumberOfPages / 2 && (
           <PaginationItem>
-            <PaginationEllipsis />
+            <PaginationEllipsis srText={tPagination("more_pages")} />
           </PaginationItem>
         )}
 
         {page < Math.ceil(blogsNumber / limit) - 1 && (
           <PaginationItem>
-            <PaginationNext href={`/blog?page=${page + 1}`} />
+            <PaginationNext
+              href={`/blog?page=${page + 1}`}
+              aria-label={tPagination("go_to_next_page")}
+              text={tPagination("next")}
+            />
           </PaginationItem>
         )}
       </PaginationContent>

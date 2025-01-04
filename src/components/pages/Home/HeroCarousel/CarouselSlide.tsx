@@ -2,6 +2,7 @@ import { CustomButton } from "@/components/UniversalComponents/CustomButton";
 import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
 import AnimatedText from "@/components/UniversalComponents/AnimatedText";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 /*
 This is a finicky component. In order to be responsive it has to be of fixed height
@@ -16,6 +17,7 @@ export default function CarouselSlide({
 }: {
   dbImageName: string;
 }) {
+  const tHero = useTranslations("Home.hero");
   return (
     <div className="relative">
       <CustomServerImage
@@ -30,7 +32,7 @@ export default function CarouselSlide({
             delay={1}
           >
             <div className="select-none text-3xl font-bold text-accent">
-              ANGELA SHU
+              {tHero("name").toLocaleUpperCase()}
             </div>
           </AnimatedText>
           <div className="flex flex-col gap-2 leading-10 lg:leading-none">
@@ -39,7 +41,7 @@ export default function CarouselSlide({
               delay={1}
             >
               <div className="select-none text-[clamp(2.5rem,6vw,6rem)] font-bold">
-                BETTER HEALTH
+                {tHero("line1").toLocaleUpperCase()}
               </div>
             </AnimatedText>
             <AnimatedText
@@ -47,7 +49,7 @@ export default function CarouselSlide({
               delay={1.2}
             >
               <div className="select-none text-[clamp(2.5rem,6vw,6rem)] font-bold">
-                THROUGH
+                {tHero("line2").toLocaleUpperCase()}
               </div>
             </AnimatedText>
             <AnimatedText
@@ -55,7 +57,7 @@ export default function CarouselSlide({
               delay={1.4}
             >
               <div className="select-none text-[clamp(2.5rem,6vw,6rem)] font-bold text-accent">
-                CHIROPRACTIC
+                {tHero("line3").toLocaleUpperCase()}
               </div>
             </AnimatedText>
           </div>
@@ -64,14 +66,13 @@ export default function CarouselSlide({
             delay={1.4}
           >
             <div className="select-none text-[clamp(1rem,2vw,1rem)] font-bold uppercase dark:text-primary-foreground">
-              Our mission is to treat musculoskeletal dysfunction by our proven
-              manual methods.
+              {tHero("our_mission").toLocaleUpperCase()}
             </div>
           </AnimatedText>
           <AnimatedText delay={1.5} className="pt-4">
             <Link href={"/about"}>
               <CustomButton
-                text="MORE ABOUT US"
+                text={tHero("mode_about_us").toLocaleUpperCase()}
                 className="rounded-none bg-background/60 p-8 font-bold ring ring-ring"
               />
             </Link>

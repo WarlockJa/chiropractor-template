@@ -40,7 +40,7 @@ export default function MDXFormEditable({
   published,
   tags,
 }: IMDXFormProps) {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
   const tBlog = useTranslations("Blog");
   // reading pathname to track changes in blog name
   const pathname = usePathname();
@@ -86,8 +86,8 @@ export default function MDXFormEditable({
   const { execute, status } = useAction(updateBlogAction, {
     onError({ error }) {
       if (error.serverError === "UnauthorisedAccess") {
-        toast(t("insufficient_rights_title"), {
-          description: t("insufficient_rights_delete_blog"),
+        toast(tErrors("insufficient_rights_title"), {
+          description: tErrors("insufficient_rights_delete_blog"),
         });
 
         return;
@@ -96,7 +96,7 @@ export default function MDXFormEditable({
       error.serverError &&
         toast(
           <SonnerErrorCard
-            title={t("general_error_title")}
+            title={tErrors("general_error_title")}
             errors={error.serverError}
           />,
         );
@@ -134,11 +134,11 @@ export default function MDXFormEditable({
               className="flex items-center gap-2 bg-background p-2"
               title={
                 !parts[0].imageId
-                  ? "Set an image to Main Part to publish post"
-                  : "Publish to let people see your post!"
+                  ? tBlog("set_image_warning")
+                  : tBlog("publish_warning")
               }
             >
-              <Label htmlFor="publishedSwitch">Published</Label>
+              <Label htmlFor="publishedSwitch">{tBlog("published")}</Label>
               <Switch
                 id="publishedSwitch"
                 checked={currentBlogData.published}
@@ -168,10 +168,10 @@ export default function MDXFormEditable({
               >
                 {status === "executing" ? (
                   <>
-                    <Loader2 className="animate-spin" /> {"Updating"}
+                    <Loader2 className="animate-spin" /> {tBlog("updating")}
                   </>
                 ) : (
-                  "Update Blog"
+                  tBlog("update_blog")
                 )}
               </Button>
             ) : (
@@ -181,7 +181,7 @@ export default function MDXFormEditable({
                 variant={"outline"}
                 className="flex-1 rounded-none"
               >
-                <p>Exit Edit Mode</p>
+                <p>{tBlog("exit_edit_mode")}</p>
               </Button>
             )}
           </>
@@ -192,7 +192,7 @@ export default function MDXFormEditable({
             className="w-full max-w-screen-lg rounded-none"
             variant={"outline"}
           >
-            Edit Blog
+            {tBlog("edit_blog")}
           </Button>
         )}
       </div>

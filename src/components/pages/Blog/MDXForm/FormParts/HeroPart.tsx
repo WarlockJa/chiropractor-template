@@ -6,6 +6,7 @@ import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
 import { IGenericImageProps, IParts_Hero } from "../mdxtypes";
 import { SelectBlogs } from "@db/schemaBlog";
+import { useTranslations } from "next-intl";
 
 interface IHeroPartFormValues extends IFormValues {
   originalState: IParts_Hero;
@@ -14,6 +15,7 @@ interface IHeroPartFormValues extends IFormValues {
 
 // Hero part edit form
 export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
+  const tBlogHero = useTranslations("Blog.HeroPart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -32,10 +34,10 @@ export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
   // if(formValues.type !== 0)
   return (
     <>
-      <PartHeader partName="Main Part" />
+      <PartHeader partName={tBlogHero("part_name")} />
       <SimpleTextPrimitive
-        labelText="Blog Title"
-        placeholderText="Enter blog title"
+        labelText={tBlogHero("text_label")}
+        placeholderText={tBlogHero("text_placeholder")}
         setText={(text: string) => {
           // evaluating if it is ok to save the whole part
           // finding if a primitive has changed
@@ -90,8 +92,8 @@ export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
       />
 
       <SimpleTextPrimitive
-        labelText="Blog description"
-        placeholderText="Enter blog description"
+        labelText={tBlogHero("text2_label")}
+        placeholderText={tBlogHero("text2_placeholder")}
         setText={(text: string) => {
           // evaluating if it is ok to save the whole part
           // finding if a primitive has changed
@@ -119,7 +121,7 @@ export default function HeroPart({ blogId }: Pick<SelectBlogs, "blogId">) {
 
       {!isOkToSavePart.image && !formValues.currentValues.imageId && (
         <p className="bg-destructive p-2 text-destructive-foreground">
-          Add and/or select an image to be able to publish blog
+          {tBlogHero("warning_image")}
         </p>
       )}
     </>

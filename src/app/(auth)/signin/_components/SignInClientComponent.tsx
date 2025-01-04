@@ -39,14 +39,14 @@ const magicLinkSchema = z.object({
 export default function SignInClientComponent({
   callbackUrl,
 }: ISignInClientComponentProps) {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
   const tSignIn = useTranslations("SignIn");
 
   const { execute, status, input } = useAction(signUpAction, {
     onError({ error }) {
       if (error.serverError === "RateLimitError") {
-        toast(t("rate_limit_title"), {
-          description: t("rate_limit_description"),
+        toast(tErrors("rate_limit_title"), {
+          description: tErrors("rate_limit_description"),
         });
 
         return;
@@ -54,7 +54,7 @@ export default function SignInClientComponent({
 
       toast(
         <SonnerErrorCard
-          title={t("general_error_title")}
+          title={tErrors("general_error_title")}
           errors={JSON.stringify(error)}
         />,
       );

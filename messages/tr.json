@@ -86,82 +86,204 @@
     "insufficient_rights_delete_blog": "Blogları silme hakkınız yok",
     "insufficient_rights_create_blog": "Blog oluşturma hakkınız yok",
     "insufficient_rights_update_blog": "Blogları güncelleme hakkınız yok",
-    "insufficient_rights_delete_image": "Görüntüleri silme hakkınız yok"
+    "insufficient_rights_delete_image": "Görüntüleri silme hakkınız yok",
+    "too_many_search_requests": "Çok fazla arama isteği. Daha sonra tekrar deneyin",
+    "too_many_image_uploads": "Çok fazla resim yüklendi. Daha sonra tekrar deneyin.",
+    "storage_quota_exceeded_title": "Depolama kotası aşıldı",
+    "storage_quota_exceeded_description": "Depolamanızda resim için yer kalmadı",
+    "files_are_not_valid_images": "Dosyalar geçerli resimler değil:",
+    "adding_image_error": "Resim ekleme hatası",
+    "downloading_image_url_error_title": "URL resmi indirilirken hata oluştu",
+    "downloading_image_url_error_description": "Sağlanan resim URL'si bir hata döndürdü: "
   },
   "ContactsPanel": {
     "brand_weekend_closed": "Cmt-Pzr: kapalı"
   },
-  "SupportedEquipment": {
-    "supported_equipment": "Desteklenen Ekipman"
-  },
   "Blog": {
     "are_you_sure_delete_blog_title": "Bu blogu silmek istediğinizden emin misiniz?",
     "are_you_sure_delete_blog_description": "Sil'e basarsanız aşağıdaki blog yazısı kalıcı olarak silinecektir. Bu işlem geri alınamaz.",
+    "save": "Kaydet",
     "cancel": "İptal",
     "delete": "Sil",
     "create_new_blog": "Yeni Blog Yazısı Oluştur",
     "creating_new_blog": "Yeni Blog Yazısı Oluşturuluyor",
     "blog_saved": "Blog kaydedildi!",
-    "blog_updated": "Blog {title} güncellendi"
+    "blog_updated": "Blog {title} güncellendi",
+    "find_more_blogs": "Daha fazla blog bul",
+    "published": "Yayımlandı",
+    "updating": "Güncelleniyor",
+    "update_blog": "Blogu Güncelle",
+    "edit_blog": "Blogu Düzenle",
+    "exit_edit_mode": "Düzenleme Modundan Çık",
+    "set_image_warning": "Blogu yayınlamak için bir resmi Ana Bölüme ayarla",
+    "publish_warning": "İnsanların blogunuzu görmesine izin vermek için Yayımla!",
+    "now_editing": "Düzenlemede:",
+    "Divider": {
+      "aria_edit_element_above": "Yukarıdaki öğeyi düzenle",
+      "edit": "Düzenle",
+      "aria_delete_element_above": "Yukarıdaki öğeyi sil",
+      "insert": "Ekle",
+      "pick_element": "Öğeyi seç",
+      "Items": {
+        "paragraph": "Paragraf",
+        "image": "Görüntü",
+        "separator": "Ayırıcı",
+        "video": "Video",
+        "table": "Tablo",
+        "carousel": "Döngü",
+        "gallery": "Galeri",
+        "chart": "Çizelge"
+      }
+    },
+    "VideoPart": {
+      "part_name": "Video Bölümü",
+      "label": "Youtube video kimliği",
+      "placeholder": "Youtube video url'sini girin",
+      "primitive_label": "Video Kimliği Bulundu:"
+    },
+    "TablePart": {
+      "part_name": "Tablo Parçası",
+      "priitive_caption": "Tablo Başlığı",
+      "menu_title_bold": "Kalın",
+      "menu_title_italic": "İtalik",
+      "menu_title_underline": "Altını Çiz",
+      "menu_title_line_through": "Çizgi Üzerinden Geç",
+      "menu_title_align_left": "Sola Hizala",
+      "menu_title_align_center": "Ortala",
+      "menu_title_align_right": "Sağa Hizala",
+      "menu_title_insert_column": "Sütun Ekle",
+      "menu_title_delete_column": "Sütunu Sil",
+      "menu_title_insert_row": "Satır Ekle",
+      "menu_title_delete_row": "Satırı Sil"
+    },
+    "ParagraphPart": {
+      "part_name": "Paragraf Bölümü",
+      "text_label": "Paragraf Başlığı",
+      "text_placeholder": "Paragraf başlığını girin",
+      "mdx_label": "Paragraf metni"
+    },
+    "ImagePart": {
+      "part_name": "Resim Bölümü",
+      "primitive_images_uploaded": "Yeni resimler yüklendi: ",
+      "primitive_drag_and_drop": "Resim Dosyalarını Sürükle ve Bırak",
+      "primitive_click_to_select": "Veya Bilgisayarınızdaki Resimleri Seçmek İçin Tıklayın",
+      "primitive_or": "Veya ",
+      "primitive_post_image_placeholder": "Bir Resim URL'si Gönderin",
+      "primitive_file_size_limit": "Dosya boyutu sınırı",
+      "image_in_use": "Görüntü kullanımda",
+      "image_in_use_description": "Resim kullanımda ve silinemez",
+      "image_delete": "Blog Görüntüsünü Sil",
+      "image_delete_description": "Resim kullanımda değil ve güvenli bir şekilde silinebilir"
+    },
+    "HeroPart": {
+      "part_name": "Ana Bölüm",
+      "text_label": "Blog Başlığı",
+      "text_placeholder": "Blog başlığını girin",
+      "text2_label": "Blog açıklaması",
+      "text2_placeholder": "Blog açıklamasını girin",
+      "warning_image": "Blog yayınlayabilmek için bir resim ekleyin ve/veya seçin"
+    },
+    "ImageGalleryPart": {
+      "part_name": "Resim Galerisi Bölümü"
+    },
+    "ChartPart": {
+      "part_name": "Grafik Bölümü",
+      "text_label": "Grafik Başlığı",
+      "text_placeholder": "Grafik başlığını girin",
+      "text2_label": "Grafik açıklaması",
+      "text2_placeholder": "Grafik açıklamasını girin",
+      "chart_type_bar_vertical": "Çubuk Grafik Dikey",
+      "chart_type_bar_horizontal": "Çubuk Grafik Yatay",
+      "chart_type_line": "Çizgi Grafik",
+      "chart_type_area": "Alan Grafiği",
+      "chart_type_radar": "Radar Grafiği",
+      "primitive_value_not_number": "Değer bir sayı değildir",
+      "primitive_new_column": "Yeni Sütun",
+      "menu_title_insert_column": "Sütun Ekle",
+      "menu_title_delete_column": "Sütunu Sil",
+      "menu_title_insert_row": "Satır Ekle",
+      "menu_title_delete_row": "Satırı Sil"
+    },
+    "CarouselPart": {
+      "part_name": "Resim Döngüsü Parçası",
+      "preferences": "Döngü Tercihleri",
+      "loop": "Döngü",
+      "fade": "Solma",
+      "auto_scroll": "Otomatik Kaydırma",
+      "auto_scroll_speed": "Otomatik Kaydırma Hızı(ları)"
+    }
   },
-  "Image": {
-    "image_in_use": "Görüntü kullanımda",
-    "image_delete": "Blog Görüntüsünü Sil"
+  "Pagination": {
+    "go_to_previous_page": "Önceki sayfaya git",
+    "previous": "Önceki",
+    "go_to_next_page": "Sonraki sayfaya git",
+    "next": "Sonraki",
+    "more_pages": "Daha fazla sayfa"
   },
-  "Cards": {
-    "repair_center": "Servis Merkezi",
-    "custom_pc_build_repair": "Özel PC yapımı ve onarımı",
-    "data_recovery": "Veri Kurtarma",
-    "tech_protection_warranty": "Teknoloji Sigortası Koruma Planı",
-    "remote_it_support": "Uzaktan BT desteği",
-    "onsite_tech_visit": "Yerinde teknik ziyaret",
-    "mac_battery_replacement": "MacBook Batarya Değişimi",
-    "mac_logic_board_repair": "MacBook Mantık Kartı Tamiri",
-    "mac_screen_replacement": "MacBook Ekran Değişimi",
-    "mac_spill_repair": "MacBook Sıvı Dökülmesi Tamiri",
-    "mac_wont_power_up": "MacBook Açılmıyor",
-    "mac_data_recovery": "MacBook Veri Kurtarma",
-    "windows_laptop_screen_replacement": "Windows Dizüstü Bilgisayar Ekran Değişimi",
-    "windows_laptop_spill_repair": "Windows Dizüstü Bilgisayar Sıvı Dökülmesi Tamiri",
-    "windows_data_recovery": "Windows Veri Kurtarma",
-    "windows_laptop_wont_start": "Windows Dizüstü Bilgisayar Başlamıyor",
-    "slow_pc_issue": "Yavaş PC Sorunu",
-    "windows_pc_wont_start": "Windows PC Başlamıyor"
+  "Search": {
+    "placeholder": "Web sitesinde ara",
+    "search_modal": "Arama modalı",
+    "submit": "gönder",
+    "no_results": "Hiçbir sonuç bulunamadı",
+    "pages": "Sayfalar",
+    "blogs": "Bloglar"
+  },
+  "Headers": {
+    "our_services": "Hizmetlerimiz",
+    "what_we_can_offer": "tekliflerimiz",
+    "latest_from_blog": "blogumuzdan son haberler",
+    "nice_to_meet_you": "tanıştığıma memnun oldum",
+    "our_team": "bizim takımımız",
+    "view_profile": "profili görüntüle",
+    "our_contacts": "iletişim bilgilerimiz",
+    "how_you_can_find_us": "bizi nasıl bulabilirsiniz",
+    "make_an_appointment": "randevu alın",
+    "our_blog": "blogumuz",
+    "blogs_not_found": "Blog bulunamadı"
   },
   "Services": {
-    "header_image_alt": "Ortada bir dizüstü bilgisayarın bulunduğu, üzeri çeşitli bilgisayar parçalarıyla kaplı çalışma masası",
-    "footer_image_alt": "Ekranlarında HTML kodu görünen iki dizüstü bilgisayar.",
-    "mac_repair_center": "Apple Teknik Servisi",
-    "repairing_all_mac": "Ana kartlar ve tüm MacBook, iMac ve Mac Pro sorunlarının onarımı",
-    "fixing_all_windows_issues": "Tüm Windows/PC sorunlarının tamiri",
-    "repairing_all_in_ones": "Dizüstü bilgisayarlar, masaüstü bilgisayarlar, PC'ler, özel oyun makineleri, hepsi bir arada bilgisayarlar ve tabletlerin tamiri",
-    "our_services": "Hizmetlerimiz",
-    "footer_title": "Bilgisayarınızın Tamiri Gerekir mi?",
-    "footer_button_text": "Ücretsiz Teşhis Alın"
+    "cold-laser-therapy": {
+      "title": "Soğuk Lazer Terapisi",
+      "description": "Soğuk lazer terapisi, düşük ışık seviyelerini kullanarak iyileşmeyi uyaran düşük yoğunluklu lazer tedavisidir. Bu tekniğe “soğuk” lazer terapisi denir çünkü düşük ışık seviyeleri vücut dokusunu ısıtmak için yeterli değildir. Işık seviyesi, tümörleri yok etmek ve dokuyu pıhtılaştırmak için kullanılanlar gibi diğer lazer terapisi türlerine kıyasla düşüktür. Cerrahi ve estetik lazerler tedavi edilen dokuyu ısıtır. Adına uygun olarak, soğuk lazer terapisi bunu yapmaz."
+    },
+    "detox-program": {
+      "title": "Detoks Programı",
+      "description": "Detoksifikasyon (detoks) diyetleri her zamankinden daha popüler. Bu diyetler kanınızı temizlediğini ve vücudunuzdan zararlı toksinleri attığını iddia ediyor. Ancak, bunu nasıl yaptıkları, hangi spesifik bileşikleri ortadan kaldırmaları gerektiği ve hatta işe yarayıp yaramadığı tam olarak açık değil. Detoks diyetlerinin faydaları ve yan etkileri dahil olmak üzere ayrıntılı bir incelemesi için okumaya devam edin."
+    },
+    "fitness-program": {
+      "title": "Fitness Programı",
+      "description": "Birçok insan fit olmaya çalışır. Sonuçta, fitness sağlık ile eş anlamlıdır. Yüksek düzeyde genel fitness, kronik hastalık riskinin daha düşük olması ve ortaya çıkan sağlık sorunlarını daha iyi yönetme yeteneği ile bağlantılıdır. Daha iyi fitness ayrıca yaşam süresi boyunca daha fazla işlevsellik ve hareketlilik sağlar. Ve kısa vadede, aktif olmak günlük işleyişinize, daha iyi bir ruh halinden daha keskin bir odaklanmaya ve daha iyi bir uykuya kadar yardımcı olabilir."
+    },
+    "dietary-management": {
+      "title": "Diyetetik Yönetim",
+      "description": "Sağlıklı beslenme, diyetinizin çeşitli sağlıklı, besleyici yiyecekler ve içecekler içermesini sağlamayı içerir. Doğru yiyecekleri yemek size enerji verebilir, sağlığınızı iyileştirebilir ve kendinizi daha sağlıklı hissetmenize yardımcı olabilir. Sağlıklı beslenme, sağlıklı beslenme ile diyet arasındaki farklar ve bir beslenme uzmanı ile çalışmanın size nasıl yardımcı olabileceği hakkında daha fazla bilgi veriyoruz."
+    },
+    "heat-and-cold": {
+      "title": "Sıcaklık ve Soğukluk",
+      "description": "Sıcaklık terapisi, ısının uygulandığı bölgeye kan akışını artırmaya yardımcı olur. Kas ağrısı veya sertliği için en iyisidir. Soğuk terapi iltihabı azaltmaya yardımcı olur. Akut yaralanmalar ve ağrı için kullanıldığında en faydalıdır. Buz paketleri veya ısıtıcı pedlerle artritten çekilmiş kaslara ve iltihaplanmaya kadar her şeyi tedavi ediyoruz. Sıcak ve soğuk ile ağrıyı tedavi etmek, birçok farklı durum ve yaralanma için son derece etkili ve kolayca uygun fiyatlı olabilir. Zor kısım, hangi durumların sıcak, hangilerinin soğuk gerektiğini bilmektir. Bazen tek bir tedavi bile her ikisini de içerecektir. Genel bir kural olarak, akut yaralanmalar veya ağrı için buz, iltihap ve şişlik ile birlikte kullanın. Kas ağrısı veya sertliği için ısı kullanın."
+    },
+    "massage-therapy": {
+      "title": "Masaj Terapisi",
+      "description": "Dinlenme ve rahatlama söz konusu olduğunda, masajdan daha iyi bir şey yoktur. Milyonlarca Amerikalı masajlardan faydalanıyor ve nedeni kolayca anlaşılabilir! Masajlar stresi ve gerginliği azaltmada, hareket açıklığını artırmada ve hatta daha ciddi tıbbi durumları önlemede mükemmeldir. Ancak masajlar sadece Anneler Günü'nde veya bir plaj tatilinde şımartmak için bir şeyden fazlasıdır. Tıbbi masaj, ağrı, ağrı ve yaralanmalardan etkili bir şekilde kurtulma sağlayabilir. Peki tıbbi masaj terapisi nedir ve hangi durumları tedavi edebilir?"
+    },
+    "pediatric": {
+      "title": "Pediatri",
+      "description": "Bebeğinizi veya çocuğunuzu küçük yaşta kiropraksinin faydalarını göstermek, onları ömür boyu sağlıklı bir yaşam için hazırlamanın en iyi yollarından biri olabilir. Pediyatrik chiropraktörler, çocuklara birçok yönden yardımcı olabilir - daha sağlıklı uykuyu teşvik etmekten ve bağışıklığı güçlendirmekten davranışsal sorunları iyileştirmeye ve hatta sindirime yardımcı olmaya kadar. Bebeklerde kiroprakstik bakım, diğer birçok faydanın yanı sıra kolik ve reflü semptomlarını yatıştırmaya da yardımcı olabilir. Çocuğunuz bir chiropractor'dan fayda görebilir mi? İşte pediatrik kiroprakstik bakımın en iyi 10 faydasının listesi."
+    },
+    "relax-therapy": {
+      "title": "Rahatlama Terapisi",
+      "description": "Bir chiropraktik ayarlama sırasında akılda tutulması gereken en önemli şeylerden biri rahatlamaktır. Ancak, daha önce bir chiropraktik ayarlama yaptırmadıysanız veya endişeliyseniz, bir chiropraktik ayarlama sırasında rahatlamak için bazı ipuçlarını takdir edebilirsiniz."
+    }
   },
   "Home": {
     "hero": {
-      "titles": {
-        "1": "Verimli",
-        "2": "Güvenilir",
-        "3": "Tecrübeli",
-        "4": "İstikrarlı",
-        "5": "Sonuç Odaklı"
-      },
-      "descriptions": {
-        "1": "Her seviyede bilgisayar onarımı için profesyonel hizmet.",
-        "2": "Bilgisayarınızı kendimiz gibi önemsiyoruz.",
-        "3": "Her müşteriye özel çözümler sunuyoruz.",
-        "4": "Yüksek kaliteli hizmet garantisi veriyoruz.",
-        "5": "Bilgisayar sorunlarınız için güvenilir çözüm ortağınız."
-      },
-      "contacts_button": "Bugün İletişime Geçin"
-    },
-    "header_image_alt": "Ortada bir dizüstü bilgisayarın bulunduğu, üzeri çeşitli bilgisayar parçalarıyla kaplı çalışma masası",
-    "mac_repair_center": "Apple Teknik Servisi",
-    "repairing_all_mac": "Ana kartlar ve tüm MacBook, iMac ve Mac Pro sorunlarının onarımı",
-    "fixing_all_windows_issues": "Tüm Windows/PC sorunlarının tamiri",
-    "repairing_all_in_ones": "Dizüstü bilgisayarlar, masaüstü bilgisayarlar, PC'ler, özel oyun makineleri, hepsi bir arada bilgisayarlar ve tabletlerin tamiri"
+      "name": "Chiropractor",
+      "line1": "kiropraktikle",
+      "line2": "daha",
+      "line3": "iyi sağlık",
+      "our_mission": "Misyonumuz, kanıtlanmış manuel yöntemlerimizle kas-iskelet sistemi işlev bozukluklarını tedavi etmektir.",
+      "mode_about_us": "hakkımızda daha fazla"
+    }
   },
   "Disclaimer": {
     "disclaimer": "Feragat",
@@ -253,13 +375,44 @@
     "words_about_us": "Hakkımızda birkaç söz",
     "read_more": "daha"
   },
-  "PracticeAreas": {
-    "practice_areas": "Uygulama Alanları"
-  },
   "Testimonials": {
-    "testimonials": "Tanıklıklar"
+    "testimonials": "Tanıklıklar",
+    "client": {
+      "client": "müşteri",
+      "athlete": "sporcu",
+      "politician": "politikacı",
+      "actress": "aktris"
+    }
   },
   "Contacts": {
     "contacts": "İletişim"
+  },
+  "AboutPractitioner": {
+    "about": "Kiropraktör Hakkında",
+    "years_of_experience": "yıllık deneyim",
+    "award_nominees": "ödül adayları",
+    "happy_customers": "mutlu müşteriler"
+  },
+  "OurTeam": {
+    "fatma-yilmaz": {
+      "title": "kiropraktör",
+      "name": "Fatma Yılmaz",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "irvin-s-moreau": {
+      "title": "kiropraktör",
+      "name": "Irvin S. Moreau",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "samantha-wang": {
+      "title": "kiropraktör",
+      "name": "Samantha Wang",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "adam-khalid": {
+      "title": "kiropraktör",
+      "name": "Adam Halid",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    }
   }
 }

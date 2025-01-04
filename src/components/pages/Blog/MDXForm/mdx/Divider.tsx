@@ -22,8 +22,10 @@ import {
 } from "../LookupTables/lookupTablesMDXParts";
 import { deleteBlogPart } from "../lib/deleteBlogPart";
 import { insertBlogPart } from "../lib/insertBlogPart";
+import { useTranslations } from "next-intl";
 
 export default function Divider({ index }: { index: number }) {
+  const tBlogDivider = useTranslations("Blog.Divider");
   // selected part index
   const [sliceIndex, setSliceIndex] = useAtom(sliceIndexAtom);
   const [parts, setParts] = useAtom(blogPartsAtom);
@@ -36,7 +38,7 @@ export default function Divider({ index }: { index: number }) {
         type="button"
         variant={"outline"}
         className="m-auto h-8 flex-1 p-0 xsm:p-2"
-        aria-label="Edit element above"
+        aria-label={tBlogDivider("aria_edit_element_above")}
         disabled={
           NoEditPartTypes.includes(parts[index]?.type) ||
           sliceIndex !== undefined
@@ -47,7 +49,7 @@ export default function Divider({ index }: { index: number }) {
       >
         <>
           <ChevronsUp />
-          <p className="px-2">Edit</p>
+          <p className="px-2">{tBlogDivider("edit")}</p>
           <ChevronsUp />
         </>
       </Button>
@@ -71,7 +73,7 @@ export default function Divider({ index }: { index: number }) {
             }
           }}
           className="h-8 p-0 text-destructive hover:bg-destructive xsm:p-2"
-          aria-label="Delete element above"
+          aria-label={tBlogDivider("aria_delete_element_above")}
         >
           <>
             <ChevronsUp />
@@ -91,7 +93,7 @@ export default function Divider({ index }: { index: number }) {
           >
             <>
               <ChevronsDown />
-              <p className="px-2">Insert</p>
+              <p className="px-2">{tBlogDivider("insert")}</p>
               <ChevronsDown />
             </>
           </Button>
@@ -99,7 +101,9 @@ export default function Divider({ index }: { index: number }) {
         <DrawerContent>
           <div className="mx-auto">
             <DrawerHeader>
-              <DrawerTitle className="text-center">Pick Element</DrawerTitle>
+              <DrawerTitle className="text-center">
+                {tBlogDivider("pick_element")}
+              </DrawerTitle>
             </DrawerHeader>
             <div className="flex w-fit max-w-[100vw] gap-4 overflow-x-scroll px-4">
               {lookupTable_InsertElements.map((item) => (
@@ -117,12 +121,14 @@ export default function Divider({ index }: { index: number }) {
                   }
                   className="flex h-36 w-48 flex-col justify-between border"
                 >
-                  <h2 className="w-40 pb-2 text-center">{item.name}</h2>
+                  <h2 className="w-40 pb-2 text-center">
+                    {tBlogDivider(`Items.${item.name}`)}
+                  </h2>
                   <div className="flex h-full">
                     <img
                       className="self-center"
                       src={item.image}
-                      alt={item.name}
+                      alt={tBlogDivider(`Items.${item.name}`)}
                     />
                   </div>
                 </Button>

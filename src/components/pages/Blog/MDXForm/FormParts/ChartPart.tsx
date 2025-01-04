@@ -4,6 +4,7 @@ import { usePartWrapperContext } from "./wrappers/PartWrapper";
 import SimpleTextPrimitive from "./primitives/SimpleTextPrimitive";
 import PartHeader from "./primitives/PartHeader";
 import { IParts_Chart } from "../mdxtypes";
+import { useTranslations } from "next-intl";
 
 interface IChartPartFormValues extends IFormValues {
   originalState: IParts_Chart<string | number>;
@@ -11,6 +12,7 @@ interface IChartPartFormValues extends IFormValues {
 }
 
 export default function ChartPart() {
+  const tBlogChart = useTranslations("Blog.ChartPart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -22,10 +24,10 @@ export default function ChartPart() {
   // if(formValues.type !== 0)
   return (
     <>
-      <PartHeader partName="Chart Part" />
+      <PartHeader partName={tBlogChart("part_name")} />
       <SimpleTextPrimitive
-        labelText="Chart Title"
-        placeholderText="Chart Title"
+        labelText={tBlogChart("text_label")}
+        placeholderText={tBlogChart("text_placeholder")}
         text={formValues.currentValues.chartTitle ?? ""}
         setText={(chartTitle) =>
           setFormValues((prev) => ({
@@ -36,8 +38,8 @@ export default function ChartPart() {
         }
       />
       <SimpleTextPrimitive
-        labelText="Chart Description"
-        placeholderText="Chart Description"
+        labelText={tBlogChart("text2_label")}
+        placeholderText={tBlogChart("text2_placeholder")}
         text={formValues.currentValues.chartDescription ?? ""}
         setText={(chartDescription) =>
           setFormValues((prev) => ({

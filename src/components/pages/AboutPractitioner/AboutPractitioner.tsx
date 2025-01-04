@@ -15,14 +15,13 @@ export default function AboutPractitioner({
 }: {
   className?: string;
 }) {
-  const t = useTranslations("SupportedEquipment");
+  const tAboutPractitioner = useTranslations("AboutPractitioner");
   return (
-    // TODO add translation
     <Card className={className}>
       <CardHeader>
         <CardTitle>
           <CustomHeader
-            text={"About Chiropracticer"}
+            text={tAboutPractitioner("about")}
             fontSizeRem={2}
             className="my-4 flex justify-center"
           />
@@ -43,7 +42,9 @@ export default function AboutPractitioner({
               new Date("01 01 2014"),
             )}
           />
-          <div className="text-center">YEARS OF EXPERIENCE</div>
+          <div className="text-center">
+            {tAboutPractitioner("years_of_experience").toLocaleUpperCase()}
+          </div>
         </div>
         <div className="h-full bg-gradient-to-b from-background via-foreground to-background"></div>
         <div className="flex flex-col items-center">
@@ -51,7 +52,9 @@ export default function AboutPractitioner({
             className="font-sans text-5xl font-bold text-accent"
             numberToGetTo={20}
           />
-          <div className="text-center">AWARD NOMINEES</div>
+          <div className="text-center">
+            {tAboutPractitioner("award_nominees").toLocaleUpperCase()}
+          </div>
         </div>
         <div className="h-full bg-gradient-to-b from-background via-foreground to-background"></div>
         <div className="flex flex-col items-center">
@@ -60,7 +63,9 @@ export default function AboutPractitioner({
             numberToGetTo={450}
             text={"+"}
           />
-          <div className="text-center">HAPPY CUSTOMERS</div>
+          <div className="text-center">
+            {tAboutPractitioner("happy_customers").toLocaleUpperCase()}
+          </div>
         </div>
       </CardContent>
     </Card>

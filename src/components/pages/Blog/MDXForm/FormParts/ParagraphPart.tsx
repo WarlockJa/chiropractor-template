@@ -5,6 +5,7 @@ import { useState } from "react";
 import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
 import { IParts_Paragraph } from "../mdxtypes";
+import { useTranslations } from "next-intl";
 
 interface IParagraphPartFormValues extends IFormValues {
   originalState: IParts_Paragraph;
@@ -13,6 +14,7 @@ interface IParagraphPartFormValues extends IFormValues {
 
 // Paragraph part edit form
 export default function ParagraphPart() {
+  const tBlogParagraph = useTranslations("Blog.ParagraphPart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -32,10 +34,10 @@ export default function ParagraphPart() {
   // if(formValues.type !== 0)
   return (
     <>
-      <PartHeader partName="Paragraph Part" />
+      <PartHeader partName={tBlogParagraph("part_name")} />
       <SimpleTextPrimitive
-        labelText="Paragraph Title"
-        placeholderText="Enter paragraph title"
+        labelText={tBlogParagraph("text_label")}
+        placeholderText={tBlogParagraph("text_placeholder")}
         setText={(title) => {
           // evaluating if it is ok to save the whole part
           // finding if simple text has changes
@@ -79,7 +81,7 @@ export default function ParagraphPart() {
             isOkToSave,
           }));
         }}
-        labelText="Paragraph text"
+        labelText={tBlogParagraph("mdx_label")}
         showPlugins
       />
     </>

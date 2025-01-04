@@ -86,87 +86,204 @@
     "insufficient_rights_delete_blog": "You do not have the rights to delete blogs",
     "insufficient_rights_create_blog": "You do not have the rights to create blogs",
     "insufficient_rights_update_blog": "You do not have the rights to update blogs",
-    "insufficient_rights_delete_image": "You do not have the rights to delete images"
+    "insufficient_rights_delete_image": "You do not have the rights to delete images",
+    "too_many_search_requests": "Too many search requests. Try again later.",
+    "too_many_image_uploads": "Too many image uploads. Try again later.",
+    "storage_quota_exceeded_title": "Storage quota exceeded",
+    "storage_quota_exceeded_description": "There's no more room for images in your storage",
+    "files_are_not_valid_images": "Files are not valid images:",
+    "adding_image_error": "Error adding image",
+    "downloading_image_url_error_title": "Error downloading URL image",
+    "downloading_image_url_error_description": "Provided image URL returned an error: "
   },
   "ContactsPanel": {
     "brand_weekend_closed": "Sat-Sun: Closed"
   },
-  "SupportedEquipment": {
-    "supported_equipment": "Supported Equipment"
-  },
   "Blog": {
     "are_you_sure_delete_blog_title": "Are you sure you want to delete this blog?",
     "are_you_sure_delete_blog_description": "If you press Delete the following blog post will be permanently deleted. This action cannot be reversed.",
+    "save": "Save",
     "cancel": "Cancel",
     "delete": "Delete",
     "create_new_blog": "Create New Blogpost",
     "creating_new_blog": "Creating New Blogpost",
     "blog_saved": "Blog saved!",
-    "blog_updated": "Blog {title} is updated"
+    "blog_updated": "Blog {title} is updated",
+    "blogs_not_found": "Blogs not found",
+    "find_more_blogs": "Find more blogs",
+    "published": "Published",
+    "updating": "Updating",
+    "update_blog": "Update Blog",
+    "edit_blog": "Edit Blog",
+    "exit_edit_mode": "Exit Edit Mode",
+    "set_image_warning": "Set an image to Main Part to publish blog",
+    "publish_warning": "Publish to let people see your blog!",
+    "now_editing": "Now Editing:",
+    "Divider": {
+      "aria_edit_element_above": "Edit element above",
+      "edit": "Edit",
+      "aria_delete_element_above": "Delete element above",
+      "insert": "Insert",
+      "pick_element": "Pick Element",
+      "Items": {
+        "paragraph": "Paragraph",
+        "image": "Image",
+        "separator": "Separator",
+        "video": "Video",
+        "table": "Table",
+        "carousel": "Carousel",
+        "gallery": "Gallery",
+        "chart": "Chart"
+      }
+    },
+    "VideoPart": {
+      "part_name": "Video Part",
+      "label": "Youtube video id",
+      "placeholder": "Enter youtube video url",
+      "primitive_label": "Found Video ID:"
+    },
+    "TablePart": {
+      "part_name": "Table Part",
+      "priitive_caption": "Table Caption",
+      "menu_title_bold": "Bold",
+      "menu_title_italic": "Italic",
+      "menu_title_underline": "Underline",
+      "menu_title_line_through": "Line Through",
+      "menu_title_align_left": "Align Left",
+      "menu_title_align_center": "Align Center",
+      "menu_title_align_right": "Align Right",
+      "menu_title_insert_column": "Insert Column",
+      "menu_title_delete_column": "Delete Column",
+      "menu_title_insert_row": "Insert Row",
+      "menu_title_delete_row": "Delete Row"
+    },
+    "ParagraphPart": {
+      "part_name": "Paragraph Part",
+      "text_label": "Paragraph Title",
+      "text_placeholder": "Enter paragraph title",
+      "mdx_label": "Paragraph text"
+    },
+    "ImagePart": {
+      "part_name": "Image Part",
+      "primitive_images_uploaded": "New images uploaded: ",
+      "primitive_drag_and_drop": "Drag and Drop Image Files",
+      "primitive_click_to_select": "Or Click to Select Images on Your PC",
+      "primitive_or": "Or ",
+      "primitive_post_image_placeholder": "Post an Image URL",
+      "primitive_file_size_limit": "File size limit",
+      "image_in_use": "Image is in use",
+      "image_in_use_description": "Image is in use and cannot be deleted",
+      "image_delete": "Delete Blog Image",
+      "image_delete_description": "Image is not in use and can be safely deleted"
+    },
+    "HeroPart": {
+      "part_name": "Main Part",
+      "text_label": "Blog Title",
+      "text_placeholder": "Enter blog title",
+      "text2_label": "Blog description",
+      "text2_placeholder": "Enter blog description",
+      "warning_image": "Add and/or select an image to be able to publish blog"
+    },
+    "ImageGalleryPart": {
+      "part_name": "Image Gallery Part"
+    },
+    "ChartPart": {
+      "part_name": "Chart Part",
+      "text_label": "Chart Title",
+      "text_placeholder": "Enter chart title",
+      "text2_label": "Chart description",
+      "text2_placeholder": "Enter chart description",
+      "chart_type_bar_vertical": "Bar Chart Vertical",
+      "chart_type_bar_horizontal": "Bar Chart Horizontal",
+      "chart_type_line": "Line Chart",
+      "chart_type_area": "Area Chart",
+      "chart_type_radar": "Radar Chart",
+      "primitive_value_not_number": "Value is not a number",
+      "primitive_new_column": "New Column",
+      "menu_title_insert_column": "Insert Column",
+      "menu_title_delete_column": "Delete Column",
+      "menu_title_insert_row": "Insert Row",
+      "menu_title_delete_row": "Delete Row"
+    },
+    "CarouselPart": {
+      "part_name": "Image Carousel Part",
+      "preferences": "Carousel Preferences",
+      "loop": "Loop",
+      "fade": "Fade",
+      "auto_scroll": "Auto Scroll",
+      "auto_scroll_speed": "Auto Scroll Speed(s)"
+    }
   },
-  "Image": {
-    "image_in_use": "Image is in use",
-    "image_delete": "Delete Blog Image"
+  "Pagination": {
+    "go_to_previous_page": "Go to previous page",
+    "previous": "Previous",
+    "go_to_next_page": "Go to next page",
+    "next": "Next",
+    "more_pages": "More pages"
   },
-  "Cards": {
-    "repair_center": "Repair Center",
-    "custom_pc_build_repair": "Custom PC build & repair",
-    "data_recovery": "Data Recovery",
-    "tech_protection_warranty": "Tech Warranty Protection Plan",
-    "remote_it_support": "Remote IT support",
-    "onsite_tech_visit": "Onsite tech visit",
-    "mac_battery_replacement": "MacBook Battery Replacement",
-    "mac_logic_board_repair": "MacBook Logic Board Repair",
-    "mac_screen_replacement": "MacBook Screen Replacement",
-    "mac_spill_repair": "MacBook Spill Repair",
-    "mac_wont_power_up": "MacBook Won't Power Up",
-    "mac_data_recovery": "MacBook Data Recovery",
-    "windows_laptop_screen_replacement": "Windows Laptop Screen Replacement",
-    "windows_laptop_spill_repair": "Windows Laptop Spill Repair",
-    "windows_data_recovery": "Windows Data Recovery",
-    "windows_laptop_wont_start": "Windows Laptop Won't Start",
-    "slow_pc_issue": "Slow PC Issue",
-    "windows_pc_wont_start": "Windows PC Won't Start"
+  "Search": {
+    "placeholder": "Search on the website",
+    "search_modal": "Search modal",
+    "submit": "submit",
+    "no_results": "There was no results",
+    "pages": "Pages",
+    "blogs": "Blogs"
+  },
+  "Headers": {
+    "our_services": "Our Services",
+    "what_we_can_offer": "what we can offer",
+    "latest_from_blog": "latest from our blog",
+    "nice_to_meet_you": "nice to meet you",
+    "our_team": "our team",
+    "view_profile": "view profile",
+    "our_contacts": "our contacts",
+    "how_you_can_find_us": "how you can find us",
+    "make_an_appointment": "make an appointment",
+    "our_blog": "our blog"
   },
   "Services": {
-    "header_image_alt": "worktable covered in various computer parts with a laptop in the middle",
-    "footer_image_alt": "two laptops with html code on the screens",
-    "mac_repair_center": "Mac Repair Center",
-    "repairing_all_mac": "Repairing logic boards and all MacBook, iMac, and Mac Pro issues",
-    "fixing_all_windows_issues": "Fixing All Windows/PC Issues",
-    "repairing_all_in_ones": "Repairing laptops, desktops, PCs, custom gaming machines, all-in-ones, and tablets",
-    "our_services": "Our Services",
-    "footer_title": "Need Your Computer Repaired?",
-    "footer_button_text": "Get a Free Diagnostic"
-  },
-  "ImagesData": {
-    "logo": "logo",
-    "beach-laptop": "beach-laptop",
-    "custom-pc": "custom-pc"
+    "cold-laser-therapy": {
+      "title": "cold laser therapy",
+      "description": "Cold laser therapy is low-intensity laser therapy that stimulates healing while using low levels of light. The technique is called “cold” laser therapy because the low levels of light aren't enough to heat your body's tissue. The level of light is low when compared to other forms of laser therapy, such as those used to destroy tumors and coagulate tissue. Surgical and aesthetic lasers heat the tissue being treated. True to its name, cold laser therapy does not."
+    },
+    "detox-program": {
+      "title": "detox program",
+      "description": "Detoxification (detox) diets are more popular than ever. These diets claim to cleanse your blood and eliminate harmful toxins from your body. However, it is not entirely clear how they do this, what specific compounds they're supposed to eliminate, and if they even work. Read on for a detailed review of detox diets, including their benefits and side effects."
+    },
+    "fitness-program": {
+      "title": "fitness program",
+      "description": "Many people strive to be fit. Fitness, after all, is synonymous with health. Having a high level of overall fitness is linked with a lower risk of chronic disease, as well as a better ability to manage health issues that do come up. Better fitness also promotes more functionality and mobility throughout one's life span. And in the short term, being active can help your day-to-day functioning, from better mood to sharper focus to better sleep."
+    },
+    "dietary-management": {
+      "title": "dietary management",
+      "description": "Healthy eating means ensuring your diet includes a variety of healthy, nutritious foods and drinks. Eating the right foods can give you energy, improve your well-being, and help you to feel healthier. We explain more about healthy eating, the differences between eating healthy and dieting, and how working with a nutritional professional can help you."
+    },
+    "heat-and-cold": {
+      "title": "heat and cold",
+      "description": "Heat therapy helps improves blood flow to the area where the heat is applied. It's best for muscle pain or stiffness. Cold therapy helps reduce inflammation. It's most helpful when used for acute injuries and pain. We treat everything from arthritis to pulled muscles to inflammation with ice packs or heating pads. Treating pain with hot and cold can be extremely effective for a number of different conditions and injuries, and easily affordable. The tricky part is knowing what situations calls for hot, and which calls for cold. Sometimes a single treatment will even include both. As a general rule of thumb, use ice for acute injuries or pain, along with inflammation and swelling. Use heat for muscle pain or stiffness."
+    },
+    "massage-therapy": {
+      "title": "massage",
+      "description": "When it comes to rest and relaxation, there's nothing better than a massage. Millions of Americans benefit from massages and it's easy to see why! Massages are great at reducing stress and tension, improving range of motion, and even preventing more serious medical conditions. But massages are more than just something to indulge in on Mother's Day or a beach vacation. Medical massage can provide effective relief from pain, soreness, and injury. But what is medical massage therapy and what conditions can it help?"
+    },
+    "pediatric": {
+      "title": "pediatric",
+      "description": "Introducing your infant or child to chiropractic care at a young age can be one of the best ways to help set them up for a lifetime of good health. Pediatric chiropractors can help kids in a myriad of ways - from promoting healthier sleep and boosting immunity to improving behavioral issues and even aiding in digestion. In infants, chiropractic care can also help sooth colic and reflux symptoms, among many other benefits. Could your child benefit from seeing a chiropractor? Here's are list of the top 10 benefits of pediatric chiropractic care."
+    },
+    "relax-therapy": {
+      "title": "relax therapy",
+      "description": "One of the most important things to keep in mind during a chiropractic adjustment is staying relaxed. However, if you haven't had a chiropractic adjustment, or tend to be anxious you might appreciate some tips for relaxing during a chiropractic adjustment."
+    }
   },
   "Home": {
     "hero": {
-      "titles": {
-        "1": "Efficient",
-        "2": "Reliable",
-        "3": "Experienced",
-        "4": "Dedicated",
-        "5": "Results-Oriented"
-      },
-      "descriptions": {
-        "1": "Professional computer repair for any level of complexity.",
-        "2": "We care for your computer like our own.",
-        "3": "Personalized approach to each customer.",
-        "4": "Guaranteed high-quality service.",
-        "5": "Your reliable partner in the world of IT."
-      },
-      "contacts_button": "Contact Us Today"
-    },
-    "header_image_alt": "worktable covered in various computer parts with a laptop in the middle",
-    "mac_repair_center": "Mac Repair Center",
-    "repairing_all_mac": "Repairing logic boards and all MacBook, iMac, and Mac Pro issues",
-    "fixing_all_windows_issues": "Fixing All Windows/PC Issues",
-    "repairing_all_in_ones": "Repairing laptops, desktops, PCs, custom gaming machines, all-in-ones, and tablets"
+      "name": "Chiropractor",
+      "line1": "better health",
+      "line2": "through",
+      "line3": "chiropractic",
+      "our_mission": "Our mission is to treat musculoskeletal dysfunction by our proven manual methods.",
+      "mode_about_us": "more about us"
+    }
   },
   "Disclaimer": {
     "disclaimer": "Disclaimer",
@@ -258,13 +375,44 @@
     "words_about_us": "A few words about us",
     "read_more": "Read More"
   },
-  "PracticeAreas": {
-    "practice_areas": "Practice Areas"
-  },
   "Testimonials": {
-    "testimonials": "Testimonials"
+    "testimonials": "Testimonials",
+    "client": {
+      "client": "client",
+      "athlete": "athlete",
+      "politician": "politician",
+      "actress": "actress"
+    }
   },
   "Contacts": {
     "contacts": "Contacts"
+  },
+  "AboutPractitioner": {
+    "about": "About Chiropracticer",
+    "years_of_experience": "years of experience",
+    "award_nominees": "awards nominees",
+    "happy_customers": "happy cutomers"
+  },
+  "OurTeam": {
+    "fatma-yilmaz": {
+      "title": "chiropractor",
+      "name": "Fatma Yilmaz",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "irvin-s-moreau": {
+      "title": "chiropractor",
+      "name": "Irvin S. Moreau",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "samantha-wang": {
+      "title": "chiropractor",
+      "name": "Samantha Wang",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "adam-khalid": {
+      "title": "chiropractor",
+      "name": "Adam Khalid",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    }
   }
 }

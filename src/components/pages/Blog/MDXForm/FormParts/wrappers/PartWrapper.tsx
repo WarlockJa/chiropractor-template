@@ -22,6 +22,7 @@ import {
 } from "../../LookupTables/lookupTablesMDXParts";
 import isDeepEqual from "@/lib/isDeepEqual";
 import { TAllBlogParts } from "../../mdxtypes";
+import { useTranslations } from "next-intl";
 
 // creating context to wrap any children Part
 const PartWrapperContext = createContext<{
@@ -38,6 +39,7 @@ export default function PartWrapper({
   children: ReactNode;
   editFlag: boolean;
 }) {
+  const tBlog = useTranslations("Blog");
   // currently edited MDX part index
   const [sliceIndex, setSliceIndex] = useAtom(sliceIndexAtom);
   // MDX parts data
@@ -92,7 +94,7 @@ export default function PartWrapper({
           className="flex-1"
           type="button"
         >
-          Save
+          {tBlog("save")}
         </Button>
         <Button
           className="flex-1"
@@ -114,7 +116,7 @@ export default function PartWrapper({
           }}
           variant={"outline"}
         >
-          Cancel
+          {tBlog("cancel")}
         </Button>
       </div>
     </div>

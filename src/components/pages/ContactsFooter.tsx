@@ -21,7 +21,7 @@ import WhatsAppIcon from "@/components/Icons/WhatsAppIcon";
 import { CustomButton } from "@/components/UniversalComponents/CustomButton";
 
 export default async function ContactsFooter() {
-  // const t = await getTranslations("Services");
+  const tHeaders = await getTranslations("Headers");
   return (
     <HeaderImage
       dbImageName="gotpr60kksd5ws1zz11nzmgj-map.png"
@@ -32,11 +32,11 @@ export default async function ContactsFooter() {
         <Card className="mx-auto max-w-screen-xl">
           <CardHeader className="p-8">
             <CardDescription className="text-center text-xl text-accent">
-              HOW YOU CAN FIND US
+              {tHeaders("how_you_can_find_us").toLocaleUpperCase()}
             </CardDescription>
             <CardTitle>
               <CustomHeader
-                text={"OUR CONTACTS"}
+                text={tHeaders("our_contacts").toLocaleUpperCase()}
                 fontSizeRem={3}
                 className="flex justify-center"
                 textClassName="font-extralight"
@@ -93,7 +93,7 @@ export default async function ContactsFooter() {
         </h1> */}
         <Link href={"/contacts"}>
           <CustomButton
-            text={"Make an appointment".toLocaleUpperCase()}
+            text={tHeaders("make_an_appointment").toLocaleUpperCase()}
             className="border-2 border-accent p-8 hover:bg-accent/5"
             textClassName="md:text-4xl p-2"
           />

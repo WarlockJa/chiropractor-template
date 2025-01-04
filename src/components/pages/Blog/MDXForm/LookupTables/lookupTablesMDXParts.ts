@@ -1,6 +1,7 @@
 // gathering of different lookup tables used in MDXForm components
 // meant to be edited all at once, when component added/changed
 
+import en from "@/../messages/en.json";
 import { SelectImages } from "@db/schemaImage";
 import { TNonHeroParts, TParts } from "../mdxtypes";
 
@@ -130,44 +131,48 @@ export const getUsedImagesArray = ({
 };
 
 // blog parts data to form a card at insert new part drawer component
-export const lookupTable_InsertElements = [
+export const lookupTable_InsertElements: {
+  name: keyof typeof en.Blog.Divider.Items;
+  image: string;
+  type: number;
+}[] = [
   {
-    name: "Paragraph",
+    name: "paragraph",
     image: "/imgPartsMDX/paragraph.webp",
     type: 1,
   },
   {
-    name: "Image",
+    name: "image",
     image: "/imgPartsMDX/image.webp",
     type: 2,
   },
   {
-    name: "Separator",
+    name: "separator",
     image: "/imgPartsMDX/separator.webp",
     type: 3,
   },
   {
-    name: "Video",
+    name: "video",
     image: "/imgPartsMDX/video.webp",
     type: 4,
   },
   {
-    name: "Table",
+    name: "table",
     image: "/imgPartsMDX/table.webp",
     type: 5,
   },
   {
-    name: "Carousel",
+    name: "carousel",
     image: "/imgPartsMDX/carousel.webp",
     type: 6,
   },
   {
-    name: "Gallery",
+    name: "gallery",
     image: "/imgPartsMDX/gallery.webp",
     type: 7,
   },
   {
-    name: "Chart",
+    name: "chart",
     image: "/imgPartsMDX/chart.webp",
     type: 8,
   },

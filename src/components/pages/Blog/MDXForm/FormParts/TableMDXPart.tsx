@@ -3,6 +3,7 @@ import TableMDXPrimitive from "./primitives/TableMDXPrimitive/TableMDXPrimitive"
 import { usePartWrapperContext } from "./wrappers/PartWrapper";
 import PartHeader from "./primitives/PartHeader";
 import { IParts_TableMDX } from "../mdxtypes";
+import { useTranslations } from "next-intl";
 
 interface ITableMDXPartFormValues extends IFormValues {
   originalState: IParts_TableMDX;
@@ -10,6 +11,7 @@ interface ITableMDXPartFormValues extends IFormValues {
 }
 
 export default function TableMDXPart() {
+  const tBlogTable = useTranslations("Blog.TablePart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -23,7 +25,7 @@ export default function TableMDXPart() {
   // if(formValues.type !== 0)
   return (
     <>
-      <PartHeader partName="Table Part" />
+      <PartHeader partName={tBlogTable("part_name")} />
       <TableMDXPrimitive
         tableData={formValues.currentValues.tableData}
         setTableData={(tableData) => {

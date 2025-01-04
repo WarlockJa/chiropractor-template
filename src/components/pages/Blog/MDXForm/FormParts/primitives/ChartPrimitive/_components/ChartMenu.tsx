@@ -11,6 +11,7 @@ import getNoErrors from "../lib/getNoErrors";
 import checkForChartHeaderErrors from "../lib/checkForChartHeaderErrors";
 import { IParts_Chart_ChartData, TTableActiveCell } from "../../../../mdxtypes";
 import { IChartPrimitiveProps } from "../chartPrimitive";
+import { useTranslations } from "next-intl";
 
 interface IChartMenu extends IChartPrimitiveProps {
   activeCell: TTableActiveCell;
@@ -32,7 +33,8 @@ const addColumn = ({
   setErrors,
   chartValues,
   setChartValues,
-}: Omit<IChartMenu, "collisionPrefix">) => {
+  newColumnText = "New Column",
+}: Omit<IChartMenu, "collisionPrefix"> & { newColumnText?: string }) => {
   if (!activeCell) return;
   if (!chartValues) return;
   if (!chartValues.chartData) return;
@@ -74,12 +76,12 @@ const addColumn = ({
       // adding column after the last
       if (activeCell.column === Object.keys(row).length - 1) {
         newRow = { ...row };
-        newRow[`New Column ${newColumnIndex}`] = 0;
+        newRow[`${newColumnText} ${newColumnIndex}`] = 0;
       } else {
         // inserting column in the middle of the existing table
         Object.entries(row).map((entry, index) => {
           if (index === activeCell.column + 1) {
-            newRow[`New Column ${newColumnIndex}`] = 0;
+            newRow[`${newColumnText} ${newColumnIndex}`] = 0;
           }
           newRow[entry[0]] = entry[1];
         });
@@ -266,6 +268,7 @@ export default function ChartMenu({
   setErrors,
   collisionPrefix,
 }: IChartMenu) {
+  const tBlogChart = useTranslations("Blog.ChartPart");
   return chartValues ? (
     <div className="flex w-full justify-center p-1">
       <Button
@@ -273,7 +276,7 @@ export default function ChartMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Insert Column"
+        title={tBlogChart("menu_title_insert_column")}
         onClick={() =>
           addColumn({
             activeCell,
@@ -282,6 +285,7 @@ export default function ChartMenu({
             setErrors,
             chartValues,
             setChartValues,
+            newColumnText: tBlogChart("primitive_new_column"),
           })
         }
       >
@@ -296,7 +300,7 @@ export default function ChartMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Delete Column"
+        title={tBlogChart("menu_title_delete_column")}
         onClick={() =>
           deleteColumn({
             activeCell,
@@ -315,7 +319,7 @@ export default function ChartMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Insert Row"
+        title={tBlogChart("menu_title_insert_row")}
         onClick={() =>
           addRow({
             activeCell,
@@ -339,7 +343,7 @@ export default function ChartMenu({
         type="button"
         variant={"outline"}
         size={"icon"}
-        title="Delete Row"
+        title={tBlogChart("menu_title_delete_row")}
         onClick={() => {
           deleteRow({
             activeCell,

@@ -14,14 +14,14 @@ export default function CreateNewBlogButton({
 }: {
   className?: string;
 }) {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
   const tBlog = useTranslations("Blog");
 
   const { execute, status } = useAction(createBlogAction, {
     onError({ error }) {
       if (error.serverError === "UnauthorisedAccess") {
-        toast(t("insufficient_rights_title"), {
-          description: t("insufficient_rights_create_blog"),
+        toast(tErrors("insufficient_rights_title"), {
+          description: tErrors("insufficient_rights_create_blog"),
         });
 
         return;
@@ -29,7 +29,7 @@ export default function CreateNewBlogButton({
 
       toast(
         <SonnerErrorCard
-          title={t("general_error_title")}
+          title={tErrors("general_error_title")}
           errors={JSON.stringify(error.validationErrors)}
         />,
       );

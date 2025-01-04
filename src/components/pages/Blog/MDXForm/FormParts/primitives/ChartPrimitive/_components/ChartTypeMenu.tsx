@@ -5,10 +5,9 @@ import {
   BarChartHorizontal,
   Hexagon,
   LineChart,
-  LoaderCircle,
-  PieChart,
 } from "lucide-react";
 import { TParts_Chart_ChartTypes } from "../../../../mdxtypes";
+import { useTranslations } from "next-intl";
 
 interface IChartTypeMenuProps {
   chartType: TParts_Chart_ChartTypes;
@@ -19,6 +18,7 @@ export default function ChartTypeMenu({
   setChartType,
   chartType,
 }: IChartTypeMenuProps) {
+  const tBlogChart = useTranslations("Blog.ChartPart");
   return (
     <div className="flex w-full justify-center p-1">
       <Button
@@ -26,7 +26,7 @@ export default function ChartTypeMenu({
         disabled={chartType === "barVertical"}
         variant={"outline"}
         type="button"
-        title="Bar Chart Vertical"
+        title={tBlogChart("chart_type_bar_vertical")}
         onClick={() => setChartType("barVertical")}
       >
         <BarChart3 />
@@ -36,7 +36,7 @@ export default function ChartTypeMenu({
         disabled={chartType === "barHorizontal"}
         variant={"outline"}
         type="button"
-        title="Bar Chart Horizontal"
+        title={tBlogChart("chart_type_bar_horizontal")}
         onClick={() => setChartType("barHorizontal")}
       >
         <BarChartHorizontal />
@@ -46,7 +46,7 @@ export default function ChartTypeMenu({
         disabled={chartType === "line"}
         variant={"outline"}
         type="button"
-        title="Line Chart"
+        title={tBlogChart("chart_type_line")}
         onClick={() => setChartType("line")}
       >
         <LineChart />
@@ -56,7 +56,7 @@ export default function ChartTypeMenu({
         disabled={chartType === "area"}
         variant={"outline"}
         type="button"
-        title="Area Chart"
+        title={tBlogChart("chart_type_area")}
         onClick={() => setChartType("area")}
       >
         <AreaChart />
@@ -76,7 +76,7 @@ export default function ChartTypeMenu({
         disabled={chartType === "radar"}
         variant={"outline"}
         type="button"
-        title="Radar Chart"
+        title={tBlogChart("chart_type_radar")}
         onClick={() => setChartType("radar")}
       >
         <Hexagon />

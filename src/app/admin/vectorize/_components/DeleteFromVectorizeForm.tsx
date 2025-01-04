@@ -6,10 +6,7 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 import SonnerErrorCard from "@/components/UniversalComponents/sonners/SonnerErrorCard";
 import { useForm } from "react-hook-form";
-import {
-  addToVectorizeSchema,
-  deleteFromVectorizeSchema,
-} from "../_actions/schemas";
+import { deleteFromVectorizeSchema } from "../_actions/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
@@ -23,13 +20,13 @@ import { Input } from "@/components/ui/input";
 import { LoaderButton } from "@/components/UniversalComponents/LoaderButton";
 
 export default function DeleteFromVectorizeForm() {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
 
   const { execute, status } = useAction(deleteFromVectorizeAction, {
     onError({ error }) {
       if (error.serverError === "RateLimitError") {
-        toast(t("rate_limit_title"), {
-          description: t("rate_limit_description"),
+        toast(tErrors("rate_limit_title"), {
+          description: tErrors("rate_limit_description"),
         });
 
         return;

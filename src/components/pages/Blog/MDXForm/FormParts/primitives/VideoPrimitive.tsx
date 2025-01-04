@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { alphanumericWithDashUnderscore } from "@/lib/regex";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -30,6 +31,7 @@ export default function VideoPrimitive({
   videoId,
   setVideoId,
 }: IVideoPrimitiveProps) {
+  const tBlogVideo = useTranslations("Blog.VideoPart");
   const [uriString, setUriString] = useState("");
   return (
     <div className="p-4">
@@ -46,7 +48,9 @@ export default function VideoPrimitive({
         maxLength={100}
         required
       />
-      <Label>Found Video ID: {videoId}</Label>
+      <Label>
+        {tBlogVideo("primitive_label")} {videoId}
+      </Label>
     </div>
   );
 }

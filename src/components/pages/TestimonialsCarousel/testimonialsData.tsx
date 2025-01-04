@@ -1,7 +1,9 @@
+import en from "@/../messages/en.json";
+
 export interface TestimonialsData {
   name: string;
   quote: string;
-  description: string;
+  description: keyof typeof en.Testimonials.client;
   dbImageName: string;
   href?: string;
 }

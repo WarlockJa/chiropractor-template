@@ -86,82 +86,204 @@
     "insufficient_rights_delete_blog": "У Вас нет прав на удаление блогов",
     "insufficient_rights_create_blog": "У Вас нет прав на создание блогов",
     "insufficient_rights_update_blog": "У Вас нет прав на обновление блогов",
-    "insufficient_rights_delete_image": "У Вас нет права на удаление изображений"
+    "insufficient_rights_delete_image": "У Вас нет права на удаление изображений",
+    "too_many_search_requests": "Слишком много поисковых запросов. Попробуйте еще раз позже",
+    "too_many_image_uploads": "Слишком много попыток загрузки изображений. Попробуйте еще раз позже",
+    "storage_quota_exceeded_title": "Квота хранилища превышена",
+    "storage_quota_exceeded_description": "В вашем хранилище больше нет места для изображений",
+    "files_are_not_valid_images": "Файлы не являются допустимыми изображениями:",
+    "adding_image_error": "Ошибка при добавлении изображения",
+    "downloading_image_url_error_title": "Ошибка при загрузке URL-адреса изображения",
+    "downloading_image_url_error_description": "Предоставленный URL-адрес изображения вернул ошибку: "
   },
   "ContactsPanel": {
     "brand_weekend_closed": "Сб-Вск: закрыто"
   },
-  "SupportedEquipment": {
-    "supported_equipment": "Обслуживаемые Модели"
-  },
   "Blog": {
     "are_you_sure_delete_blog_title": "Вы уверены, что хотите удалить этот блог?",
     "are_you_sure_delete_blog_description": "Если вы нажмете \"Удалить\", следующая запись в блоге будет удалена навсегда. Это действие нельзя отменить.",
+    "save": "Сохранить",
     "cancel": "Отмена",
     "delete": "Удалить",
     "create_new_blog": "Создать новый блог",
     "creating_new_blog": "Создание нового блога",
     "blog_saved": "Блог сохранен!",
-    "blog_updated": "Блог {title} обновлён"
+    "blog_updated": "Блог {title} обновлён",
+    "find_more_blogs": "К списку блогов",
+    "published": "Опубликовано",
+    "updating": "Обновление",
+    "update_blog": "Обновить блог",
+    "edit_blog": "Редактировать блог",
+    "exit_edit_mode": "Выйти из режима редактирования",
+    "set_image_warning": "Установитe изображение в Главной Части для публикации блога",
+    "publish_warning": "Опубликуйте блог, чтобы люди могли его видеть",
+    "now_editing": "Редактируется:",
+    "Divider": {
+      "aria_edit_element_above": "Изменить элемент сверху",
+      "edit": "Изменить",
+      "aria_delete_element_above": "Удалить элемент сверху",
+      "insert": "Вставить",
+      "pick_element": "Выбрать элемент",
+      "Items": {
+        "paragraph": "Абзац",
+        "image": "Изображение",
+        "separator": "Разделитель",
+        "video": "Видео",
+        "table": "Таблица",
+        "carousel": "Карусель",
+        "gallery": "Галерея",
+        "chart": "Диаграмма"
+      }
+    },
+    "VideoPart": {
+      "part_name": "Компонент Видео",
+      "label": "ID видео на YouTube",
+      "placeholder": "Введите URL видео на YouTube",
+      "primitive_label": "Найденный ID:"
+    },
+    "TablePart": {
+      "part_name": "Компонент Таблица",
+      "priitive_caption": "Описание Таблицы",
+      "menu_title_bold": "Жирный",
+      "menu_title_italic": "Курсив",
+      "menu_title_underline": "Подчеркнутый",
+      "menu_title_line_through": "Через линию",
+      "menu_title_align_left": "Выровнять по левому краю",
+      "menu_title_align_center": "Выровнять по центру",
+      "menu_title_align_right": "Выровнять по правому краю",
+      "menu_title_insert_column": "Вставить столбец",
+      "menu_title_delete_column": "Удалить столбец",
+      "menu_title_insert_row": "Вставить строку",
+      "menu_title_delete_row": "Удалить строку"
+    },
+    "ParagraphPart": {
+      "part_name": "Компонент Абзац",
+      "text_label": "Заголовок абзаца",
+      "text_placeholder": "Введите заголовок абзаца",
+      "mdx_label": "Текст абзаца"
+    },
+    "ImagePart": {
+      "part_name": "Компонент Изорбражение",
+      "primitive_images_uploaded": "Загружены новые изображения: ",
+      "primitive_drag_and_drop": "Перетащите файлы изображений",
+      "primitive_click_to_select": "Или щелкните для выбора на ПК",
+      "primitive_or": "Или ",
+      "primitive_post_image_placeholder": "Введите URL изображения",
+      "primitive_file_size_limit": "Ограничение по размеру файла",
+      "image_in_use": "Изображение используется",
+      "image_in_use_description": "Изображение используется и не может быть удалено",
+      "image_delete": "Удалить изображение",
+      "image_delete_description": "Изображение не используется и может быть безопасно удалено"
+    },
+    "HeroPart": {
+      "part_name": "Основной Компонент",
+      "text_label": "Заголовок блога",
+      "text_placeholder": "Введите заголовок блога",
+      "text2_label": "Описание блога",
+      "text2_placeholder": "Введите описание блога",
+      "warning_image": "Добавьте и/или выберите изображение, чтобы иметь возможность опубликовать блог"
+    },
+    "ImageGalleryPart": {
+      "part_name": "Компонент Галерея"
+    },
+    "ChartPart": {
+      "part_name": "Компонент Диаграмма",
+      "text_label": "Заголовок диаграммы",
+      "text_placeholder": "Введите заголовок диаграммы",
+      "text2_label": "Описание диаграммы",
+      "text2_placeholder": "Введите описание диаграммы",
+      "chart_type_bar_vertical": "Вертикальная столбчатая диаграмма",
+      "chart_type_bar_horizontal": "Горизонтальная столбчатая диаграмма",
+      "chart_type_line": "Линейная диаграмма",
+      "chart_type_area": "Площадная диаграмма",
+      "chart_type_radar": "Радарная диаграмма",
+      "primitive_value_not_number": "Введите число",
+      "primitive_new_column": "Новый столбец",
+      "menu_title_insert_column": "Вставить столбец",
+      "menu_title_delete_column": "Удалить столбец",
+      "menu_title_insert_row": "Вставить строку",
+      "menu_title_delete_row": "Удалить строку"
+    },
+    "CarouselPart": {
+      "part_name": "Компонент Карусель",
+      "preferences": "Настройки карусели",
+      "loop": "Цикл",
+      "fade": "Затухание",
+      "auto_scroll": "Автоматическая прокрутка",
+      "auto_scroll_speed": "Скорость прокрутки(с)"
+    }
   },
-  "Image": {
-    "image_in_use": "Изображение используется",
-    "image_delete": "Удалить изображение"
+  "Pagination": {
+    "go_to_previous_page": "На предыдущую страницу",
+    "previous": "Назад",
+    "go_to_next_page": "На следующую страницу",
+    "next": "Вперёд",
+    "more_pages": "Ещё страницы"
   },
-  "Cards": {
-    "repair_center": "Сервисный центр",
-    "custom_pc_build_repair": "Сборка и ремонт ПК на заказ",
-    "data_recovery": "Восстановление данных",
-    "tech_protection_warranty": "Страховой план для Вашей техники",
-    "remote_it_support": "Удаленная ИТ поддержка",
-    "onsite_tech_visit": "Выездной технический осмотр",
-    "mac_battery_replacement": "Замена батареи MacBook",
-    "mac_logic_board_repair": "Ремонт логической платы MacBook",
-    "mac_screen_replacement": "Замена экрана MacBook",
-    "mac_spill_repair": "Ремонт MacBook после залития жидкостью",
-    "mac_wont_power_up": "MacBook не включается",
-    "mac_data_recovery": "Восстановление данных MacBook",
-    "windows_laptop_screen_replacement": "Замена экрана ноутбука",
-    "windows_laptop_spill_repair": "Ремонт ноутбука с Windows после залития жидкостью",
-    "windows_data_recovery": "Восстановление данных Windows",
-    "windows_laptop_wont_start": "Ноутбук с Windows не включается",
-    "slow_pc_issue": "Устранение медленной работы ПК",
-    "windows_pc_wont_start": "Компьютер с Windows не включается"
+  "Search": {
+    "placeholder": "Поиск на сайте",
+    "search_modal": "Поиск модальный",
+    "submit": "отправить",
+    "no_results": "Результатов не найдено",
+    "pages": "Страницы",
+    "blogs": "Статьи"
+  },
+  "Headers": {
+    "our_services": "Наши Услуги",
+    "what_we_can_offer": "что мы можем предложить",
+    "latest_from_blog": "последнее в нашем блоге",
+    "nice_to_meet_you": "рады встрече",
+    "our_team": "наша команда",
+    "view_profile": "личный профиль",
+    "our_contacts": "наши контакты",
+    "how_you_can_find_us": "как нас найти",
+    "make_an_appointment": "записаться на прием",
+    "our_blog": "наш блог",
+    "blogs_not_found": "Статьи не найдены"
   },
   "Services": {
-    "header_image_alt": "Стол, покрытый различными компьютерными деталями, с ноутбуком в центре",
-    "footer_image_alt": "Два ноутбука, на экранах которых отображён HTML-код.",
-    "mac_repair_center": "Центр ремонта техники Apple",
-    "repairing_all_mac": "Ремонт материнских плат и всех проблем MacBook, iMac и Mac Pro",
-    "fixing_all_windows_issues": "Ремонт любых неполадок Windows/ПК",
-    "repairing_all_in_ones": "Ремонт ноутбуков, настольных компьютеров, ПК, игровых компьютеров на заказ, моноблоков и планшетов",
-    "our_services": "Наши Услуги",
-    "footer_title": "Нужен ремонт компьютера?",
-    "footer_button_text": "Бесплатная Диагностика"
+    "cold-laser-therapy": {
+      "title": "Холодный Лазер",
+      "description": "Холодная лазерная терапия - это низкоинтенсивная лазерная терапия, которая стимулирует заживление при использовании низких уровней света. Эта техника называется «холодной» лазерной терапией, потому что низкие уровни света недостаточны для нагревания тканей вашего организма. Уровень света низок по сравнению с другими формами лазерной терапии, такими как те, которые используются для уничтожения опухолей и коагуляции тканей. Хирургические и эстетические лазеры нагревают обрабатываемую ткань. Соответствуя своему названию, холодная лазерная терапия этого не делает."
+    },
+    "detox-program": {
+      "title": "Детокс",
+      "description": "Детоксикационные (детокс) диеты более популярны, чем когда-либо. Эти диеты утверждают, что очищают кровь и выводят из организма вредные токсины. Однако не совсем ясно, как они это делают, какие конкретные соединения они должны устранять и работают ли они вообще. Читайте дальше, чтобы получить подробный обзор детокс-диет, включая их преимущества и побочные эффекты."
+    },
+    "fitness-program": {
+      "title": "Фитнес",
+      "description": "Многие люди стремятся быть в хорошей форме. В конце концов, фитнес синоним здоровья. Высокий уровень общей физической формы связан с более низким риском хронических заболеваний, а также с лучшей способностью справляться со возникающими проблемами со здоровьем. Более высокая физическая форма также способствует большей функциональности и подвижности на протяжении всей жизни. И в краткосрочной перспективе физическая активность может улучшить ваше повседневное функционирование, от улучшения настроения до более четкой концентрации и лучшего сна."
+    },
+    "dietary-management": {
+      "title": "Программа Диеты",
+      "description": "Правильное питание означает обеспечение того, чтобы ваш рацион включал разнообразные здоровые, питательные продукты и напитки. Употребление правильных продуктов может дать вам энергию, улучшить ваше самочувствие и помочь вам чувствовать себя здоровее. Мы более подробно рассказываем о здоровом питании, различиях между здоровым питанием и диетами, а также о том, как работа с диетологом может вам помочь."
+    },
+    "heat-and-cold": {
+      "title": "Тепло и Холод",
+      "description": "Тепловая терапия помогает улучшить кровоток к области, к которой прикладывается тепло. Это лучше всего подходит для мышечной боли или скованности. Холодовая терапия помогает уменьшить воспаление. Она наиболее полезна при использовании для острых травм и боли. Мы лечим все, от артрита до растянутых мышц и воспаления, с помощью ледяных компрессов или грелок. Лечение боли теплом и холодом может быть чрезвычайно эффективным при многих различных состояниях и травмах, а также легко доступным. Сложность заключается в том, чтобы знать, какие ситуации требуют тепла, а какие холода. Иногда одно лечение будет включать и то, и другое. Как общее правило, используйте лед для острых травм или боли вместе с воспалением и отеком. Используйте тепло для мышечной боли или скованности."
+    },
+    "massage-therapy": {
+      "title": "Массаж",
+      "description": "Когда дело доходит до отдыха и расслабления, нет ничего лучше массажа. Миллионы американцев получают пользу от массажа, и легко понять почему! Массаж отлично подходит для снятия стресса и напряжения, улучшения подвижности и даже предотвращения более серьезных заболеваний. Но массаж - это больше, чем просто то, чем можно побаловать себя на День матери или пляжном отдыхе. Медицинский массаж может обеспечить эффективное облегчение боли, болезненности и травм. Но что такое медицинский массаж и какие состояния он может помочь?"
+    },
+    "pediatric": {
+      "title": "Педиатрия",
+      "description": "Введение вашего ребенка в хиропрактику в молодом возрасте может быть одним из лучших способов помочь им подготовиться к здоровой жизни. Детские хиропрактики могут помочь детям во многих отношениях - от улучшения качества сна и укрепления иммунитета до улучшения проблем с поведением и даже помощи в пищеварении. У младенцев хиропрактика также может помочь облегчить колики и симптомы рефлюкса, среди многих других преимуществ. Может ли ваш ребенок извлечь пользу из посещения хиропрактика? Вот список 10 основных преимуществ детской хиропрактики."
+    },
+    "relax-therapy": {
+      "title": "Релакс",
+      "description": "Одно из самых важных моментов, которые следует помнить во время хиропрактической коррекции, - это оставаться расслабленным. Однако, если у вас еще не было хиропрактической коррекции или вы склонны к беспокойству, вам могут пригодиться некоторые советы по расслаблению во время хиропрактической коррекции."
+    }
   },
   "Home": {
     "hero": {
-      "titles": {
-        "1": "Эффективно",
-        "2": "Надёжно",
-        "3": "Проверено",
-        "4": "Уверенно",
-        "5": "Результативно"
-      },
-      "descriptions": {
-        "1": "Эксперты по ремонту компьютеров с большим опытом.",
-        "2": "Вернем ваш компьютер к жизни.",
-        "3": "Решаем любые компьютерные проблемы.",
-        "4": "Качество и надежность - наши приоритеты.",
-        "5": "Оптимальные решения для ваших нужд."
-      },
-      "contacts_button": "Связаться Сейчас"
-    },
-    "header_image_alt": "Стол, покрытый различными компьютерными деталями, с ноутбуком в центре",
-    "mac_repair_center": "Центр ремонта техники Apple",
-    "repairing_all_mac": "Ремонт материнских плат и всех проблем MacBook, iMac и Mac Pro",
-    "fixing_all_windows_issues": "Ремонт любых неполадок Windows/ПК",
-    "repairing_all_in_ones": "Ремонт ноутбуков, настольных компьютеров, ПК, игровых компьютеров на заказ, моноблоков и планшетов"
+      "name": "Chiropractor",
+      "line1": "крепкое здоровье",
+      "line2": "с помощью",
+      "line3": "хиропрактики",
+      "our_mission": "наша цель - лечение скелето-мышечной дизфункции нашими проверенными методами.",
+      "mode_about_us": "узнать больше"
+    }
   },
   "Disclaimer": {
     "disclaimer": "Ответственность",
@@ -253,13 +375,44 @@
     "words_about_us": "Немного о нас",
     "read_more": "Узнать больше"
   },
-  "PracticeAreas": {
-    "practice_areas": "Область Практики"
-  },
   "Testimonials": {
-    "testimonials": "Отзывы"
+    "testimonials": "Отзывы",
+    "client": {
+      "client": "клиент",
+      "athlete": "атлет",
+      "politician": "политик",
+      "actress": "актриса"
+    }
   },
   "Contacts": {
     "contacts": "Контакты"
+  },
+  "AboutPractitioner": {
+    "about": "О Специалисте",
+    "years_of_experience": "лет опыта",
+    "award_nominees": "наград",
+    "happy_customers": "довольных клиентов"
+  },
+  "OurTeam": {
+    "fatma-yilmaz": {
+      "title": "мануальный терапевт",
+      "name": "Фатма Йылмаз",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "irvin-s-moreau": {
+      "title": "мануальный терапевт",
+      "name": "Ирвин С. Моро",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "samantha-wang": {
+      "title": "мануальный терапевт",
+      "name": "Саманта Ванг",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    },
+    "adam-khalid": {
+      "title": "мануальный терапевт",
+      "name": "Адам Халид",
+      "quote": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae ea est esse ut voluptatem vero velit ipsam eligendi deleniti, tenetur suscipit sequi quo enim sed voluptates eos aut quibusdam. Dignissimos."
+    }
   }
 }

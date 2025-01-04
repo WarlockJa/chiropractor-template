@@ -21,13 +21,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { LoaderButton } from "@/components/UniversalComponents/LoaderButton";
 
 export default function AddToVectorizeForm() {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
 
   const { execute, status } = useAction(addToVectorizeAction, {
     onError({ error }) {
       if (error.serverError === "RateLimitError") {
-        toast(t("rate_limit_title"), {
-          description: t("rate_limit_description"),
+        toast(tErrors("rate_limit_title"), {
+          description: tErrors("rate_limit_description"),
         });
 
         return;

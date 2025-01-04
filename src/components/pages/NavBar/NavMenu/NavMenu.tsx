@@ -69,9 +69,7 @@ ListItem.displayName = "ListItem";
 
 export default async function NavMenu() {
   // translations
-  const t = await getTranslations("Cards");
   const tServices = await getTranslations("Services");
-  const tNavMenu = await getTranslations("NavMenu");
   return (
     <NavigationMenu className="hidden xl:block">
       <NavigationMenuList className="gap-4">
@@ -87,7 +85,7 @@ export default async function NavMenu() {
               {servicesData.map((item) => (
                 <ListItem
                   key={item.title}
-                  title={item.title}
+                  title={tServices(`${item.path}.title`)}
                   href={item.href}
                   className="relative"
                 />

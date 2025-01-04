@@ -1,7 +1,7 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function DisclaimerPage() {
-  const t = useTranslations("Disclaimer");
+export default async function DisclaimerPage() {
+  const t = await getTranslations("Disclaimer");
   return (
     <div className="mt-28 min-h-screen">
       <section className="mx-auto my-12 flex max-w-screen-md flex-col justify-between gap-4 overflow-hidden px-2 leading-8">

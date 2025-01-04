@@ -15,7 +15,7 @@ import { ServiceData } from "./servicesData";
 
 interface ServicePage {
   path: string;
-  page: ({ serviceData }: { serviceData: ServiceData }) => JSX.Element;
+  page: ({ serviceData }: { serviceData: ServiceData }) => Promise<JSX.Element>;
 }
 
 export const servicesPages: ServicePage[] = [

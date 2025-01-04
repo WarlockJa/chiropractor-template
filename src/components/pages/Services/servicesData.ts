@@ -1,9 +1,11 @@
+import en from "@/../messages/en.json";
+
 export interface ServiceData {
   title: string;
   description: string;
   dbImageName: string;
   href: string;
-  path: string;
+  path: keyof typeof en.Services;
 }
 
 export const servicesData: ServiceData[] = [

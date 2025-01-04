@@ -18,6 +18,7 @@ import {
 } from "@/lib/convertStringSpecialCharacters";
 import handleTableArrowKeysNavigation from "./lib/tableArrowKeysNavigation";
 import { IParts_TableMDX_TableData, TTableActiveCell } from "../../../mdxtypes";
+import { useTranslations } from "next-intl";
 
 export const TableColor = "hsl(var(--input))";
 
@@ -60,6 +61,7 @@ export default function TableMDXPrimitive({
   tableData,
   setTableData,
 }: ITableMDXPrimitiveProps) {
+  const tBlogTable = useTranslations("Blog.TablePart");
   // active cell data used to insert/delete rows and columns
   const [activeCell, setActiveCell] = useState<TTableActiveCell>();
   // creating a table with default values if tableData doesn't exist
@@ -89,7 +91,7 @@ export default function TableMDXPrimitive({
               defaultValue={convertCodesToSpecialCharacters(
                 tableData.tableCaption,
               )}
-              placeholder="Table Caption"
+              placeholder={tBlogTable("priitive_caption")}
               onChange={(e) => {
                 if (e.target.value.trim() === "") {
                   delete tableData.tableCaption;

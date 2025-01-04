@@ -64,7 +64,8 @@ export default function ImagePrimitive({
   imageId,
   setImageId,
 }: IImagePrimitivesProps) {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
+  const tBlogImage = useTranslations("Blog.ImagePart");
   // blog images data
   const setImages = useSetAtom(blogImagesAtom);
   // input file ref
@@ -77,11 +78,11 @@ export default function ImagePrimitive({
 
   const { execute, status } = useAction(createBlogImagesAction, {
     onError({ error, input }) {
-      console.log("ERROR: ", error);
+      // console.log("ERROR: ", error);
       // unauthorised access
       if (error.serverError === "UnauthorisedAccess") {
-        toast(t("insufficient_rights_title"), {
-          description: t("insufficient_rights_update_blog"),
+        toast(tErrors("insufficient_rights_title"), {
+          description: tErrors("insufficient_rights_update_blog"),
         });
 
         return;
@@ -89,8 +90,8 @@ export default function ImagePrimitive({
 
       // rate limit exceeded
       if (error.serverError === "RateLimitError") {
-        toast(t("rate_limit_title"), {
-          description: "Too many image uploads. Try again later.",
+        toast(tErrors("rate_limit_title"), {
+          description: tErrors("too_many_image_uploads"),
         });
 
         return;
@@ -98,8 +99,8 @@ export default function ImagePrimitive({
 
       // user storage quota exceeded
       if (error.serverError === "R2StorageLimitExceeded") {
-        toast("Storage quota exceeded", {
-          description: "There's no more room for images in your storage",
+        toast(tErrors("storage_quota_exceeded_title"), {
+          description: tErrors("storage_quota_exceeded_description"),
         });
 
         return;
@@ -109,7 +110,7 @@ export default function ImagePrimitive({
       if (error.serverError) {
         toast(
           <SonnerErrorCard
-            title={t("general_error_title")}
+            title={tErrors("general_error_title")}
             errors={error.serverError}
           />,
         );
@@ -135,7 +136,10 @@ export default function ImagePrimitive({
         );
 
         toast(
-          <SonnerErrorCard title={"Error adding image"} errors={imageErrors} />,
+          <SonnerErrorCard
+            title={tErrors("adding_image_error")}
+            errors={imageErrors}
+          />,
         );
 
         return;
@@ -143,7 +147,7 @@ export default function ImagePrimitive({
 
       toast(
         <SonnerErrorCard
-          title={t("general_error_title")}
+          title={tErrors("general_error_title")}
           errors={JSON.stringify(error.validationErrors)}
         />,
       );
@@ -165,7 +169,7 @@ export default function ImagePrimitive({
           </ol>
         );
 
-        toast("New images uploaded: ", {
+        toast(tBlogImage("primitive_images_uploaded"), {
           description: uploadedImages,
         });
       }
@@ -195,7 +199,7 @@ export default function ImagePrimitive({
 
       toast(
         <SonnerErrorCard
-          title={"Files are not valid images:"}
+          title={tErrors("files_are_not_valid_images")}
           errors={imageErrors}
         />,
       );
@@ -291,18 +295,20 @@ export default function ImagePrimitive({
               className="text-lg text-blue-400"
               // style={filesRef.current ? { color: "green" } : undefined}
             >
-              <p className="text-center">Drag and Drop Image Files</p>
               <p className="text-center">
-                Or Click to Select Images on Your PC
+                {tBlogImage("primitive_drag_and_drop")}
+              </p>
+              <p className="text-center">
+                {tBlogImage("primitive_click_to_select")}
               </p>
               {/* URL parser. Loads image to the client for <img> check and, on success, passes it to the server action as a File */}
               <div className="flex items-center gap-2">
-                Or{" "}
+                {tBlogImage("primitive_or")}
                 <Input
                   type="url"
                   value={url}
                   onChange={(event) => setUrl(event.target.value)}
-                  placeholder="Post an Image URL"
+                  placeholder={tBlogImage("primitive_post_image_placeholder")}
                   className="w-full placeholder:text-blue-400"
                   onClick={(e) => e.stopPropagation()}
                   onKeyDown={(event) => {
@@ -327,8 +333,10 @@ export default function ImagePrimitive({
                         .catch((error) => {
                           toast(
                             <SonnerErrorCard
-                              title="Error downloading URL image"
-                              errors={`Provided image URL returned an error: ${error}`}
+                              title={tErrors(
+                                "downloading_image_url_error_title",
+                              )}
+                              errors={`${tErrors("downloading_image_url_error_description")} ${error}`}
                             />,
                           );
                         });
@@ -338,7 +346,8 @@ export default function ImagePrimitive({
               </div>
 
               <p className="text-center">
-                File size limit {Math.floor(MAX_FILE_SIZE / 1000000)}MB
+                {tBlogImage("primitive_file_size_limit")}{" "}
+                {Math.floor(MAX_FILE_SIZE / 1000000)}MB
               </p>
             </div>
           </div>

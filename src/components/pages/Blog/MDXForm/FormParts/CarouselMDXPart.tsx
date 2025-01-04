@@ -10,6 +10,7 @@ import ImagePrimitive from "./primitives/ImagePrimitive/ImagePrimitive";
 import PartHeader from "./primitives/PartHeader";
 import { IGenericImageProps, IParts_CarouselMDX } from "../mdxtypes";
 import { SelectBlogs } from "@db/schemaBlog";
+import { useTranslations } from "next-intl";
 
 interface ICarouselMDXPartFormValues extends IFormValues {
   originalState: IParts_CarouselMDX;
@@ -19,6 +20,7 @@ interface ICarouselMDXPartFormValues extends IFormValues {
 export default function CarouselMDXPart({
   blogId,
 }: Pick<SelectBlogs, "blogId">) {
+  const tBlogCarousel = useTranslations("Blog.CarouselPart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -54,7 +56,7 @@ export default function CarouselMDXPart({
   return (
     <div>
       {/* TODO add translations */}
-      <PartHeader partName="Image Carousel Part" className="mb-4" />
+      <PartHeader partName={tBlogCarousel("part_name")} className="mb-4" />
       <ImagePrimitive
         blogId={blogId}
         imageId={formValues.currentValues.imageIds[activeSlide]}
@@ -154,12 +156,14 @@ export default function CarouselMDXPart({
       />
       <Card className="shadow-md md:m-4">
         <CardHeader>
-          <CardTitle className="text-xl">Carousel Preferences</CardTitle>
+          <CardTitle className="text-xl">
+            {tBlogCarousel("preferences")}
+          </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-wrap justify-around gap-2">
           <div className="flex items-center gap-2">
             <Label htmlFor="carouselLoopFlag" className="text-lg">
-              Loop
+              {tBlogCarousel("loop")}
             </Label>
             <Input
               id="carouselLoopFlag"
@@ -199,7 +203,7 @@ export default function CarouselMDXPart({
           </div>
           <div className="flex items-center gap-2">
             <Label htmlFor="carouselFadeFlag" className="text-lg">
-              Fade
+              {tBlogCarousel("fade")}
             </Label>
             <Input
               id="carouselFadeFlag"
@@ -239,7 +243,7 @@ export default function CarouselMDXPart({
           </div>
           <div className="flex items-center gap-2">
             <Label htmlFor="carouselAutoScrollFlag" className="text-lg">
-              Auto Scroll
+              {tBlogCarousel("auto_scroll")}
             </Label>
             <Input
               id="carouselAutoScrollFlag"
@@ -293,7 +297,7 @@ export default function CarouselMDXPart({
                   : undefined
               }
             >
-              Auto Scroll Speed(s)
+              {tBlogCarousel("auto_scroll_speed")}
             </Label>
             <Input
               id="carouselAutoScrollSpeed"

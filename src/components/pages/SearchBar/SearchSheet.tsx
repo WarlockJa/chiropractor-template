@@ -33,17 +33,14 @@ import PageCard from "./PageCard";
 import { cn } from "@/lib/utils";
 
 export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
+  const tSearch = useTranslations("Search");
 
   // search results
   const [searchResults, setSearchResults] = useState<
     CachedSearchResult | undefined
   >();
-  // @ts-ignore
-  // process.env.NODE_ENV === "development"
-  // ? { blogs: Array(20).fill(SEARCH_RESULT[0]), pages: [] }
-  // : undefined,
-  // process.env.NODE_ENV === "production" ? undefined : TEMP_DATA,
+
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // next-safe-action
@@ -51,8 +48,8 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
     onError({ error }) {
       // rate limit exceeded
       if (error.serverError === "RateLimitError") {
-        toast(t("rate_limit_title"), {
-          description: "Too many search requests. Try again later.",
+        toast(tErrors("rate_limit_title"), {
+          description: tErrors("too_many_search_requests"),
         });
 
         return;
@@ -61,7 +58,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
       error.serverError &&
         toast(
           <SonnerErrorCard
-            title={t("general_error_title")}
+            title={tErrors("general_error_title")}
             errors={error.serverError}
           />,
         );
@@ -108,8 +105,10 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
           searchResults && "h-screen",
         )}
       >
-        <SheetTitle className="hidden">Search Modal</SheetTitle>
-        <SheetDescription className="hidden">Search Modal</SheetDescription>
+        <SheetTitle className="hidden">{tSearch("search_modal")}</SheetTitle>
+        <SheetDescription className="hidden">
+          {tSearch("search_modal")}
+        </SheetDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
@@ -123,7 +122,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
                         {...field}
                         ref={searchInputRef}
                         type="text"
-                        placeholder={"Search on this website"}
+                        placeholder={tSearch("placeholder")}
                         className="mx-8 rounded-full border-none bg-primary/20 px-6 py-6 pr-12 ring-1 ring-accent transition-all hover:ring-2 focus-visible:outline-none focus-visible:ring-2"
                         max={100}
                       />
@@ -135,7 +134,7 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
               )}
             />
             <button type="submit" className="hidden" aria-hidden>
-              SUBMIT
+              {tSearch("submit").toLocaleUpperCase()}
             </button>
           </form>
         </Form>
@@ -145,7 +144,12 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
               <LoaderSpinner />
             </div>
           ) : (
-            SearchResults({ searchResults })
+            // NOTE asserting simplified useTranslations hook to pass to child component
+            // in order to initiate TS support you can temporary use hook inside of the child component
+            SearchResults({
+              searchResults,
+              tSearch: tSearch as (input: string) => string,
+            })
           )}
         </div>
       </SheetContent>
@@ -155,8 +159,10 @@ export default function SearchSheet({ searchQuery }: { searchQuery?: string }) {
 
 const SearchResults = ({
   searchResults,
+  tSearch,
 }: {
   searchResults: CachedSearchResult | undefined;
+  tSearch: (input: string) => string;
 }) => {
   if (!searchResults) return null;
 
@@ -165,7 +171,7 @@ const SearchResults = ({
     searchResults.blogsWithImages.length === 0 &&
     searchResults.pages.length === 0
   )
-    return <p className="text-center">There was no results</p>;
+    return <p className="text-center">{tSearch("no_results")}</p>;
 
   // constructing pages results
   const pageCards = searchResults.pages.map((item) => (
@@ -179,7 +185,7 @@ const SearchResults = ({
   // constructing blogs results
   const blogCards = searchResults.blogsWithImages
     // filter is for development mode, when results from Vectorize point to the blogs that do not exsit locally
-    .filter((item) => item.blog)
+    .filter((item) => item)
     .map((item) => (
       <BlogCard
         {...item}
@@ -192,13 +198,13 @@ const SearchResults = ({
     <div className="flex flex-col">
       {pageCards.length > 0 && (
         <>
-          <h2 className="indent-8">Pages</h2>
+          <h2 className="indent-8">{tSearch("pages")}</h2>
           <div className="grid grid-flow-row gap-1">{pageCards}</div>
         </>
       )}
       {blogCards.length > 0 && (
         <>
-          <h2 className="indent-8">Blogs</h2>
+          <h2 className="indent-8">{tSearch("blogs")}</h2>
           <div className="grid grid-flow-row gap-1 md:grid-cols-2">
             {blogCards}
           </div>

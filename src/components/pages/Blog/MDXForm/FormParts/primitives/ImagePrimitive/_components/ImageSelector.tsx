@@ -21,15 +21,15 @@ export default function ImageSelector({
   selectedImage,
   setSelectedImage,
 }: IImageSelectorProps) {
-  const t = useTranslations("Errors");
-  const tImage = useTranslations("Image");
+  const tErrors = useTranslations("Errors");
+  const tBlogImage = useTranslations("Blog.ImagePart");
 
   // imageDelete transition hook
   const { execute, status } = useAction(deleteBlogImageAction, {
     onError({ error }) {
       if (error.serverError === "UnauthorisedAccess") {
-        toast(t("insufficient_rights_title"), {
-          description: t("insufficient_rights_delete_image"),
+        toast(tErrors("insufficient_rights_title"), {
+          description: tErrors("insufficient_rights_delete_image"),
         });
 
         return;
@@ -38,7 +38,7 @@ export default function ImageSelector({
       error.serverError &&
         toast(
           <SonnerErrorCard
-            title={t("general_error_title")}
+            title={tErrors("general_error_title")}
             errors={error.serverError}
           />,
         );
@@ -75,8 +75,8 @@ export default function ImageSelector({
             }
             title={
               usedImages.includes(img.imageId) || img.imageId === selectedImage
-                ? "Image is in use and cannot be deleted"
-                : "Image is not in use and can be safely deleted"
+                ? tBlogImage("image_in_use_description")
+                : tBlogImage("image_delete_description")
             }
             // saving image data
             onClick={() => setSelectedImage({ imageId: img.imageId })}
@@ -94,8 +94,8 @@ export default function ImageSelector({
               title={
                 usedImages.includes(img.imageId) ||
                 img.imageId === selectedImage
-                  ? tImage("image_in_use")
-                  : tImage("image_delete")
+                  ? tBlogImage("image_in_use")
+                  : tBlogImage("image_delete")
               }
               onClick={(e) => {
                 e.stopPropagation();

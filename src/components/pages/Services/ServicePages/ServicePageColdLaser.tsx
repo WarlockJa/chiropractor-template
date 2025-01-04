@@ -9,12 +9,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import CustomServerImage from "@/components/UniversalComponents/CustomServerImage";
+import { getTranslations } from "next-intl/server";
 
-export default function ServicePageColdLaser({
+export default async function ServicePageColdLaser({
   serviceData,
 }: {
   serviceData: ServiceData;
 }) {
+  const tServices = await getTranslations("Services");
   return (
     <div className="prose mx-auto mt-24 w-screen max-w-screen-lg text-foreground dark:prose-invert md:mt-28">
       <HeaderImage
@@ -29,7 +31,7 @@ export default function ServicePageColdLaser({
 
         <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
           <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
-            {serviceData.title}
+            {tServices(`${serviceData.path}.title`).toLocaleUpperCase()}
           </h1>
         </div>
       </HeaderImage>

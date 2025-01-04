@@ -1,5 +1,4 @@
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
-import { useTranslations } from "next-intl";
 import CustomHeader from "@/components/UniversalComponents/CustomHeader";
 import ContactsFooter from "@/components/pages/ContactsFooter";
 import HeroCarousel from "@/components/pages/Home/HeroCarousel/HeroCarousel";
@@ -16,23 +15,10 @@ import TeamCarousel from "@/components/pages/Home/TeamCarousel/TeamCarousel";
 import { teamData } from "@/components/pages/Home/TeamCarousel/testimonialsData";
 import TeamCard from "@/components/pages/Home/TeamCarousel/TeamCard";
 import LatestBlogsFeed from "@/components/pages/Blog/LatestBlogsFeed";
+import { getTranslations } from "next-intl/server";
 
-export default function Home() {
-  const t = useTranslations("Home");
-  const titles = [
-    t("hero.titles.1"),
-    t("hero.titles.2"),
-    t("hero.titles.3"),
-    t("hero.titles.4"),
-    t("hero.titles.5"),
-  ];
-  const descriptions = [
-    t("hero.descriptions.1"),
-    t("hero.descriptions.2"),
-    t("hero.descriptions.3"),
-    t("hero.descriptions.4"),
-    t("hero.descriptions.5"),
-  ];
+export default async function Home() {
+  const tHeaders = await getTranslations("Headers");
 
   return (
     <div className="overflow-hidden">
@@ -62,8 +48,13 @@ export default function Home() {
 
       {/* Services Carousel */}
       <div className="flex flex-col items-center pt-20">
-        <div className="text-xl text-accent">WHAT WE CAN OFFER</div>
-        <CustomHeader text="OUR SERVICES" fontSizeRem={3} />
+        <div className="text-xl text-accent">
+          {tHeaders("what_we_can_offer").toLocaleUpperCase()}
+        </div>
+        <CustomHeader
+          text={tHeaders("our_services").toLocaleUpperCase()}
+          fontSizeRem={3}
+        />
       </div>
       <ServicesCarousel
         carouselItems={servicesData.map((item) => (
@@ -88,14 +79,22 @@ export default function Home() {
 
       {/* Blog Feed */}
       <div className="mx-auto my-12 flex w-screen max-w-screen-lg flex-col items-center gap-6 p-2">
-        <CustomHeader text="LATEST FROM OUR BLOG" fontSizeRem={2} />
+        <CustomHeader
+          text={tHeaders("latest_from_blog").toLocaleUpperCase()}
+          fontSizeRem={2}
+        />
         <LatestBlogsFeed className="flex flex-col gap-4" />
       </div>
 
       {/* Our Team */}
       <div className="flex flex-col items-center py-20">
-        <div className="text-xl text-accent">NICE TO MEET YOU</div>
-        <CustomHeader text="OUR TEAM" fontSizeRem={3} />
+        <div className="text-xl text-accent">
+          {tHeaders("nice_to_meet_you").toLocaleUpperCase()}
+        </div>
+        <CustomHeader
+          text={tHeaders("our_team").toLocaleUpperCase()}
+          fontSizeRem={3}
+        />
         <TeamCarousel
           delayMs={5000}
           carouselItems={teamData.map((item, index) => (

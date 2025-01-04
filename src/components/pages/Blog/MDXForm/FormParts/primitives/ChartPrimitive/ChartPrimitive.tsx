@@ -29,6 +29,7 @@ import {
   IChartPrimitiveProps,
   TChartPrimitiveErrorsMatrix,
 } from "./chartPrimitive";
+import { useTranslations } from "next-intl";
 
 const TableColor = "hsl(var(--input))";
 
@@ -65,6 +66,7 @@ export default function ChartPrimitive({
   chartValues,
   setChartValues,
 }: IChartPrimitiveProps) {
+  const tBlogChart = useTranslations("Blog.ChartPart");
   // active cell data used to insert/delete rows and columns
   const [activeCell, setActiveCell] = useState<TTableActiveCell>();
   // errors state
@@ -283,7 +285,9 @@ export default function ChartPrimitive({
                                     (errorColumn, errorColumnIndex) =>
                                       errorColumnIndex === columnIndex
                                         ? isError
-                                          ? "Value is not a number"
+                                          ? tBlogChart(
+                                              "primitive_value_not_number",
+                                            )
                                           : undefined
                                         : errorColumn,
                                   )

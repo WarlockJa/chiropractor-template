@@ -8,6 +8,7 @@ import getSession from "@/lib/db/getSession";
 import userCanEditBlog from "@/components/pages/Blog/MDXForm/lib/userCanEditBlog";
 import HeaderImage from "@/components/UniversalComponents/HeaderImage";
 import { blogsLimit } from "@/appConfig";
+import { getTranslations } from "next-intl/server";
 
 const pageSchema = z.coerce.number().min(0);
 
@@ -17,6 +18,8 @@ export default async function BlogPage({
   searchParams: { [key: string]: string | undefined };
 }) {
   try {
+    const tBlog = await getTranslations("Blog");
+    const tHeaders = await getTranslations("Headers");
     // getting user data
     const session = await getSession();
     const user = session?.user;
@@ -44,7 +47,7 @@ export default async function BlogPage({
         >
           <div className="absolute inset-auto flex h-full w-full flex-col items-center justify-around">
             <h1 className="bg-accent/50 px-4 text-center text-[clamp(2rem,12vw,4rem)] uppercase drop-shadow-[4px_4px_2px_rgba(0,0,0,0.8)]">
-              OUR BLOG
+              {tHeaders("our_blog").toLocaleUpperCase()}
             </h1>
           </div>
         </HeaderImage>
@@ -63,14 +66,13 @@ export default async function BlogPage({
                 />
               ))
             ) : (
-              <div className="text-center">No blogs found</div>
+              <div className="text-center">{tBlog("blogs_not_found")}</div>
             )}
           </div>
           <BlogsListPagination
             blogsNumber={blogsCount}
             limit={blogsLimit}
             page={page}
-            // className="absolute bottom-0"
           />
         </section>
       </div>

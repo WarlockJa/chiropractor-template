@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { IParts_Video } from "../mdxtypes";
 import PartHeader from "./primitives/PartHeader";
 import VideoPrimitive from "./primitives/VideoPrimitive";
@@ -9,6 +10,7 @@ interface IVideoPartFormValues extends IFormValues {
 }
 
 export default function VideoPart() {
+  const tBlogVideo = useTranslations("Blog.VideoPart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -20,7 +22,7 @@ export default function VideoPart() {
   // if(formValues.type !== 0)
   return (
     <>
-      <PartHeader partName="Video Part" />
+      <PartHeader partName={tBlogVideo("part_name")} />
       <VideoPrimitive
         setVideoId={(videoId) =>
           setFormValues((prev) => ({
@@ -29,8 +31,8 @@ export default function VideoPart() {
             isOkToSave: prev.originalState.videoId !== videoId,
           }))
         }
-        labelText="Youtube video id"
-        placeholderText="Enter youtube video url"
+        labelText={tBlogVideo("label")}
+        placeholderText={tBlogVideo("placeholder")}
         videoId={formValues.currentValues.videoId}
       />
     </>

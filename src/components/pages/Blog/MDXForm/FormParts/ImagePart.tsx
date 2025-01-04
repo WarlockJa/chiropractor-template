@@ -5,6 +5,7 @@ import isOkToSaveAggregate from "./lib/isOkToSaveAggregate";
 import PartHeader from "./primitives/PartHeader";
 import { IGenericImageProps, IParts_Image } from "../mdxtypes";
 import { SelectBlogs } from "@db/schemaBlog";
+import { useTranslations } from "next-intl";
 
 interface IImagePartFormValues extends IFormValues {
   originalState: IParts_Image;
@@ -12,6 +13,7 @@ interface IImagePartFormValues extends IFormValues {
 }
 
 export default function ImagePart({ blogId }: Pick<SelectBlogs, "blogId">) {
+  const tBlogImage = useTranslations("Blog.ImagePart");
   // FormPartSelector which calls this component, ensures type correctness.
   // Asserting the correct type for local TS functionality
   const { formValues, setFormValues } = usePartWrapperContext() as {
@@ -28,7 +30,7 @@ export default function ImagePart({ blogId }: Pick<SelectBlogs, "blogId">) {
   // if(formValues.type !== 0)
   return (
     <>
-      <PartHeader partName="Image Part" />
+      <PartHeader partName={tBlogImage("part_name")} />
       <ImagePrimitive
         blogId={blogId}
         imageId={formValues.currentValues.imageId}

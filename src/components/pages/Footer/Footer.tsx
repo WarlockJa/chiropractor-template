@@ -10,8 +10,8 @@ import InstagramIcon from "@/components/Icons/InstagramIcon";
 import { servicesData } from "../Services/servicesData";
 
 export default function Footer() {
-  const t = useTranslations("Footer");
-  const tCards = useTranslations("Cards");
+  const tFooter = useTranslations("Footer");
+  const tServices = useTranslations("Services");
   return (
     <footer className="flex flex-col items-center bg-secondary text-lg text-secondary-foreground">
       {/* Footer body */}
@@ -30,7 +30,7 @@ export default function Footer() {
         {/* Services Links */}
         <div className="flex flex-col gap-4 p-2 pl-12 xsm:pl-2">
           <h1 className="bg-gradient-to-b from-secondary-foreground to-accent bg-clip-text text-xl text-transparent">
-            {t("services")}
+            {tFooter("services")}
           </h1>
           {/* <div className="flex w-fit flex-col gap-4 text-sm"> */}
           <div className="grid grid-cols-2 gap-4 text-sm">
@@ -40,8 +40,7 @@ export default function Footer() {
                 className="transition-colors hover:text-accent"
                 href={item.href}
               >
-                {/* TODO translate */}
-                {item.title}
+                {tServices(`${item.path}.title`)}
               </Link>
             ))}
           </div>
@@ -50,29 +49,29 @@ export default function Footer() {
         {/* Quick Links */}
         <div className="flex flex-col gap-4 p-2 pl-12 xsm:pl-2">
           <h1 className="bg-gradient-to-b from-secondary-foreground to-accent bg-clip-text text-xl text-transparent">
-            {t("quick_links")}
+            {tFooter("quick_links")}
           </h1>
           <div className="flex w-fit flex-col gap-4 text-sm">
             <Link className="transition-colors hover:text-accent" href={"/"}>
-              {t("home")}
+              {tFooter("home")}
             </Link>
             <Link
               className="transition-colors hover:text-accent"
               href={"/about"}
             >
-              {t("about")}
+              {tFooter("about")}
             </Link>
             <Link
               className="transition-colors hover:text-accent"
               href={"/services"}
             >
-              {t("services")}
+              {tFooter("services")}
             </Link>
             <Link
               className="transition-colors hover:text-accent"
               href={"/contacts"}
             >
-              {t("contacts")}
+              {tFooter("contacts")}
             </Link>
           </div>
         </div>
@@ -80,7 +79,7 @@ export default function Footer() {
         {/* Social */}
         <div className="flex flex-col gap-4 p-2 pl-12 xsm:pl-2">
           <h1 className="bg-gradient-to-b from-secondary-foreground to-accent bg-clip-text text-xl text-transparent">
-            {t("follow_us")}
+            {tFooter("follow_us")}
           </h1>
           <div className="flex gap-8 py-4 text-sm">
             <Link href={brandX} target="_blank">
@@ -103,24 +102,24 @@ export default function Footer() {
       <div className="flex w-full max-w-screen-xl flex-col items-center justify-around gap-3 p-2 text-xs md:flex-row md:p-8">
         <div>
           {/* &#169;{new Date().getFullYear()} {brandName} {t("rights_reserved")} */}
-          &#169;2024 {brandName} {t("rights_reserved")}
+          &#169;2024 {brandName} {tFooter("rights_reserved")}
         </div>
         <div className="flex flex-1 flex-wrap justify-center gap-4">
           <Link
             className="transition-colors hover:text-accent"
             href={"/privacy-policy"}
           >
-            {t("privacy_policy")}
+            {tFooter("privacy_policy")}
           </Link>
           <Link
             className="transition-colors hover:text-accent"
             href={"/disclaimer"}
           >
-            {t("disclaimer")}
+            {tFooter("disclaimer")}
           </Link>
         </div>
         <div className="text-right">
-          {t("developed_by")}{" "}
+          {tFooter("developed_by")}{" "}
           <NextLink
             target="_about"
             href={"https://warlockja.com"}

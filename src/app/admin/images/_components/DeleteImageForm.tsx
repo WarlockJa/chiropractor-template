@@ -14,13 +14,13 @@ export default function DeleteImageForm({
   imageId: number;
   name?: string;
 }) {
-  const t = useTranslations("Errors");
+  const tErrors = useTranslations("Errors");
 
   const { execute, status } = useAction(deleteImageAction, {
     onError({ error }) {
       if (error.serverError === "RateLimitError") {
-        toast(t("rate_limit_title"), {
-          description: t("rate_limit_description"),
+        toast(tErrors("rate_limit_title"), {
+          description: tErrors("rate_limit_description"),
         });
 
         return;
